@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import styles from './navbar.module.css'
+import styles from './navbar.module.css';
 
-export const NavItem = ({ redirect, icon, text, onRedirect }) => {
+const NavItem = ({ redirect, icon, text, onRedirect }) => {
   return (
     <>
       <Link href={`/${redirect}`} className={styles.navLink} onClick={onRedirect}>
@@ -11,3 +11,5 @@ export const NavItem = ({ redirect, icon, text, onRedirect }) => {
     </>
   )
 }
+
+export default NavItem

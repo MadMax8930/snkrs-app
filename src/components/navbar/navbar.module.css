@@ -5,12 +5,25 @@
   color: #ebebd3;
   padding: 1em 0;
   position: relative;
+  font-family: "Quicksand", sans-serif;
 }
 
 .header::after {
   content: "";
   clear: both;
   display: block;
+}
+
+.container {
+   width: 90%;
+   max-width: 1000px;
+   margin: 0 auto;
+}
+
+.logoContainer {
+   display: flex;
+   align-items: center;
+   gap: 1rem;
 }
 
 .logo {
@@ -160,28 +173,15 @@
   transform: translateY(-3px) rotate(-90deg);
 }
 
-/* demo 01 */
-.menuToggle {
-  transition: transform cubic-bezier(.34,.05,.52,1) 250ms;
-}
+/* Cross rotation */
 
-.menuToggle.open:hover {
-  transform: scale(1.2);
-}
+.menuToggle { transition: transform cubic-bezier(.34,.05,.52,1) 250ms; }
+.menuToggle.open:hover { transform: scale(1.2); }
+.navLink { transition: background cubic-bezier(.34,.05,.52,1) 150ms; }
+.open.menuToggle:hover .hamburger  { transform: rotate(1.125turn); }
+.open .hamburger { transform: rotate(45deg); }
 
-.navLink {
-  transition: background cubic-bezier(.34,.05,.52,1) 150ms;
-}
-
-.open.menuToggle:hover .hamburger  {
-  transform: rotate(1.125turn);
-}
-
-.open .hamburger {
-  transform: rotate(45deg);
-}
-
-/* for demo 2 */
+/* Links Animation */
  
 .nav li {
   opacity: 0;
