@@ -1,0 +1,222 @@
+@import url("https://fonts.googleapis.com/css?family=Quicksand:400,700");
+ 
+.header {
+  background: #e54b4b;
+  color: #ebebd3;
+  padding: 1em 0;
+  position: relative;
+}
+
+.header::after {
+  content: "";
+  clear: both;
+  display: block;
+}
+
+.logo {
+  float: left;
+  font-size: 1rem;
+  margin: 0;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.logo span {
+  font-weight: 400;
+}
+
+.nav {
+  position: fixed;
+  top: 0;
+  right: 0%;
+  bottom: 0;
+  width: 100%;
+  background: #464655;
+  transform: translateX(100%);
+  transition: transform ease-in-out 750ms;
+}
+.navOpen {
+  transform: translateX(0);
+}
+
+@supports (clip-path: circle(0px)) {
+  .nav {
+    transform: none;
+    clip-path: circle(0px at top right);
+    transition: clip-path ease-in-out 700ms;
+  }
+  
+  .nav.navClosed {
+    transition-delay: 200ms;
+  }
+
+  .navOpen {
+    clip-path: circle(250% at top right);
+  }
+}
+
+.nav ul {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+}
+
+.nav li {
+  height: 100%;
+}
+
+.nav li:not(:last-child) {
+  border-bottom: 1px solid #575766;
+}
+
+.navLink {
+  background: #464655;
+  color: #ebebd3;
+  display: block;
+  text-transform: uppercase;
+  text-decoration: none;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 125ms linear;
+}
+
+.navLink:hover,
+.navLink:focus {
+  background: #e4b363;
+  color: #464655;
+}
+
+.navIcon {
+  display: inline-block;
+  font-size: 1.5em;
+  margin-right: 1em;
+  width: 1.1em;
+  text-align: right;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.menuToggle {
+  display: block;
+  font-size: 1rem;
+  border: 0;
+  background: 0;
+  padding: 1em;
+  position: absolute;
+  top: 0.5em;
+  right: 0.5em;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.menuToggle:focus {
+  outline: 4px solid #ebebd3;
+  border: 0;
+}
+
+.open:focus {
+  outline: none;  
+}
+
+.hamburger,
+.hamburger::before,
+.hamburger::after {
+  content: "";
+  display: block;
+  background: #ebebd3;
+  height: 3px;
+  width: 1.75em;
+  border-radius: 3px;
+  transition: transform ease-in-out 500ms, opacity linear 300ms;
+}
+
+.hamburger::before {
+  transform: translateY(-6px);
+}
+
+.hamburger::after {
+  transform: translateY(3px);
+}
+
+.open .hamburger {
+  transform: rotate(45deg);
+}
+
+.open:hover .hamburger, 
+.open:focus .hamburger {
+  transform: rotate(1.125turn);
+}
+
+.open .hamburger::before {
+  opacity: 0;
+}
+
+.open .hamburger::after {
+  transform: translateY(-3px) rotate(-90deg);
+}
+
+/* demo 01 */
+.menuToggle {
+  transition: transform cubic-bezier(.34,.05,.52,1) 250ms;
+}
+
+.menuToggle.open:hover {
+  transform: scale(1.2);
+}
+
+.navLink {
+  transition: background cubic-bezier(.34,.05,.52,1) 150ms;
+}
+
+.open.menuToggle:hover .hamburger  {
+  transform: rotate(1.125turn);
+}
+
+.open .hamburger {
+  transform: rotate(45deg);
+}
+
+/* for demo 2 */
+ 
+.nav li {
+  opacity: 0;
+  transition: opacity 350ms linear;
+}
+
+.navOpen li {
+  animation: fadeIn cubic-bezier(.34,.05,.52,1) 750ms forwards;
+}
+
+.navOpen li:nth-child(1) { animation-delay: 100ms; }
+.navOpen li:nth-child(2) { animation-delay: 200ms; }
+.navOpen li:nth-child(3) { animation-delay: 300ms; }
+.navOpen li:nth-child(4) { animation-delay: 400ms; }
+.navOpen li:nth-child(5) { animation-delay: 500ms; }
+
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateX(-200px)}
+  75% {opacity: .2; transform: translateX(0) }
+  100% { opacity: 1; transform: translateX(0) }
+}
+
+@keyframes fadeOut {
+  0% {  opacity: 1; transform: translateX(0); }
+  70% { opaciTy: 0; }
+  100% { opacity: 0; transform: translateX(500px)}
+}
+
+.navClosed li {
+  opacity: 1;
+  animation: fadeOut cubic-bezier(.34,.05,.52,1) 500ms forwards;
+}
+
+.navClosed li:nth-child(1) { animation-delay: 500ms; }
+.navClosed li:nth-child(2) { animation-delay: 400ms; }
+.navClosed li:nth-child(3) { animation-delay: 300ms; }
+.navClosed li:nth-child(4) { animation-delay: 200ms; }
+.navClosed li:nth-child(5) { animation-delay: 100ms; }
