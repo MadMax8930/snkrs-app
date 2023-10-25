@@ -33,3 +33,15 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# off
+.env
+.gitignore
+/public
+READI.md
+next.config.js
+package-lock.json
+.eslintrc.json
+/.vscode
+postcss.config.js
+jsconfig.json
