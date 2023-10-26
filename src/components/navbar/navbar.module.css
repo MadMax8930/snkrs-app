@@ -1,9 +1,10 @@
 @import url("https://fonts.googleapis.com/css?family=Quicksand:400,700");
- 
+@import url('https://fonts.googleapis.com/css2?family=Calligraffitti&display=swap');
+
 .header {
-  background: #e54b4b;
-  color: #ebebd3;
-  padding: 1em 0;
+  background: #2d2b2a;
+  color: #f6ebe5;
+  padding: 1.3em 0;
   position: relative;
   font-family: "Quicksand", sans-serif;
 }
@@ -16,26 +17,28 @@
 
 .container {
    width: 90%;
-   max-width: 1000px;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   gap: 0px;
    margin: 0 auto;
 }
 
 .logoContainer {
    display: flex;
    align-items: center;
-   gap: 1rem;
+   justify-content: center;
+   gap: 0.75rem;
 }
 
 .logo {
   float: left;
-  font-size: 1rem;
+  font-size: 1.25rem;
   margin: 0;
-  text-transform: uppercase;
-  font-weight: 700;
-}
-
-.logo span {
-  font-weight: 400;
+  font-weight: bold;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  font-family: 'Calligraffitti', cursive;
 }
 
 .nav {
@@ -119,12 +122,36 @@
   font-size: 1rem;
   border: 0;
   background: 0;
-  padding: 1em;
+  padding: 1.67em 1em;
   position: absolute;
   top: 0.5em;
-  right: 0.5em;
+  right: 1.5em;
   cursor: pointer;
-  z-index: 1;
+  z-index: 100;
+}
+
+@media (min-width: 700px) {
+   .menuToggle {
+      right: 2em;
+   }
+}
+
+@media (min-width: 1000px) {
+   .menuToggle {
+      right: 3em;
+   }
+}
+
+@media screen and (min-width: 1200px) {
+   .menuToggle {
+      right: 4.5em;
+   }
+}
+
+@media (min-width: 360px) and  (max-width: 596px) {
+   .logoContainer {
+      padding-left: 0.75em;
+   }
 }
 
 .menuToggle:focus {

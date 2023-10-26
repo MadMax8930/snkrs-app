@@ -13,7 +13,7 @@ const Navbar = () => {
     <header className={styles.header}>
       <div className={styles.container}>
          <div className={styles.logoContainer}>
-            <h1 className={styles.logo}>Max{" "}<span>Sneakers</span></h1>
+            <h1 className={styles.logo}>Max Sneakers</h1>
             <DarkMode />
          </div>
          <button className={`${styles.menuToggle} ${hamburgerOpen ? `${styles.open}` : ""}`} role="button" onClick={toggleHamburgerMenu}>
