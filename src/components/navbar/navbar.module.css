@@ -5,7 +5,8 @@
   background: #2d2b2a;
   color: #f6ebe5;
   padding: 1.3em 0;
-  position: relative;
+  position: fixed;
+  width: 100%;
   font-family: "Quicksand", sans-serif;
 }
 

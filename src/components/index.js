@@ -4,6 +4,7 @@ import Navbar from "./navbar/Navbar";
 import NavItem from "./navbar/NavItem";
 import HomeMain from "./home/HomeMain";
 import Footer from "./footer/Footer";
+import FooterItem from "./footer/FooterItem";
 import DarkMode from "./darkm/DarkMode";
 
 
@@ -14,5 +15,6 @@ export {
    NavItem,
    HomeMain,
    Footer,
+   FooterItem,
    DarkMode,
 }
