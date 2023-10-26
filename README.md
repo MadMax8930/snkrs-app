@@ -9,5 +9,10 @@ npm run dev
 
 ### Dependencies:
 ```bash
-npm axios fs uuid mongoose
+npm axios fs uuid mongoose next-auth @fortawesome/react-fontawesome @fortawesome/free-solid-svg-icons
+```
+
+### Script that generates scraping data in .json and .js files:
+```bash
+node scraperMain.js
 ```

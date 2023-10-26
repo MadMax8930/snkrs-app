@@ -1,5 +1,5 @@
 import { Inter } from 'next/font/google';
-import { Navbar, Footer, AuthSessionProvider } from '@/components';
+import { Navbar, Footer } from '@/components';
 import { ThemeProvider } from '@/context/ThemeContext';
 import './globals.css';
 
@@ -15,13 +15,13 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
          <ThemeProvider>
-            <AuthSessionProvider>
+            {/* <AuthSessionProvider> */}
                <Navbar />
                <div className="container">      
                   {children}
                   <Footer />
                </div>
-            </AuthSessionProvider>
+            {/* </AuthSessionProvider> */}
          </ThemeProvider>
       </body>
     </html>
