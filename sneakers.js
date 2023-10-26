@@ -1,4 +1,4 @@
-[
+export const sneakerDrops = [
   {
     "id": "5ed38dec-008a-42fe-8520-e2c051cbdd1c",
     "img": "https://statics.whentocop.fr/mm6_maison_margiela_salomon_acs_pro_advanced_black_S59_WS_0214_P5743_H9938_287cf0fd2b.webp",

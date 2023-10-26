@@ -2,7 +2,7 @@ const axios = require('axios');
 const fs = require('fs');
 const { v4: uuidv4 } = require('uuid');
 
-const baseUrl = 'https://www.whentocop.fr/_next/data/3KOoVWch7GL1sqiG2XMl8/drops'; // Updated URL with JSON data
+const baseUrl = 'https://www.whentocop.fr/_next/data/flpo1udkC-nR4PFPC-87g/drops'; // Updated URL with JSON data
 const mySneakersArray = []; // Array to store sneaker data
 
 function generateUniqueID() { return uuidv4() }
@@ -27,6 +27,7 @@ async function fetchAndAddSneaker(slug, id) {
       const retailPrice = drop.retailPrice || 'N/A';
       const resellPrice = drop.resellPrice || 'N/A';
       const resellIndex = drop.resellIndex || 'N/A';
+      const brand = drop.brandCategories[0].brandCategoryName;
       const date = drop.dropDate;
 
       const uniqueID = generateUniqueID();
@@ -40,13 +41,17 @@ async function fetchAndAddSneaker(slug, id) {
         resellPrice,
         resellIndex,
         date,
+        brand,
         copping: false,
       };
 
       mySneakersArray.push(newSneaker);
       mySneakersArray.forEach((sneaker, index) => { console.log(`Sneaker #${index + 1}:`, sneaker) });
 
+      // Write to sneakers.json
       fs.writeFileSync('sneakers.json', JSON.stringify(mySneakersArray, null, 2));
+      // Write to sneakers.js
+      fs.writeFileSync('sneakers.js', `export const sneakerDrops = ${JSON.stringify(mySneakersArray, null, 2)}`);
     }
   } catch (error) {
     console.error('Error:', error);
@@ -70,6 +75,7 @@ async function fetchFirst10Sneakers() {
           const retailPrice = drop.retailPrice || 'N/A';
           const resellPrice = drop.resellPrice || 'N/A';
           const resellIndex = drop.resellIndex || 'N/A';
+          const brand = drop.brandCategories[0].brandCategoryName;
           const date = drop.dropDate;
 
           const uniqueID = generateUniqueID();
@@ -83,13 +89,17 @@ async function fetchFirst10Sneakers() {
             resellPrice,
             resellIndex,
             date,
+            brand,
             copping: false,
           });
         });
 
         mySneakersArray.forEach((sneaker, index) => { console.log(`Sneaker #${index + 1}:`, sneaker) });
 
+        // Write to sneakers.json
         fs.writeFileSync('sneakers.json', JSON.stringify(mySneakersArray, null, 2));
+        // Write to sneakers.js
+        fs.writeFileSync('sneakers.js', `export const sneakerDrops = ${JSON.stringify(mySneakersArray, null, 2)}`);
       }
     }
   } catch (error) {
