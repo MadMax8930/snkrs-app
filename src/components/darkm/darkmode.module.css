@@ -13,7 +13,7 @@
 
 .iconSun {
    font-size: 13px;
-   padding: 1px 0 0 1px;
+   padding: 1px 1px 0 0;
 }
 
 .iconMoon {
@@ -26,4 +26,16 @@
    background-color: #53c28b;
    border-radius: 50%;
    position: absolute;  
+}
+
+@media screen and (max-width: 800px) {
+   .iconSun {
+      font-size: 10px;
+      padding: 1px 2px 0 0px;
+   }
+
+   .iconMoon {
+      font-size: 10px;
+      padding: 1px 0 0 2px;
+   }
 }
