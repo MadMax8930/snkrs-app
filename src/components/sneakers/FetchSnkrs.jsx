@@ -2,7 +2,7 @@
 import Link from 'next/link';
 import React, { useState, useEffect } from 'react';
 import { sneakerDrops } from '../../../sneakers';
-import { getBackgroundColor } from './circleColor';
+import { getBgColor } from './circleColor';
 import styles from './sneakers.module.css';
 
 const FetchSnkrs = () => {
@@ -26,22 +26,17 @@ const FetchSnkrs = () => {
             {sneakerDrops.map((sneaker) => (
                <Link href={`/${sneaker.id}`} className={styles.listItem} key={sneaker.id}>
 
-                  <div className={styles.listTopDesc}>
-                     <div className={styles.descInfo}>
-                        <p>{sneaker.brand}</p>
-                        <p>{sneaker.model}</p>
-                     </div>
-                     <div className={styles.descDate}>{sneaker.date}</div>
+                  <div className={styles.listDesc}>
+                     <div className={styles.info}>{sneaker.brand} - {sneaker.model}</div>
+                     <div className={styles.date}>{sneaker.date}</div>
                   </div>
 
-                  <div className={styles.listMainHeader}>{sneaker.name}</div>
+                  <div className={styles.listHeader}>{sneaker.name}</div>
 
-                  <div className={styles.listResellContainer}>      
+                  <div className={styles.listResell}>      
                      <div className={styles.resell}>
-                        <div className={styles.resellIndex}>
-                           <div className={styles.resellCircle}
-                                style={{ backgroundColor: getBackgroundColor(sneaker.resellIndex) }}
-                           />
+                        <div className={styles.estimation}>
+                           <div className={styles.circle} style={{ backgroundColor: getBgColor(sneaker.resellIndex) }} />
                            <span>{sneaker.resellIndex} resell</span>
                            <span>({sneaker.retailPrice === 'N/A' ? `${sneaker.retailPrice}` : `${sneaker.retailPrice}€`})</span>
                         </div>

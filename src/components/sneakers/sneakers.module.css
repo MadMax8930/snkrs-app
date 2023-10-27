@@ -29,47 +29,38 @@
   border-top: 2px solid #2d2b2a;
 }
 
-.listMainHeader {
-   padding-top: 2px;
-   font-size: 0.75em;
-}
-
-.listTopDesc, .listMainHeader, .listResellContainer {
+.listDesc, .listHeader, .listResell {
   width: fit-content;
   transition: transform var(--transition);
   will-change: transform;
 }
 
-.listTopDesc {
+.listDesc {
    display: flex;
    justify-content: space-between;
    align-items: center;
    width: auto;
 }
 
-.descInfo {
+.info {
    color: gray;
    text-transform: uppercase;
    font-size: 0.5em;
    padding-bottom: 0.25em;
-   display: flex;
-   justify-content: start;
-   align-items: end;
-   gap: 0.5em;
 }
 
-.descDate {
+.date {
    color: gray;
    font-size: 0.5em;
    padding-bottom: 0.25em;
 }
 
-.descPrice {
-   color: black;
+.listHeader {
+   padding-top: 2px;
    font-size: 0.75em;
 }
 
-.listResellContainer {
+.listResell {
    display: flex;
    justify-content: space-between;
    align-items: center;
@@ -78,8 +69,8 @@
    padding-top: 0.75em;
 }
 
-.listResellContainer i { color: #53c28b; }
-.listResellContainer span::first-letter { text-transform: capitalize; }
+.listResell i { color: #53c28b; }
+.listResell span::first-letter { text-transform: capitalize; }
 
 .resell {
    font-size: 0.75em;
@@ -88,21 +79,21 @@
    gap: 1em;
 }
 
-.resellIndex {
+.estimation {
    display: flex;
    gap: 0.25em;
 }
 
-.resellIndex > span:nth-child(2) {
+.estimation > span:nth-child(2) {
    font-size: 1em;
 }
 
-.resellIndex > span:nth-child(3) {
+.estimation > span:nth-child(3) {
    font-size: 0.6em;
    font-weight: semibold;
 }
 
-.resellCircle {
+.circle {
    width: 0.95em;
    height: 0.95em;
    border: 1.5px solid transparent;
@@ -110,7 +101,7 @@
 }
 
 .listItem::before {
-  content: '(' counter(my-counter) ')';
+  content: '(' counter(my-counter, decimal-leading-zero) ')';
   position: absolute;
   font-size: calc(var(--index) * 0.75);
   margin-left: calc(var(--index) * -2.375);
@@ -121,9 +112,9 @@
   will-change: transform;
 }
 
-.listItem:hover .listTopDesc,
-.listItem:hover .listMainHeader,
-.listItem:hover .listResellContainer,
+.listItem:hover .listDesc,
+.listItem:hover .listHeader,
+.listItem:hover .listResell,
 .listItem:hover::before {
   transform: translate3d(calc(var(--index) * -2.5), 0 , 0);
 }

@@ -1,4 +1,4 @@
-export function getBackgroundColor(resellIndex) {
+export function getBgColor(resellIndex) {
    switch (resellIndex) {
      case 'mauvais':
        return 'red';
