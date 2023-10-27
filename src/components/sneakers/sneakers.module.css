@@ -1,1 +1,161 @@
-.container {}
+.container {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   --index: calc(1vw + 1vh);
+   --transition: 1.25s cubic-bezier(0.2, 0.5, 0, 1);
+   --transition-cursor: 2s cubic-bezier(0.05, 0.5, 0, 1);
+   --moveX: 0;
+   --moveY: 0;
+}
+
+.list {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: calc(var(--index) * 1.5);
+  padding: calc(var(--index) * 2.75);
+}
+
+.listItem {
+  /* cursor: none; */
+  text-decoration: none;
+  display: block;
+  line-height: 0.9;
+  padding: calc(var(--index) * 2.5) calc(var(--index) * 2.5);
+  border-bottom: 1px inset rgba(54, 48, 48, 0.25);
+  counter-increment: my-counter;
+}
+
+.listItem:first-child {
+  border-top: 2px solid #2d2b2a;
+}
+
+.listMainHeader {
+   padding-top: 2px;
+   font-size: 0.75em;
+}
+
+.listTopDesc, .listMainHeader, .listResellContainer {
+  width: fit-content;
+  transition: transform var(--transition);
+  will-change: transform;
+}
+
+.listTopDesc {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   width: auto;
+}
+
+.descInfo {
+   color: gray;
+   text-transform: uppercase;
+   font-size: 0.5em;
+   padding-bottom: 0.25em;
+   display: flex;
+   justify-content: start;
+   align-items: end;
+   gap: 0.5em;
+}
+
+.descDate {
+   color: gray;
+   font-size: 0.5em;
+   padding-bottom: 0.25em;
+}
+
+.descPrice {
+   color: black;
+   font-size: 0.75em;
+}
+
+.listResellContainer {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   gap: 10px;
+   font-size: 0.6em;
+   padding-top: 0.75em;
+}
+
+.listResellContainer i { color: #53c28b; }
+.listResellContainer span::first-letter { text-transform: capitalize; }
+
+.resell {
+   font-size: 0.75em;
+   display: flex;
+   align-items: center;
+   gap: 1em;
+}
+
+.resellIndex {
+   display: flex;
+   gap: 0.25em;
+}
+
+.resellIndex > span:nth-child(2) {
+   font-size: 1em;
+}
+
+.resellIndex > span:nth-child(3) {
+   font-size: 0.6em;
+   font-weight: semibold;
+}
+
+.resellCircle {
+   width: 0.95em;
+   height: 0.95em;
+   border: 1.5px solid transparent;
+   border-radius: 50%;
+}
+
+.listItem::before {
+  content: '(' counter(my-counter) ')';
+  position: absolute;
+  font-size: calc(var(--index) * 0.75);
+  margin-left: calc(var(--index) * -2.375);
+  margin-top: calc(var(--index) / 2);
+  letter-spacing: 0.5px;
+  transition: transform var(--transition);
+  transition-delay: 0.025s;
+  will-change: transform;
+}
+
+.listItem:hover .listTopDesc,
+.listItem:hover .listMainHeader,
+.listItem:hover .listResellContainer,
+.listItem:hover::before {
+  transform: translate3d(calc(var(--index) * -2.5), 0 , 0);
+}
+
+.cursor {
+  --width: calc(var(--index) * 22);
+  --height: calc(var(--index) * 14);
+  position: fixed;
+  width: var(--width);
+  height: 0;
+  top: calc(var(--height) / -2);
+  left: calc(var(--width) / -2);
+  overflow: hidden;
+  transform: translate3d(var(--moveX), var(--moveY), 0);
+  transition: transform var(--transition-cursor), height 1s ease;
+  will-change: transform;
+  z-index: -1;
+}
+
+.listItem:hover .cursor { height: var(--height); }
+
+.cursorImage {
+  --cursor-transform: translate3d(calc(var(--moveX) / -5), calc(var(--moveY) / -5), 0);
+  position: relative;
+  width: calc(var(--width) * 2);
+  height: calc(var(--height) * 2);
+  top: calc(var(--height) * -0.4);
+  left: calc(var(--width) * -0.25);
+  background-size: cover;
+  background-position: center;
+  transform: var(--cursor-transform) scale(1.5);
+  transition: transform var(--transition-cursor);
+}
+
+.listItem:hover .cursorImage { transform: var(--cursor-transform) scale(1); }

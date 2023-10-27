@@ -8,6 +8,7 @@
   position: fixed;
   width: 100%;
   font-family: "Quicksand", sans-serif;
+  z-index: 100;
 }
 
 .header::after {
