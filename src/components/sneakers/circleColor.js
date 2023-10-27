@@ -1,4 +1,4 @@
-export function getBgColor(resellIndex) {
+export function getCircleColor(resellIndex) {
    switch (resellIndex) {
      case 'mauvais':
        return 'red';

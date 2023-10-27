@@ -5,8 +5,6 @@
    --index: calc(1vw + 1vh);
    --transition: 1.25s cubic-bezier(0.2, 0.5, 0, 1);
    --transition-cursor: 2s cubic-bezier(0.05, 0.5, 0, 1);
-   --moveX: 0;
-   --moveY: 0;
 }
 
 .list {
@@ -17,87 +15,18 @@
 
 .listItem {
   /* cursor: none; */
-  text-decoration: none;
   display: block;
   line-height: 0.9;
-  padding: calc(var(--index) * 2.5) calc(var(--index) * 2.5);
+  padding: calc(var(--index) * 2) calc(var(--index) * 2.5);
   border-bottom: 1px inset rgba(54, 48, 48, 0.25);
   counter-increment: my-counter;
+  text-decoration: none;
+  position: relative;
+  z-index: 2;
 }
 
 .listItem:first-child {
   border-top: 2px solid #2d2b2a;
-}
-
-.listDesc, .listHeader, .listResell {
-  width: fit-content;
-  transition: transform var(--transition);
-  will-change: transform;
-}
-
-.listDesc {
-   display: flex;
-   justify-content: space-between;
-   align-items: center;
-   width: auto;
-}
-
-.info {
-   color: gray;
-   text-transform: uppercase;
-   font-size: 0.5em;
-   padding-bottom: 0.25em;
-}
-
-.date {
-   color: gray;
-   font-size: 0.5em;
-   padding-bottom: 0.25em;
-}
-
-.listHeader {
-   padding-top: 2px;
-   font-size: 0.75em;
-}
-
-.listResell {
-   display: flex;
-   justify-content: space-between;
-   align-items: center;
-   gap: 10px;
-   font-size: 0.6em;
-   padding-top: 0.75em;
-}
-
-.listResell i { color: #53c28b; }
-.listResell span::first-letter { text-transform: capitalize; }
-
-.resell {
-   font-size: 0.75em;
-   display: flex;
-   align-items: center;
-   gap: 1em;
-}
-
-.estimation {
-   display: flex;
-   gap: 0.25em;
-}
-
-.estimation > span:nth-child(2) {
-   font-size: 1em;
-}
-
-.estimation > span:nth-child(3) {
-   font-size: 0.6em;
-   font-weight: semibold;
-}
-
-.circle {
-   width: 0.95em;
-   height: 0.95em;
-   border: 1.5px solid transparent;
-   border-radius: 50%;
 }
 
 .listItem::before {
@@ -112,41 +41,155 @@
   will-change: transform;
 }
 
-.listItem:hover .listDesc,
-.listItem:hover .listHeader,
-.listItem:hover .listResell,
-.listItem:hover::before {
-  transform: translate3d(calc(var(--index) * -2.5), 0 , 0);
-}
-
-.cursor {
-  --width: calc(var(--index) * 22);
-  --height: calc(var(--index) * 14);
-  position: fixed;
-  width: var(--width);
-  height: 0;
-  top: calc(var(--height) / -2);
-  left: calc(var(--width) / -2);
-  overflow: hidden;
-  transform: translate3d(var(--moveX), var(--moveY), 0);
-  transition: transform var(--transition-cursor), height 1s ease;
+.listDesc, .listHeader, .listResell, .listImage {
+  width: fit-content;
+  transition: transform var(--transition);
   will-change: transform;
-  z-index: -1;
 }
 
-.listItem:hover .cursor { height: var(--height); }
+.listDesc {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   width: auto;
+   color: gray;
+   font-size: 0.3875em;
+   padding-bottom: 5px;
+   text-transform: uppercase;
+}
 
-.cursorImage {
-  --cursor-transform: translate3d(calc(var(--moveX) / -5), calc(var(--moveY) / -5), 0);
-  position: relative;
-  width: calc(var(--width) * 2);
-  height: calc(var(--height) * 2);
-  top: calc(var(--height) * -0.4);
-  left: calc(var(--width) * -0.25);
+.listHeader {
+   font-size: 0.525em;
+}
+
+.listImage {
+  --cursor-transform: translate3d(65%, 35%, 0);
+  --anim-transform: translate3d(-30%, -10%, 0);
+  position: absolute;
+  width: 50px;
+  height: 25px;
+  top: 35%;
+  left: 50%;
   background-size: cover;
   background-position: center;
   transform: var(--cursor-transform) scale(1.5);
   transition: transform var(--transition-cursor);
+  z-index: -1;
+}
+ 
+.listItem:hover .listDesc,
+.listItem:hover .listHeader,
+.listItem:hover .listResell,
+.listItem:hover .listImage,
+.listItem:hover::before {
+  transform: translate3d(calc(var(--index) * -2.5), 0 , 0);
+}
+ 
+.listItem:hover .listImage {
+  transform: var(--anim-transform) scale(1.75);
 }
 
-.listItem:hover .cursorImage { transform: var(--cursor-transform) scale(1); }
+.listResell {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   width: auto;
+   font-size: 0.625em;
+   padding-top: 0.2em;
+}
+
+.resell {
+   display: flex;
+   gap: 0.375em;
+   font-size: 0.65em;
+}
+
+.resell span::first-letter { text-transform: capitalize; }
+
+.resell > span:nth-child(2) {
+   font-size: 0.95em;
+   font-weight: 500;
+}
+
+.resell > span:nth-child(3) {
+   font-size: 0.95em;
+}
+
+.resell > i { 
+   color: #53c28b;
+   font-weight: 600;
+   padding-left: 0.75rem; 
+}
+
+.circle {
+   width: 0.875em;
+   height: 0.875em;
+   border: 1.5px solid transparent;
+   border-radius: 50%;
+}
+
+.toggler {
+  width: 3.5em;
+  height: 1.35em;
+  border: 1.5px solid transparent;
+  border-radius: 30px;
+  background-color: #2d2b2a;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5em;
+  position: relative;
+  cursor: pointer;
+}
+
+.choice {
+  font-size: 0.6em;
+  color: #eef5ba;
+}
+
+.copBall {
+  width: 0.8em;
+  height: 0.8em;
+  border-radius: 50%;
+  position: absolute;
+}
+
+@media (min-width: 1000px) {
+   .listItem {
+      padding: calc(var(--index) * 1.75) calc(var(--index) * 4.5);
+   }
+}
+
+@media (min-width: 660px) {
+   .listHeader {
+      font-size: 0.575em;
+   }
+
+   .listDesc {
+      font-size: 0.325em;
+   }
+}
+
+@media (min-width: 660px) {
+   .resell {
+      gap: 0.25em;
+   }
+
+   .resell > i { 
+      padding-left: 1.25rem; 
+   }
+}
+
+@media (min-width: 1150px) {
+   .copBall{
+      width: 1em;
+      height: 1em;
+   }
+
+   .toggler {
+      transform: scale(0.75);
+      align-self: flex-end;
+      margin-left: 10px;
+      left: 0.5em;
+   }
+}

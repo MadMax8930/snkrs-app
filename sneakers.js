@@ -21,7 +21,7 @@ export const sneakerDrops = [
     "resellIndex": "mauvais",
     "date": "2023-10-26",
     "brand": "New Balance",
-    "copping": false
+    "copping": true
   },
   {
     "id": "7c762f1b-8f77-40fc-a4e0-d112364c0af6",

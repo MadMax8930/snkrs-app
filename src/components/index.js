@@ -6,7 +6,8 @@ import Footer from "./footer/Footer";
 import FooterItem from "./footer/FooterItem";
 import FilterSearch from "./search/FilterSearch";
 import DarkMode from "./darkm/DarkMode";
-import FetchSnkrs from "./sneakers/FetchSnkrs";
+import Sneakers from "./sneakers/Sneakers";
+import Toggler from "./sneakers/Toggler";
 
 export { 
    AuthSessionProvider,
@@ -17,5 +18,6 @@ export {
    FooterItem,
    FilterSearch,
    DarkMode,
-   FetchSnkrs,
+   Sneakers,
+   Toggler,
 }
