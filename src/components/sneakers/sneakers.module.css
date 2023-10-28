@@ -41,6 +41,23 @@
   will-change: transform;
 }
 
+.listItem::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: #e4b363;
+  transition: width 0.3s ease-in;
+  z-index: -1; /* Behind the content */
+  width: 0; /* Initially to hide it */
+}
+ 
+.listItem:hover::after {
+  width: 0.5em;
+  background: #53c28b;
+}
+
 .listDesc, .listHeader, .listResell, .listImage {
   width: fit-content;
   transition: transform var(--transition);
@@ -63,18 +80,19 @@
 }
 
 .listImage {
-  --cursor-transform: translate3d(65%, 35%, 0);
-  --anim-transform: translate3d(-30%, -10%, 0);
+  --cursor-transform: translate3d(15%, 25%, 0);
+  --anim-transform: translate3d(0, 25%, 0);
   position: absolute;
-  width: 50px;
-  height: 25px;
-  top: 35%;
-  left: 50%;
-  background-size: cover;
+  width: 100%;
+  height: 100%;
+  top: -20%;
+  background-size: contain;
   background-position: center;
-  transform: var(--cursor-transform) scale(1.5);
+  background-repeat: no-repeat;
+  transform: var(--cursor-transform) scale(0.4);
   transition: transform var(--transition-cursor);
   z-index: -1;
+  opacity: 0.8;
 }
  
 .listItem:hover .listDesc,
@@ -82,11 +100,18 @@
 .listItem:hover .listResell,
 .listItem:hover .listImage,
 .listItem:hover::before {
-  transform: translate3d(calc(var(--index) * -2.5), 0 , 0);
+  transform: translate3d(calc(var(--index) * -1.75), 0 , 0);
 }
  
 .listItem:hover .listImage {
-  transform: var(--anim-transform) scale(1.75);
+  transform: var(--anim-transform) scale(0.65);
+  opacity: 1;
+}
+
+@media (min-width: 660px) {
+   .listItem:hover .listImage {
+      transform: var(--anim-transform) scale(5);
+   }
 }
 
 .listResell {
