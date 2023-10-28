@@ -134,42 +134,63 @@
   z-index: 100;
 }
 
-@media (min-width: 360px) and (max-width: 660px) {
+@media (min-width: 360px) and (max-width: 550px) {
    .logoContainer {
       padding-left: 1.375em;
    }
 
    .menuToggle {
-      padding-right: 1.375em;
+      padding-right: .875em;
+   }
+}
+
+@media (min-width: 550px) and (max-width: 660px) {
+   .logoContainer {
+      padding-left: 1.375em;
+   }
+
+   .menuToggle {
+      padding-right: 1.125em;
    }
 }
 
 @media (min-width: 660px) and (max-width: 786px) {
+   .logoContainer {
+      padding-left: 3.75em;
+      transform: scale(1);
+   }
+
+   .menuToggle {
+      padding-right: 4em;
+   }
+}
+
+@media (min-width: 786px) and (max-width: 870px) {
    .logoContainer {
       padding-left: 4em;
       transform: scale(1);
    }
 
    .menuToggle {
-      padding-right: 5.5em;
+      padding-right: 4.75em;
    }
 }
 
-@media (min-width: 786px) and (max-width: 1000px) {
+@media (min-width: 870px) and (max-width: 1000px) {
    .logoContainer {
-      padding-left: 5em;
+      padding-left: 4.875em;
       transform: scale(1);
    }
 
    .menuToggle {
-      padding-right: 6.5em;
+      padding-right: 5.25em;
    }
 }
 
 @media (min-width: 1000px) and (max-width: 1200px)  {
 
    .logoContainer {
-      padding-left: 6em;
+      padding-left: 6.25em;
       transform: scale(1.15);
    }
 
@@ -178,7 +199,7 @@
    }
 }
 
-@media (min-width: 1200px) and (max-width: 1720px)  {
+@media (min-width: 1200px) and (max-width: 1520px)  {
 
    .logoContainer {
       padding-left: 8em;
@@ -190,15 +211,27 @@
    }
 }
 
+@media (min-width: 1520px) and (max-width: 1720px)  {
+
+   .logoContainer {
+      padding-left: 8.75em;
+      transform: scale(1.2);
+   }
+
+   .menuToggle {
+      right: 13.5em;
+   }
+}
+
 @media (min-width: 1720px) {
 
    .logoContainer {
-      padding-left: 7.5em;
+      padding-left: 9.25em;
       transform: scale(1.25);
    }
 
    .menuToggle {
-      right: 13em;
+      right: 14.5em;
    }
 }
 

@@ -16,7 +16,7 @@ const Sneakers = () => {
                   <Link href={`/${sneaker.id}`}>
                      <div className={styles.listDesc}>
                         <span>{sneaker.brand} - {sneaker.model}</span>
-                        <span>{sneaker.date}</span>
+                        <span className={styles.move}>{sneaker.date}</span>
                      </div>
                      <div className={styles.listHeader}>{sneaker.name}</div>
                      <div className={styles.listImage} style={{ backgroundImage: `url(${sneaker.img})`}} />
@@ -29,7 +29,9 @@ const Sneakers = () => {
                         <span>({sneaker.retailPrice === 'N/A' ? `${sneaker.retailPrice}` : `${sneaker.retailPrice}€`})</span>
                         <i>{sneaker.resellPrice}</i>
                      </Link>
-                     <Toggler cop={sneaker.copping} />
+                     <div className={styles.move} >
+                         <Toggler cop={sneaker.copping}/>
+                     </div>  
                   </div>
 
                </div>
