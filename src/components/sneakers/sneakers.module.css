@@ -17,7 +17,7 @@
   /* cursor: none; */
   display: block;
   line-height: 0.9;
-  padding: calc(var(--index) * 2) calc(var(--index) * 2.5);
+  padding: calc(var(--index) * 2) calc(var(--index) * 1.25) calc(var(--index) * 2) calc(var(--index) * 2.5);
   border-bottom: 1px inset rgba(54, 48, 48, 0.25);
   counter-increment: my-counter;
   text-decoration: none;
@@ -154,13 +154,11 @@
   position: absolute;
 }
 
-@media (min-width: 1000px) {
+@media (min-width: 660px) {
    .listItem {
       padding: calc(var(--index) * 1.75) calc(var(--index) * 4.5);
    }
-}
 
-@media (min-width: 660px) {
    .listHeader {
       font-size: 0.575em;
    }
@@ -168,9 +166,7 @@
    .listDesc {
       font-size: 0.325em;
    }
-}
 
-@media (min-width: 660px) {
    .resell {
       gap: 0.25em;
    }
@@ -191,5 +187,9 @@
       align-self: flex-end;
       margin-left: 10px;
       left: 0.5em;
+   }
+
+   .listItem::before {
+      font-size: calc(var(--index) * 0.625);
    }
 }

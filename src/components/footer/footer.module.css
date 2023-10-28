@@ -12,13 +12,13 @@
    display: flex;
    align-items: center;
    gap: 7px;
-   padding-right: 3em;
+   padding-right: 4em;
 }
 
 .copyright {
    color: #f6ebe5;
    font-size: 12px;
-   padding-left: 3em;
+   padding-left: 5em;
 }
 
 .icon {
@@ -29,44 +29,50 @@
    opacity: 0.4;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 370px) {
    .copyright {
-      font-size: 9px;
-      padding-left: 2.25em;
+      font-size: 8px;
    }
 }
 
-@media (min-width: 400px) and (max-width: 1000px) {
+@media (min-width: 370px) and (max-width: 660px) {
+   .copyright {
+      font-size: 9px;
+   }
+}
+
+@media (min-width: 660px) and (max-width: 1000px) {
    .copyright {
       font-size: 11px;
-      padding-left: 3em;
+      padding-left: 10em;
    }
 
    .social {
       gap: 10px;
+      padding-right: 10em;
    }
 }
 
 @media (min-width: 1000px) and (max-width: 1200px) {
    .copyright {
       font-size: 13px;
-      padding-left: 5em;
+      padding-left: 10em;
    }
 
    .social {
       gap: 12px;
-      padding-right: 5em;
+      padding-right: 11em;
    }
 }
 
 @media screen and (min-width: 1200px) {
    .copyright {
       font-size: 13px;
-      padding-left: 6em;
+      padding-left: 15em;
    }
 
    .social {
       gap: 12px;
-      padding-right: 6.5em;
+      padding-right: 15.5em;
    }
 }

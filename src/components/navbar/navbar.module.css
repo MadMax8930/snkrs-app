@@ -31,6 +31,8 @@
    align-items: center;
    justify-content: center;
    gap: 0.75rem;
+   padding-left: 0.5em;
+   transform: scale(0.9);
 }
 
 .logo {
@@ -124,7 +126,7 @@
   font-size: 1rem;
   border: 0;
   background: 0;
-  padding: 1.67em 1em;
+  padding: 1.67em 0.5em;
   position: absolute;
   top: 0.5em;
   right: 2.5em;
@@ -132,60 +134,76 @@
   z-index: 100;
 }
 
-@media (max-width: 640px) {
-   .menuToggle {
-      right: 1.75em;
-   }
-}
-
-@media (min-width: 320px) and  (max-width: 1000px) {
+@media (min-width: 360px) and (max-width: 660px) {
    .logoContainer {
-      padding-left: 0.75em;
+      padding-left: 1.375em;
+   }
+
+   .menuToggle {
+      padding-right: 1.375em;
    }
 }
 
-@media (min-width: 1000px) {
-   .menuToggle {
-      right: 5.5em;
+@media (min-width: 660px) and (max-width: 786px) {
+   .logoContainer {
+      padding-left: 4em;
+      transform: scale(1);
    }
+
+   .menuToggle {
+      padding-right: 5.5em;
+   }
+}
+
+@media (min-width: 786px) and (max-width: 1000px) {
+   .logoContainer {
+      padding-left: 5em;
+      transform: scale(1);
+   }
+
+   .menuToggle {
+      padding-right: 6.5em;
+   }
+}
+
+@media (min-width: 1000px) and (max-width: 1200px)  {
 
    .logoContainer {
-      padding-left: 3em;
+      padding-left: 6em;
+      transform: scale(1.15);
    }
-}
 
-@media (min-width: 1200px) and (max-width: 1420px) {
    .menuToggle {
-      right: 6.25em;
+      right: 9em;
    }
 }
 
-@media (min-width: 1420px) {
+@media (min-width: 1200px) and (max-width: 1720px)  {
 
    .logoContainer {
-      padding-left: 3.35em;
+      padding-left: 8em;
+      transform: scale(1.2);
    }
 
    .menuToggle {
-      right: 7em;
+      right: 12.5em;
    }
 }
 
-@media (min-width: 1700px) {
+@media (min-width: 1720px) {
+
+   .logoContainer {
+      padding-left: 7.5em;
+      transform: scale(1.25);
+   }
 
    .menuToggle {
-      right: 8em;
+      right: 13em;
    }
 }
 
-.menuToggle:focus {
-  outline: 4px solid #ebebd3;
-  border: 0;
-}
-
-.open:focus {
-  outline: none;  
-}
+.menuToggle:focus { border: 0; }
+.open:focus { outline: none; }
 
 .hamburger,
 .hamburger::before,
@@ -199,30 +217,17 @@
   transition: transform ease-in-out 500ms, opacity linear 300ms;
 }
 
-.hamburger::before {
-  transform: translateY(-6px);
-}
-
-.hamburger::after {
-  transform: translateY(3px);
-}
-
-.open .hamburger {
-  transform: rotate(45deg);
-}
+.hamburger::before { transform: translateY(-6px); }
+.hamburger::after { transform: translateY(3px); }
+.open .hamburger { transform: rotate(45deg); }
 
 .open:hover .hamburger, 
 .open:focus .hamburger {
   transform: rotate(1.125turn);
 }
 
-.open .hamburger::before {
-  opacity: 0;
-}
-
-.open .hamburger::after {
-  transform: translateY(-3px) rotate(-90deg);
-}
+.open .hamburger::before { opacity: 0; }
+.open .hamburger::after { transform: translateY(-3px) rotate(-90deg); }
 
 /* Cross rotation */
 
