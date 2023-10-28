@@ -2,7 +2,7 @@ const axios = require('axios');
 const fs = require('fs');
 const { v4: uuidv4 } = require('uuid');
 
-const baseUrl = 'https://www.whentocop.fr/_next/data/flpo1udkC-nR4PFPC-87g/drops'; // Updated URL with JSON data
+const baseUrl = 'https://www.whentocop.fr/_next/data/WYWlRqK_6ydrucEHXisod/drops'; // Updated URL with JSON data
 const mySneakersArray = []; // Array to store sneaker data
 
 function generateUniqueID() { return uuidv4() }
@@ -28,7 +28,7 @@ async function fetchAndAddSneaker(slug, id) {
       const resellPrice = drop.resellPrice || 'N/A';
       const resellIndex = drop.resellIndex || 'N/A';
       const brand = drop.brandCategories[0].brandCategoryName;
-      const date = drop.dropDate;
+      const dateRelease = drop.dropDate;
 
       const uniqueID = generateUniqueID();
 
@@ -40,7 +40,7 @@ async function fetchAndAddSneaker(slug, id) {
         retailPrice,
         resellPrice,
         resellIndex,
-        date,
+        dateRelease,
         brand,
         copping: false,
       };
@@ -76,7 +76,7 @@ async function fetchFirst10Sneakers() {
           const resellPrice = drop.resellPrice || 'N/A';
           const resellIndex = drop.resellIndex || 'N/A';
           const brand = drop.brandCategories[0].brandCategoryName;
-          const date = drop.dropDate;
+          const dateRelease = drop.dropDate;
 
           const uniqueID = generateUniqueID();
 
@@ -88,7 +88,7 @@ async function fetchFirst10Sneakers() {
             retailPrice,
             resellPrice,
             resellIndex,
-            date,
+            dateRelease,
             brand,
             copping: false,
           });

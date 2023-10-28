@@ -16,7 +16,7 @@ const Sneakers = () => {
                   <Link href={`/${sneaker.id}`}>
                      <div className={styles.listDesc}>
                         <span>{sneaker.brand} - {sneaker.model}</span>
-                        <span className={styles.move}>{sneaker.date}</span>
+                        <span className={styles.move}>{sneaker.dateRelease}</span>
                      </div>
                      <div className={styles.listHeader}>{sneaker.name}</div>
                      <div className={styles.listImage} style={{ backgroundImage: `url(${sneaker.img})`}} />

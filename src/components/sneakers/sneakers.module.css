@@ -11,10 +11,10 @@
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: calc(var(--index) * 1.5);
   padding: calc(var(--index) * 2.75);
+  padding-top: 0;
 }
 
 .listItem {
-  /* cursor: none; */
   display: block;
   line-height: 0.9;
   padding: calc(var(--index) * 2) calc(var(--index) * 1.25) calc(var(--index) * 2) calc(var(--index) * 2.5);
