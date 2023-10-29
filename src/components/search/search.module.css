@@ -1,10 +1,99 @@
+/* .searchContainer input {
+   background-color: transparent;
+   color: red;
+   width: 100%;
+   height: 40px;
+   border: 2px solid gray;
+   border-radius: 2em;
+   font-size: 0.75rem;
+   line-height: 1rem;
+   padding: 0.25em 0.5em;
+   cursor: pointer;
+} */
+
+/* .searchContainer input::placeholder {
+   color: #847d7d;
+} */
+
 .container {
-   padding-top: 75px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   overflow: hidden;
+   margin-top: 4em;
+   padding: 2em;
 }
 
-.search {
-   width: 80%;
-   height: 3em;
-   border: 2px solid gray;
-   border-radius: 0%;
+.wrapper {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   width: 100%;
+   margin: 0 4em;
+   font-size: 1.2em;
 }
+ 
+.filterContainer {
+   flex: 1;
+   width: 50%;
+   display: flex;
+   align-items: center;
+   border-radius: 1.25em 0 0 1.25em;
+   background-color: red;
+}
+
+.searchContainer {
+   flex: 1;
+   width: 50%;
+   display: flex;
+   align-items: center;
+   border-radius: 0 1.25em 1.25em 0;
+   background-color: green;
+}
+
+.searchContainer input {
+   border: none;
+   outline: none;
+   background-color: transparent;
+   
+}
+
+.filterResell,
+.filterBrand,
+.filterDate {
+  text-align: center;
+  cursor: pointer;
+  
+}
+/*  
+
+ 
+ 
+ .filterResell:hover,
+ .filterBrand:hover,
+ .filterDate:hover {
+   border-bottom: 2px solid #007bff;
+ }
+ 
+ .filterResell {
+   background: #f2f2f2;
+ }
+ 
+ .filterBrand {
+   background: #e2e2e2;
+ }
+ 
+ .filterDate {
+   background: #d2d2d2;
+ }
+
+ 
+ .searchContainer button {
+   background: #ff4500;
+   color: white;
+   border: none;
+   border-radius: 25px;
+   margin-left: 10px;
+   padding: 10px 15px;
+   cursor: pointer;
+ } */
