@@ -10,9 +10,9 @@ const SearchSnkrs = () => {
      <div className={styles.wrapper}>
       
          <div  className={styles.filterContainer}>
-            <div className={styles.filterResell}>Resell</div>
-            <div className={styles.filterBrand}>Brand</div>
-            <div className={styles.filterDate}>Date</div>
+            <div className={styles.filter1}>Resell</div>
+            <div className={styles.filter2}>Brand</div>
+            <div className={styles.filter3}>Date</div>
          </div>
 
          <div className={styles.searchContainer}>
