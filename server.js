@@ -28,7 +28,11 @@ app.get('/sneakers/filter', sneakersController.filterSneakers);
 app.patch('/sneakers/:sneakerId/toggle', requireAuth, sneakersController.toggleCopping)
 
 app.get('/sneakers/:sneakerId/comments', commentsController.getAllCommentsForSneaker);
-app.post('/sneakers/:sneakerId/comment', requireAuth, commentsController.addCommentForSneaker);
+app.get('/profile/sneakers', requireAuth, commentsController.getUserCommentsForSneaker);
+
+app.post('/profile/sneakers/:sneakerId/comment', requireAuth, commentsController.addUserComment);
+app.put('/profile/sneakers/:sneakerId/comments/:commentId', requireAuth, commentsController.updateUserComment);
+app.delete('/profile/sneakers/:sneakerId/comments/:commentId', requireAuth, commentsController.deleteUserComment);
 
 app.get('/users/:userId/notifications', requireAuth, notificationsController.getAllNotificationsForUser);
 app.post('/users/:userId/notification', requireAuth, notificationsController.createNotificationForUser);

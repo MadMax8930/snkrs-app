@@ -11,13 +11,13 @@ const commentSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-  user: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
-  },
   sneaker: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Sneaker',
+  },
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
   },
 });
 
