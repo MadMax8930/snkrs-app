@@ -22,16 +22,11 @@ const getUserById = async (req, res) => {
 };
 
 const uploadPicture = async (req, res) => {
-  const { userId } = req.params;
   const { profilePic } = req.body;
- 
+  
   try {
-    const user = await User.findById(userId);
-    if (!user) { return res.status(404).json({ error: 'User not found' }); }
-    // Update Profile URL for the user
-    user.profilePic = profilePic;
- 
-    const updatedUser = await user.save();
+    req.user.profilePic = profilePic;
+    const updatedUser = await req.user.save();
     return res.status(200).json(updatedUser);
   } catch (error) {
     return res.status(500).json({ error: 'Internal Server Error' });

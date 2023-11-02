@@ -9,6 +9,7 @@ const { customMiddleware } = require('./src/middlewares');
 app.use(customMiddleware);
 
 const requireAuth = require('./src/middlewares/requireAuth'); 
+const authorizeDev = require('./src/middlewares/authorizeDev');
 const authController = require('./src/controllers/auth');
 const usersController = require('./src/controllers/users')
 const sneakersController = require('./src/controllers/sneakers');
@@ -18,9 +19,10 @@ const notificationsController = require('./src/controllers/notifications');
 app.post('/login', authController.login);
 app.post('/register', authController.register);
 
-app.get('/users', usersController.getAllUsers);
-app.get('/users/:userId', usersController.getUserById);
-app.put('/users/:userId/profile', requireAuth, usersController.uploadPicture);
+/* done */
+app.get('/users', authorizeDev, usersController.getAllUsers);
+app.get('/users/:userId', authorizeDev, usersController.getUserById);
+app.put('/profile/users', requireAuth, usersController.uploadPicture);
 
 app.get('/sneakers', sneakersController.getAllSneakers);
 app.get('/sneakers/:sneakerId', sneakersController.getSneakerById);
