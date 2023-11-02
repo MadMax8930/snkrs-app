@@ -1,50 +1,42 @@
-const User = require('../models/User');
 const Sneaker = require('../models/Sneaker');
 const Comment = require('../models/Comment');
  
 const getAllCommentsForSneaker = async (req, res) => {
+   const { sneakerId } = req.params;
+
    try {
-     const comments = await Comment.find({ sneaker: req.params.sneakerId })
-                                    .populate({ path: 'user', select: 'username profilePic' })
+     const comments = await Comment.find({ sneaker: sneakerId }).populate({ path: 'user', select: 'username profilePic' });
      return res.status(200).json(comments);
    } catch (error) {
      return res.status(500).json({ error: 'Internal Server Error' });
    }
 };
 
-const getUserCommentsForSneaker = async (req, res) => {
+const getUserComments = async (req, res) => {
    try {
-     const allSneakers = await Sneaker.find();
- 
-     // Find the user's comments for each sneaker
-     const comments = await Comment.find({ user: req.user._id, sneaker: { $in: allSneakers.map(sneaker => sneaker._id) } });
- 
-     // Organize data for each sneaker
-     const sneakersWithComments = allSneakers.map(sneaker => {
-       const userComments = comments.filter(comment => comment.sneaker.equals(sneaker._id));
-       return {
-         sneaker,
-         userComments,
-       };
-     });
- 
-     return res.status(200).json(sneakersWithComments);
+     const userId = req.user._id;
+
+     const comments = await Comment.find({ user: userId, sneaker: { $exists: true } })
+     return res.status(200).json(comments);
    } catch (error) {
      return res.status(500).json({ error: 'Internal Server Error' });
    }
 };
 
 const addUserComment = async (req, res) => {
-   const { message } = req.body;
+   const { message, parentMessageId } = req.body;
    const { sneakerId } = req.params;
 
    try {
      const user = req.user;  // requireAuth middleware
-     const newComment = new Comment({ user, message });
-     await newComment.save();
+     const parentMessage = parentMessageId ? await Comment.findById(parentMessageId) : null;
 
      const sneaker = await Sneaker.findById(sneakerId);
      if (!sneaker) { return res.status(404).json({ error: 'Sneaker not found' }); }
+
+     const newComment = new Comment({ user, message, parentMessage, sneaker: sneaker.id });
+     await newComment.save();
+
      sneaker.comments.push(newComment);
      await sneaker.save();
 
@@ -102,4 +94,4 @@ const deleteUserComment = async (req, res) => {
    }
 };
  
-module.exports = { getAllCommentsForSneaker, addUserComment, getUserCommentsForSneaker, updateUserComment, deleteUserComment };
+module.exports = { getAllCommentsForSneaker, getUserComments, addUserComment, updateUserComment, deleteUserComment };
