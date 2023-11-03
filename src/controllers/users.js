@@ -21,9 +21,18 @@ const getUserById = async (req, res) => {
   }
 };
 
+const getUserProfile = async (req, res) => {   
+  try {
+    const user = await User.findById(req.user._id).select('-password -__v');
+    return res.status(200).json(user);
+  } catch (error) {
+    return res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+
 const uploadPicture = async (req, res) => {
   const { profilePic } = req.body;
-  
+   
   try {
     req.user.profilePic = profilePic;
     const updatedUser = await req.user.save();
@@ -34,4 +43,4 @@ const uploadPicture = async (req, res) => {
   }
 };
 
-module.exports = { getAllUsers, getUserById, uploadPicture };
+module.exports = { getAllUsers, getUserById, getUserProfile, uploadPicture };

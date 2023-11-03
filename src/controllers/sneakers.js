@@ -10,6 +10,24 @@ const getPublicSneakers = async (req, res) => {
    }
 };
 
+const filterSneakers = async (req, res) => {
+   const { brand, resellIndex, dateRelease } = req.query;
+   
+   try {
+     const filter = {};
+     // Add filters if provided
+     if (brand) { filter.brand = brand; }
+     if (resellIndex) { filter.resellIndex = resellIndex; }
+     if (dateRelease) { filter.dateRelease = dateRelease; }
+
+     const sneakers = await Sneaker.find(filter);
+     if (sneakers.length === 0) { return res.status(200).json([]); }
+     return res.status(200).json(sneakers);
+   } catch (error) {
+     return res.status(500).json({ error: 'Internal Server Error' });
+   }
+};
+
 const getUserSneakers = async (req, res) => {
    try {
      const sneakers = await Sneaker.find({}, '-comments -__v');
@@ -24,7 +42,7 @@ const getUserSneakerById = async (req, res) => {
    const { sneakerId } = req.params;
 
    try {
-     const sneaker = await Sneaker.findById(sneakerId, '-comments -__v');
+     const sneaker = await Sneaker.findById(sneakerId, '-__v');
      if (sneaker) {
        sneaker.copping = sneaker.coppers.includes(req.user._id);
        return res.status(200).json(sneaker);
@@ -75,23 +93,5 @@ const toggleCopping = async (req, res) => {
      return res.status(500).json({ error: 'Internal Server Error' });
    }
 };
-
-const filterSneakers = async (req, res) => {
-   const { brand, resellIndex, dateRelease } = req.query;
-   
-   try {
-     const filter = {};
-     // Add filters if provided
-     if (brand) { filter.brand = brand; }
-     if (resellIndex) { filter.resellIndex = resellIndex; }
-     if (dateRelease) { filter.dateRelease = dateRelease; }
-
-     const sneakers = await Sneaker.find(filter);
-     if (sneakers.length === 0) { return res.status(200).json([]); }
-     return res.status(200).json(sneakers);
-   } catch (error) {
-     return res.status(500).json({ error: 'Internal Server Error' });
-   }
-};
   
-module.exports = { getPublicSneakers, getUserSneakers, getUserSneakerById, getCoppedSneakers, toggleCopping, filterSneakers };
+module.exports = { getPublicSneakers, filterSneakers, getUserSneakers, getUserSneakerById, getCoppedSneakers, toggleCopping };

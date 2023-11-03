@@ -32,7 +32,7 @@ const login = async (req, res) => {
      if (!passwordMatch) { return res.status(401).json({ error: 'Invalid credentials' }); }
 
      // Create a JWT token
-     const token = jwt.sign({ userId: registeredUser._id, email: registeredUser.email }, process.env.JWT_SECRET);
+     const token = jwt.sign({ userId: registeredUser._id, email: registeredUser.email }, process.env.JWT_SECRET, { expiresIn: '2h' });
      return res.status(200).json({ message: `Logged in successfully as ${registeredUser.username}`, token, registeredUser });
    } catch (error) {
      return res.status(500).json({ error: 'Internal Server Error' });

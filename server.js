@@ -23,26 +23,28 @@ app.post('/register', authController.register);
 /* done */
 app.get('/users', authorizeDev, usersController.getAllUsers);
 app.get('/users/:userId', authorizeDev, usersController.getUserById);
-app.put('/profile/users', requireAuth, usersController.uploadPicture);
+app.get('/profile', requireAuth, usersController.getUserProfile);
+app.put('/profile/picture', requireAuth, usersController.uploadPicture);
 
 /* done */
 app.get('/sneakers', sneakersController.getPublicSneakers);
+app.get('/sneakers/filter', sneakersController.filterSneakers);
 app.get('/profile/sneakers', requireAuth, sneakersController.getUserSneakers);
 app.get('/profile/sneakers/:sneakerId', requireAuth, sneakersController.getUserSneakerById);
 app.get('/profile/sneakers-copped', requireAuth, sneakersController.getCoppedSneakers);
 app.patch('/profile/sneakers/:sneakerId/toggle', requireAuth, sneakersController.toggleCopping)
-app.get('/sneakers/filter', sneakersController.filterSneakers);
 
 /* done */
 app.get('/sneakers/:sneakerId/comments', commentsController.getAllCommentsForSneaker);
-app.get('/profile/sneakers', requireAuth, commentsController.getUserComments);
+app.get('/profile/sneakers-comments', requireAuth, commentsController.getUserComments);
 app.post('/profile/sneakers/:sneakerId/comment', requireAuth, commentsController.addUserComment);
 app.put('/profile/sneakers/:sneakerId/comments/:commentId', requireAuth, commentsController.updateUserComment);
 app.delete('/profile/sneakers/:sneakerId/comments/:commentId', requireAuth, commentsController.deleteUserComment);
 
 /* todo */
-app.get('/users/:userId/notifications', requireAuth, notificationsController.getAllNotificationsForUser);
-app.post('/users/:userId/notification', requireAuth, notificationsController.createNotificationForUser);
+app.get('/profile/my-notifications', requireAuth, notificationsController.getAllNotificationsForUser);
+app.post('/profile/add-notification', requireAuth, notificationsController.createNotificationForUser);
+app.delete('/profile/remove-notification', requireAuth, notificationsController.removeNotificationForUser);
 
 mongoose.connect(process.env.MONGODB_URL, {
   useNewUrlParser: true,
