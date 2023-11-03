@@ -33,7 +33,7 @@ async function fetchAndAddSneaker(slug, id) {
       const uniqueID = generateUniqueID();
 
       const newSneaker = {
-        id: uniqueID,
+        _id: uniqueID,
         img,
         name,
         model,
@@ -81,7 +81,7 @@ async function fetchFirst10Sneakers() {
           const uniqueID = generateUniqueID();
 
           mySneakersArray.push({
-            id: uniqueID,
+            _id: uniqueID,
             img,
             name,
             model,
