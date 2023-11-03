@@ -27,7 +27,8 @@ const uploadPicture = async (req, res) => {
   try {
     req.user.profilePic = profilePic;
     const updatedUser = await req.user.save();
-    return res.status(200).json(updatedUser);
+    const userResponse = await User.findById(updatedUser._id).select('-password -notifications -__v');
+    return res.status(200).json(userResponse);
   } catch (error) {
     return res.status(500).json({ error: 'Internal Server Error' });
   }

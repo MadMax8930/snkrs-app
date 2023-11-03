@@ -16,6 +16,7 @@ const sneakersController = require('./src/controllers/sneakers');
 const commentsController = require('./src/controllers/comments');
 const notificationsController = require('./src/controllers/notifications');
 
+/* done */
 app.post('/login', authController.login);
 app.post('/register', authController.register);
 
@@ -24,10 +25,13 @@ app.get('/users', authorizeDev, usersController.getAllUsers);
 app.get('/users/:userId', authorizeDev, usersController.getUserById);
 app.put('/profile/users', requireAuth, usersController.uploadPicture);
 
-app.get('/sneakers', sneakersController.getAllSneakers);
-app.get('/sneakers/:sneakerId', sneakersController.getSneakerById);
+/* done */
+app.get('/sneakers', sneakersController.getPublicSneakers);
+app.get('/profile/sneakers', requireAuth, sneakersController.getUserSneakers);
+app.get('/profile/sneakers/:sneakerId', requireAuth, sneakersController.getUserSneakerById);
+app.get('/profile/sneakers-copped', requireAuth, sneakersController.getCoppedSneakers);
+app.patch('/profile/sneakers/:sneakerId/toggle', requireAuth, sneakersController.toggleCopping)
 app.get('/sneakers/filter', sneakersController.filterSneakers);
-app.patch('/sneakers/:sneakerId/toggle', requireAuth, sneakersController.toggleCopping)
 
 /* done */
 app.get('/sneakers/:sneakerId/comments', commentsController.getAllCommentsForSneaker);
@@ -36,6 +40,7 @@ app.post('/profile/sneakers/:sneakerId/comment', requireAuth, commentsController
 app.put('/profile/sneakers/:sneakerId/comments/:commentId', requireAuth, commentsController.updateUserComment);
 app.delete('/profile/sneakers/:sneakerId/comments/:commentId', requireAuth, commentsController.deleteUserComment);
 
+/* todo */
 app.get('/users/:userId/notifications', requireAuth, notificationsController.getAllNotificationsForUser);
 app.post('/users/:userId/notification', requireAuth, notificationsController.createNotificationForUser);
 
