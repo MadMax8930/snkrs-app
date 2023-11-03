@@ -11,9 +11,9 @@ const Sneakers = () => {
       <div className={styles.container}>
          <div className={styles.list}>
             {sneakerDrops.map((sneaker) => (
-               <div className={styles.listItem} key={sneaker.id}>
+               <div className={styles.listItem} key={sneaker._id}>
 
-                  <Link href={`/${sneaker.id}`}>
+                  <Link href={`/${sneaker._id}`}>
                      <div className={styles.listDesc}>
                         <span>{sneaker.brand} - {sneaker.model}</span>
                         <span className={styles.move}>{sneaker.dateRelease}</span>
@@ -23,7 +23,7 @@ const Sneakers = () => {
                   </Link>     
 
                   <div className={styles.listResell}>
-                     <Link href={`/${sneaker.id}`} className={styles.resell}>    
+                     <Link href={`/${sneaker._id}`} className={styles.resell}>    
                         <div className={styles.circle} style={{ backgroundColor: getCircleColor(sneaker.resellIndex) }} />
                         <span>{sneaker.resellIndex} resell</span>
                         <span>({sneaker.retailPrice === 'N/A' ? `${sneaker.retailPrice}` : `${sneaker.retailPrice}€`})</span>

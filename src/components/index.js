@@ -1,4 +1,3 @@
-import AuthSessionProvider from "./auth/AuthSessionProvider";
 import Button from "./button/Button";
 import Navbar from "./navbar/Navbar";
 import NavItem from "./navbar/NavItem";
@@ -10,7 +9,6 @@ import Toggler from "./sneakers/Toggler";
 import SearchSnkrs from "./search/SearchSnkrs";
 
 export { 
-   AuthSessionProvider,
    Button,
    Navbar,
    NavItem,

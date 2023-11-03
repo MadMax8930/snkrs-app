@@ -10,6 +10,12 @@ const sneakerSchema = new mongoose.Schema({
   dateRelease: String,
   brand: String,
   copping: Boolean,
+  coppers: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+    },
+  ],
   comments: [
     {
       type: mongoose.Schema.Types.ObjectId,

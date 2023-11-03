@@ -34,7 +34,7 @@ const addUserComment = async (req, res) => {
      const sneaker = await Sneaker.findById(sneakerId);
      if (!sneaker) { return res.status(404).json({ error: 'Sneaker not found' }); }
 
-     const newComment = new Comment({ user, message, parentMessage, sneaker: sneaker.id });
+     const newComment = new Comment({ user, message, parentMessage, sneaker: sneaker._id });
      await newComment.save();
 
      sneaker.comments.push(newComment);

@@ -19,12 +19,6 @@ const userSchema = new mongoose.Schema({
     type: String,
     default: null,
   },
-  cops: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Sneaker',
-    },
-  ],
   notifications: [
     {
       type: mongoose.Schema.Types.ObjectId,
