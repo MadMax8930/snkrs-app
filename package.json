@@ -3,9 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
+    "dev-frontend": "next dev",
+    "prod-frontend": "next start",
+    "build-frontend": "next build",
+    "dev-backend": "nodemon server.js",
+    "prod-backend": "node server.js",
+    "scrape": "rm -f sneakers.js sneakers.json && node scraper.js",
     "lint": "next lint"
   },
   "dependencies": {
@@ -13,12 +16,13 @@
     "@fortawesome/react-fontawesome": "^0.2.0",
     "axios": "^1.6.0",
     "bcrypt": "^5.1.1",
+    "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
-    "fs": "^0.0.1-security",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^7.6.3",
     "next": "13.5.6",
+    "nodemon": "^3.0.1",
     "react": "^18",
     "react-dom": "^18",
     "uuid": "^9.0.1"

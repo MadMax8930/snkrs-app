@@ -2,7 +2,7 @@ const axios = require('axios');
 const fs = require('fs');
 const { v4: uuidv4 } = require('uuid');
 
-const baseUrl = 'https://www.whentocop.fr/_next/data/WYWlRqK_6ydrucEHXisod/drops'; // Updated URL with JSON data
+const baseUrl = 'https://www.whentocop.fr/_next/data/Mds8ySIj6Pub3QXhK7O0g/drops'; // Updated URL with JSON data
 const mySneakersArray = []; // Array to store sneaker data
 
 function generateUniqueID() { return uuidv4() }
