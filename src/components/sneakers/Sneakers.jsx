@@ -1,11 +1,16 @@
 "use client";
 import Link from 'next/link';
-import { sneakerDrops } from '../../../sneakers';
+import React from 'react';
 import { getCircleColor } from './circleColor';
-import { Toggler } from '@/components';
+import { Loader, Toggler } from '@/components';
 import styles from './sneakers.module.css';
+import useSneakers from '@/hooks/useSneakers';
+// import { sneakerDrops } from '../../../sneakers'; // mock data
 
-const Sneakers = () => {    
+const Sneakers = () => {
+   const { data: sneakerDrops, isLoading } = useSneakers();
+
+   if (isLoading) { return <Loader /> }
    if (!sneakerDrops || sneakerDrops.length === 0) { return <p>No sneakers found.</p> }
   return (
       <div className={styles.container}>
