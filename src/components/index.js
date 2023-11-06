@@ -7,7 +7,8 @@ import DarkMode from "./darkm/DarkMode";
 import Loader from "./sneakers/Loader";
 import Sneakers from "./sneakers/Sneakers";
 import Toggler from "./sneakers/Toggler";
-import SearchSnkrs from "./search/SearchSnkrs";
+import Filter from "./filter/Filter";
+import Search from "./search/Search";
 
 export { 
    Button,
@@ -19,5 +20,6 @@ export {
    Loader,
    Sneakers,
    Toggler,
-   SearchSnkrs,
+   Filter,
+   Search,
 }

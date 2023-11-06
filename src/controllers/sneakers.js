@@ -22,7 +22,7 @@ const filterSneakers = async (req, res) => {
      if (resellIndex) { filter.resellIndex = resellIndex; }
      if (dateRelease) { filter.dateRelease = dateRelease; }
 
-     const sneakers = await Sneaker.find(filter);
+     const sneakers = await Sneaker.find(filter, '-coppers -comments -__v');
      if (sneakers.length === 0) { return res.status(200).json([]); }
      return res.status(200).json(sneakers);
    } catch (error) {

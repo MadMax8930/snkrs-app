@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 
 const logIncomingRequest = (req, res, next) => {
    console.log(`Received ${req.method} request for ${req.originalUrl}.`);
@@ -19,6 +20,12 @@ const setHeaderContentType = (req, res, next) => {
    next();
 };
 
-const customMiddleware = [express.json(), logIncomingRequest, logServerResponse, setHeaderContentType];
+const customMiddleware = [
+   express.json(), 
+   cors({ origin: process.env.FRONTEND_URL, optionsSuccessStatus: 204 }),
+   logIncomingRequest, 
+   logServerResponse, 
+   setHeaderContentType
+];
 
 module.exports = { customMiddleware };
