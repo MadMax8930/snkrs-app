@@ -1,0 +1,54 @@
+.container {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   gap: 0.5em;
+   padding: 1em;
+   background-color: transparent;
+   border: 2px solid white;
+   font-size: 0.5em;
+}
+
+@media (min-width: 550px) and (max-width: 786px) {
+   .container {
+      font-size: 0.65em;
+   }
+}
+
+@media (min-width: 768px) and (max-width: 1000px) {
+   .container {
+      font-size: 0.75em;
+   }
+}
+
+@media (min-width: 1000px) and (max-width: 1520px) {
+   .container {
+      font-size: 1em;
+   }
+}
+
+@media (min-width: 1520px) {
+   .container {
+      font-size: 1.15em;
+   }
+}
+
+.filterBlock {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+
+.filterBlock label {
+   margin-bottom: 0.4em;
+}
+ 
+.filterBlock select {
+   width: 100%;
+   padding: 0.3em;
+   border: 1px solid #ccc;
+   border-radius: 5px;
+}
+ 
+
+
