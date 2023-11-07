@@ -1,49 +1,40 @@
-import { statusFilter, brandFilter, dateFilter } from './selections';
+import { resellFilterArr, brandFilterArr, dateFilterArr } from './selections';
 import styles from './filter.module.css';
 
 const Filter = ({ 
-   statusQuery, setStatusQuery, brandQuery, setBrandQuery, dateQuery, setDateQuery 
+   resellQuery, setResellQuery, brandQuery, setBrandQuery, dateQuery, setDateQuery 
 }) => {
 
-   const handleStatusChange = (option) => {
-      if (option === statusFilter[0]) { setStatusQuery(''); } 
-      else { setStatusQuery(option); }
+   const handleResellChange = (option) => {
+      if (option === resellFilterArr[0]) { setResellQuery(''); } else { setResellQuery(option); }
    };
   
    const handleBrandChange = (option) => {
-      if (option === brandFilter[0]) { setBrandQuery(''); }
-      else { setBrandQuery(option); }
+      if (option === brandFilterArr[0]) { setBrandQuery(''); } else { setBrandQuery(option); }
    };
   
    const handleDateChange = (option) => {
-      if (option === dateFilter[0]) { setDateQuery(''); }
-      else { setDateQuery(option); }
+      if (option === dateFilterArr[0]) { setDateQuery(''); } else { setDateQuery(option); }
    };
 
   return (
     <div className={styles.container}>
       <div className={styles.filterBlock}>
-         <label htmlFor="resellIndex">By Resell</label>
-         <select id="resellIndex" value={statusQuery} onChange={(e) => handleStatusChange(e.target.value)}>
-            {statusFilter.map((status, index) => (
-               <option key={index} value={status}>{status}</option>
-            ))}
+         <label htmlFor="resell">By Resell</label>
+         <select id="resell" value={resellQuery} onChange={(e) => handleResellChange(e.target.value)}>
+            {resellFilterArr.map((resell, index) => (<option key={index} value={resell}>{resell}</option>) )}
          </select>
       </div>
       <div className={styles.filterBlock}>
          <label htmlFor="brand">By Brand</label>
          <select id="brand" value={brandQuery} onChange={(e) => handleBrandChange(e.target.value)}>
-           {brandFilter.map((brand, index) => (
-               <option key={index} value={brand}>{brand}</option>
-            ))}
+           {brandFilterArr.map((brand, index) => (<option key={index} value={brand}>{brand}</option>) )}
          </select>
       </div>
       <div className={styles.filterBlock}>
-         <label htmlFor="dateRelease">By Date</label>
-         <select id="dateRelease" value={dateQuery} onChange={(e) => handleDateChange(e.target.value)}>
-            {dateFilter.map((date, index) => (
-               <option key={index} value={date}>{date}</option>
-            ))}
+         <label htmlFor="date">By Date</label>
+         <select id="date" value={dateQuery} onChange={(e) => handleDateChange(e.target.value)}>
+            {dateFilterArr.map((date, index) => (<option key={index} value={date}>{date}</option>) )}
          </select>
       </div>
     </div>

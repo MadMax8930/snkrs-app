@@ -14,7 +14,7 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between">
       <div className="h-full" style={containerWidth}>
-         <div className="mt-[4em] p-[2em] text-xs md:text-base xl:text-lg md:pt-1 xl:pt-2">
+         <div className="mt-[4em] p-[2em] pb-0 text-xs md:text-base xl:text-lg md:pt-1 xl:pt-2">
             <Filter
                resellQuery={param1} setResellQuery={setParam1}
                brandQuery={param2} setBrandQuery={setParam2}

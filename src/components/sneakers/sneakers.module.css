@@ -25,10 +25,6 @@
   z-index: 2;
 }
 
-.listItem:first-child {
-  border-top: 2px solid #2d2b2a;
-}
-
 .listItem::before {
   content: '(' counter(my-counter, decimal-leading-zero) ')';
   position: absolute;
