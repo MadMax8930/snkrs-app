@@ -1,2 +1,104 @@
-.container {}
+.container {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   background-color: transparent;
+   margin-top: 1em;
+}
 
+.searchBar {
+   padding-left: 0.75em;
+}
+
+.searchBar input, .searchBar button {
+   padding: 0.3em;
+   border: 1px solid #ccc;
+}
+
+.searchBar input {
+   border-top-left-radius: 5px;
+   border-bottom-left-radius: 5px;
+   outline: none;
+}
+
+.searchBar button {
+   border-top-right-radius: 5px;
+   border-bottom-right-radius: 5px;
+   background-color: #464655;
+   color: snow;
+   cursor: pointer;
+}
+
+.results {
+   list-style: none;
+   padding: 1em 1em 0;
+   margin: 0;
+}
+ 
+.results li {
+   width: 100vw;
+   height: auto;
+   padding: 0.65rem 0;
+   border-bottom: 1px dashed #555050;
+}
+
+.results li:nth-child(1){
+   border-top: 1px dashed #555050;
+}
+
+.searchTermItem {
+   display: flex;
+   align-items: center;
+   width: 100vw;
+   gap: 0.25em;
+   opacity: 0.7;
+}
+
+.searchTermItem:hover {
+   opacity: 1
+}
+ 
+.searchTermImage {
+   flex: 1;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   max-width: 20%;
+   height: 100%;
+}
+ 
+.searchTermText {
+   flex: 1;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: flex-start;
+   margin: 0;
+   padding: 0 1rem;
+   white-space: nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
+}
+
+.searchTermText span {
+   text-overflow: ellipsis;
+}
+
+.searchTermText span:nth-child(1) {
+   font-size: 1em;
+   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+   font-weight: 600;
+}
+
+.searchTermText span:nth-child(2) {
+   font-size: 0.8em;  
+   font-style: italic;
+   text-transform: lowercase;
+}
+
+.searchTermText span:nth-child(2)::first-letter {
+   text-transform: capitalize;
+}
+ 
+ 
