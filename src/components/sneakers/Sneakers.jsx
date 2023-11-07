@@ -7,14 +7,14 @@ import styles from './sneakers.module.css';
 import useSneakers from '@/hooks/useSneakers';
 // import { sneakerDrops } from '../../../sneakers'; // mock data
 
-const Sneakers = ({ filteredDrops, loadFiltered }) => {
-   const { data: sneakerDrops, isLoading: loadDrops } = useSneakers();
-   if (loadDrops || loadFiltered) { return <Loader /> }
+const Sneakers = ({ sneakerDropsFiltered, isLoadingFiltered }) => {
+   const { data: sneakerDrops, isLoading: isLoadingPublic } = useSneakers();
+   if (isLoadingPublic || isLoadingFiltered) { return <Loader /> }
 
    // Use filtered if available, otherwise use public
-   const sneakersToRender = filteredDrops || sneakerDrops;
-   if (!sneakersToRender || sneakersToRender.length === 0) { return <p className="text-center">No sneakers found.</p> }
-   
+   const sneakersToRender = sneakerDropsFiltered || sneakerDrops;
+   if (!sneakersToRender || sneakersToRender.length === 0) { return <p className="text-center">😟 No sneakers found.</p> }
+
   return (
       <div className={styles.container}>
          <div className={styles.list}>

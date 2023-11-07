@@ -1,4 +1,4 @@
-export const statusFilter = [
+export const resellFilterArr = [
    "Tous les resell",
    "excellent",
    "bon",
@@ -7,7 +7,7 @@ export const statusFilter = [
    "N/A"
 ];
 
-export const brandFilter = [
+export const brandFilterArr = [
    "Toutes les marques",
    "Adidas",
    "Asics",
@@ -33,9 +33,9 @@ while (startDate <= endDate) {
   startDate.setDate(startDate.getDate() + 1);
 }
 
-console.log(dateArray);
+// console.log(dateArray);
 
-export const dateFilter = [
+export const dateFilterArr = [
    '2023-10-26', '2023-10-27', '2023-10-28', '2023-10-29',
    '2023-10-30', '2023-10-31', '2023-11-01', '2023-11-02',
    '2023-11-03', '2023-11-04', '2023-11-05', '2023-11-06',

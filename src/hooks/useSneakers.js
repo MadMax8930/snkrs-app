@@ -19,12 +19,7 @@ const useSneakers = (id) => {
 
    const { data, error, isLoading, mutate } = useSWR(id ? '/profile/sneakers' : '/sneakers', fetcher, swrOptions);
 
-   return { 
-      data, 
-      error, 
-      isLoading, 
-      mutate 
-   };
+   return { data, error, isLoading, mutate };
 }
 
 export default useSneakers
