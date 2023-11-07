@@ -15,12 +15,12 @@ export default function Home() {
     <main className="flex min-h-screen flex-col items-center justify-between">
       <div className="h-full" style={containerWidth}>
          <div className="mt-[4em] p-[2em] pb-0 text-xs md:text-base xl:text-lg md:pt-1 xl:pt-2">
+            <Search sneakers={filteredSnkrs} isLoadingSearched={isLoadingFilteredSnkrs} />
             <Filter
                resellQuery={param1} setResellQuery={setParam1}
                brandQuery={param2} setBrandQuery={setParam2}
                dateQuery={param3} setDateQuery={setParam3} 
             />
-            <Search sneakers={filteredSnkrs} isLoadingSearched={isLoadingFilteredSnkrs} />
          </div>
          <Sneakers sneakerDropsFiltered={filteredSnkrs} isLoadingFiltered={isLoadingFilteredSnkrs} />
       </div>
