@@ -1,8 +1,13 @@
-import React from 'react'
+import React from 'react';
+import { isAuthenticated } from '../auth/token';
 
 const Account = () => {
+   const token = isAuthenticated();
+
+   if (token) { return <p>Authenticated user</p> }
+
   return (
-    <div>Account page</div>
+    <div>Account page (not authenticated)</div>
   )
 }
 

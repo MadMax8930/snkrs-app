@@ -16,7 +16,7 @@ const Input = ({ id, onChange, value, label, name, type, minLength }) => {
          <input type={inputType} onChange={onChange} placeholder=" "
               value={value} name={name} id={id} minLength={minLength}
               onFocus={() => setShowTooltip(true)} onBlur={() => setShowTooltip(false)}
-              className="block rounded-md px-6 pt-6 pb-1 w-full text-base text-white
+              className="block rounded-md px-6 pt-6 pb-2 w-full text-base text-white
               bg-neutral-700 appearance-none focus:outline-none focus:ring-0 peer"/>
 
          {type === 'password' && (

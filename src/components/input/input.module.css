@@ -1,5 +1,5 @@
 .iconAndTooltipContainer {
-   color: #a8ecba;
+   color: #eafbee;
 }
 
 .icon {
@@ -12,7 +12,7 @@
 
 .tooltip {
    position: absolute;
-   top: 50px;
+   top: 55px;
    left: 55px;
    padding: 4px 8px;
    font-size: 10px;

@@ -1,36 +1,67 @@
 "use client";
 import axios from '@/hooks/fetcher';
 import React, { useState, useEffect, useCallback } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { Input } from '@/components';
 import { toast } from 'react-hot-toast';
 import styles from './auth.module.css';
 
-const Auth = () => {
+const AuthPage = () => {
+   const router = useRouter();
+   const searchParams = useSearchParams()
+
    const [username, setUsername] = useState('');
    const [email, setEmail] = useState('');
    const [password, setPassword] = useState('');
    const [variant, setVariant] = useState('login');
-   const toggleVariant = useCallback(() => { setVariant((curr) => curr === 'login' ? 'register' : 'login') }, []);
+
+   useEffect(() => {
+      const urlParam = searchParams.get('variant');
+      if (urlParam === 'register' || urlParam === 'login') {
+         setVariant(String(urlParam));
+      } else {
+         setVariant('login');
+         router.push(`/auth`)
+      }
+   }, [searchParams]);
+   
+   const toggleVariant = useCallback(() => { 
+      const newVariant = variant === 'register' ? 'login' : 'register';
+      setVariant(newVariant);
+      router.push(`/auth?variant=${newVariant}`);
+   }, [variant, router]);
 
    const login = useCallback(async () => {
       try {
-         await axios.post('/login', { email, password });
-         toast.success("Logged in successfully!")
+         const response = await axios.post('/login', { email, password });
+         const { token } = response.data;
+
+         if (response.status === 200 && token) {
+            localStorage.setItem('token', token);
+            router.push(`/account`);
+            toast.success("Logged in successfully!");
+         } else if (response.status === 401) {
+            toast.error("Invalid email or password. Please try again.");
+         } else {
+            toast.error("An error occurred. Please try again later.");
+         }
+
       } catch (err) {
          console.log(err);
-         toast.error("Sorry! Login has failed.");
+         toast.error("An error occurred. Please try again later.");
       }
-   }, [email, password]);
+   }, [email, password, router]);
 
    const register = useCallback(async () => {
       try {
          await axios.post('/register', { username, email, password });
          toast.success("User created successfully!")
+         login();
       } catch (err) {
          console.log(err);
-         toast.error("Sorry! Registration has failed.");
+         toast.error("An error occurred. Please try again later.")
       }
-   }, [username, email, password]);
+   }, [username, email, password, login]);
    
   return (
     <div className={styles.container}>
@@ -56,4 +87,4 @@ const Auth = () => {
   )
 }
 
-export default Auth
+export default AuthPage
