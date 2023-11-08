@@ -36,30 +36,30 @@ const Search = ({ sneakers, isLoadingSearched }) => {
     }
   };
 
+  if (isLoadingSearched && !sneakers) { return <div className='pt-6 md:pt-12 text-base xl:text-md'><Loader /></div> }
+
   return (
     <div className={styles.container}>
-      <div className={styles.searchBar}>
-         <input type="text" placeholder="Search sneaker" 
-                value={searchTerm} 
-                onChange={(e) => { 
-                   setSearchTerm(e.target.value);
-                   handleSearching(e.target.value);
-                }}
-         />
-         {searchTerm ? (
-           <button type="button" onClick={clearSearching}>
-              <FontAwesomeIcon icon={faTimes} size="md" />
-           </button>) : (
-           <button type="button">
-              <FontAwesomeIcon icon={faSearch} size="xs" />
-           </button>
-         )}
-      </div>
-      {isLoadingSearched 
-         ? (<div className='pt-6 md:pt-12 text-base xl:text-md'>
-               <Loader />
-            </div>)
-         : isSearching && searchResults.length > 0
+       <div className={styles.searchBar}>
+           <input type="text" placeholder="Search sneaker" 
+                  value={searchTerm} 
+                  onChange={(e) => { 
+                      setSearchTerm(e.target.value);
+                      handleSearching(e.target.value);
+                  }}
+           />
+           {searchTerm ? (
+              <button type="button" onClick={clearSearching}>
+                  <FontAwesomeIcon icon={faTimes} size="md" />
+              </button>) : (
+              <button type="button">
+                  <FontAwesomeIcon icon={faSearch} size="xs" />
+              </button>
+           )}
+       </div>
+      
+     
+       {isSearching && searchResults.length > 0
          ? (<ul className={styles.results}>
               {searchResults.slice(0, 3).map((sneaker) => (
                  <li key={sneaker._id}>
@@ -81,8 +81,7 @@ const Search = ({ sneakers, isLoadingSearched }) => {
               🙄 No sneakers found.
            </p>) 
          : null 
-      }
-      
+       }    
     </div>
   )
 }
