@@ -1,14 +1,13 @@
 import React from 'react';
+import styles from './account.module.css';
+import { Profile } from '@/components';
 
-const Account = () => {
-
-   // Retrieve token 
-   const isAuthenticated = () => { return localStorage.getItem('token'); }
-   if (isAuthenticated) { return <p className='pt-20'>Authenticated user</p> }
-
+const AccountPage = () => {
   return (
-    <div className='pt-20'>Account page (not authenticated)</div>
+    <div className={styles.container}>
+      <Profile />
+    </div>
   )
 }
 
-export default Account
+export default AccountPage

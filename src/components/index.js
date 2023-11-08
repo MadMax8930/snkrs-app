@@ -10,6 +10,7 @@ import Toggler from "./sneakers/Toggler";
 import Filter from "./filter/Filter";
 import Search from "./search/Search";
 import Input from "./input/Input";
+import Profile from "./profile/Profile";
 
 export { 
    Button,
@@ -24,4 +25,5 @@ export {
    Filter,
    Search,
    Input,
+   Profile,
 }
