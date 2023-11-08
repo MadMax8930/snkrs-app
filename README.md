@@ -13,7 +13,7 @@ npm run dev-backend
 
 ### Dependencies:
 ```bash
-npm express mongoose fs uuid bcrypt jsonwebtoken axios cors -g nodemon @fortawesome/react-fontawesome @fortawesome/free-solid-svg-icons react-hot-toast react-spinners
+npm express mongoose fs uuid bcrypt jsonwebtoken axios cors https -g nodemon @fortawesome/react-fontawesome @fortawesome/free-solid-svg-icons react-hot-toast react-spinners
 ```
 
 ### Script that generates scraping data for testing purposes:

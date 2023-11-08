@@ -1,5 +1,5 @@
 "use client";
-import axios from '@/hooks/fetcher';
+import axios from '../../../axios.config';
 import React, { useState, useEffect, useCallback } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Input } from '@/components';
