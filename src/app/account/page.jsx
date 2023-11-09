@@ -1,6 +1,8 @@
+"use client";
 import React from 'react';
-import styles from './account.module.css';
 import { Profile } from '@/components';
+import { withAuth } from '../auth/withAuth';
+import styles from './account.module.css';
 
 const AccountPage = () => {
   return (
@@ -10,4 +12,4 @@ const AccountPage = () => {
   )
 }
 
-export default AccountPage
+export default withAuth(AccountPage)

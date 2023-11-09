@@ -1,12 +1,15 @@
 "use client";
 import axios from '../../../axios.config';
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useContext, useState, useEffect, useCallback } from 'react';
+import { UserContext } from '@/context/UserContext';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Input } from '@/components';
 import { toast } from 'react-hot-toast';
 import styles from './auth.module.css';
 
-const AuthPage = () => {
+const AuthPage = () => { 
+   const { setUser } = useContext(UserContext);
+   
    const router = useRouter();
    const searchParams = useSearchParams()
 
@@ -37,18 +40,21 @@ const AuthPage = () => {
          const { token } = response.data;
 
          if (response.status === 200 && token) {
-            localStorage.setItem('token', token);
-            router.push(`/account`);
-            toast.success("Logged in successfully!");
-         } else if (response.status === 401) {
-            toast.error("Invalid email or password. Please try again.");
-         } else {
-            toast.error("An error occurred. Please try again later.");
-         }
+            // Include the token in the axios default headers
+            axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
+            const fetchUserProfile = await axios.get('/profile');
+            if (fetchUserProfile.status === 200) {
+               const { _id, username, email, profilePic } = fetchUserProfile.data;
+               setUser({ _id, username, email, profilePic });
+               router.push('/account');
+               toast.success("Logged in successfully!");
+            } else { throw new Error("An error occurred while fetching the user profile."); }
+         } else { throw new Error("Invalid email or password. Please try again."); }
 
       } catch (err) {
+         toast.error("An unexpected error occurred.");
          console.log(err);
-         toast.error("An error occurred. Please try again later.");
       }
    }, [email, password, router]);
 
@@ -58,8 +64,8 @@ const AuthPage = () => {
          toast.success("User created successfully!")
          login();
       } catch (err) {
+         toast.error("An unexpected error occurred.")
          console.log(err);
-         toast.error("An error occurred. Please try again later.")
       }
    }, [username, email, password, login]);
    
