@@ -11,7 +11,7 @@ import Filter from "./filter/Filter";
 import Search from "./search/Search";
 import Input from "./input/Input";
 import Profile from "./profile/Profile";
-import NotFound from "./404/404";
+import NotFound from "./404/notfound";
 
 export { 
    Button,
