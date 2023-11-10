@@ -1,15 +1,13 @@
 "use client";
 import axios from '../../../axios.config';
-import React, { useContext, useState, useEffect, useCallback } from 'react';
-import { UserContext } from '@/context/UserContext';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Input } from '@/components';
+import { useCookies } from 'react-cookie';
 import { toast } from 'react-hot-toast';
 import styles from './auth.module.css';
 
-const AuthPage = () => { 
-   const { setUser } = useContext(UserContext);
-   
+const AuthPage = () => {
    const router = useRouter();
    const searchParams = useSearchParams()
 
@@ -17,6 +15,14 @@ const AuthPage = () => {
    const [email, setEmail] = useState('');
    const [password, setPassword] = useState('');
    const [variant, setVariant] = useState('login');
+
+   const [cookies, setCookie] = useCookies(['token']);
+
+   //    useEffect(() => {
+   //     console.log('Value of 'token:', cookies.token);
+   //     // Modifying the 'token' value
+   //     setCookie('token', 'new-Value', { path: '/' });
+   //   }, [cookies, setCookie]);
 
    useEffect(() => {
       const urlParam = searchParams.get('variant');
@@ -38,20 +44,11 @@ const AuthPage = () => {
       try {
          const response = await axios.post('/login', { email, password });
          const { token } = response.data;
-
          if (response.status === 200 && token) {
-            // Include the token in the axios default headers
-            axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-
-            const fetchUserProfile = await axios.get('/profile');
-            if (fetchUserProfile.status === 200) {
-               const { _id, username, email, profilePic } = fetchUserProfile.data;
-               setUser({ _id, username, email, profilePic });
-               router.push('/account');
-               toast.success("Logged in successfully!");
-            } else { throw new Error("An error occurred while fetching the user profile."); }
+            setCookie('token', token, { path: '/' });
+            router.push('/account');
+            toast.success("Logged in successfully!");
          } else { throw new Error("Invalid email or password. Please try again."); }
-
       } catch (err) {
          toast.error("An unexpected error occurred.");
          console.log(err);
@@ -68,7 +65,7 @@ const AuthPage = () => {
          console.log(err);
       }
    }, [username, email, password, login]);
-   
+
   return (
     <div className={styles.container}>
       <div className={styles.innerContainer}>

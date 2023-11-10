@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const cookieParser = require('cookie-parser');
 
 const logIncomingRequest = (req, res, next) => {
    console.log(`Received ${req.method} request for ${req.originalUrl}.`);
@@ -21,8 +22,9 @@ const setHeaderContentType = (req, res, next) => {
 };
 
 const customMiddleware = [
-   cors({ origin: process.env.EXPRESS_CONNECTION_TO_FRONTEND, optionsSuccessStatus: 204 }),
-   express.json(), 
+   cors({ credentials: true, origin: process.env.EXPRESS_CONNECTION_TO_FRONTEND, optionsSuccessStatus: 204 }),
+   express.json(),
+   cookieParser(),
    logIncomingRequest, 
    logServerResponse, 
    setHeaderContentType
