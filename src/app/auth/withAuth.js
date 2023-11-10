@@ -1,17 +1,27 @@
+import { useRouter } from 'next/navigation';
 import { useContext, useEffect } from 'react';
 import { UserContext } from '@/context/UserContext';
-import { useRouter } from 'next/navigation';
+import { Loader, NotFound } from '@/components';
+import useUserProfile from '@/hooks/useUserProfile';
 
 // Higher-order component (guard)
 export const withAuth = (WrappedComponent) => {
   return (props) => {
-    const { user } = useContext(UserContext);
+
     const router = useRouter();
+    const { user, setUser } = useContext(UserContext);
+    const { data: profileData, error: errorFetching, isLoading: isLoadingProfile } = useUserProfile();
 
     useEffect(() => {
-      if (!user) { router.push('/auth?variant=register'); }
-    }, [user, router]);
+      if (profileData) { setUser(profileData); }
+    }, [profileData]);
 
-    return user ? <WrappedComponent {...props} /> : null;
+    useEffect(() => {
+      if (errorFetching) { router.push('/auth?variant=register'); }
+    }, [errorFetching, router]);
+
+    if (isLoadingProfile) { return <div className='pt-24'><Loader /></div> }
+
+    return user && user._id ? <WrappedComponent {...props} /> : <NotFound />;
   }
 }
