@@ -33,6 +33,10 @@ const login = async (req, res) => {
 
      // Create a JWT token
      const token = jwt.sign({ userId: registeredUser._id, email: registeredUser.email }, process.env.JWT_SECRET, { expiresIn: '2h' });
+
+     // Set the token as an HTTP cookie
+     res.cookie('token', token, { httpOnly: true, maxAge: 2 * 60 * 60 * 1000 }); // Set for HTTPS: secure: true, sameSite: 'none'
+     
      return res.status(200).json({ message: `Logged in successfully as ${registeredUser.username}`, token, registeredUser });
    } catch (error) {
      return res.status(500).json({ error: 'Internal Server Error' });

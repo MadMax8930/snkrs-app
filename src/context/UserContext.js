@@ -1,6 +1,5 @@
 "use client";
 import { createContext, useReducer } from 'react';
-import axios from '../../axios.config';
 
 export const UserContext = createContext();
 
@@ -38,7 +37,6 @@ export const UserProvider = ({ children }) => {
    };
    const clearUser = () => { 
       dispatch({ type: CLEAR_USER });
-      delete axios.defaults.headers.common['Authorization'];
    };
 
   return (

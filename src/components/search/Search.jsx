@@ -50,7 +50,7 @@ const Search = ({ sneakers, isLoadingSearched }) => {
            />
            {searchTerm ? (
               <button type="button" onClick={clearSearching}>
-                  <FontAwesomeIcon icon={faTimes} size="md" />
+                  <FontAwesomeIcon icon={faTimes} />
               </button>) : (
               <button type="button">
                   <FontAwesomeIcon icon={faSearch} size="xs" />

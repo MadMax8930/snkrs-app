@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 
 const requireAuth = async (req, res, next) => {
    try {
-     const token = req.headers.authorization.split(' ')[1]; // Get JTW token from req headers (sent in the "Authorization" header)
+     const token = req.cookies['token'] // Get JWT token from HTTP cookie
      if (!token) { return res.status(401).json({ error: 'Unauthorized: Missing token' }); }
 
      const decodedToken = jwt.verify(token, process.env.JWT_SECRET);

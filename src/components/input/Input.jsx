@@ -23,8 +23,8 @@ const Input = ({ id, onChange, value, label, name, type, minLength }) => {
             <div className={styles.iconAndTooltipContainer}>
                <button type="button" onClick={handleShowPassword} className={styles.icon}>
                   {invisiblePwd
-                     ? <FontAwesomeIcon icon={faEye} size="md" /> 
-                     : <FontAwesomeIcon icon={faEyeSlash} size="md" /> 
+                     ? <FontAwesomeIcon icon={faEye} size="sm" /> 
+                     : <FontAwesomeIcon icon={faEyeSlash} size="sm" /> 
                   }
                </button>
                {showTooltip && minLength ? (
