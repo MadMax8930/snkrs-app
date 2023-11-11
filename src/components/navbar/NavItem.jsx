@@ -5,7 +5,7 @@ import styles from './navbar.module.css';
 const NavItem = ({ redirect, icon, text, onRedirect }) => {
   return (
     <>
-      <Link href={`/${redirect}`} className={styles.navLink} onClick={onRedirect}>
+      <Link href={`${redirect}`} className={styles.navLink} onClick={onRedirect}>
          <FontAwesomeIcon icon={icon} className={styles.navIcon} />{text}
       </Link>
     </>

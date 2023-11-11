@@ -1,14 +1,21 @@
 "use client";
-import React, { useState } from 'react';
-import { faDollar, faEnvelope, faHome, faArrowRightFromBracket, faPenToSquare } from '@fortawesome/free-solid-svg-icons';
+import React, { useState, useContext } from 'react';
+import { UserContext } from '@/context/UserContext';
+import { faHome, faArrowRightFromBracket, faUserShield, faHomeUser, faPeopleGroup } from '@fortawesome/free-solid-svg-icons';
 import { DarkMode, NavItem } from '@/components';
+import { useCookies } from 'react-cookie';
 import styles from './navbar.module.css';
 
 const Navbar = () => {
    const [hamburgerOpen, setHamburgerOpen] = useState(false);
    const toggleHamburgerMenu = () => { setHamburgerOpen(!hamburgerOpen) };
    const closeHamburgerMenu = () => { setHamburgerOpen(false) };
-   
+
+   const [cookies] = useCookies(['token']);
+   const isAuthenticated = !!cookies.token;
+   const { clearUser } = useContext(UserContext);
+   const logoutAndCloseHamburgerMenu = () => { clearUser(() => { setHamburgerOpen(false) }) };
+
   return ( 
     <header className={styles.header}>
       <div className={styles.container}>
@@ -20,13 +27,18 @@ const Navbar = () => {
             <div className={styles.hamburger}></div>
          </button> 
          <nav className={`${styles.nav} ${hamburgerOpen ? `${styles.navOpen}` : `${styles.navClosed}`}`}>
-            <ul>    
-               <li><NavItem redirect="account" icon={faHome} text="My Account" onRedirect={closeHamburgerMenu} /></li> 
-               <li><NavItem redirect="discuss" icon={faPenToSquare} text="Sneakerheads" onRedirect={closeHamburgerMenu} /></li>
-               <li><NavItem redirect="profit" icon={faDollar} text="Profitable Kicks" onRedirect={closeHamburgerMenu} /></li>
-               <li><NavItem redirect="contact" icon={faEnvelope} text="Contact Admin" onRedirect={closeHamburgerMenu} /></li>
-               <li><NavItem redirect="/" icon={faArrowRightFromBracket} text="Session Logout" onRedirect={closeHamburgerMenu} /></li>
-            </ul>
+            {isAuthenticated ?
+               <ul>    
+                  <li><NavItem redirect="/account" icon={faUserShield} text="User Account" onRedirect={closeHamburgerMenu} /></li> 
+                  <li><NavItem redirect="/account/blog" icon={faPeopleGroup} text="Our Community" onRedirect={closeHamburgerMenu} /></li>
+                  <li><NavItem redirect="/" icon={faArrowRightFromBracket} text="Session Logout" onRedirect={logoutAndCloseHamburgerMenu} /></li>
+               </ul> :
+               <ul>
+                  <li><NavItem redirect="/auth?variant=login" icon={faHomeUser} text="Login User" onRedirect={closeHamburgerMenu} /></li> 
+                  <li><NavItem redirect="/auth?variant=register" icon={faHome} text="Signin User" onRedirect={closeHamburgerMenu} /></li> 
+                  <li><NavItem redirect="/" icon={faArrowRightFromBracket} text="Back Home" onRedirect={closeHamburgerMenu} /></li>
+               </ul>
+            }
          </nav>
       </div>
     </header>

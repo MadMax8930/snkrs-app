@@ -20,22 +20,19 @@ const Filter = ({
   return (
     <div className={styles.container}>
       <div className={styles.filterBlock}>
-         <label htmlFor="resell">By Resell</label>
-         <select id="resell" value={resellQuery} onChange={(e) => handleResellChange(e.target.value)}>
+         <select id="1" title="Filter by Resell" value={resellQuery} onChange={(e) => handleResellChange(e.target.value)}>
             {resellFilterArr.map((resell, index) => (<option key={index} value={resell}>{resell}</option>) )}
-         </select>
+         </select> <label htmlFor="1">By Resell</label>
       </div>
       <div className={styles.filterBlock}>
-         <label htmlFor="brand">By Brand</label>
-         <select id="brand" value={brandQuery} onChange={(e) => handleBrandChange(e.target.value)}>
+         <select id="2" title="Filter by Brand" value={brandQuery} onChange={(e) => handleBrandChange(e.target.value)}>
            {brandFilterArr.map((brand, index) => (<option key={index} value={brand}>{brand}</option>) )}
-         </select>
+         </select> <label htmlFor="2">By Brand</label>
       </div>
       <div className={styles.filterBlock}>
-         <label htmlFor="date">By Date</label>
-         <select id="date" value={dateQuery} onChange={(e) => handleDateChange(e.target.value)}>
+         <select id="3" title="Filter by Date" value={dateQuery} onChange={(e) => handleDateChange(e.target.value)}>
             {dateFilterArr.map((date, index) => (<option key={index} value={date}>{date}</option>) )}
-         </select>
+         </select> <label htmlFor="3">By Date</label>
       </div>
     </div>
   )
