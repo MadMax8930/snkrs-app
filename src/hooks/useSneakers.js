@@ -1,24 +1,11 @@
 import useSWR from 'swr';
 import fetcher from './fetcher';
 import fetcherWithCookie from './fetcherWithCookie';
+import swrOptions from './swrOptions';
 import { useCookies } from 'react-cookie';
 
 const useSneakers = () => {
    const [cookies] = useCookies(['token']);
-
-   const unauthenticatedUser = {
-      revalidateIfStale: false,
-      revalidateOnFocus: false,
-      revalidateOnReconnect: true,
-   };
-
-   const authenticatedUser = {
-      revalidateIfStale: true,
-      revalidateOnFocus: true,
-      revalidateOnReconnect: true,
-   };
-
-   const swrOptions = cookies.token ? authenticatedUser : unauthenticatedUser;
 
    const { data, error, isLoading, mutate } = useSWR(
       cookies.token ? '/profile/sneakers' : '/sneakers', 

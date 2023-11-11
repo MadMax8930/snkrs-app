@@ -28,11 +28,12 @@ app.put('/profile/picture', requireAuth, usersController.uploadPicture);
 
 /* done */
 app.get('/sneakers', sneakersController.getPublicSneakers);
-app.get('/sneakers/filter', sneakersController.filterSneakers);
 app.get('/profile/sneakers', requireAuth, sneakersController.getUserSneakers);
 app.get('/profile/sneakers/:sneakerId', requireAuth, sneakersController.getUserSneakerById);
 app.get('/profile/sneakers-copped', requireAuth, sneakersController.getCoppedSneakers);
 app.patch('/profile/sneakers/:sneakerId/toggle', requireAuth, sneakersController.toggleCopping)
+app.get('/sneakers-filter', sneakersController.filterSneakers);
+app.get('/profile/sneakers-filter', requireAuth, sneakersController.filterUserSneakers);
 
 /* done */
 app.get('/sneakers/:sneakerId/comments', commentsController.getAllCommentsForSneaker);

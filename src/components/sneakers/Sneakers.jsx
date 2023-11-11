@@ -4,17 +4,13 @@ import React from 'react';
 import { getCircleColor } from './circleColor';
 import { Loader, Toggler } from '@/components';
 import styles from './sneakers.module.css';
-import useSneakers from '@/hooks/useSneakers';
-// import { sneakerDrops } from '../../../sneakers'; // mock data
 
-const Sneakers = ({ sneakerDropsFiltered, isLoadingFiltered }) => {
-   const { data: sneakerDrops, isLoading: isLoadingPublic } = useSneakers();
-   if (isLoadingPublic || isLoadingFiltered) { return <Loader /> }
-
+const Sneakers = ({ sneakerDropsFiltered, sneakerDrops, isLoadingFiltered, isLoadingPublic }) => {
    // Use filtered if available, otherwise use public
    const sneakersToRender = sneakerDropsFiltered || sneakerDrops;
    if (!sneakersToRender || sneakersToRender.length === 0) { return <p className="text-center">😟 No sneakers found.</p> }
-
+   if (isLoadingFiltered || isLoadingPublic) { return <Loader /> }
+   
   return (
       <div className={styles.container}>
          <div className={styles.list}>

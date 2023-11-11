@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes, faSearch } from '@fortawesome/free-solid-svg-icons';
 import styles from './search.module.css';
 
-const Search = ({ sneakers, isLoadingSearched }) => {
+const Search = ({ sneakers, isLoadingFiltered }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [isSearching, setIsSearching] = useState(false);
@@ -36,7 +36,7 @@ const Search = ({ sneakers, isLoadingSearched }) => {
     }
   };
 
-  if (isLoadingSearched && !sneakers) { return <div className='pt-6 md:pt-12 text-base xl:text-md'><Loader /></div> }
+  if (isLoadingFiltered && !sneakers) { return <div className='pt-6 md:pt-12 text-base xl:text-md'><Loader /></div> }
 
   return (
     <div className={styles.container}>
