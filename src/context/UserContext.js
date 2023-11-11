@@ -20,9 +20,9 @@ const CLEAR_USER = 'CLEAR_USER';
 const manageState = (state, action) => {
   switch (action.type) {
     case SET_USER:
-      return { ...state, ...action.payload }; // Merge payload into the state
+      return { ...state, ...action.payload };
     case CLEAR_USER:
-      return init; // Reset to initial state
+      return init;
     default:
       return state;
   }
@@ -35,8 +35,10 @@ export const UserProvider = ({ children }) => {
    const setUser = (payload) => { 
       dispatch({ type: SET_USER, payload });
    };
-   const clearUser = () => { 
+   const clearUser = (callback) => { 
       dispatch({ type: CLEAR_USER });
+      document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+      if (callback && typeof callback === 'function') { callback(); }
    };
 
   return (

@@ -20,8 +20,7 @@ const AuthPage = () => {
 
    //    useEffect(() => {
    //     console.log('Value of 'token:', cookies.token);
-   //     // Modifying the 'token' value
-   //     setCookie('token', 'new-Value', { path: '/' });
+   //     setCookie('token', 'new-value', { path: '/' });
    //   }, [cookies, setCookie]);
 
    useEffect(() => {
@@ -58,10 +57,10 @@ const AuthPage = () => {
    const register = useCallback(async () => {
       try {
          await axios.post('/register', { username, email, password });
-         toast.success("User created successfully!")
-         login();
+         router.push('/auth?variant=login');
+         toast.success("User created successfully!");
       } catch (err) {
-         toast.error("An unexpected error occurred.")
+         toast.error("An unexpected error occurred.");
          console.log(err);
       }
    }, [username, email, password, login]);

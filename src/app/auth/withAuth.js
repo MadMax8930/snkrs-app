@@ -1,7 +1,7 @@
 import { useRouter } from 'next/navigation';
 import { useContext, useEffect } from 'react';
 import { UserContext } from '@/context/UserContext';
-import { Loader, NotFound } from '@/components';
+import { LoaderLayer } from '@/components';
 import useUserProfile from '@/hooks/useUserProfile';
 
 // Higher-order component (guard)
@@ -17,11 +17,16 @@ export const withAuth = (WrappedComponent) => {
     }, [profileData]);
 
     useEffect(() => {
-      if (errorFetching) { router.push('/auth?variant=register'); }
+      if (errorFetching) {
+         const timer = setTimeout(() => {
+            router.push('/auth?variant=register');
+         }, 1000);
+         return () => clearTimeout(timer);
+      }
     }, [errorFetching, router]);
 
-    if (isLoadingProfile) { return <div className='pt-24'><Loader /></div> }
+    if (isLoadingProfile) { return <LoaderLayer /> }
 
-    return user && user._id ? <WrappedComponent {...props} /> : <NotFound />;
+    return user._id ? <WrappedComponent {...props} /> : <LoaderLayer/>;
   }
 }
