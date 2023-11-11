@@ -16,12 +16,7 @@ const AuthPage = () => {
    const [password, setPassword] = useState('');
    const [variant, setVariant] = useState('login');
 
-   const [cookies, setCookie] = useCookies(['token']);
-
-   //    useEffect(() => {
-   //     console.log('Value of 'token:', cookies.token);
-   //     setCookie('token', 'new-value', { path: '/' });
-   //   }, [cookies, setCookie]);
+   const [_, setCookie] = useCookies(['token']);
 
    useEffect(() => {
       const urlParam = searchParams.get('variant');

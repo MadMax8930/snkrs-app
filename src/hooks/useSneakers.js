@@ -1,7 +1,10 @@
 import useSWR from 'swr';
 import fetcher from './fetcher';
+import fetcherWithCookie from './fetcherWithCookie';
+import { useCookies } from 'react-cookie';
 
-const useSneakers = (id) => {
+const useSneakers = () => {
+   const [cookies] = useCookies(['token']);
 
    const unauthenticatedUser = {
       revalidateIfStale: false,
@@ -15,9 +18,14 @@ const useSneakers = (id) => {
       revalidateOnReconnect: true,
    };
 
-   const swrOptions = id ? authenticatedUser : unauthenticatedUser;
+   const swrOptions = cookies.token ? authenticatedUser : unauthenticatedUser;
 
-   const { data, error, isLoading, mutate } = useSWR(id ? '/profile/sneakers' : '/sneakers', fetcher, swrOptions);
+   const { data, error, isLoading, mutate } = useSWR(
+      cookies.token ? '/profile/sneakers' : '/sneakers', 
+      cookies.token ? fetcherWithCookie : fetcher, 
+      swrOptions);
+
+      console.log("API Endpoint:", cookies.token ? '/profile/sneakers' : '/sneakers');
 
    return { data, error, isLoading, mutate };
 };
