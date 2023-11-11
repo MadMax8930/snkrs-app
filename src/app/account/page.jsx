@@ -8,10 +8,7 @@ import styles from './account.module.css';
 const AccountPage = () => {
    const router = useRouter();
    const { user, clearUser } = useContext(UserContext);
-  
-   const handleLogout = () => {
-      clearUser(() => { router.push('/auth?variant=login') });
-   };
+   const handleLogout = () => { clearUser(() => { router.push('/auth?variant=login') }) };
 
    console.log({user});
   

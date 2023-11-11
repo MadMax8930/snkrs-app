@@ -1,9 +1,9 @@
 "use client";
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { UserContext } from '@/context/UserContext';
-import { faHome, faArrowRightFromBracket, faUserShield, faHomeUser, faPeopleGroup } from '@fortawesome/free-solid-svg-icons';
+import useUserProfile from '@/hooks/useUserProfile';
+import { faHome, faArrowRightFromBracket, faUserShield, faHomeUser, faPeopleGroup, faEnvelope, faUserCog } from '@fortawesome/free-solid-svg-icons';
 import { DarkMode, NavItem } from '@/components';
-import { useCookies } from 'react-cookie';
 import styles from './navbar.module.css';
 
 const Navbar = () => {
@@ -11,10 +11,13 @@ const Navbar = () => {
    const toggleHamburgerMenu = () => { setHamburgerOpen(!hamburgerOpen) };
    const closeHamburgerMenu = () => { setHamburgerOpen(false) };
 
-   const [cookies] = useCookies(['token']);
-   const isAuthenticated = !!cookies.token;
-   const { clearUser } = useContext(UserContext);
+   const { user, setUser, clearUser } = useContext(UserContext);
    const logoutAndCloseHamburgerMenu = () => { clearUser(() => { setHamburgerOpen(false) }) };
+   const { data: profileData } = useUserProfile();
+
+   useEffect(() => {
+     if (profileData) { setUser(profileData); }
+   }, [profileData]);
 
   return ( 
     <header className={styles.header}>
@@ -27,15 +30,17 @@ const Navbar = () => {
             <div className={styles.hamburger}></div>
          </button> 
          <nav className={`${styles.nav} ${hamburgerOpen ? `${styles.navOpen}` : `${styles.navClosed}`}`}>
-            {isAuthenticated ?
-               <ul>    
+            {user._id ?
+               <ul>
+                  <li><NavItem redirect="/" icon={faUserCog} text="Cop Sneakers" onRedirect={closeHamburgerMenu} /></li>    
                   <li><NavItem redirect="/account" icon={faUserShield} text="User Account" onRedirect={closeHamburgerMenu} /></li> 
                   <li><NavItem redirect="/account/blog" icon={faPeopleGroup} text="Our Community" onRedirect={closeHamburgerMenu} /></li>
                   <li><NavItem redirect="/" icon={faArrowRightFromBracket} text="Session Logout" onRedirect={logoutAndCloseHamburgerMenu} /></li>
                </ul> :
                <ul>
+                  <li><NavItem redirect="/auth?variant=register" icon={faHome} text="Register" onRedirect={closeHamburgerMenu} /></li>
                   <li><NavItem redirect="/auth?variant=login" icon={faHomeUser} text="Login User" onRedirect={closeHamburgerMenu} /></li> 
-                  <li><NavItem redirect="/auth?variant=register" icon={faHome} text="Signin User" onRedirect={closeHamburgerMenu} /></li> 
+                  <li><NavItem redirect="/contact" icon={faEnvelope} text="Contact Us" onRedirect={closeHamburgerMenu} /></li> 
                   <li><NavItem redirect="/" icon={faArrowRightFromBracket} text="Back Home" onRedirect={closeHamburgerMenu} /></li>
                </ul>
             }

@@ -24,7 +24,7 @@ const AuthPage = () => {
          setVariant(String(urlParam));
       } else {
          setVariant('login');
-         router.push(`/auth`)
+         router.push('/auth');
       }
    }, [searchParams]);
    

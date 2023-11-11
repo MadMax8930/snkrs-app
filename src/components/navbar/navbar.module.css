@@ -18,21 +18,21 @@
 }
 
 .container {
-   width: 90%;
-   display: flex;
-   justify-content: space-between;
-   align-items: center;
-   gap: 0px;
-   margin: 0 auto;
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0px;
+  margin: 0 auto;
 }
 
 .logoContainer {
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   gap: 0.75rem;
-   padding-left: 0.5em;
-   transform: scale(0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding-left: 0.5em;
+  transform: scale(0.9);
 }
 
 .logo {
@@ -131,7 +131,7 @@
   top: 0.5em;
   right: 2.5em;
   cursor: pointer;
-  z-index: 100;
+  z-index: 200;
 }
 
 @media (min-width: 360px) and (max-width: 550px) {
