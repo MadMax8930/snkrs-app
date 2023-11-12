@@ -1,1 +1,45 @@
-.container {}
+.container {
+   display: flex;
+   flex-direction: column;
+   padding: 5rem 2rem 2rem;
+}
+
+.profileContainer {
+   display: flex;
+   flex-wrap: wrap;
+}
+
+.userInfo,
+.userPic,
+.notificationContainer {
+   flex: 1;
+   padding: 20px;
+   border: 1px solid #ccc;
+   margin: 0.25rem;
+}
+
+.userInfo {
+   flex: 2;
+}
+
+.userPic {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+
+.userPic button {
+   padding: 0.5em;
+   width: max-content;
+   background-color: #53c28b;
+   color: white;
+   border: none;
+   border-radius: 5px;
+   cursor: pointer;
+}
+
+@media (max-width: 768px) {
+   .profileContainer {
+      flex-direction: column;
+   }
+}

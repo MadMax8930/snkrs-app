@@ -11,7 +11,7 @@ export const withAuth = (WrappedComponent) => {
 
     const router = useRouter();
     const { user, setUser } = useContext(UserContext);
-    const { data: profileData, isLoading: isLoadingProfile } = useUserProfile();
+    const { data: profileData, error: errorFetching, isLoading: isLoadingProfile } = useUserProfile();
     const [cookies] = useCookies(['token']);
 
     useEffect(() => {
@@ -19,13 +19,13 @@ export const withAuth = (WrappedComponent) => {
     }, [profileData]);
 
     useEffect(() => {
-      if (!cookies.token) {
+      if (!cookies.token || errorFetching) {
          const timer = setTimeout(() => {
             router.push('/auth?variant=register');
          }, 1000);
          return () => clearTimeout(timer);
       }
-    }, [cookies.token, router]);
+    }, [cookies.token, errorFetching, router]);
 
     if (isLoadingProfile) { return <LoaderLayer /> }
 

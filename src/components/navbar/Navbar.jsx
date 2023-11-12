@@ -1,7 +1,6 @@
 "use client";
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import { UserContext } from '@/context/UserContext';
-import useUserProfile from '@/hooks/useUserProfile';
 import { faHome, faArrowRightFromBracket, faUserShield, faHomeUser, faPeopleGroup, faEnvelope, faUserCog } from '@fortawesome/free-solid-svg-icons';
 import { DarkMode, NavItem } from '@/components';
 import styles from './navbar.module.css';
@@ -11,14 +10,9 @@ const Navbar = () => {
    const toggleHamburgerMenu = () => { setHamburgerOpen(!hamburgerOpen) };
    const closeHamburgerMenu = () => { setHamburgerOpen(false) };
 
-   const { user, setUser, clearUser } = useContext(UserContext);
+   const { user, clearUser } = useContext(UserContext);
    const logoutAndCloseHamburgerMenu = () => { clearUser(() => { setHamburgerOpen(false) }) };
-   const { data: profileData } = useUserProfile();
-
-   useEffect(() => {
-     if (profileData) { setUser(profileData); }
-   }, [profileData]);
-
+  
   return ( 
     <header className={styles.header}>
       <div className={styles.container}>

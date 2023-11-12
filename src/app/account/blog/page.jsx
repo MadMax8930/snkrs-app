@@ -1,9 +1,14 @@
+"use client";
 import React from 'react'
+import { withAuth } from '../../auth/withAuth';
+import styles from './blog.module.css';
 
 const BlogPage = () => {
   return (
-    <div className='pt-24'>Blog page</div>
+    <div className={styles.container}>
+      Blog Page
+    </div>
   )
 }
 
-export default BlogPage
+export default withAuth(BlogPage)
