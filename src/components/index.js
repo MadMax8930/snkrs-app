@@ -7,12 +7,13 @@ import DarkMode from "./darkm/DarkMode";
 import Loader from "./loader/Loader";
 import LoaderLayer from "./loader/LoaderLayer";
 import Sneakers from "./sneakers/Sneakers";
-import Toggler from "./sneakers/Toggler";
+import Toggler from "./toggler/Toggler";
 import Filter from "./filter/Filter";
 import Search from "./search/Search";
 import Input from "./input/Input";
 import Profile from "./profile/Profile";
 import NotFound from "./404/NotFound";
+import CoppedSnkrs from "./copped/CoppedSnkrs";
 
 export { 
    Button,
@@ -30,4 +31,5 @@ export {
    Input,
    Profile,
    NotFound,
+   CoppedSnkrs,
 }

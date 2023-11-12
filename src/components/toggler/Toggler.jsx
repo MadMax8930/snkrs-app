@@ -1,7 +1,18 @@
-import styles from './sneakers.module.css';
+"use client";
+import React, { useState } from 'react';
+import useToggle from '@/hooks/useToggle';
+import styles from './toggler.module.css';
 
-const Toggler = ({ cop }) => {
-   const handleSwitcher = () => {}
+const Toggler = ({ switcher, sneakerId }) => {
+   const { mutate, isLoading: isLoadingUpdate } = useToggle(sneakerId);
+   const [cop, setCop] = useState(switcher);
+   const handleSwitcher = () => {
+      if (!isLoadingUpdate) {
+         const newLocalCop = !cop;
+         setCop(newLocalCop);
+         mutate(newLocalCop);
+      }
+   };
   return (
     <div className={styles.toggler} onClick={handleSwitcher}
          style={

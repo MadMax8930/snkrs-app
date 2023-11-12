@@ -33,8 +33,8 @@ const Sneakers = ({ sneakerDropsFiltered, sneakerDrops, isLoadingFiltered, isLoa
                         <span>({sneaker.retailPrice === 'N/A' ? `${sneaker.retailPrice}` : `${sneaker.retailPrice}€`})</span>
                         <i>{sneaker.resellPrice}</i>
                      </Link>
-                     <div className={styles.move} >
-                         <Toggler cop={sneaker.copping}/>
+                     <div className={styles.move}>
+                         <Toggler switcher={sneaker.copping} sneakerId={sneaker._id} />
                      </div>  
                   </div>
 

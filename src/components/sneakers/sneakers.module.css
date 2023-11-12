@@ -233,32 +233,6 @@
    border-radius: 50%;
 }
 
-.toggler {
-  width: 3.5em;
-  height: 1.35em;
-  border: 1.5px solid transparent;
-  border-radius: 30px;
-  background-color: #2d2b2a;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.5em;
-  position: relative;
-  cursor: pointer;
-}
-
-.choice {
-  font-size: 0.6em;
-  color: #eef5ba;
-}
-
-.copBall {
-  width: 0.8em;
-  height: 0.8em;
-  border-radius: 50%;
-  position: absolute;
-}
-
 @media (min-width: 660px) {
    .listItem {
       padding: calc(var(--index) * 1.75) calc(var(--index) * 4.5);
@@ -288,18 +262,6 @@
 }
 
 @media (min-width: 1150px) {
-   .copBall{
-      width: 1em;
-      height: 1em;
-   }
-
-   .toggler {
-      transform: scale(0.75);
-      align-self: flex-end;
-      margin-left: 10px;
-      left: 0.5em;
-   }
-
    .listItem::before {
       font-size: calc(var(--index) * 0.625);
    }
