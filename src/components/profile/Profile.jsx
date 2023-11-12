@@ -22,9 +22,10 @@ const Profile = () => {
          setUser(updatedUser);
       } catch (error) {
          console.error("Error updating profile picture:", error);
-         toast.error("Failed to update profile picture");
+         toast.error("Please make sure the URL is valid.");
       } finally {
          setLoading(false);
+         setPictureState('')
       }
    }
   
