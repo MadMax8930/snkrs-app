@@ -1,7 +1,7 @@
 import useSWR from 'swr';
 import fetcher from './fetcher';
 import fetcherWithCookie from './fetcherWithCookie';
-import swrOptions from './swrOptions';
+import useSWROptions from './swrOptions';
 import { useCookies } from 'react-cookie';
 
 const useSneakers = () => {
@@ -10,9 +10,9 @@ const useSneakers = () => {
    const { data, error, isLoading, mutate } = useSWR(
       cookies.token ? '/profile/sneakers' : '/sneakers', 
       cookies.token ? fetcherWithCookie : fetcher, 
-      swrOptions);
+      useSWROptions);
 
-      console.log("API Endpoint:", cookies.token ? '/profile/sneakers' : '/sneakers');
+      // console.log("API Endpoint:", cookies.token ? '/profile/sneakers' : '/sneakers');
 
    return { data, error, isLoading, mutate };
 };

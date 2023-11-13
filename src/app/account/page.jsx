@@ -3,7 +3,7 @@ import React, { useContext } from 'react';
 import { UserContext } from '@/context/UserContext';
 import useUserCopped from '@/hooks/useUserCopped';
 import { Profile, CoppedSnkrs, LoaderLayer } from '@/components';
-import { withAuth } from '../auth/withAuth';
+import { withAuth } from './withAuth';
 import styles from './account.module.css';
 
 const AccountPage = () => {

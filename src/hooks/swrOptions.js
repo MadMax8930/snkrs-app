@@ -1,6 +1,6 @@
 import { useCookies } from 'react-cookie';
 
-const swrOptions = () => {
+const useSWROptions = () => {
    const [cookies] = useCookies(['token']);
 
    const unauthenticatedUser = {
@@ -18,4 +18,4 @@ const swrOptions = () => {
    return cookies.token ? authenticatedUser : unauthenticatedUser;
 };
 
-export default swrOptions
+export default useSWROptions

@@ -26,7 +26,7 @@ const AuthPage = () => {
          setVariant('login');
          router.push('/auth');
       }
-   }, [searchParams]);
+   }, [searchParams, router]);
    
    const toggleVariant = useCallback(() => { 
       const newVariant = variant === 'register' ? 'login' : 'register';
@@ -47,7 +47,7 @@ const AuthPage = () => {
          toast.error("An unexpected error occurred.");
          console.log(err);
       }
-   }, [email, password, router]);
+   }, [email, password, setCookie, router]);
 
    const register = useCallback(async () => {
       try {
@@ -58,7 +58,7 @@ const AuthPage = () => {
          toast.error("An unexpected error occurred.");
          console.log(err);
       }
-   }, [username, email, password, login]);
+   }, [username, email, password, router]);
 
   return (
     <div className={styles.container}>

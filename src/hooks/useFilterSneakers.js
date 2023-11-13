@@ -1,7 +1,7 @@
 import useSWR from 'swr';
 import fetcher from './fetcher';
 import fetcherWithCookie from './fetcherWithCookie';
-import swrOptions from './swrOptions';
+import useSWROptions from './swrOptions';
 import { useCookies } from 'react-cookie';
  
 const useFilterSneakers = (query1, query2, query3) => {
@@ -22,10 +22,10 @@ const useFilterSneakers = (query1, query2, query3) => {
    const { data, error, isLoading, mutate } = useSWR(
       cookies.token ? '/profile' + newUrl : newUrl, 
       cookies.token ? fetcherWithCookie : fetcher, 
-      swrOptions);
+      useSWROptions);
+      
+      // console.log("API Endpoint:", cookies.token ? '/profile/sneakers-filter' : '/sneakers-filter');
 
-      console.log("API Endpoint:", cookies.token ? '/profile/sneakers-filter' : '/sneakers-filter');
- 
    return { data, error, isLoading, mutate };
 };
  
