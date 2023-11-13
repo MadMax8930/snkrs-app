@@ -1,12 +1,17 @@
-import useSWR from 'swr';
 import axios from '../../axios.config';
 
-const useToggle = (id) => {
-   const { data, error, isLoading, mutate } = useSWR(
-      `/profile/sneakers/${id}/toggle`,
-      (url) => axios.patch(url, null, { withCredentials: true }).then((res) => res.data)
-   );
-   return { data, error, isLoading, mutate };
+const useToggle = () => {
+   const toggle = async (sneakerId) => {
+      try {
+         const updatedData = await axios.patch(
+            `/profile/sneakers/${sneakerId}/toggle`, null, { withCredentials: true });
+         return updatedData;
+      } catch (error) {
+         throw new Error('Error toggling:', error);
+      }
+   };
+
+   return { toggle };
 };
 
 export default useToggle

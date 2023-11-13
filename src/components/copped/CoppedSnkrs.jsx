@@ -1,7 +1,9 @@
 import React from 'react';
+import { Loader } from '@/components';
 import styles from './copped.module.css';
 
 const CoppedSnkrs = ({ sneakersCopped, isLoadingCopped }) => {
+   if (isLoadingCopped) { return <Loader /> }
   return (
     <div className={styles.container}>
       <div>

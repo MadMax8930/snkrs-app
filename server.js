@@ -28,6 +28,7 @@ app.put('/profile/picture', requireAuth, usersController.uploadPicture);
 
 /* done */
 app.get('/sneakers', sneakersController.getPublicSneakers);
+app.get('/sneakers/:sneakerId', sneakersController.getPublicSneakerById);
 app.get('/profile/sneakers', requireAuth, sneakersController.getUserSneakers);
 app.get('/profile/sneakers/:sneakerId', requireAuth, sneakersController.getUserSneakerById);
 app.get('/profile/sneakers-copped', requireAuth, sneakersController.getCoppedSneakers);

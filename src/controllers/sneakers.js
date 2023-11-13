@@ -12,6 +12,22 @@ const getPublicSneakers = async (req, res) => {
    }
 };
 
+const getPublicSneakerById = async (req, res) => {
+   const { sneakerId } = req.params;
+
+   try {
+     const sneaker = await Sneaker.findById(sneakerId, '-comments -__v');
+     if (sneaker) {
+       sneaker.copping = false;
+       return res.status(200).json(sneaker);
+     } else {
+       return res.status(404).json({ error: 'Sneaker not found' });
+     }
+   } catch (error) {
+     return res.status(500).json({ error: 'Internal Server Error' });
+   }
+};
+
 const getUserSneakers = async (req, res) => {
    try {
      const sneakers = await Sneaker.find({}, '-comments -__v');
@@ -56,7 +72,7 @@ const toggleCopping = async (req, res) => {
      if (!req.user) { return res.status(403).json({ error: 'Forbidden: You cannot do this operation' }); }
 
      const userId = req.user._id;
-     const sneaker = await Sneaker.findById(sneakerId);
+     const sneaker = await Sneaker.findById(sneakerId, '-__v');
      if (!sneaker) { return res.status(404).json({ error: 'Sneaker not found' }); }
 
      if (sneaker.copping === true && sneaker.coppers.includes(userId)) {
@@ -131,4 +147,4 @@ const filterUserSneakers = async (req, res) => {
    }
 };
   
-module.exports = { getPublicSneakers, getUserSneakers, getUserSneakerById, getCoppedSneakers, toggleCopping, filterSneakers, filterUserSneakers };
+module.exports = { getPublicSneakers, getPublicSneakerById, getUserSneakers, getUserSneakerById, getCoppedSneakers, toggleCopping, filterSneakers, filterUserSneakers };
