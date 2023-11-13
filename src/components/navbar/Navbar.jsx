@@ -1,16 +1,22 @@
 "use client";
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { UserContext } from '@/context/UserContext';
+import { useCookies } from 'react-cookie';
 import { faHome, faArrowRightFromBracket, faUserShield, faHomeUser, faPeopleGroup, faEnvelope, faUserCog } from '@fortawesome/free-solid-svg-icons';
 import { DarkMode, NavItem } from '@/components';
 import styles from './navbar.module.css';
 
 const Navbar = () => {
+   const [cookies] = useCookies(['token']);
+   const [isAuthenticated, setIsAuthenticated] = useState(false);
+   useEffect(() => {
+      setIsAuthenticated(!!cookies.token);
+   }, [cookies.token]);
+
+   const { clearUser } = useContext(UserContext);
    const [hamburgerOpen, setHamburgerOpen] = useState(false);
    const toggleHamburgerMenu = () => { setHamburgerOpen(!hamburgerOpen) };
    const closeHamburgerMenu = () => { setHamburgerOpen(false) };
-
-   const { user, clearUser } = useContext(UserContext);
    const logoutAndCloseHamburgerMenu = () => { clearUser(() => { setHamburgerOpen(false) }) };
   
   return ( 
@@ -24,7 +30,7 @@ const Navbar = () => {
             <div className={styles.hamburger}></div>
          </button> 
          <nav className={`${styles.nav} ${hamburgerOpen ? `${styles.navOpen}` : `${styles.navClosed}`}`}>
-            {user._id ?
+            {isAuthenticated ?
                <ul>
                   <li><NavItem redirect="/" icon={faUserCog} text="Cop Sneakers" onRedirect={closeHamburgerMenu} /></li>    
                   <li><NavItem redirect="/account" icon={faUserShield} text="User Account" onRedirect={closeHamburgerMenu} /></li> 

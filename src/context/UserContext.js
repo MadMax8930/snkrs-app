@@ -1,5 +1,6 @@
 "use client";
-import { createContext, useReducer } from 'react';
+import { createContext, useReducer, useCallback } from 'react';
+import useCleanupExpiredToken from '@/hooks/tokenCleanup';
 
 export const UserContext = createContext();
 
@@ -30,11 +31,12 @@ const manageState = (state, action) => {
 
 export const UserProvider = ({ children }) => {
    const [user, dispatch] = useReducer(manageState, init);
+   useCleanupExpiredToken();
 
    // Action creators
-   const setUser = (payload) => { 
+   const setUser = useCallback((payload) => { 
       dispatch({ type: SET_USER, payload });
-   };
+   }, []);
    const clearUser = (callback) => { 
       dispatch({ type: CLEAR_USER });
       document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
