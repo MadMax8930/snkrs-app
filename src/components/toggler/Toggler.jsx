@@ -1,18 +1,23 @@
 "use client";
-import React, { useState } from 'react';
+import React from 'react';
 import useToggle from '@/hooks/useToggle';
+import { toast } from 'react-hot-toast';
 import styles from './toggler.module.css';
 
-const Toggler = ({ switcher, sneakerId }) => {
-   // const { mutate, isLoading: isLoadingUpdate } = useToggle(sneakerId);
-   const [cop, setCop] = useState(switcher);
-   const handleSwitcher = () => {
-      // if (!isLoadingUpdate) {
-      //    const newLocalCop = !cop;
-      //    setCop(newLocalCop);
-      //    mutate(newLocalCop);
-      // }
+const Toggler = ({ cop, sneakerId, sneakerHasBeenUpdated }) => {
+   const { toggle } = useToggle();
+
+   const handleSwitcher = async () => {
+      try {
+        await toggle(sneakerId);
+        await sneakerHasBeenUpdated(sneakerId);
+        toast.success('Sneaker updated successfully');
+      } catch (error) {
+        console.error(`An error occurred updating the sneaker ${sneakerId}:`, error);
+        toast.error('Error updating the sneaker');
+      }
    };
+
   return (
     <div className={styles.toggler} onClick={handleSwitcher}
          style={

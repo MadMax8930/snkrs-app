@@ -1,16 +1,33 @@
 "use client";
 import Link from 'next/link';
-import React from 'react';
+import axios from '../../../axios.config';
+import React, { useState, useEffect } from 'react';
 import { getCircleColor } from './circleColor';
 import { Loader, Toggler } from '@/components';
+import useSneaker from '@/hooks/useSneaker';
 import styles from './sneakers.module.css';
 
 const Sneakers = ({ sneakerDropsFiltered, sneakerDrops, isLoadingFiltered, isLoadingPublic }) => {
    // Use filtered if available, otherwise use public
-   const sneakersToRender = sneakerDropsFiltered || sneakerDrops;
+   const [sneakersToRender, setSneakersToRender] = useState(sneakerDropsFiltered || sneakerDrops);
+ 
+   useEffect(() => {
+      setSneakersToRender(sneakerDropsFiltered || sneakerDrops);
+   }, [sneakerDropsFiltered, sneakerDrops]);
+
+   const handleUpdatedSneaker = async (sneakerId) => {    
+      const response = await axios.get(`/profile/sneakers/${sneakerId}`, { withCredentials: true })
+      const updatedSneaker = response.data;
+      setSneakersToRender(prevSneakers =>
+         prevSneakers.map(sneaker =>
+         sneaker._id === sneakerId ? { ...sneaker, ...updatedSneaker } : sneaker
+         )
+      );
+   };
+
    if (!sneakersToRender || sneakersToRender.length === 0) { return <p className="text-center">😟 No sneakers found.</p> }
    if (isLoadingFiltered || isLoadingPublic) { return <Loader /> }
-   
+
   return (
       <div className={styles.container}>
          <div className={styles.list}>
@@ -34,7 +51,11 @@ const Sneakers = ({ sneakerDropsFiltered, sneakerDrops, isLoadingFiltered, isLoa
                         <i>{sneaker.resellPrice}</i>
                      </Link>
                      <div className={styles.move}>
-                         <Toggler switcher={sneaker.copping} sneakerId={sneaker._id} />
+                         <Toggler 
+                           cop={sneaker.copping} 
+                           sneakerId={sneaker._id}
+                           sneakerHasBeenUpdated={handleUpdatedSneaker}
+                         />
                      </div>  
                   </div>
 
