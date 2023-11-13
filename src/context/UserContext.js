@@ -1,6 +1,6 @@
 "use client";
 import { createContext, useReducer, useCallback } from 'react';
-import useCleanupExpiredToken from '@/hooks/tokenCleanup';
+import useCleanupExpiredToken from '@/guards/tokenCleanup';
 
 export const UserContext = createContext();
 

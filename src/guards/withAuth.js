@@ -29,11 +29,7 @@ export const withAuth = (WrappedComponent) => {
      return user && user._id ? <WrappedComponent {...props} /> : <LoaderLayer />;
   };
 
-  ComponentWithAuth.displayName = `withAuth(${getDisplayName(WrappedComponent)})`;
+  ComponentWithAuth.displayName = `withAuth(${WrappedComponent.displayName || WrappedComponent.name || 'Component'})`;
+  
   return ComponentWithAuth;
-};
-
-// Helper function
-const getDisplayName = (Component) => {
-  return Component.displayName || Component.name || 'Component';
 };

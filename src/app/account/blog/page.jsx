@@ -1,6 +1,6 @@
 "use client";
 import React from 'react'
-import { withAuth } from '../withAuth';
+import { withAuth } from '@/guards/withAuth';
 import styles from './blog.module.css';
 
 const BlogPage = () => {

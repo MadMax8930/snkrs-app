@@ -5,6 +5,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { Input } from '@/components';
 import { useCookies } from 'react-cookie';
 import { toast } from 'react-hot-toast';
+import { withTokenCleanup } from '@/guards/withTokenCleanUp';
 import styles from './auth.module.css';
 
 const AuthPage = () => {
@@ -84,4 +85,4 @@ const AuthPage = () => {
   )
 }
 
-export default AuthPage
+export default withTokenCleanup(AuthPage)
