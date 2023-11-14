@@ -49,122 +49,73 @@
 
 .searchTermItem {
    display: flex;
-   flex-direction: column;
+   flex-direction: row;
    gap: 0.25em;
    opacity: 0.65;
-   position: relative;
-   align-items: self-end;
-   padding-right: 3rem;
    padding-top: 0.25em;
+   align-items: center;
+   position: relative;
 }
 
 .searchTermItem:hover {
    opacity: 1
 }
 
-.image {
-   position: absolute;
-   top: 0;
-   left: 12%;
-   bottom: 0;
-   width: 4em;
-   height: 1.75em;
-   transform: scale(1.15);
-}
-
-@media (min-width: 460px) and (max-width: 520px) {
-   .searchTermItem {
-      padding-right: 6rem;
-   }
-   .image {
-      left: 1%;
-      width: 200px;
-   } 
-}
-
-@media (min-width: 520px) and (max-width: 660px) {
-   .searchTermItem {
-      padding-right: 6.5rem;
-   }
-}
-
-@media (min-width: 660px) and (max-width: 786px) {
-   .searchTermItem {
-      padding-right: 7rem;
-   }
-   .image {
-      left: 2%;
-      width: 200px;
-   } 
-}
-
-@media (min-width: 760px) and (max-width: 1000px) {
-   .searchTermItem {
-      padding-right: 9rem;
-   }
-   .image {
-      left: 8%;
-      width: 150px;
-   } 
-}
-
-@media (min-width: 1000px) and (max-width: 1250px) {
-   .searchTermItem {
-      padding-right: 11rem;
-   }
-   .image {
-      left: 13%;
-   } 
-}
-
-@media (min-width: 1250px) and (max-width: 1700px) {
-   .searchTermItem {
-      padding-right: 13rem;
-   }
-   .image {
-      left: 10%;
-      width: 170px;
-   } 
-}
-
-@media (min-width: 1700px) {
-   .searchTermItem {
-      padding-right: 15rem;
-   }
-   .image {
-      left: 13%;
-   } 
-}
-
 .searchTermText {
    flex: 1;
    display: flex;
-   flex-wrap: wrap;
-   flex-direction: row-reverse;
-   align-items: baseline;
+   justify-content: space-between;
+   align-items: center;
    margin: 0;
    white-space: nowrap;
    overflow: hidden;
    text-overflow: ellipsis;
-   gap: 0.75em;
+   gap: 0.25em;
+   position: relative;
+   z-index: 1000;
+   padding-left: 3em;
+}
+
+@media (min-width: 500px) and (max-width: 1200px)  {
+   .searchTermText {
+      padding-left: 7em; 
+   }
+}
+
+@media (min-width: 1200px)  {
+   .searchTermText {
+      padding-left: 12em; 
+   }
 }
 
 .textLeft,
 .textRight {
-  text-overflow: ellipsis;
-  flex: 1;
-
+  padding: 0.3em;
 }
 
 .textLeft {
-  font-size: 1em;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 1.1em;
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   font-weight: 600;
+  text-align: left;
 }
 
 .textRight {
   font-size: 0.8em;  
   font-style: inherit;
   text-transform: uppercase;
+  text-align: left;
 }
- 
+
+.image {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 77.5%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: auto;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
