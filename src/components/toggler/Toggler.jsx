@@ -2,9 +2,12 @@
 import React from 'react';
 import useToggle from '@/hooks/useToggle';
 import { toast } from 'react-hot-toast';
+import { useRouter } from 'next/navigation';
 import styles from './toggler.module.css';
 
+
 const Toggler = ({ cop, sneakerId, sneakerHasBeenUpdated }) => {
+   const router = useRouter();
    const { toggle } = useToggle();
 
    const handleSwitcher = async () => {
@@ -14,7 +17,9 @@ const Toggler = ({ cop, sneakerId, sneakerHasBeenUpdated }) => {
         toast.success('Sneaker updated successfully');
       } catch (error) {
         console.error(`An error occurred updating the sneaker ${sneakerId}:`, error);
-        toast.error('Error updating the sneaker');
+        toast.error('You need to have an account');
+        router.push('/auth?variant=register');
+        return;
       }
    };
 

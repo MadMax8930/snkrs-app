@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Filter, Search, Sneakers, LoaderLayer } from '@/components';
 import useFilterSneakers from '@/hooks/useFilterSneakers';
 import useSneakers from '@/hooks/useSneakers';
@@ -14,6 +14,20 @@ function Home() {
    const [param3, setParam3] = useState('');
    const { data: filteredSnkrs, isLoading: isLoadingFiltered } = useFilterSneakers(param1, param2, param3);
    const { data: sneakerDrops, isLoading: isLoadingPublic } = useSneakers();
+
+   useEffect(() => {
+      const fetchData = async () => {
+         try {
+            await Promise.all([
+               useSneakers(),
+               useFilterSneakers(param1, param2, param3),
+            ]);
+         } catch (error) {
+            console.error('Error fetching data:', error);
+         }
+      };
+      fetchData();
+   }, [param1, param2, param3]);
 
    if (isLoadingFiltered || isLoadingPublic) { return <LoaderLayer /> }
  
