@@ -54,7 +54,7 @@
   background: #53c28b;
 }
 
-.listDesc, .listHeader, .listResell, .listImage {
+.listDesc, .listHeader, .notifAndToggler, .listImage {
   width: fit-content;
   transition: transform var(--transition);
   will-change: transform;
@@ -93,21 +93,21 @@
  
 .listItem:hover .listDesc,
 .listItem:hover .listHeader,
-.listItem:hover .listResell,
+.listItem:hover .notifAndToggler,
 .listItem:hover .listImage,
 .listItem:hover::before {
   transform: translate3d(calc(var(--index) * 1.75), 0 , 0);
 }
 
 .listItem:hover .listDesc .move,
-.listItem:hover .listResell .move {
+.listItem:hover .notifAndToggler .move {
   transform: translate3d(calc(var(--index) * -3.75), 0 , 0);
   transition: transform var(--transition);
 }
 
 @media (min-width: 1000px) and (max-width: 1250px) {
    .listItem:hover .listDesc .move,
-   .listItem:hover .listResell .move {
+   .listItem:hover .notifAndToggler .move {
      transform: translate3d(calc(var(--index) * -4.75), 0 , 0);
      transition: transform var(--transition);
    }
@@ -115,7 +115,7 @@
 
 @media (min-width: 1250px) and (max-width: 1500px) {
    .listItem:hover .listDesc .move,
-   .listItem:hover .listResell .move {
+   .listItem:hover .notifAndToggler .move {
      transform: translate3d(calc(var(--index) * -6.75), 0 , 0);
      transition: transform var(--transition);
    }
@@ -123,7 +123,7 @@
 
 @media (min-width: 1500px) {
    .listItem:hover .listDesc .move,
-   .listItem:hover .listResell .move {
+   .listItem:hover .notifAndToggler .move {
      transform: translate3d(calc(var(--index) * -7.75), 0 , 0);
      transition: transform var(--transition);
    }
@@ -194,43 +194,13 @@
    }
 }
 
-.listResell {
+.notifAndToggler {
    display: flex;
    justify-content: space-between;
    align-items: center;
    width: auto;
    font-size: 0.625em;
    padding-top: 0.2em;
-}
-
-.resell {
-   display: flex;
-   gap: 0.375em;
-   font-size: 0.65em;
-}
-
-.resell span::first-letter { text-transform: capitalize; }
-
-.resell > span:nth-child(2) {
-   font-size: 0.95em;
-   font-weight: 500;
-}
-
-.resell > span:nth-child(3) {
-   font-size: 0.95em;
-}
-
-.resell > i { 
-   color: #53c28b;
-   font-weight: 600;
-   padding-left: 0.75rem; 
-}
-
-.circle {
-   width: 0.875em;
-   height: 0.875em;
-   border: 1.5px solid transparent;
-   border-radius: 50%;
 }
 
 @media (min-width: 660px) {
@@ -244,14 +214,6 @@
 
    .listDesc {
       font-size: 0.325em;
-   }
-
-   .resell {
-      gap: 0.25em;
-   }
-
-   .resell > i { 
-      padding-left: 1.25rem; 
    }
 }
 
