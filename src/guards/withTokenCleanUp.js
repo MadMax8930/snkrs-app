@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { useCookies } from 'react-cookie';
 import { jwtDecode } from 'jwt-decode';
 import { LoaderLayer } from '@/components';
-import { useRouter } from 'next/navigation';
 
 // Higher-order component (guard)
 export const withTokenCleanup = (WrappedComponent) => {
@@ -21,9 +20,12 @@ export const withTokenCleanup = (WrappedComponent) => {
               if (decodedToken.exp && currentUNIXTimestamp > decodedToken.exp) {
                  removeCookie('token');
                  setIsLoading(false);
+              } else {
+                 setIsLoading(false);
               }
+           } else { 
+              setIsLoading(false);
            }
-           setIsLoading(false);
         };
         
         cleanupToken();

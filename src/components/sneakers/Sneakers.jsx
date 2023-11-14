@@ -4,7 +4,6 @@ import axios from '../../../axios.config';
 import React, { useState, useEffect } from 'react';
 import { getCircleColor } from './circleColor';
 import { Loader, Toggler } from '@/components';
-import useSneaker from '@/hooks/useSneaker';
 import styles from './sneakers.module.css';
 
 const Sneakers = ({ sneakerDropsFiltered, sneakerDrops, isLoadingFiltered, isLoadingPublic }) => {
