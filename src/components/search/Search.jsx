@@ -61,17 +61,17 @@ const Search = ({ sneakers, isLoadingFiltered }) => {
      
        {isSearching && searchResults.length > 0
          ? (<ul className={styles.results}>
-              {searchResults.slice(0, 3).map((sneaker) => (
+              {searchResults.slice(0, 4).map((sneaker) => (
                  <li key={sneaker._id}>
-                    <Link href={`/sneakers/${sneaker._id}`}>
-                       <div className={styles.searchTermItem}>
-                          <img src={sneaker.img} alt={`${sneaker.name} - ${sneaker.model}`} className={styles.searchTermImage} />    
-                          <div className={styles.searchTermText}>
-                              <span>{sneaker.name}</span>
-                              <span>{sneaker.model}</span>
-                          </div>
+                  <Link href={`/${sneaker._id}`}>
+                    <div className={styles.searchTermItem}>
+                       <div className={styles.image} style={{ backgroundImage: `url(${sneaker.img})`, backgroundSize: 'contain', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }} />
+                       <div className={styles.searchTermText}>
+                           <span className={styles.textRight}>{sneaker.model}</span>
+                           <span className={styles.textLeft}>{sneaker.name}</span>
                        </div>
-                    </Link>
+                    </div>
+                   </Link>
                  </li>
               ))}
             </ul>)
