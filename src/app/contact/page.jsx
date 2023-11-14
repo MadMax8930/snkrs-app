@@ -1,8 +1,23 @@
-import React from 'react';
-
+import Image from 'next/image';
+import { Button } from '@/components';
+import styles from './contact.module.css';
+     /* to style contact + profile + copped (to finish and implement notif) + ':sneakerId' */
 const ContactPage = () => {
   return (
-    <div className='pt-24'>Contact Page</div>
+    <div className={styles.container}>
+      <h1 className={styles.title}>Lets Keep in Touch</h1>
+      <div className={styles.content}>
+         <div className={styles.imgContainer}>
+            <Image src="/contact.png" alt="Contact" fill={true} className={styles.image} />
+         </div>
+         <form className={styles.formContainer}>
+            <input type="text" placeholder="name" />
+            <input type="text" placeholder="email" />
+            <textarea cols="30" rows="10" placeholder="message"></textarea>
+            <Button url="#" text="Send" />
+         </form>
+      </div>
+    </div>
   )
 }
 

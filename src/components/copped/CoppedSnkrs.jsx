@@ -1,18 +1,16 @@
 import React from 'react';
-import { Loader } from '@/components';
+import { Loader, CoppedCard } from '@/components';
 import styles from './copped.module.css';
 
-const CoppedSnkrs = ({ sneakersCopped, isLoadingCopped }) => {
-   if (isLoadingCopped) { return <Loader /> }
+const CoppedSnkrs = ({ sneakers, isLoading }) => {
+   if (isLoading) { return <Loader /> }
   return (
-    <div className={styles.container}>
-      <div>
-         {sneakersCopped.map(sneaker => (
-            <p key={sneaker._id}>{sneaker.name} {sneaker.model}</p>
-         ))}
-      </div>
-    </div>
-  )
-}
+     <div className={styles.container}>
+         <div className={styles.list}>
+            {sneakers.map((sneaker) => <CoppedCard sneaker={sneaker} key={sneaker._id} />)}
+         </div>
+     </div>
+  );
+};
 
 export default CoppedSnkrs

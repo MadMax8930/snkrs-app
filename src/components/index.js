@@ -14,6 +14,7 @@ import Input from "./input/Input";
 import Profile from "./profile/Profile";
 import NotFound from "./404/NotFound";
 import CoppedSnkrs from "./copped/CoppedSnkrs";
+import CoppedCard from "./copped/CoppedCard";
 
 export { 
    Button,
@@ -32,4 +33,5 @@ export {
    Profile,
    NotFound,
    CoppedSnkrs,
+   CoppedCard,
 }

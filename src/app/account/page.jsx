@@ -8,15 +8,15 @@ import styles from './account.module.css';
 
 const AccountPage = () => {
    const { user } = useContext(UserContext);
-   const { data: sneakers, isLoading: isLoadingSneakers } = useCoppedSneakers();
+   const { data: sneakersCopped, isLoading: isLoadingCopped } = useCoppedSneakers();
 
-   if (isLoadingSneakers) { return <LoaderLayer /> }
+   if (isLoadingCopped) { return <LoaderLayer /> }
    console.log("user-account", {user}, user._id);
   
   return (
     <div className={styles.container}>
       <Profile />
-      <CoppedSnkrs sneakersCopped={sneakers} isLoadingCopped={isLoadingSneakers} />
+      <CoppedSnkrs sneakers={sneakersCopped} isLoading={isLoadingCopped} />
     </div>
   )
 }

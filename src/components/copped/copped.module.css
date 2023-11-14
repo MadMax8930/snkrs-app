@@ -1,1 +1,268 @@
-.container {}
+.container {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   --index: calc(1vw + 1vh);
+   --transition: 1.25s cubic-bezier(0.2, 0.5, 0, 1);
+   --transition-cursor: 2s cubic-bezier(0.05, 0.5, 0, 1);
+}
+
+.list {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: calc(var(--index) * 1.5);
+  padding: calc(var(--index) * 2.75);
+  padding-top: 0;
+}
+
+.listItem {
+  display: block;
+  line-height: 0.9;
+  padding: calc(var(--index) * 2) calc(var(--index) * 1.25) calc(var(--index) * 2) calc(var(--index) * 2.5);
+  border-bottom: 1px inset rgba(54, 48, 48, 0.25);
+  counter-increment: my-counter;
+  text-decoration: none;
+  position: relative;
+  z-index: 2;
+}
+
+.listItem::before {
+  content: '(' counter(my-counter, decimal-leading-zero) ')';
+  position: absolute;
+  font-size: calc(var(--index) * 0.75);
+  margin-left: calc(var(--index) * -2.375);
+  margin-top: calc(var(--index) / 2);
+  letter-spacing: 0.5px;
+  transition: transform var(--transition);
+  transition-delay: 0.025s;
+  will-change: transform;
+}
+
+.listItem::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: #e4b363;
+  transition: width 0.3s ease-in;
+  z-index: -1; /* Behind the content */
+  width: 0; /* Initially to hide it */
+}
+ 
+.listItem:hover::after {
+  width: 0.5em;
+  background: #53c28b;
+}
+
+.listDesc, .listHeader, .listResell, .listImage {
+  width: fit-content;
+  transition: transform var(--transition);
+  will-change: transform;
+}
+
+.listDesc {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   width: auto;
+   color: gray;
+   font-size: 0.3875em;
+   padding-bottom: 5px;
+   text-transform: uppercase;
+}
+
+.listHeader {
+   font-size: 0.525em;
+}
+
+.listImage {
+  --cursor-transform: translate3d(15%, 25%, 0);
+  --anim-transform: translate3d(0, 25%, 0);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: -20%;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  transform: var(--cursor-transform) scale(0.4);
+  transition: transform var(--transition-cursor);
+  z-index: -1;
+  opacity: 0.8;
+}
+ 
+.listItem:hover .listDesc,
+.listItem:hover .listHeader,
+.listItem:hover .listResell,
+.listItem:hover .listImage,
+.listItem:hover::before {
+  transform: translate3d(calc(var(--index) * 1.75), 0 , 0);
+}
+
+.listItem:hover .listDesc .move,
+.listItem:hover .listResell .move {
+  transform: translate3d(calc(var(--index) * -3.75), 0 , 0);
+  transition: transform var(--transition);
+}
+
+@media (min-width: 1000px) and (max-width: 1250px) {
+   .listItem:hover .listDesc .move,
+   .listItem:hover .listResell .move {
+     transform: translate3d(calc(var(--index) * -4.75), 0 , 0);
+     transition: transform var(--transition);
+   }
+}
+
+@media (min-width: 1250px) and (max-width: 1500px) {
+   .listItem:hover .listDesc .move,
+   .listItem:hover .listResell .move {
+     transform: translate3d(calc(var(--index) * -6.75), 0 , 0);
+     transition: transform var(--transition);
+   }
+}
+
+@media (min-width: 1500px) {
+   .listItem:hover .listDesc .move,
+   .listItem:hover .listResell .move {
+     transform: translate3d(calc(var(--index) * -7.75), 0 , 0);
+     transition: transform var(--transition);
+   }
+}
+
+.listItem:hover .listImage {
+  transform: var(--anim-transform) scale(0.65);
+  opacity: 1;
+}
+
+@media (min-width: 340px) and (max-width: 400px) {
+   .listImage {
+      --cursor-transform: translate3d(17.5%, 25%, 0);
+   }
+}
+
+@media (min-width: 400px) and (max-width: 460px) {
+   .listImage {
+      --cursor-transform: translate3d(20%, 25%, 0);
+   }
+}
+
+@media (min-width: 460px) and (max-width: 550px) {
+   .listImage {
+      --cursor-transform: translate3d(22.5%, 25%, 0);
+   }
+}
+
+@media (min-width: 550px) and (max-width: 660px) {
+   .listImage {
+      --cursor-transform: translate3d(25%, 25%, 0);
+   }
+}
+
+@media (min-width: 660px) and (max-width: 720px) {
+   .listImage {
+      --cursor-transform: translate3d(13.5%, 25%, 0);
+   }
+}
+
+@media (min-width: 720px) and (max-width: 820px) {
+   .listImage {
+      --cursor-transform: translate3d(15.5%, 25%, 0);
+   }
+}
+
+@media (min-width: 820px) and (max-width: 875px) {
+   .listImage {
+      --cursor-transform: translate3d(17.5%, 25%, 0);
+   }
+}
+
+@media (min-width: 875px) and (max-width: 1000px) {
+   .listImage {
+      --cursor-transform: translate3d(18.5%, 25%, 0);
+   }
+}
+
+@media (min-width: 1000px) and (max-width: 1150px) {
+   .listImage {
+      --cursor-transform: translate3d(15.5%, 25%, 0);
+   }
+}
+
+@media (min-width: 1150px) {
+   .listImage {
+      --cursor-transform: translate3d(20%, 25%, 0);
+   }
+}
+
+.listResell {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   width: auto;
+   font-size: 0.625em;
+   padding-top: 0.2em;
+}
+
+.resell {
+   display: flex;
+   gap: 0.375em;
+   font-size: 0.65em;
+}
+
+.resell span::first-letter { text-transform: capitalize; }
+
+.resell > span:nth-child(2) {
+   font-size: 0.95em;
+   font-weight: 500;
+}
+
+.resell > span:nth-child(3) {
+   font-size: 0.95em;
+}
+
+.resell > i { 
+   color: #53c28b;
+   font-weight: 600;
+   padding-left: 0.75rem; 
+}
+
+.circle {
+   width: 0.875em;
+   height: 0.875em;
+   border: 1.5px solid transparent;
+   border-radius: 50%;
+}
+
+@media (min-width: 660px) {
+   .listItem {
+      padding: calc(var(--index) * 1.75) calc(var(--index) * 4.5);
+   }
+
+   .listHeader {
+      font-size: 0.575em;
+   }
+
+   .listDesc {
+      font-size: 0.325em;
+   }
+
+   .resell {
+      gap: 0.25em;
+   }
+
+   .resell > i { 
+      padding-left: 1.25rem; 
+   }
+}
+
+@media (min-width: 1000px) {
+   .listItem {
+      padding: calc(var(--index) * 1.75) calc(var(--index) * 5.5);
+   }
+}
+
+@media (min-width: 1150px) {
+   .listItem::before {
+      font-size: calc(var(--index) * 0.625);
+   }
+}
