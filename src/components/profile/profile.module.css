@@ -1,45 +1,172 @@
 .container {
    display: flex;
    flex-direction: column;
-   padding: 5rem 2rem 2rem;
+   position: relative;
+   padding: 0.25em 1.25em 0.5em;
+   height: auto;
+}
+
+.container img {
+   position: absolute;
+   width: 60px;
+   top: 57.5%;
+   left: 17.5%;
+   border: 2px solid #ccc;
+   transform: translate(-50%, -50%);
 }
 
 .profileContainer {
    display: flex;
-   flex-wrap: wrap;
+   flex-direction: column;
+   gap: 0.25rem;
 }
 
-.userInfo,
-.userPic,
-.notificationContainer {
+.userInfoSection,
+.userInputSection {
    flex: 1;
-   padding: 20px;
-   border: 1px solid #ccc;
-   margin: 0.25rem;
+   font-size: 0.65em;
 }
 
-.userInfo {
-   flex: 2;
+.userInfoSection {
+   display: flex;
+   align-items: center;
+   justify-content: center;
 }
 
-.userPic {
+.userInfoSection p:nth-child(1) {
+   font-size: 1em;
+}
+
+.userInfoSection p:nth-child(2) {
+   font-size: 0.75em;
+}
+
+.userInputSection {
    display: flex;
    flex-direction: column;
    align-items: center;
 }
 
-.userPic button {
-   padding: 0.5em;
-   width: max-content;
-   background-color: #53c28b;
-   color: white;
-   border: none;
-   border-radius: 5px;
+.groupInputAndBtn {
+   display: flex;
    cursor: pointer;
+   height: 25px;
+   width: 125px;
 }
 
-@media (max-width: 768px) {
+.groupInputAndBtn input {
+   padding: 0.5em;
+   font-size: 0.8em;
+   width: 100%;
+   color: gray;
+   border-top-left-radius: 5px;
+   border-bottom-left-radius: 5px;
+   outline: none;
+}
+
+.groupInputAndBtn button {
+   padding: 0.5em;
+   width: max-content;
+   background-color: #464655;
+   color: white;
+   border-top-right-radius: 5px;
+   border-bottom-right-radius: 5px;
+   border: none;
+   cursor: pointer; 
+}
+
+@media (min-width: 460px) and (max-width: 660px) {
+   .container {
+      padding: 0.5em 1.25em 1em;
+   }
+
+   .container img {
+      width: 70px;
+      top: 47.5%;
+      left: 17.5%;
+   }
+
+   .userInfoSection,
+   .userInputSection {
+      font-size: 0.75em;
+   }    
+
+   .groupInputAndBtn {
+      height: 27.5px;
+      width: 180px;
+   }
+}
+
+@media (min-width: 660px) and (max-width: 1000px) {
+   .container {
+      padding: 0.75em 1.25em 1.25em;
+   }
+
+   .container img {
+      width: 82.5px;
+      top: 52.5%;
+      left: 20%;
+   }
+
+   .userInfoSection,
+   .userInputSection {
+      font-size: 0.85em;
+   }    
+
+   .groupInputAndBtn {
+      height: 30px;
+      width: 220px;
+   }
+}
+
+@media (min-width: 1000px) and (max-width: 1500px) {
+   .container {
+      padding: 1.25em 1.25em 1.65em;
+   }
+
+   .container img {
+      width: 100px;
+      top: 50%;
+      left: 17.5%;
+   }
+
+   .userInfoSection,
+   .userInputSection {
+      font-size: 1em;
+   }    
+
+   .groupInputAndBtn {
+      height: 35px;
+      width: 250px;
+   }
+
    .profileContainer {
-      flex-direction: column;
+      gap: 0.5rem;
+   }
+}
+
+@media (min-width: 1500px) {
+   .container {
+      padding: 1.5em 1.25em 1.5em;
+   }
+
+   .container img {
+      width: 120px;
+      top: 45%;
+      left: 17.5%;
+   }
+
+   .userInfoSection,
+   .userInputSection {
+      font-size: 1.2em;
+   }    
+
+   .groupInputAndBtn {
+      height: 42.5px;
+      width: 280px;
+   }
+
+   .profileContainer {
+      gap: 0.75rem;
    }
 }
