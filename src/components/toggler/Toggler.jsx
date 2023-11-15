@@ -6,12 +6,16 @@ import { useRouter } from 'next/navigation';
 import styles from './toggler.module.css';
 
 
-const Toggler = ({ cop, sneakerId, sneakerHasBeenUpdated }) => {
+const Toggler = ({ cop, sneakerId, sneakerHasBeenUpdated, confirmation }) => {
    const router = useRouter();
    const { toggle } = useToggle();
 
    const handleSwitcher = async () => {
       try {
+        if (confirmation) {
+          const confirmed = window.confirm("Drop the sneaker? - all notifications set for it will be erased.");
+          if (!confirmed) { return; }
+        }
         await toggle(sneakerId);
         await sneakerHasBeenUpdated(sneakerId);
         toast.success('Sneaker updated successfully');

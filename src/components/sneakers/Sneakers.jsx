@@ -54,6 +54,7 @@ const Sneakers = ({ sneakerDropsFiltered, sneakerDrops, isLoadingFiltered, isLoa
                            cop={sneaker.copping} 
                            sneakerId={sneaker._id}
                            sneakerHasBeenUpdated={handleUpdatedSneaker}
+                           confirmation={false}
                          />
                      </div>  
                   </div>

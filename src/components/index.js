@@ -15,6 +15,7 @@ import Profile from "./profile/Profile";
 import NotFound from "./404/NotFound";
 import CoppedSnkrs from "./copped/CoppedSnkrs";
 import CoppedCard from "./copped/CoppedCard";
+import NoSnkrs from "./copped/NoSnkrs";
 import Notification from "./notif/Notification";
 
 export { 
@@ -35,5 +36,6 @@ export {
    NotFound,
    CoppedSnkrs,
    CoppedCard,
+   NoSnkrs,
    Notification,
 }

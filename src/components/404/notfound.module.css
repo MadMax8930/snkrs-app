@@ -11,8 +11,7 @@
 .title {
    font-size: 1.75rem;
    font-weight: 600;
-   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-
+   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
  
 .description {
@@ -29,10 +28,12 @@
 
 .link {
    font-size: 1.2em;
+   cursor: pointer;
 }
 
 .link:hover {
-   color: #53c28b;
+   color: #e1e0e0;
+   font-weight: 600;
 }
 
 @media only screen and (max-width: 1000px) {

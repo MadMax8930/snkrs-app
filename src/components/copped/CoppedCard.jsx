@@ -11,11 +11,11 @@ const CoppedCard = ({ copItem }) => {
      setSneaker(copItem);
   }, [copItem]);
 
-  const handleRemoveSneaker = (sneakerId) => {    
-     setSneaker(item => item?._id === sneakerId && setSneaker(null));
+  const handleRemoveSneaker = (sneakerId) => {
+     setSneaker(item => item?._id === sneakerId && null);
   };
 
-  if (!sneaker) { return null; }
+  if (!sneaker) { return null }
 
   return (
      <div className={styles.listItem} key={sneaker._id}>
@@ -35,6 +35,7 @@ const CoppedCard = ({ copItem }) => {
                   cop={sneaker.copping} 
                   sneakerId={sneaker._id}
                   sneakerHasBeenUpdated={handleRemoveSneaker}
+                  confirmation={true}
                />
             </div>  
          </div>
