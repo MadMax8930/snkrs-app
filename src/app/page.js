@@ -4,7 +4,6 @@ import { Filter, Search, Sneakers, LoaderLayer } from '@/components';
 import useFilterSneakers from '@/hooks/useFilterSneakers';
 import useSneakers from '@/hooks/useSneakers';
 import { withTokenCleanup } from '@/guards/withTokenCleanUp';
-// import { sneakerDrops } from '../../sneakers'; // mock data
 
 function Home() {
    const containerWidth = { width: '-webkit-fill-available' };

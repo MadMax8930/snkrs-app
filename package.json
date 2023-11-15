@@ -6,9 +6,9 @@
     "dev-frontend": "next dev",
     "prod-frontend": "next start",
     "build-frontend": "next build",
-    "dev-backend": "nodemon server.js",
-    "prod-backend": "node server.js",
-    "scrape": "rm -f sneakers.js sneakers.json && node scraper.js",
+    "dev-backend": "nodemon src/server/index.js",
+    "prod-backend": "node src/server/index.js",
+    "scrape": "rm -f src/web/data/sneakers.js src/web/data/sneakers.json && node src/web/scraper.js",
     "lint": "next lint"
   },
   "dependencies": {
@@ -26,7 +26,7 @@
     "jwt-decode": "^4.0.0",
     "mongoose": "^7.6.3",
     "next": "13.5.6",
-    "nodemon": "^3.0.1",
+    "node-cron": "^3.0.3",
     "react": "^18",
     "react-cookie": "^6.1.1",
     "react-dom": "^18",
@@ -43,6 +43,7 @@
     "autoprefixer": "^10",
     "eslint": "^8",
     "eslint-config-next": "13.5.6",
+    "nodemon": "^3.0.1",
     "postcss": "^8",
     "tailwindcss": "^3.3.5"
   }

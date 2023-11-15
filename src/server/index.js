@@ -5,16 +5,16 @@ require('dotenv').config();
 const app = express();
 const port = process.env.PORT || 3001;
 
-const { customMiddleware } = require('./src/middlewares'); 
+const { customMiddleware } = require('../middlewares'); 
 app.use(customMiddleware);
 
-const requireAuth = require('./src/middlewares/requireAuth'); 
-const authorizeDev = require('./src/middlewares/authorizeDev');
-const authController = require('./src/controllers/auth');
-const usersController = require('./src/controllers/users')
-const sneakersController = require('./src/controllers/sneakers');
-const commentsController = require('./src/controllers/comments');
-const notificationsController = require('./src/controllers/notifications');
+const requireAuth = require('../middlewares/requireAuth'); 
+const authorizeDev = require('../middlewares/authorizeDev');
+const authController = require('../controllers/auth');
+const usersController = require('../controllers/users')
+const sneakersController = require('../controllers/sneakers');
+const commentsController = require('../controllers/comments');
+const notificationsController = require('../controllers/notifications');
 
 /* AUTH */
 app.post('/login', authController.login);

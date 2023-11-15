@@ -13,7 +13,7 @@ npm run dev-backend
 
 ### Dependencies:
 ```bash
-npm express mongoose axios bcrypt jsonwebtoken jwt-decode cors cookie cookie-parser react-cookie fs uuid https -g nodemon validator redux react-redux react-hot-toast react-spinners @fortawesome/react-fontawesome @fortawesome/free-solid-svg-icons
+npm express mongoose axios bcrypt jsonwebtoken jwt-decode cors cookie cookie-parser react-cookie node-cron fs uuid https -g nodemon validator redux react-redux react-hot-toast react-spinners @fortawesome/react-fontawesome @fortawesome/free-solid-svg-icons
 ```
 
 ### Script that generates scraping data for testing purposes:

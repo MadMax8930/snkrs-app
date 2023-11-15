@@ -5,6 +5,7 @@ import React, { useState, useEffect } from 'react';
 import { getCircleColor } from './circleColor';
 import { Loader, Toggler } from '@/components';
 import styles from './sneakers.module.css';
+// import { sneakerDropsScraper } from '@/web/data/sneakers'; // scraper data
 
 const Sneakers = ({ sneakerDropsFiltered, sneakerDrops, isLoadingFiltered, isLoadingPublic }) => {
    // Use filtered if available, otherwise use public

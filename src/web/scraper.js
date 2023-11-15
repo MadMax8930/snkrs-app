@@ -1,11 +1,16 @@
 const axios = require('axios');
+const path = require('path');
 const fs = require('fs');
 const { v4: uuidv4 } = require('uuid');
 
-const baseUrl = 'https://www.whentocop.fr/_next/data/Mds8ySIj6Pub3QXhK7O0g/drops'; // Updated URL with JSON data
+const baseUrl = 'https://www.whentocop.fr/_next/data/m4S9iwPZE6zS-CCNOv7N3/drops'; // Updated URL with JSON data
 const mySneakersArray = []; // Array to store sneaker data
 
 function generateUniqueID() { return uuidv4() }
+
+const dataPath = path.join(__dirname, '../web/data');
+const jsonFilePath = path.join(dataPath, 'sneakers.json');
+const jsFilePath = path.join(dataPath, 'sneakers.js');
 
 // Function to fetch and add a new sneaker
 async function fetchAndAddSneaker(slug, id) {
@@ -49,9 +54,9 @@ async function fetchAndAddSneaker(slug, id) {
       mySneakersArray.forEach((sneaker, index) => { console.log(`Sneaker #${index + 1}:`, sneaker) });
 
       // Write to sneakers.json
-      fs.writeFileSync('sneakers.json', JSON.stringify(mySneakersArray, null, 2));
+      fs.writeFileSync(jsonFilePath, JSON.stringify(mySneakersArray, null, 2));
       // Write to sneakers.js
-      fs.writeFileSync('sneakers.js', `export const sneakerDrops = ${JSON.stringify(mySneakersArray, null, 2)}`);
+      fs.writeFileSync(jsFilePath, `export const sneakerDropsScraper = ${JSON.stringify(mySneakersArray, null, 2)}`);
     }
   } catch (error) {
     console.error('Error:', error);
@@ -97,9 +102,9 @@ async function fetchFirst10Sneakers() {
         mySneakersArray.forEach((sneaker, index) => { console.log(`Sneaker #${index + 1}:`, sneaker) });
 
         // Write to sneakers.json
-        fs.writeFileSync('sneakers.json', JSON.stringify(mySneakersArray, null, 2));
+        fs.writeFileSync(jsonFilePath, JSON.stringify(mySneakersArray, null, 2));
         // Write to sneakers.js
-        fs.writeFileSync('sneakers.js', `export const sneakerDrops = ${JSON.stringify(mySneakersArray, null, 2)}`);
+        fs.writeFileSync(jsFilePath, `export const sneakerDropsScraper = ${JSON.stringify(mySneakersArray, null, 2)}`);
       }
     }
   } catch (error) {
@@ -111,7 +116,7 @@ async function fetchFirst10Sneakers() {
 fetchFirst10Sneakers();
 
 // Read the JSON data file with the mappings of slug and id
-const sneakersData = require('./snkrsMapper.json');
+const sneakersData = require('./data/snkrsMapper.json');
 
 // Call the function to add new sneakers based on its slug and id.
 sneakersData.sneakers.forEach((sneaker) => {
