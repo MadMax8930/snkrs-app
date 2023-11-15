@@ -12,7 +12,8 @@
   font-size: calc(var(--index) * 1.5);
   padding: calc(var(--index) * 2.75);
   padding-top: 0;
-  margin-top: 2rem;
+  border-top: 1px transparent rgb(245, 242, 242);
+  margin-top: 0.75rem;
   position: relative;
 }
 

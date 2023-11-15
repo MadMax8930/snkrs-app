@@ -31,7 +31,7 @@ const Profile = () => {
     <div className={styles.container}>
       
          <img src={user.profilePic || '/default.png'} alt="Profile Pic" 
-            width={50} height={50} onError={(e) => e.target.src = '/default.png'} />
+              onError={(e) => e.target.src = '/default.png'} />
      
       <div className={styles.profileContainer}>
          

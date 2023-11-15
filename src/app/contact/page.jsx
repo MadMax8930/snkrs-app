@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { Button } from '@/components';
 import styles from './contact.module.css';
-     /* to style contact + ':sneakerId' + 'notif send logic' + comments whole logic + deployment */
+     /* to style contact + ':sneakerId' + 'notif send + comments logic' */
 const ContactPage = () => {
   return (
     <div className={styles.container}>
