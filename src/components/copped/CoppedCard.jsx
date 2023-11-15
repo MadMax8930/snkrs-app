@@ -29,7 +29,7 @@ const CoppedCard = ({ copItem }) => {
          </Link>     
 
          <div className={styles.notifAndToggler}>
-            <Notification />
+            <Notification sneakerId={sneaker._id} />
             <div className={styles.move}>
                <Toggler 
                   cop={sneaker.copping} 

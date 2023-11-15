@@ -7,8 +7,28 @@ const getAllNotificationsForUser = async (req, res) => {
      const userId = req.user._id;
 
      const notifications = await Notification.find({ user: userId });   
-     if (!notifications) { return res.status(200).json([]); }                            
+     if (!notifications) { return res.status(200).json([]); }      
+
      return res.status(200).json(notifications);
+   } catch (error) {
+     return res.status(500).json({ error: 'Internal Server Error' });
+   }
+};
+
+const getAllNotificationsForUserPerSneaker = async (req, res) => {
+   const { sneakerId } = req.params;
+
+   try {
+     const userId = req.user._id;
+
+     const user = await User.findById(userId).populate('notifications');
+     if (!user) { return res.status(404).json({ error: 'User not found' }); }
+     
+     const sneaker = await Sneaker.findById(sneakerId);
+     if (!sneaker) { return res.status(404).json({ error: 'Sneaker not found' }); }
+
+     const userNotificationsForSneaker = user.notifications.filter((item) => item.sneaker.toString() === sneakerId);                          
+     return res.status(200).json(userNotificationsForSneaker);
    } catch (error) {
      return res.status(500).json({ error: 'Internal Server Error' });
    }
@@ -143,4 +163,24 @@ const removeAllNotificationsForUserPerSneaker = async (req, res) => {
    }
 };
 
-module.exports = { getAllNotificationsForUser, getOneNotificationForUser, createNotificationForUser, removeNotificationForUser, removeAllNotificationsForUserPerSneaker };
+const removeAllNotificationsForUserForAllSneakers  = async (req, res) => {
+   try {
+     const userId = req.user._id;
+ 
+     const user = await User.findById(userId).populate('notifications');
+     if (!user) { return res.status(404).json({ error: 'User not found' }); }
+ 
+     const notificationIds = user.notifications.map((notification) => notification._id);
+     user.notifications = [];
+
+     await Notification.deleteMany({ _id: { $in: notificationIds } });
+ 
+     await user.save();
+     return res.status(200).json({ message: 'All notifications removed successfully' });
+   } catch (error) {
+     return res.status(500).json({ error: 'Internal Server Error' });
+   }
+};
+ 
+
+module.exports = { getAllNotificationsForUser, getAllNotificationsForUserPerSneaker, getOneNotificationForUser, createNotificationForUser, removeNotificationForUser, removeAllNotificationsForUserPerSneaker, removeAllNotificationsForUserForAllSneakers };

@@ -76,30 +76,30 @@ const toggleCopping = async (req, res) => {
      if (!sneaker) { return res.status(404).json({ error: 'Sneaker not found' }); }
 
      if (sneaker.copping === true && sneaker.coppers.includes(userId)) {
-       if (sneaker.coppers.indexOf(userId) !== -1) { sneaker.coppers.splice(sneaker.coppers.indexOf(userId), 1); }
+         if (sneaker.coppers.indexOf(userId) !== -1) { sneaker.coppers.splice(sneaker.coppers.indexOf(userId), 1); }
 
          // Clear the notifications array for this user and sneaker
          const user = await User.findById(userId);
-         if (user) {
-            const allNotifications = await Notification.find();
-            const notificationIds = allNotifications.map((item) => item._id.toString());
-            user.notifications = user.notifications.filter((item) => !notificationIds.includes(item.toString()));
-            await user.save();
-         }
+            if (user) {
+               // Get notification IDs associated with the specified sneakerId
+               const allNotifications = await Notification.find({ user: userId });
+               const notificationIdsToRemove = allNotifications
+                  .filter((item) => item.sneaker.toString() === sneakerId)
+                  .map((item) => item._id.toString());
+                  
+               // Filter out the notification IDs to remove from the user's notifications array
+               user.notifications = user.notifications.filter((item) => !notificationIdsToRemove.includes(item.toString()));
+               await user.save();
+            }
+         
          // Clear the Notifications document for this user and sneaker
-         if (user) {
-            const notificationsToRemove = await Notification.find({ user: userId, sneaker: sneakerId });
-            for (const notification of notificationsToRemove) {
-            await Notification.findByIdAndRemove(notification._id);
-         }
-       }
-
-       sneaker.copping = false;
-
+         await Notification.deleteMany({ user: userId, sneaker: sneakerId });
+         
+         sneaker.copping = false;
      } else {
-       if (sneaker.coppers.indexOf(userId) === -1) { sneaker.coppers.push(userId); }
+         if (sneaker.coppers.indexOf(userId) === -1) { sneaker.coppers.push(userId); }
 
-       sneaker.copping = true;
+         sneaker.copping = true;
      }
 
      const updatedSneaker = await sneaker.save();

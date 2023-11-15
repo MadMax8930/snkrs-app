@@ -46,9 +46,11 @@ app.delete('/profile/sneakers/:sneakerId/comments/:commentId', requireAuth, comm
 /* done */
 app.get('/profile/notifications', requireAuth, notificationsController.getAllNotificationsForUser);
 app.get('/profile/notifications/:notificationId', requireAuth, notificationsController.getOneNotificationForUser);
+app.get('/profile/notifications/sneakers/:sneakerId', requireAuth, notificationsController.getAllNotificationsForUserPerSneaker);
 app.post('/profile/add-notification', requireAuth, notificationsController.createNotificationForUser);
 app.delete('/profile/notifications/:notificationId', requireAuth, notificationsController.removeNotificationForUser);
 app.delete('/profile/remove-notifications/:sneakerId', requireAuth, notificationsController.removeAllNotificationsForUserPerSneaker);
+app.delete('/profile/remove-notifications-for-all-sneakers', requireAuth, notificationsController.removeAllNotificationsForUserForAllSneakers);
 
 mongoose.connect(process.env.MONGODB_URL, {
   useNewUrlParser: true,

@@ -1,3 +1,16 @@
 .container {
    display: flex;
+   margin: 20px;
+   padding: 20px;
+   border: 1px solid #ccc;
+   border-radius: 8px;
+}
+
+.container label {
+   display: block;
+   margin-bottom: 10px;
+}
+ 
+.container input[type="checkbox"] {
+   margin-right: 5px;
 }
