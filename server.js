@@ -16,17 +16,13 @@ const sneakersController = require('./src/controllers/sneakers');
 const commentsController = require('./src/controllers/comments');
 const notificationsController = require('./src/controllers/notifications');
 
-/* done */
+/* AUTH */
 app.post('/login', authController.login);
 app.post('/register', authController.register);
-
-/* done */
-app.get('/users', authorizeDev, usersController.getAllUsers);
-app.get('/users/:userId', authorizeDev, usersController.getUserById);
 app.get('/profile', requireAuth, usersController.getUserProfile);
 app.put('/profile/picture', requireAuth, usersController.uploadPicture);
 
-/* done */
+/* SNKRS */
 app.get('/sneakers', sneakersController.getPublicSneakers);
 app.get('/sneakers/:sneakerId', sneakersController.getPublicSneakerById);
 app.get('/profile/sneakers', requireAuth, sneakersController.getUserSneakers);
@@ -36,21 +32,25 @@ app.patch('/profile/sneakers/:sneakerId/toggle', requireAuth, sneakersController
 app.get('/sneakers-filter', sneakersController.filterSneakers);
 app.get('/profile/sneakers-filter', requireAuth, sneakersController.filterUserSneakers);
 
-/* done */
+/* COMMENTS */
 app.get('/sneakers/:sneakerId/comments', commentsController.getAllCommentsForSneaker);
 app.get('/profile/sneakers-comments', requireAuth, commentsController.getUserComments);
 app.post('/profile/sneakers/:sneakerId/comment', requireAuth, commentsController.addUserComment);
 app.put('/profile/sneakers/:sneakerId/comments/:commentId', requireAuth, commentsController.updateUserComment);
 app.delete('/profile/sneakers/:sneakerId/comments/:commentId', requireAuth, commentsController.deleteUserComment);
 
-/* done */
-app.get('/profile/notifications', requireAuth, notificationsController.getAllNotificationsForUser);
+/* NOTIFICATIONS */
 app.get('/profile/notifications/:notificationId', requireAuth, notificationsController.getOneNotificationForUser);
 app.get('/profile/notifications/sneakers/:sneakerId', requireAuth, notificationsController.getAllNotificationsForUserPerSneaker);
 app.post('/profile/add-notification', requireAuth, notificationsController.createNotificationForUser);
 app.delete('/profile/notifications/:notificationId', requireAuth, notificationsController.removeNotificationForUser);
-app.delete('/profile/remove-notifications/:sneakerId', requireAuth, notificationsController.removeAllNotificationsForUserPerSneaker);
-app.delete('/profile/remove-notifications-for-all-sneakers', requireAuth, notificationsController.removeAllNotificationsForUserForAllSneakers);
+
+/* ADMIN HELPERS */
+app.get('/users', authorizeDev, usersController.getAllUsers);
+app.get('/users/:userId', authorizeDev, usersController.getUserById);
+app.get('/profile/notifications', authorizeDev, requireAuth, notificationsController.getAllNotificationsForUser);
+app.delete('/profile/remove-notifications/:sneakerId', authorizeDev, requireAuth, notificationsController.removeAllNotificationsForUserPerSneaker);
+app.delete('/profile/remove-notifications-for-all-sneakers', authorizeDev, requireAuth, notificationsController.removeAllNotificationsForUserForAllSneakers);
 
 mongoose.connect(process.env.MONGODB_URL, {
   useNewUrlParser: true,
