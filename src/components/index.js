@@ -1,4 +1,3 @@
-import Button from "./button/Button";
 import Navbar from "./navbar/Navbar";
 import NavItem from "./navbar/NavItem";
 import Footer from "./footer/Footer";
@@ -19,7 +18,6 @@ import NoSnkrs from "./copped/NoSnkrs";
 import Notification from "./notif/Notification";
 
 export { 
-   Button,
    Navbar,
    NavItem,
    Footer,

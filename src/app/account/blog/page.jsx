@@ -1,11 +1,15 @@
 "use client";
-import React from 'react'
+import React, { useContext } from 'react';
+import { UserContext } from '@/context/UserContext';
 import { withAuth } from '@/guards/withAuth';
-import styles from './blog.module.css';
-
+ /* ':sneakerId' + 'notif esp + comments logic' */
 const BlogPage = () => {
+   const { user } = useContext(UserContext);
+   
+   console.log("user-blog", {user}, user._id);
+
   return (
-    <div className={styles.container}>
+    <div className='pt-20'>
       Blog Page
     </div>
   )

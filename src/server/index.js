@@ -41,6 +41,7 @@ app.put('/profile/sneakers/:sneakerId/comments/:commentId', requireAuth, comment
 app.delete('/profile/sneakers/:sneakerId/comments/:commentId', requireAuth, commentsController.deleteUserComment);
 
 /* NOTIFICATIONS */
+app.get('/profile/notifications', requireAuth, notificationsController.getAllNotificationsForUser);
 app.get('/profile/notifications/:notificationId', requireAuth, notificationsController.getOneNotificationForUser);
 app.get('/profile/notifications/sneakers/:sneakerId', requireAuth, notificationsController.getAllNotificationsForUserPerSneaker);
 app.post('/profile/add-notification', requireAuth, notificationsController.createNotificationForUser);
@@ -49,7 +50,6 @@ app.delete('/profile/notifications/:notificationId', requireAuth, notificationsC
 /* ADMIN HELPERS */
 app.get('/users', authorizeDev, usersController.getAllUsers);
 app.get('/users/:userId', authorizeDev, usersController.getUserById);
-app.get('/profile/notifications', authorizeDev, requireAuth, notificationsController.getAllNotificationsForUser);
 app.delete('/profile/remove-notifications/:sneakerId', authorizeDev, requireAuth, notificationsController.removeAllNotificationsForUserPerSneaker);
 app.delete('/profile/remove-notifications-for-all-sneakers', authorizeDev, requireAuth, notificationsController.removeAllNotificationsForUserForAllSneakers);
 
@@ -61,7 +61,7 @@ mongoose.connect(process.env.MONGODB_URL, {
 mongoose.connection.on('error', console.error.bind(console, 'MongoDB connection error:'));
 mongoose.connection.once('open', () => { 
    console.log('Connected to MongoDB database');
-   startCronJob();
+   // startCronJob();
 });
 
 app.listen(port, () => {

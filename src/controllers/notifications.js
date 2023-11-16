@@ -49,7 +49,7 @@ const getOneNotificationForUser = async (req, res) => {
 };
 
 const createNotificationForUser = async (req, res) => {
-   const { sneakerId, schedule, content } = req.body;
+   const { sneakerId, schedule } = req.body;
 
    try {
      const userId = req.user._id;
@@ -83,7 +83,13 @@ const createNotificationForUser = async (req, res) => {
        return res.status(400).json({ error: 'Invalid schedule' });
      }
 
-     const newNotification = new Notification({ user, sneaker, schedule, content, timestamp });
+     const newNotification = new Notification({ 
+         user, 
+         sneaker, 
+         schedule, 
+         content: `Yay! The sneaker that you are planning to cop - ${sneaker.name} ${sneaker.model} - will be available in ${schedule.split(' before')} Good luck to you ${user.username}! [Notification alert]`, 
+         timestamp 
+     });
      await newNotification.save();
 
      user.notifications.push(newNotification);

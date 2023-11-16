@@ -1,34 +1,29 @@
 const cron = require('node-cron');
-const Notification = require('../models/Notification');
+const sendNotification = require('./sender');
 const notificationsController = require('../controllers/notifications');
 
-function isItTimeToNotify(schedule) {
-   // Logic to check if the current time matches the notification schedule
+const isItTimeToNotify = (timestamp) => {
+   const currTime = new Date();
+   return currTime.getTime() === new Date(timestamp).getTime();;
 }
  
-async function sendNotification(userId, sneakerId, content) {
-  // Logic to send the notification to user
-  console.log(`Sending notification to user ${userId} with ${email} for ${sneakerId} - ${content}`);
-}
-
 const startCronJob = () => {
   cron.schedule('* * * * *', async () => {
       try {
          console.log('Running notification scheduler cron job...');
 
          // Get pending notifications from the database
-         const pendingNotifications = await notificationsController.getPendingNotifications();
+         const pendingNotifications = await notificationsController.getAllNotificationsForUser;
 
          // Process each pending notification
          for (const notification of pendingNotifications) {
-            const { userId, content, schedule } = notification;
+            const { userId, content, schedule, sneakerId, timestamp } = notification;
 
-            if (isItTimeToNotify(schedule)) {
-               // Send the notification to the user
-               await sendNotification(userId, 'Sneaker Notification', content);
+            if (isItTimeToNotify(timestamp)) {
+               await sendNotification(userId, sneakerId, schedule, content);
 
                // Remove the notification from the user's list (if the time of it is in the past)
-               await notificationsController.removeNotification(notification._id);
+               // await notificationsController.removeNotificationForUser
             }
          };
 

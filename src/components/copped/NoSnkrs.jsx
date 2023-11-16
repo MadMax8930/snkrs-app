@@ -7,7 +7,7 @@ const NoSnkrs = () => {
     <div className={styles.nsContainer}>
       <Link href="/" className={styles.nsLink}>
          <h1 className={styles.nsTitle}>No sneakers found</h1>
-         <p className={styles.nsDescription}>You haven't copped any sneakers yet.</p>
+         <p className={styles.nsDescription}>You have not copped any sneakers yet.</p>
          <Image className={styles.nsImage} src="/snkrs.png" width={100} height={100} alt="No Copped Sneakers" />
       </Link>
     </div>

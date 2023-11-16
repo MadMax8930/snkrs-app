@@ -22,7 +22,7 @@ const SneakerIdPage = () => {
       {fetchedSneaker ?
          <div>
             <p>{fetchedSneaker._id}</p>
-            <img src={fetchedSneaker.img} />
+            <img src={fetchedSneaker.img} alt="Sneaker Image"/>
             <p>{fetchedSneaker.brand}</p>
             <p>{fetchedSneaker.model}</p>
             <p>{JSON.stringify(fetchedSneaker.copping)}</p>
