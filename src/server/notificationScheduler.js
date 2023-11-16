@@ -1,5 +1,5 @@
 const cron = require('node-cron');
-const sendNotification = require('./sender');
+const sendNotification = require('./notificationSender');
 const notificationsController = require('../controllers/notifications');
 
 const isItTimeToNotify = (timestamp) => {
@@ -12,18 +12,13 @@ const startCronJob = () => {
       try {
          console.log('Running notification scheduler cron job...');
 
-         // Get pending notifications from the database
-         const pendingNotifications = await notificationsController.getAllNotificationsForUser;
-
+         const pendingNotifications = notificationsController.getAllNotificationsForUser;
          // Process each pending notification
          for (const notification of pendingNotifications) {
             const { userId, content, schedule, sneakerId, timestamp } = notification;
 
             if (isItTimeToNotify(timestamp)) {
                await sendNotification(userId, sneakerId, schedule, content);
-
-               // Remove the notification from the user's list (if the time of it is in the past)
-               // await notificationsController.removeNotificationForUser
             }
          };
 
