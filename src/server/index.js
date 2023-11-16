@@ -5,6 +5,7 @@ require('dotenv').config();
 const app = express();
 const port = process.env.PORT || 3001;
 
+const { startCronJob } = require('./scheduler');
 const { customMiddleware } = require('../middlewares'); 
 app.use(customMiddleware);
 
@@ -58,7 +59,10 @@ mongoose.connect(process.env.MONGODB_URL, {
 });
 
 mongoose.connection.on('error', console.error.bind(console, 'MongoDB connection error:'));
-mongoose.connection.once('open', () => { console.log('Connected to MongoDB database'); });
+mongoose.connection.once('open', () => { 
+   console.log('Connected to MongoDB database');
+   startCronJob();
+});
 
 app.listen(port, () => {
   console.log(`Express server has started and is running on port ${port}`);
