@@ -109,6 +109,7 @@
   background-repeat: no-repeat;
   transform: var(--cursor-transform) scale(0.4);
   transition: transform var(--transition-cursor);
+  cursor: pointer;
   z-index: -1;
   opacity: 0.8;
 }
