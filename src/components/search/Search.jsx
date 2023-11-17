@@ -64,7 +64,7 @@ const Search = ({ sneakers, isLoadingFiltered }) => {
               {searchResults.slice(0, 4).map((sneaker) => (
                  <li key={sneaker._id}>
                   <div className={styles.searchTermItem}>
-                     <Link href={`/${sneaker._id}`}>
+                     <Link href={`/sneakers/${sneaker._id}`}>
                         <div className={styles.searchTermText}>
                            <span className={styles.textLeft}>{sneaker.name}</span>
                            <span className={styles.textRight}>{sneaker.model}</span>

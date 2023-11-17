@@ -1,11 +1,13 @@
 import React from 'react';
-import '@/app/globals.css';
+import { Navbar, Footer } from '@/components';
 
 function Layout({ children }) {
   return (
-    <div className="layer">
+    <>
+      <Navbar />
       {children}
-    </div>
+      <Footer />
+    </>
   )
 }
 

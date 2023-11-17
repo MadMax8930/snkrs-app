@@ -34,7 +34,7 @@ const Sneakers = ({ sneakerDropsFiltered, sneakerDrops, isLoadingFiltered, isLoa
             {sneakersToRender.map((sneaker) => (
                <div className={styles.listItem} key={sneaker._id}>
 
-                  <Link href={`/${sneaker._id}`}>
+                  <Link href={`/sneakers/${sneaker._id}`}>
                      <div className={styles.listDesc}>
                         <span>{sneaker.brand} - {sneaker.model}</span>
                         <span className={styles.move}>{sneaker.dateRelease}</span>
@@ -44,7 +44,7 @@ const Sneakers = ({ sneakerDropsFiltered, sneakerDrops, isLoadingFiltered, isLoa
                   </Link>     
 
                   <div className={styles.listResell}>
-                     <Link href={`/${sneaker._id}`} className={styles.resell}>    
+                     <Link href={`/sneakers/${sneaker._id}`} className={styles.resell}>    
                         <div className={styles.circle} style={{ backgroundColor: getCircleColor(sneaker.resellIndex) }} />
                         <span>{sneaker.resellIndex} resell</span>
                         <span>({sneaker.retailPrice === 'N/A' ? `${sneaker.retailPrice}` : `${sneaker.retailPrice}€`})</span>

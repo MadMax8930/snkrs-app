@@ -1,5 +1,4 @@
 import { Inter } from 'next/font/google';
-import { Navbar, Footer } from '@/components';
 import { UserProvider } from '@/context/UserContext';
 import { ThemeProvider } from '@/context/ThemeContext';
 import { Toaster } from 'react-hot-toast'
@@ -9,7 +8,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
   title: 'Max Sneakers Application',
-  description: 'next popular sneaker releases with cop guides and price estimations resell',
+  description: 'Next popular sneaker releases with cop guides and price estimations resell',
 }
 
 export default function RootLayout({ children }) {
@@ -20,9 +19,7 @@ export default function RootLayout({ children }) {
             <Toaster />
             <ThemeProvider>
                <div className="main">      
-                  <Navbar /> 
                   {children}
-                  <Footer />
                </div>
             </ThemeProvider>
          </UserProvider>

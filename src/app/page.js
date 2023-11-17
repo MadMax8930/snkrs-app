@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from 'react';
-import { Filter, Search, Sneakers, LoaderLayer } from '@/components';
+import { Filter, Search, Sneakers, LoaderLayer, Navbar, Footer } from '@/components';
 import useFilterSneakers from '@/hooks/useFilterSneakers';
 import useSneakers from '@/hooks/useSneakers';
 import { withTokenCleanup } from '@/guards/withTokenCleanUp';
@@ -24,21 +24,25 @@ function Home() {
    if (isHomeLoading) { return <LoaderLayer /> }
  
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between">
-      <div className="h-full" style={containerWidth}>
-         <div className="mt-[4em] p-[2em] pb-0 text-xs md:text-base xl:text-lg md:pt-1 xl:pt-2">
-            <Search sneakers={filteredSnkrs} isLoadingFiltered={isLoadingFiltered} />
-            <Filter
-               resellQuery={param1} brandQuery={param2} dateQuery={param3}
-               setResellQuery={setParam1} setBrandQuery={setParam2} setDateQuery={setParam3}
+    <>
+      <Navbar />
+      <main className="flex min-h-screen flex-col items-center justify-between">
+         <div className="h-full" style={containerWidth}>
+            <div className="mt-[4em] p-[2em] pb-0 text-xs md:text-base xl:text-lg md:pt-1 xl:pt-2">
+               <Search sneakers={filteredSnkrs} isLoadingFiltered={isLoadingFiltered} />
+               <Filter
+                  resellQuery={param1} brandQuery={param2} dateQuery={param3}
+                  setResellQuery={setParam1} setBrandQuery={setParam2} setDateQuery={setParam3}
+               />
+            </div>
+            <Sneakers 
+               sneakerDrops={sneakerDrops} isLoadingPublic={isLoadingPublic}
+               sneakerDropsFiltered={filteredSnkrs} isLoadingFiltered={isLoadingFiltered} 
             />
          </div>
-         <Sneakers 
-            sneakerDrops={sneakerDrops} isLoadingPublic={isLoadingPublic}
-            sneakerDropsFiltered={filteredSnkrs} isLoadingFiltered={isLoadingFiltered} 
-         />
-      </div>
-    </main>
+      </main>
+      <Footer />
+    </>
   )
 }
 

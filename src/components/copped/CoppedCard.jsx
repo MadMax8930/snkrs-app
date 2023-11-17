@@ -19,7 +19,7 @@ const CoppedCard = ({ copItem }) => {
 
   return (
      <div className={styles.listItem} key={sneaker._id}>
-         <Link href={`/${sneaker._id}`}>
+         <Link href={`/sneakers/${sneaker._id}`}>
             <div className={styles.listDesc}>
                <span>{sneaker.brand} - {sneaker.model}</span>
                <span className={styles.move}>{sneaker.dateRelease}</span>
