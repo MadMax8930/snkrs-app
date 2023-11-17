@@ -5,7 +5,7 @@ require('dotenv').config();
 const app = express();
 const port = process.env.PORT || 3001;
 
-const { startCronJob } = require('./scheduler');
+const { startCronJob } = require('./notificationScheduler');
 const { customMiddleware } = require('../middlewares'); 
 app.use(customMiddleware);
 

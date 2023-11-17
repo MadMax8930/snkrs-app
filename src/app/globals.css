@@ -30,11 +30,30 @@ body {
    color: #bbb;
 }
 
-.container {
+.main {
    max-width: 100vw;
    min-height: 100vh;
    margin: 0 auto;
    display: flex;
    flex-direction: column;
    justify-content: space-between;
+}
+
+.layer {
+   position: fixed;
+   width: 100%;
+   height: 100%;
+}
+
+.layer::before {
+   content: "";
+   background: url('/layer.png') no-repeat center center;
+   background-size: cover;
+   position: absolute;
+   top: 0;
+   left: 0;
+   right: 0;
+   bottom: 0;
+   opacity: 0.1;
+   z-index: -1;
 }

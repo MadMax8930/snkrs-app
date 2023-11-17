@@ -19,7 +19,7 @@ export default function RootLayout({ children }) {
          <UserProvider>
             <Toaster />
             <ThemeProvider>
-               <div className="container">
+               <div className="main">      
                   <Navbar /> 
                   {children}
                   <Footer />
