@@ -2,8 +2,9 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import useSneaker from '@/hooks/useSneaker';
-import { Loader, NotFound } from '@/components';
+import { Footer, Loader, Navbar, NotFound } from '@/components';
 import { withTokenCleanup } from '@/guards/withTokenCleanUp';
+import styles from './sneaker.module.css';
 
 const SneakerIdPage = () => {
    const { sneakerId } = useParams()
@@ -18,20 +19,23 @@ const SneakerIdPage = () => {
    if (error || !sneakerId) { return <NotFound />; }
 
   return (
-    <div className='pt-24'>
-      {fetchedSneaker ?
-         <div>
-            <p>{fetchedSneaker._id}</p>
-            <img src={fetchedSneaker.img} alt="Sneaker Image"/>
-            <p>{fetchedSneaker.brand}</p>
-            <p>{fetchedSneaker.model}</p>
-            <p>{JSON.stringify(fetchedSneaker.copping)}</p>
-         </div> : 
-         <div>
-            <Loader/>
+    <>
+      <Navbar />
+         <div className='pt-24'>
+            {fetchedSneaker ?
+               <div className={styles.container}>
+                  <p>{fetchedSneaker._id}</p>
+                  <p>{fetchedSneaker.brand}</p>
+                  <p>{fetchedSneaker.model}</p>
+                  <p>{JSON.stringify(fetchedSneaker.copping)}</p>
+               </div> : 
+               <div>
+                  <Loader/>
+               </div>
+            } 
          </div>
-      } 
-    </div>
+      <Footer/>
+    </>
   )
 }
 

@@ -5,6 +5,7 @@ import FooterItem from "./footer/FooterItem";
 import DarkMode from "./darkm/DarkMode";
 import Loader from "./loader/Loader";
 import LoaderLayer from "./loader/LoaderLayer";
+import LoaderGif from "./loader/LoaderGif";
 import Sneakers from "./sneakers/Sneakers";
 import Toggler from "./toggler/Toggler";
 import Filter from "./filter/Filter";
@@ -25,6 +26,7 @@ export {
    DarkMode,
    Loader,
    LoaderLayer,
+   LoaderGif,
    Sneakers,
    Toggler,
    Filter,
