@@ -12,12 +12,24 @@ const getAllCommentsForSneaker = async (req, res) => {
    }
 };
 
-const getUserComments = async (req, res) => {
+const getAllUserComments = async (req, res) => {
    try {
      const userId = req.user._id;
 
      const comments = await Comment.find({ user: userId, sneaker: { $exists: true } })
      return res.status(200).json(comments);
+   } catch (error) {
+     return res.status(500).json({ error: 'Internal Server Error' });
+   }
+};
+
+const getUserComment = async (req, res) => {
+   const { commentId, sneakerId } = req.params;
+ 
+   try {
+     const comment = await Comment.findOne({ _id: commentId, sneaker: sneakerId, user: req.user._id });
+     if (!comment) { return res.status(404).json({ error: 'Comment not found.' }); }
+     return res.status(200).json(comment);
    } catch (error) {
      return res.status(500).json({ error: 'Internal Server Error' });
    }
@@ -94,4 +106,4 @@ const deleteUserComment = async (req, res) => {
    }
 };
  
-module.exports = { getAllCommentsForSneaker, getUserComments, addUserComment, updateUserComment, deleteUserComment };
+module.exports = { getAllCommentsForSneaker, getAllUserComments, getUserComment, addUserComment, updateUserComment, deleteUserComment };

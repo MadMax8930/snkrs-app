@@ -17,6 +17,8 @@ import CoppedSnkrs from "./copped/CoppedSnkrs";
 import CoppedCard from "./copped/CoppedCard";
 import NoSnkrs from "./copped/NoSnkrs";
 import Notification from "./notif/Notification";
+import CommentSection from "./comment/CommentSection";
+import BtnItem from "./comment/BtnItem";
 
 export { 
    Navbar,
@@ -38,4 +40,6 @@ export {
    CoppedCard,
    NoSnkrs,
    Notification,
+   CommentSection,
+   BtnItem,
 }
