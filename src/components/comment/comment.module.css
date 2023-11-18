@@ -1,14 +1,32 @@
-.container {
+.stickyContainer {
+   position: sticky;
+   position: -webkit-sticky;
+   top: 70px;
+   padding: 1em;
+   background-color: #fff;
+   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+   z-index: 10;
+}
+
+.postContainer {
+   padding: 0.8em;
+   border: 2px solid #ccc;
+   margin-bottom: 1em;
+   position: relative;
+}
+
+.commentsContainer {
    display: flex;
    flex-direction: column;
    width: 100%;
    padding: 1em;
 }
 
-.comment {
+.commentContainer {
    padding: 0.8em;
    border: 2px solid #ccc;
    margin-bottom: 1em;
+   position: relative;
 }
 
 .topBetween {
@@ -30,10 +48,6 @@
    border-radius: 50%;
    object-fit: cover;
    margin-right: 0.5em;
-}
-
-.comment {
-   position: relative;
 }
 
 .btnActions {

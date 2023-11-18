@@ -1,6 +1,8 @@
+"use client";
 import React, { useEffect } from 'react';
 import { Loader, BtnItem } from '@/components';
 import { faReply, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { formatDate } from './formatDate';
 import styles from './comment.module.css';
 
 const CommentSection = ({ comments, load }) => {
@@ -12,16 +14,16 @@ const CommentSection = ({ comments, load }) => {
    if (load) { return <Loader/>; }
 
   return (
-    <div className={styles.container}>
+    <div className={styles.commentsContainer}>
       {comments.map((comment) => (
-         <div className={styles.comment} key={comment._id}>
+         <div className={styles.commentContainer} key={comment._id}>
       
             <div className={styles.topBetween}>
                <div className={styles.profile}>
                   <img src={comment.user.profilePic} alt="Profile Picture" />
                   <p className={styles.username}>{comment.user.username}</p>
                </div>
-               <p className={styles.date}>{comment.createdAt}</p>
+               <p className={styles.date}>{formatDate(comment.createdAt)}</p>
             </div>
 
             <div className={styles.content}>{comment.message}</div>

@@ -3,8 +3,7 @@ import React, { useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import useSneaker from '@/hooks/useSneaker';
 import useCommentsForSneaker from '@/hooks/useCommentsForSneaker';
-import { Footer, Loader, Navbar, NotFound, CommentSection } from '@/components';
-import { withTokenCleanup } from '@/guards/withTokenCleanUp';
+import { Loader, NotFound, SneakerInfo, CommentPost, CommentSection } from '@/components';
 import styles from './sneaker.module.css';
 
 const SneakerIdPage = () => {
@@ -23,23 +22,15 @@ const SneakerIdPage = () => {
 
   return (
     <>
-      <Navbar />
-         <div className='pt-24'>
-
-            {fetchedSneaker ? (<>
-               <div className={styles.container}>
-                  <p>{fetchedSneaker._id}</p>
-                  <p>{fetchedSneaker.brand}</p>
-                  <p>{fetchedSneaker.model}</p>
-                  <p>{JSON.stringify(fetchedSneaker.copping)}</p>
-               </div>
-               <CommentSection comments={pubComments} load={loadComments} />    
-            </>) : <Loader/>}
-
-         </div>
-      <Footer/>
+      {fetchedSneaker ? (
+         <div className={styles.container}> 
+            <SneakerInfo sneaker={fetchedSneaker} />
+            <CommentPost id={sneakerId} />
+            <CommentSection comments={pubComments} load={loadComments} />    
+         </div>) 
+      : <Loader/>}
     </>
   )
 }
 
-export default withTokenCleanup(SneakerIdPage)
+export default SneakerIdPage
