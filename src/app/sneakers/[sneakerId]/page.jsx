@@ -2,37 +2,40 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import useSneaker from '@/hooks/useSneaker';
-import { Footer, Loader, Navbar, NotFound } from '@/components';
+import useCommentsForSneaker from '@/hooks/useCommentsForSneaker';
+import { Footer, Loader, Navbar, NotFound, CommentSection } from '@/components';
 import { withTokenCleanup } from '@/guards/withTokenCleanUp';
 import styles from './sneaker.module.css';
 
 const SneakerIdPage = () => {
    const { sneakerId } = useParams()
-   const { data: fetchedSneaker, isLoading, error } = useSneaker(sneakerId);
+   const { data: fetchedSneaker, isLoading: loadSneaker, error } = useSneaker(sneakerId);
+   const { data: pubComments, isLoading: loadComments } = useCommentsForSneaker(sneakerId);
 
    useEffect(() => {
       console.log('fetchedSneaker:', { fetchedSneaker });
       console.log('sneakerId:', sneakerId);
-   }, [sneakerId, fetchedSneaker])
+      console.log('public comments for the shoe:', { pubComments });
+   }, [sneakerId, fetchedSneaker, pubComments])
 
-   if (isLoading) { return <Loader/>; }
+   if (loadSneaker) { return <Loader/>; }
    if (error || !sneakerId) { return <NotFound />; }
 
   return (
     <>
       <Navbar />
          <div className='pt-24'>
-            {fetchedSneaker ?
+
+            {fetchedSneaker ? (<>
                <div className={styles.container}>
                   <p>{fetchedSneaker._id}</p>
                   <p>{fetchedSneaker.brand}</p>
                   <p>{fetchedSneaker.model}</p>
                   <p>{JSON.stringify(fetchedSneaker.copping)}</p>
-               </div> : 
-               <div>
-                  <Loader/>
                </div>
-            } 
+               <CommentSection comments={pubComments} load={loadComments} />    
+            </>) : <Loader/>}
+
          </div>
       <Footer/>
     </>

@@ -2,7 +2,7 @@
 import React, { useContext } from 'react';
 import { UserContext } from '@/context/UserContext';
 import { withAuth } from '@/guards/withAuth';
- /* :sneakerId with comment and coppers (auth)' + notif esp + comments logic/page with replies */
+ /* :sneakerId with comment and coppers (auth)' + (notif esp + ssr loader) + comments logic/page with replies */
 const BlogPage = () => {
    const { user } = useContext(UserContext);
 

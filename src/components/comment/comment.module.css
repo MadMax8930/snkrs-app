@@ -1,0 +1,76 @@
+.container {
+   display: flex;
+   flex-direction: column;
+   width: 100%;
+   padding: 1em;
+}
+
+.comment {
+   padding: 0.8em;
+   border: 2px solid #ccc;
+   margin-bottom: 1em;
+}
+
+.topBetween {
+   display: flex;
+   justify-content: space-between;
+   align-items: flex-start;
+   margin-bottom: 0.5em;
+}
+
+.profile {
+   display: flex;
+   align-items: flex-start;
+}
+
+.profile img {
+   flex: 0 0 auto;
+   width: 25px;
+   height: 25px;
+   border-radius: 50%;
+   object-fit: cover;
+   margin-right: 0.5em;
+}
+
+.comment {
+   position: relative;
+}
+
+.btnActions {
+   position: absolute;
+   bottom: 0;
+   right: 0;
+   display: flex;
+   gap: 0.5em;
+}
+
+.btnActions button {
+   font-size: 1em;
+   padding: 0.3em;
+   color: #fff;
+   border: none;
+   cursor: pointer;
+   border-radius: 4px;
+}
+ 
+ .btnActions button:hover {
+   background-color: #2980b9;
+}
+
+.comment p,
+.topBetween p {
+  margin: 0;
+  font-size: 0.9em;
+  line-height: 1.4;
+}
+
+/* Style the message text */
+.comment > div {
+  margin-bottom: 0.5em;
+}
+
+/* Style the parent message */
+.comment > p {
+  font-style: italic;
+  color: #555;
+}
