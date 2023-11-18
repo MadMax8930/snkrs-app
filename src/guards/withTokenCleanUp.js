@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useCookies } from 'react-cookie';
 import { jwtDecode } from 'jwt-decode';
-import { LoaderLayer } from '@/components';
+import { LoaderGif } from '@/components';
 
 // Higher-order component (guard)
 export const withTokenCleanup = (WrappedComponent) => {
@@ -31,7 +31,7 @@ export const withTokenCleanup = (WrappedComponent) => {
         cleanupToken();
      }, [cookies, removeCookie]);
 
-     if (isLoading) { return <LoaderLayer />; }
+     if (isLoading) { return <LoaderGif />; }
 
      return <WrappedComponent {...props} />;
   };

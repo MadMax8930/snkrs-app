@@ -4,8 +4,10 @@ import { Filter, Search, Sneakers, LoaderLayer, Navbar, Footer } from '@/compone
 import useFilterSneakers from '@/hooks/useFilterSneakers';
 import useSneakers from '@/hooks/useSneakers';
 import { withTokenCleanup } from '@/guards/withTokenCleanUp';
+import { fetchServerData as _serverData } from './ssr';
 
-function Home() {
+function Home({ initialSneakersData, initialFilterData }) {
+   
    const containerWidth = { width: '-webkit-fill-available' };
   
    const [param1, setParam1] = useState('');
@@ -16,8 +18,8 @@ function Home() {
    const [isHomeLoading, setIsHomeLoading] = useState(true);
 
    useEffect(() => {
-      if (!isLoadingFiltered && !isLoadingPublic) {
-         setIsHomeLoading(false);
+      if (!isLoadingFiltered || !isLoadingPublic) { 
+         setIsHomeLoading(false); 
       }
    }, [isLoadingFiltered, isLoadingPublic]);
 
