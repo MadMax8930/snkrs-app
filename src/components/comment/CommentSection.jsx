@@ -1,11 +1,9 @@
 "use client";
 import React, { useEffect } from 'react';
-import { Loader, Button, NoComs } from '@/components';
-import { faReply, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
-import { formatDate } from './utils';
+import { Loader, NoComs, CommentCard } from '@/components';
 import styles from './comment.module.css';
 
-const CommentSection = ({ comments, isLoading, mutate }) => {
+const CommentSection = ({ comments, isLoading, forSneakerId, mutate }) => {
    if (isLoading) { return <Loader />; }
    if (!comments || comments.length === 0) { return <NoComs />; }
 
@@ -13,32 +11,9 @@ const CommentSection = ({ comments, isLoading, mutate }) => {
 
   return (
     <div className={styles.commentsContainer}>
-      {comments.map((comment) => (
-         <div className={styles.commentContainer} key={comment._id}>
-      
-            <div className={styles.topBetween}>
-               <div className={styles.profile}>
-                  <img src={comment.user.profilePic} alt="Profile Picture" />
-                  <p className={styles.username}>{comment.user.username}</p>
-               </div>
-               <p className={styles.date}>{formatDate(comment.createdAt)}</p>
-            </div>
-
-            <div className={styles.content}>{comment.message}</div>
-
-       
-            <div className={styles.btnActions}>
-               <Button action={() => handlePost(comment._id)} icon={faReply} text="Post a reply" hover='hover:text-green-300' />
-               <Button action={() => handleEdit(comment._id)} icon={faEdit} text="Edit comment" hover='hover:text-blue-200' />
-               <Button action={() => handleDelete(comment._id)} icon={faTrash} text="Delete comment" hover='hover:text-yellow-200' />
-            </div>
-
-            {comment.parentMessage && (
-               <p className={styles.reply}>{comment.parentMessage}</p>
-            )}
-
-         </div>
-      ))}
+       {comments.map((comment) => (
+          <CommentCard key={comment._id} forSneakerId={forSneakerId} comment={comment} forCommentId={comment._id} mutate={mutate} />
+       ))}
     </div>
   )
 }

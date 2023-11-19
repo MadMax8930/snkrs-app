@@ -18,8 +18,9 @@ import CoppedCard from "./copped/CoppedCard";
 import NoSnkrs from "./copped/NoSnkrs";
 import Notification from "./notif/Notification";
 import SneakerInfo from "./sneaker/SneakerInfo";
-import CommentPost from "./comment/CommentPost";
+import CommentAdd from "./comment/CommentAdd";
 import CommentSection from "./comment/CommentSection";
+import CommentCard from "./comment/CommentCard";
 import NoComs from "./comment/NoComs";
 import Button from "./button/Button";
 
@@ -44,8 +45,9 @@ export {
    NoSnkrs,
    Notification,
    SneakerInfo,
-   CommentPost,
+   CommentAdd,
    CommentSection,
+   CommentCard,
    NoComs,
    Button,
 }

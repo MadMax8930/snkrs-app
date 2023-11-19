@@ -1,12 +1,12 @@
 "use client";
 import React, { useState } from 'react';
-import { Button } from '@/components';
-import { faReply, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 import useCommentCrud from '@/hooks/useCommentCrud';
+import { Button } from '@/components';
+import { faReply, faEdit } from '@fortawesome/free-solid-svg-icons';
 import { toast } from 'react-hot-toast';
 import styles from './comment.module.css';
 
-const CommentPost = ({ forSneakerId, mutate }) => {
+const CommentAdd = ({ forSneakerId, mutate }) => {
    const { addUserComment } = useCommentCrud(forSneakerId, {});
 
    const [messageBody, setMessageBody] = useState('');
@@ -18,7 +18,7 @@ const CommentPost = ({ forSneakerId, mutate }) => {
             message: messageBody, 
             ...(parentMessageId && { parentMessageId }),
          };
-         await addUserComment(newCommentData)
+         await addUserComment(newCommentData);
          toast.success('Comment posted successfully');
          setMessageBody('');
          setParentMessageId(null);
@@ -29,21 +29,19 @@ const CommentPost = ({ forSneakerId, mutate }) => {
       }
    };
 
-   const handleEdit = () => {}
-   const handleDelete = () => {}
+   const handleUpdate = () => {}
 
   return (
     <div className={styles.sticky}>
       <div className={styles.postContainer}>
          <input value={messageBody} onChange={(e) => setMessageBody(e.target.value)}/>
          <div className={styles.btnActions}>
-            <Button action={handlePost} icon={faReply} text="Post a reply" hover='hover:text-green-300' />
-            <Button action={handleEdit} icon={faEdit} text="Edit comment" hover='hover:text-blue-200' />
-            <Button action={handleDelete} icon={faTrash} text="Delete comment" hover='hover:text-yellow-200' />
+            <Button action={handlePost} icon={faReply} text="Post comment" hover='hover:text-green-300' />
+            <Button action={handleUpdate} icon={faEdit} text="Update comment" hover='hover:text-blue-200' />
          </div>
       </div>
     </div>
   )
 }
 
-export default CommentPost
+export default CommentAdd
