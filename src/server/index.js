@@ -37,7 +37,7 @@ app.get('/profile/sneakers-filter', requireAuth, sneakersController.filterUserSn
 app.get('/sneakers/:sneakerId/comments', commentsController.getAllCommentsForSneaker);
 app.get('/profile/sneakers-comments', requireAuth, commentsController.getAllUserComments);
 app.get('/profile/sneakers/:sneakerId/comments/:commentId', requireAuth, commentsController.getUserComment);
-app.post('/profile/sneakers/:sneakerId/comment', requireAuth, commentsController.addUserComment);
+app.post('/profile/sneakers/:sneakerId/comments', requireAuth, commentsController.addUserComment);
 app.put('/profile/sneakers/:sneakerId/comments/:commentId', requireAuth, commentsController.updateUserComment);
 app.delete('/profile/sneakers/:sneakerId/comments/:commentId', requireAuth, commentsController.deleteUserComment);
 
@@ -51,6 +51,7 @@ app.delete('/profile/notifications/:notificationId', requireAuth, notificationsC
 /* ADMIN HELPERS */
 app.get('/users', authorizeDev, usersController.getAllUsers);
 app.get('/users/:userId', authorizeDev, usersController.getUserById);
+app.delete('/profile/sneakers/:sneakerId/delete-comments', authorizeDev, requireAuth, commentsController.deleteAllUserCommentsForSneaker);
 app.delete('/profile/remove-notifications/:sneakerId', authorizeDev, requireAuth, notificationsController.removeAllNotificationsForUserPerSneaker);
 app.delete('/profile/remove-notifications-for-all-sneakers', authorizeDev, requireAuth, notificationsController.removeAllNotificationsForUserForAllSneakers);
 

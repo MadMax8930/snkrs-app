@@ -1,6 +1,5 @@
-.stickyContainer {
+.sticky {
    position: sticky;
-   position: -webkit-sticky;
    top: 70px;
    padding: 1em;
    background-color: #fff;
