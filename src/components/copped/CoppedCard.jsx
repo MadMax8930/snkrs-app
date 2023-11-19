@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { Notification, Toggler } from '@/components';
 import styles from './copped.module.css';
 
-const CoppedCard = ({ copItem }) => {
+const CoppedCard = ({ copItem, mutate }) => {
   const [sneaker, setSneaker] = useState(copItem);
  
   useEffect(() => {
@@ -13,6 +13,7 @@ const CoppedCard = ({ copItem }) => {
 
   const handleRemoveSneaker = (sneakerId) => {
      setSneaker(item => item?._id === sneakerId && null);
+     mutate();
   };
 
   if (!sneaker) { return null }

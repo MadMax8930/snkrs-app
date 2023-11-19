@@ -4,7 +4,6 @@ import { toast } from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
 import styles from './toggler.module.css';
 
-
 const Toggler = ({ cop, sneakerId, sneakerHasBeenUpdated, confirmation }) => {
    const router = useRouter();
    const { toggle } = useToggle();

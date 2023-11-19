@@ -16,8 +16,8 @@ const SneakerIdPage = () => {
    useEffect(() => {
       console.log('fetchedSneaker:', { fetchedSneaker });
       console.log('sneakerId:', sneakerId);
-      console.log('comments for the shoe:', { pubComments });
-   }, [sneakerId, fetchedSneaker, pubComments])
+      console.log('comments for the shoe:', { fetchedComments });
+   }, [sneakerId, fetchedSneaker, fetchedComments])
 
    if (loadSneaker || loadComments) { return <LoaderLayer />; }
    if (errorSneaker || !sneakerId) { return <NotFound />; }

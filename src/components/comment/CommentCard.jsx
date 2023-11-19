@@ -1,3 +1,4 @@
+"use client";
 import React from 'react';
 import useCommentCrud from '@/hooks/useCommentCrud';
 import { Button } from '@/components';

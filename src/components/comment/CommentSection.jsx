@@ -1,13 +1,10 @@
-"use client";
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Loader, NoComs, CommentCard } from '@/components';
 import styles from './comment.module.css';
 
 const CommentSection = ({ comments, isLoading, mutate, onEdit, forSneakerId }) => {
    if (isLoading) { return <Loader />; }
    if (!comments || comments.length === 0) { return <NoComs />; }
-
-   useEffect(() => { mutate() }, [comments, mutate]);
 
   return (
     <div className={styles.commentsContainer}>
