@@ -6,11 +6,11 @@ import { toast } from 'react-hot-toast';
 import { formatDate } from './utils';
 import styles from './comment.module.css';
 
-const CommentCard = ({ comment, forSneakerId, forCommentId, mutate }) => {
+const CommentCard = ({ comment, mutate, onEdit, forSneakerId, forCommentId }) => {
 
    const { deleteUserComment } = useCommentCrud(forSneakerId, forCommentId);
 
-   const handleEdit = () => {}
+   const handleEdit = () => { onEdit(comment); }
 
    const handleDelete = async () => {
       try {

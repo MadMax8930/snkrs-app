@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { Loader, NoComs, CommentCard } from '@/components';
 import styles from './comment.module.css';
 
-const CommentSection = ({ comments, isLoading, forSneakerId, mutate }) => {
+const CommentSection = ({ comments, isLoading, mutate, onEdit, forSneakerId }) => {
    if (isLoading) { return <Loader />; }
    if (!comments || comments.length === 0) { return <NoComs />; }
 
@@ -12,7 +12,12 @@ const CommentSection = ({ comments, isLoading, forSneakerId, mutate }) => {
   return (
     <div className={styles.commentsContainer}>
        {comments.map((comment) => (
-          <CommentCard key={comment._id} forSneakerId={forSneakerId} comment={comment} forCommentId={comment._id} mutate={mutate} />
+          <CommentCard key={comment._id} 
+             comment={comment} 
+             mutate={mutate} 
+             onEdit={onEdit}
+             forSneakerId={forSneakerId} 
+             forCommentId={comment._id} />
        ))}
     </div>
   )
