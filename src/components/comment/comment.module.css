@@ -87,3 +87,40 @@
   font-style: italic;
   color: #555;
 }
+
+.ncContainer {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   text-align: center;
+   padding: 6em 2em 2em;
+   cursor: pointer;
+}
+ 
+.ncTitle {
+   font-weight: 500;
+   font-size: 1.25rem;
+   margin-bottom: 0.35rem;
+   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+ 
+.ncDescription {
+   font-size: 0.85rem;
+   margin-bottom: 1.5rem;
+}
+ 
+.ncImage {
+   width: 100%;
+   max-width: 200px;
+   height: auto;
+   cursor: pointer;
+   text-align: center;
+}
+
+.ncLink {
+   font-size: 1em;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}

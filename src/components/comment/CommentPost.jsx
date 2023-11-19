@@ -6,8 +6,8 @@ import useCommentCrud from '@/hooks/useCommentCrud';
 import { toast } from 'react-hot-toast';
 import styles from './comment.module.css';
 
-const CommentPost = ({ forSneakerId }) => {
-   const { addUserComment, allUserCommentsMutation } = useCommentCrud(forSneakerId, {});
+const CommentPost = ({ forSneakerId, mutate }) => {
+   const { addUserComment } = useCommentCrud(forSneakerId, {});
 
    const [messageBody, setMessageBody] = useState('');
    const [parentMessageId, setParentMessageId] = useState(null);
@@ -22,7 +22,7 @@ const CommentPost = ({ forSneakerId }) => {
          toast.success('Comment posted successfully');
          setMessageBody('');
          setParentMessageId(null);
-         allUserCommentsMutation()
+         mutate();
       } catch (error) {
          console.error('Error posting the comment:', error);
          toast.error(`Error: ${error.message}`)

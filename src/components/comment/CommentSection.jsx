@@ -1,17 +1,15 @@
 "use client";
 import React, { useEffect } from 'react';
-import { Loader, Button } from '@/components';
+import { Loader, Button, NoComs } from '@/components';
 import { faReply, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { formatDate } from './utils';
 import styles from './comment.module.css';
 
-const CommentSection = ({ comments, load }) => {
+const CommentSection = ({ comments, isLoading, mutate }) => {
+   if (isLoading) { return <Loader />; }
+   if (!comments || comments.length === 0) { return <NoComs />; }
 
-   useEffect(() => {
-      console.log('comment section:', { comments });
-   }, [comments])
-
-   if (load) { return <Loader/>; }
+   useEffect(() => { mutate() }, [comments, mutate]);
 
   return (
     <div className={styles.commentsContainer}>

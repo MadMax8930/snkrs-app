@@ -1,4 +1,3 @@
-"use client";
 import React from 'react';
 import useToggle from '@/hooks/useToggle';
 import { toast } from 'react-hot-toast';
