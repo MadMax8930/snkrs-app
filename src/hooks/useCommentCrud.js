@@ -1,57 +1,52 @@
 import useSWR from 'swr';
-import fetcherWithCookie from './fetcherWithCookie';
+import fetcherWithCookieAndMethod from './fetcherWithCookieAndMethod';
 
 const useCommentCrud = (sneakerId, commentId) => {
-   const endpoint = `/profile/sneakers/${sneakerId}/comments/${commentId}`;
+  const endpoint = `/profile/sneakers/${sneakerId}/comments`;
+  
+  const { data: allUserComments, error: allUserCommentsError, isLoading: allUserCommentsLoading, mutate: allUserCommentsMutation } = 
+  useSWR(['/profile/sneakers-comments', 'GET'], fetcherWithCookieAndMethod);
 
-   const { data, error, isLoading, mutate } = useSWR(endpoint, fetcherWithCookie);
+  const { data: userComment, error: userCommentError, isLoading: userCommentLoading, mutate: userCommentMutation } = 
+  useSWR([`${endpoint}/${commentId}`, 'GET'], fetcherWithCookieAndMethod);
 
-   // GET ONE
-   const getUserComment = () => fetcherWithCookie(endpoint);
+  const addUserComment = async (newCommentData) => {
+    try {
+      await fetcherWithCookieAndMethod(`${endpoint}`, { method: 'POST', data: newCommentData });
+    } catch (error) {
+      throw error;
+    }
+  };
 
-   // POST ONE
-   const addUserComment = (newCommentData) => {
-      return fetcherWithCookie(`/profile/sneakers/${sneakerId}/comment`, {
-        method: 'POST',
-        body: JSON.stringify(newCommentData),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-   };
+  const updateUserComment = async (updatedCommentData) => {
+    try {
+      await fetcherWithCookieAndMethod(`${endpoint}/${commentId}`, { method: 'PUT', data: updatedCommentData });
+    } catch (error) {
+      throw error;
+    }
+  };
 
-   // UPDATE ONE
-   const updateUserComment = (updatedCommentData) => {
-      return fetcherWithCookie(endpoint, {
-        method: 'PUT',
-        body: JSON.stringify(updatedCommentData),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-   };
+  const deleteUserComment = async () => {
+    try {
+      await fetcherWithCookieAndMethod(`${endpoint}/${commentId}`, { method: 'DELETE' });
+    } catch (error) {
+      throw error;
+    }
+  };
 
-   // DELETE ONE
-   const deleteUserComment = () => {
-      return fetcherWithCookie(endpoint, {
-        method: 'DELETE',
-      });
-   };
-
-   // GET ALL
-   const getAllUserComments = () => fetcherWithCookie('/profile/sneakers-comments');
-
-   return { 
-      data, 
-      error, 
-      isLoading, 
-      mutate,
-      getUserComment,
-      addUserComment,
-      updateUserComment,
-      deleteUserComment,
-      getAllUserComments,
-   };
+  return {
+   allUserComments,
+   allUserCommentsError,
+   allUserCommentsLoading,
+   allUserCommentsMutation,
+   userComment,
+   userCommentError,
+   userCommentLoading,
+   userCommentMutation,
+   addUserComment,
+   updateUserComment,
+   deleteUserComment,
+ };
 };
 
 export default useCommentCrud

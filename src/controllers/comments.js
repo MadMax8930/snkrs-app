@@ -105,5 +105,16 @@ const deleteUserComment = async (req, res) => {
      return res.status(500).json({ error: 'Internal Server Error' });
    }
 };
+
+const deleteAllUserCommentsForSneaker = async (req, res) => {
+   const { sneakerId } = req.params;
  
-module.exports = { getAllCommentsForSneaker, getAllUserComments, getUserComment, addUserComment, updateUserComment, deleteUserComment };
+   try {
+     await Comment.deleteMany({ sneaker: sneakerId, user: req.user._id });
+     return res.status(200).json({ message: 'All user comments for the specified sneaker deleted successfully' });
+   } catch (error) {
+     return res.status(500).json({ error: 'Internal Server Error' });
+   }
+};
+ 
+module.exports = { getAllCommentsForSneaker, getAllUserComments, getUserComment, addUserComment, updateUserComment, deleteUserComment, deleteAllUserCommentsForSneaker };
