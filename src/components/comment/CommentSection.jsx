@@ -1,8 +1,8 @@
 "use client";
 import React, { useEffect } from 'react';
-import { Loader, BtnItem } from '@/components';
+import { Loader, Button } from '@/components';
 import { faReply, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
-import { formatDate } from './formatDate';
+import { formatDate } from './utils';
 import styles from './comment.module.css';
 
 const CommentSection = ({ comments, load }) => {
@@ -30,9 +30,9 @@ const CommentSection = ({ comments, load }) => {
 
        
             <div className={styles.btnActions}>
-               <BtnItem action={() => handlePost(comment._id)} icon={faReply} text="Post a reply" className='bg-yellow-500' />
-               <BtnItem action={() => handleEdit(comment._id)} icon={faEdit} text="Edit comment" className='bg-blue-500' />
-               <BtnItem action={() => handleDelete(comment._id)} icon={faTrash} text="Delete comment" className='bg-red-600' />
+               <Button action={() => handlePost(comment._id)} icon={faReply} text="Post a reply" hover='hover:text-green-300' />
+               <Button action={() => handleEdit(comment._id)} icon={faEdit} text="Edit comment" hover='hover:text-blue-200' />
+               <Button action={() => handleDelete(comment._id)} icon={faTrash} text="Delete comment" hover='hover:text-yellow-200' />
             </div>
 
             {comment.parentMessage && (

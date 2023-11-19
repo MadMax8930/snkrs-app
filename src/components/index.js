@@ -20,7 +20,8 @@ import Notification from "./notif/Notification";
 import SneakerInfo from "./sneaker/SneakerInfo";
 import CommentPost from "./comment/CommentPost";
 import CommentSection from "./comment/CommentSection";
-import BtnItem from "./comment/BtnItem";
+import NoComs from "./comment/NoComs";
+import Button from "./button/Button";
 
 export { 
    Navbar,
@@ -45,5 +46,6 @@ export {
    SneakerInfo,
    CommentPost,
    CommentSection,
-   BtnItem,
+   NoComs,
+   Button,
 }
