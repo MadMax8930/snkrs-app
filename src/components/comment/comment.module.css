@@ -1,92 +1,123 @@
+ /* Post Section */
+
 .sticky {
    position: sticky;
-   top: 70px;
-   padding: 1em;
-   background-color: #fff;
-   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+   top: 4.4rem;
+   padding: 1.5em 1.5em 0.5em; 
+   background: url('/post.png') no-repeat center center;
+   background-size: cover;
+   box-shadow: 0 0 15px rgba(21, 14, 07, 0.6);
+   filter: grayscale(0.4);
    z-index: 10;
 }
 
 .postContainer {
-   padding: 0.8em;
-   border: 2px solid #ccc;
-   margin-bottom: 1em;
+   padding: 0.5em;
+   border: 2px solid #938d8d;
+   background-color: #ccc;
    position: relative;
 }
+
+.postContainer input {
+   color: #897e7e;
+   font-weight: 500;
+   width: 100%;
+   border: none;
+   outline: none;
+   padding: 0.5em;
+   border-radius: 4px;
+   box-sizing: border-box;
+}
+
+/* Comment Section */
 
 .commentsContainer {
    display: flex;
    flex-direction: column;
    width: 100%;
-   padding: 1em;
+   padding: 0.375em 1.5em;
 }
 
+/* Comment Card */
+
 .commentContainer {
-   padding: 0.8em;
+   padding: 1.125em;
+   margin-bottom: 0.375em;
    border: 2px solid #ccc;
-   margin-bottom: 1em;
+   border-radius: 8px;
    position: relative;
+   background-color: rgba(157, 163, 163, 0.16);
 }
 
 .topBetween {
    display: flex;
    justify-content: space-between;
-   align-items: flex-start;
+   align-items: center;
    margin-bottom: 0.5em;
 }
 
 .profile {
    display: flex;
-   align-items: flex-start;
+   align-items: center;
 }
 
 .profile img {
-   flex: 0 0 auto;
-   width: 25px;
-   height: 25px;
-   border-radius: 50%;
+   width: 1em;
+   height: 1em;
    object-fit: cover;
-   margin-right: 0.5em;
+   margin-right: 0.25em;
 }
+
+.profile p {
+   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+   font-weight: 600;
+   font-size: 1.25em;
+   margin: 0;
+}
+
+.profile p::first-letter {
+   text-transform: capitalize;
+}
+
+.date {
+   font-size: 0.8em;
+   color: #888;
+}
+
+.content {
+   margin: 0.5em 0em 2.125em;
+   text-align: justify;
+   font-size: 0.75em;
+   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.reply {
+   font-size: small;
+   font-style: italic;
+   color: #555;
+}
+
+/* General Buttons */
 
 .btnActions {
    position: absolute;
-   bottom: 0;
+   bottom: 2%;
    right: 0;
    display: flex;
-   gap: 0.5em;
+   gap: 0.25rem;
+   padding: 0.75rem;
 }
 
 .btnActions button {
-   font-size: 1em;
-   padding: 0.3em;
+   font-size: 0.85em;
+   padding: 0.5em;
+   border-radius: 6px;
    color: #fff;
    border: none;
    cursor: pointer;
-   border-radius: 4px;
-}
- 
- .btnActions button:hover {
-   background-color: #2980b9;
 }
 
-.comment p,
-.topBetween p {
-  margin: 0;
-  font-size: 0.9em;
-  line-height: 1.4;
-}
-
-/* Style the message text */
-.comment > div {
-  margin-bottom: 0.5em;
-}
-
-/* Style the parent message */
-.comment > p {
-  font-style: italic;
-  color: #555;
-}
+/* No Comments */
 
 .ncContainer {
    display: flex;
@@ -123,4 +154,119 @@
    display: flex;
    flex-direction: column;
    align-items: center;
+}
+
+@media (min-width: 450px) and (max-width: 660px) {
+   .sticky {
+      padding: 1.5em 2.25em 0.5em; 
+   }
+
+   .commentsContainer {
+      padding: 0.375em 2.25em;
+   }
+
+   .commentContainer {
+      padding: 1.15em;
+      margin-bottom: 0.4em;
+   }
+
+   .content {
+      font-size: 0.8em;
+   }
+
+   .profile p {
+      font-size: 1.1em;
+   }
+}
+
+@media (min-width: 660px) and (max-width: 850px) {
+   .sticky {
+      padding: 1.625em 4em 0.75em; 
+   }
+
+   .commentsContainer {
+      padding: 0.5em 4em;
+   }
+
+   .commentContainer {
+      padding: 1.2em;
+      margin-bottom: 0.45em;
+   }
+
+   .content {
+      font-size: 0.9em;
+   }
+
+   .profile p {
+      font-size: 1.2em;
+   }
+}
+
+@media (min-width: 850px) and (max-width: 1250px) {
+   .sticky {
+      padding: 1.75em 5.5em 0.875em; 
+   }
+
+   .commentsContainer {
+      padding: 0.625em 5.5em 0.5em;
+   }
+
+   .commentContainer {
+      padding: 1.25em;
+      margin-bottom: 0.5em;
+   }
+
+   .content {
+      font-size: 1em;
+   }
+
+   .profile p {
+      font-size: 1.3em;
+   }
+}
+
+@media (min-width: 1250px) and (max-width: 1500px) {
+   .sticky {
+      padding: 2em 7.75em 1em; 
+   }
+
+   .commentsContainer {
+      padding: 0.75em 7.75em 0.5em;
+   }
+
+   .commentContainer {
+      padding: 1.375em;
+      margin-bottom: 0.625em;
+   }
+
+   .content {
+      font-size: 1.1em;
+   }
+
+   .profile p {
+      font-size: 1.4em;
+   }
+}
+
+@media (min-width: 1500px) {
+   .sticky {
+      padding: 2.25em 11em 1.25em; 
+   }
+
+   .commentsContainer {
+      padding: 1em 11em 0.75em;
+   }
+
+   .commentContainer {
+      padding: 1.5em;
+      margin-bottom: 0.75em;
+   }
+
+   .content {
+      font-size: 1.2em;
+   }
+
+   .profile p {
+      font-size: 1.5em;
+   }
 }

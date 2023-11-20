@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import emailjs from '@emailjs/browser';
 import nextConfig from '../../../next.config';
 import styles from './contact.module.css';
@@ -7,7 +7,6 @@ import styles from './contact.module.css';
 const { EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, EMAILJS_PUBLIC_KEY } = nextConfig.publicRuntimeConfig;
 
 const ContactPage = () => {
-   const formRef = useRef();
    const [form, setForm] = useState({ name: '', email: '', message: '' })
    const [loading, setLoading] = useState(false);
 
@@ -45,7 +44,7 @@ const ContactPage = () => {
   return (
    <div className={styles.container}>
       <h1 className={styles.header}>Get in touch.</h1>
-      <form className={styles.form} ref={formRef} onSubmit={handleSubmit}>
+      <form className={styles.form} onSubmit={handleSubmit}>
          <label className={styles.inColumn}>
             <span className={styles.textContainer}>Your Name</span>
             <input type="text" className={styles.inputContainer} 

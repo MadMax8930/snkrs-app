@@ -5,7 +5,7 @@
    cursor: pointer;
    transition: background-color 0.3s, color 0.3s;
    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-   background-color: #464655;
+   background-color: #525257;
 }
 
 .btn:disabled {

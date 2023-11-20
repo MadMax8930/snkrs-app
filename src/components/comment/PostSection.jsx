@@ -1,12 +1,12 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import useCommentCrud from '@/hooks/useCommentCrud';
-import { Button } from '@/components';
-import { faReply, faEdit } from '@fortawesome/free-solid-svg-icons';
+import { Button, SneakerInfo } from '@/components';
+import { faReply, faCancel } from '@fortawesome/free-solid-svg-icons';
 import { toast } from 'react-hot-toast';
 import styles from './comment.module.css';
 
-const PostSection = ({ forSneakerId, mutate, editingComment, setEditingComment }) => {
+const PostSection = ({ forSneakerId, sneaker, mutate, editingComment, setEditingComment }) => {
    const { addUserComment, updateUserComment } = useCommentCrud(forSneakerId, editingComment?._id);
 
    const [messageBody, setMessageBody] = useState('');
@@ -44,13 +44,13 @@ const PostSection = ({ forSneakerId, mutate, editingComment, setEditingComment }
 
   return (
     <div className={styles.sticky}>
+      <SneakerInfo sneaker={sneaker}/> 
       <div className={styles.postContainer}>
          <input value={messageBody} onChange={(e) => setMessageBody(e.target.value)}/>
          <div className={styles.btnActions}>
-            <Button action={handlePost} icon={faReply} text={editingComment ? 'Update comment' : 'Post comment'} hover='hover:text-green-300' />
-            {/* <Button action={handleUpdate} icon={faEdit} text="Update comment" hover='hover:text-blue-200' /> */}
+            <Button action={handlePost} icon={faReply} text={editingComment ? 'Update comment' : 'Post comment'} hover='hover:bg-green-500' />
             {editingComment && (
-               <Button action={() => setEditingComment(null)} icon={faEdit} text="Cancel edit" hover='hover:text-red-300' />
+               <Button action={() => setEditingComment(null)} icon={faCancel} text="Cancel edit" hover='hover:bg-red-500' />
             )}
          </div>
       </div>

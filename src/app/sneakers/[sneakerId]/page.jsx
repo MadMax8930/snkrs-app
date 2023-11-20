@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import useSneaker from '@/hooks/useSneaker';
 import useCommentsForSneaker from '@/hooks/useCommentsForSneaker';
-import { LoaderLayer, NotFound, SneakerInfo, PostSection, CommentSection } from '@/components';
+import { Loader, LoaderLayer, NotFound, PostSection, CommentSection } from '@/components';
 
 const SneakerIdPage = () => {
    const { sneakerId } = useParams()
@@ -26,10 +26,9 @@ const SneakerIdPage = () => {
     <>
       {fetchedSneaker ? (
          <div> 
-            <SneakerInfo 
-               sneaker={fetchedSneaker} />
             <PostSection 
                forSneakerId={sneakerId} 
+               sneaker={fetchedSneaker} 
                mutate={mutateComments} 
                editingComment={editingComment} 
                setEditingComment={setEditingComment} />
@@ -40,7 +39,7 @@ const SneakerIdPage = () => {
                onEdit={handleEdit} 
                forSneakerId={sneakerId} />    
          </div>) 
-      : <Loader/>}
+      : <Loader />}
     </>
   )
 }

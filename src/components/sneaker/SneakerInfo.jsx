@@ -10,6 +10,12 @@ const SneakerInfo = ({ sneaker }) => {
          <p>{sneaker.model}</p>
          <p>{JSON.stringify(sneaker.copping)}</p>
       </div>
+      <div className={styles.info}>
+         <p>{sneaker._id}</p>
+         <p>{sneaker.brand}</p>
+         <p>{sneaker.model}</p>
+         <p>{JSON.stringify(sneaker.copping)}</p>
+      </div>
     </div>
   )
 }

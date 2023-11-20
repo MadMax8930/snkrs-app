@@ -30,7 +30,7 @@ const CommentCard = ({ comment, mutate, onEdit, forSneakerId, forCommentId }) =>
          <div className={styles.topBetween}>
             <div className={styles.profile}>
                <img src={comment.user.profilePic} alt="Profile Picture" />
-               <p className={styles.username}>{comment.user.username}</p>
+               <p>{comment.user.username}</p>
             </div>
             <p className={styles.date}>{formatDate(comment.createdAt)}</p>
          </div>
@@ -39,8 +39,8 @@ const CommentCard = ({ comment, mutate, onEdit, forSneakerId, forCommentId }) =>
 
 
          <div className={styles.btnActions}>
-            <Button action={() => handleEdit(comment._id)} icon={faEdit} text="Edit comment" hover='hover:text-blue-200' />
-            <Button action={() => handleDelete(comment._id)} icon={faTrash} text="Delete comment" hover='hover:text-yellow-200' />
+            <Button action={() => handleEdit(comment._id)} icon={faEdit} text="Edit comment" hover='hover:bg-blue-400' />
+            <Button action={() => handleDelete(comment._id)} icon={faTrash} text="Delete comment" hover='hover:bg-red-400' />
          </div>
 
          {comment.parentMessage && (
