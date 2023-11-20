@@ -35,6 +35,7 @@ app.get('/profile/sneakers-filter', requireAuth, sneakersController.filterUserSn
 
 /* COMMENTS */
 app.get('/sneakers/:sneakerId/comments', commentsController.getAllCommentsForSneaker);
+app.get('/sneakers/:sneakerId/comments/:commentId', commentsController.getCommentByIdForSneaker);
 app.get('/profile/sneakers-comments', requireAuth, commentsController.getAllUserComments);
 app.get('/profile/sneakers/:sneakerId/comments/:commentId', requireAuth, commentsController.getUserComment);
 app.post('/profile/sneakers/:sneakerId/comments', requireAuth, commentsController.addUserComment);

@@ -10,7 +10,9 @@ const SneakerIdPage = () => {
    const { data: fetchedSneaker, isLoading: loadSneaker, error: errorSneaker } = useSneaker(sneakerId);
    const { data: fetchedComments, isLoading: loadComments, mutate: mutateComments } = useCommentsForSneaker(sneakerId);
 
+   const [replyingComment, setReplyingComment] = useState(null);
    const [editingComment, setEditingComment] = useState(null);
+   const handleReply = (comm) => setReplyingComment(comm);
    const handleEdit = (comm) => setEditingComment(comm);
 
    useEffect(() => {
@@ -30,13 +32,16 @@ const SneakerIdPage = () => {
                forSneakerId={sneakerId} 
                sneaker={fetchedSneaker} 
                mutate={mutateComments} 
+               replyingComment={replyingComment}
+               setReplyingComment={setReplyingComment}
                editingComment={editingComment} 
                setEditingComment={setEditingComment} />
             <CommentSection 
                comments={fetchedComments} 
                isLoading={loadComments} 
                mutate={mutateComments} 
-               onEdit={handleEdit} 
+               onReply={handleReply}
+               onEdit={handleEdit}
                forSneakerId={sneakerId} />    
          </div>) 
       : <Loader />}

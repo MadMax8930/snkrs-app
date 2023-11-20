@@ -2,42 +2,63 @@
 import React, { useState, useEffect } from 'react';
 import useCommentCrud from '@/hooks/useCommentCrud';
 import { Button, SneakerInfo } from '@/components';
-import { faReply, faCancel } from '@fortawesome/free-solid-svg-icons';
+import { faReply, faCancel, faEnvelope, faEdit } from '@fortawesome/free-solid-svg-icons';
 import { toast } from 'react-hot-toast';
 import styles from './comment.module.css';
 
-const PostSection = ({ forSneakerId, sneaker, mutate, editingComment, setEditingComment }) => {
-   const { addUserComment, updateUserComment } = useCommentCrud(forSneakerId, editingComment?._id);
+const PostSection = ({ forSneakerId, sneaker, mutate, replyingComment, setReplyingComment, editingComment, setEditingComment }) => {
+   const { addUserComment, updateUserComment } = useCommentCrud(forSneakerId, editingComment?._id );
+   const { addUserComment: replyUserComment } = useCommentCrud(forSneakerId, replyingComment?._id);
 
    const [messageBody, setMessageBody] = useState('');
    const [parentMessageId, setParentMessageId] = useState(null);
    
    useEffect(() => {
-      if (editingComment) {
+      if ((editingComment && replyingComment) 
+      || (!editingComment && !replyingComment)) {
+        setEditingComment(null);
+        setReplyingComment(null);
+      } else if (editingComment) {
         setMessageBody(editingComment.message);
         setParentMessageId(editingComment.parentMessageId);
+        setReplyingComment(null);
+      } else if (replyingComment) {
+        setMessageBody('');
+        setParentMessageId(replyingComment._id);
+        setEditingComment(null);
       }
-   }, [editingComment]);
+   }, [editingComment, replyingComment, setEditingComment, setReplyingComment]);
+    
 
-   const handlePost = async () => {
+   const handleSend = async () => {
       try {
-         const newCommentData = { 
+         if (!messageBody.trim()) {
+            toast.error('Comment cannot be empty');
+            return;
+         }
+         const commData = { 
             message: messageBody, 
             ...(parentMessageId && { parentMessageId }),
-         };
-         if (editingComment) {
-            await updateUserComment(newCommentData);
+         }
+         if (replyingComment) {
+            await replyUserComment(commData);
+            toast.success('Comment replied successfully');
+            setReplyingComment(null);
+         } else if (editingComment) {
+            await updateUserComment(commData);
             toast.success('Comment updated successfully');
             setEditingComment(null);
-          } else {
-            await addUserComment(newCommentData);
+         } else {
+            await addUserComment(commData);
             toast.success('Comment posted successfully');
-          }
+            setReplyingComment(null);
+            setEditingComment(null);
+         }
          setMessageBody('');
          setParentMessageId(null);
          mutate();
       } catch (error) {
-         console.error('Error posting the comment:', error);
+         console.error('Error sending the comment:', error);
          toast.error(`Error: ${error.message}`)
       }
    };
@@ -48,9 +69,25 @@ const PostSection = ({ forSneakerId, sneaker, mutate, editingComment, setEditing
       <div className={styles.postContainer}>
          <input value={messageBody} onChange={(e) => setMessageBody(e.target.value)}/>
          <div className={styles.btnActions}>
-            <Button action={handlePost} icon={faReply} text={editingComment ? 'Update comment' : 'Post comment'} hover='hover:bg-green-500' />
+
+            {(!editingComment && !replyingComment) && (
+               <>
+                 <Button action={handleSend} icon={faEnvelope} text='Post new comment' hover='hover:bg-yellow-500' />
+               </>
+            )}
+
             {editingComment && (
-               <Button action={() => setEditingComment(null)} icon={faCancel} text="Cancel edit" hover='hover:bg-red-500' />
+               <>
+                 <Button action={handleSend} icon={faEdit} text='Update your comment' hover='hover:bg-blue-500' />
+                 <Button action={() => setEditingComment(null)} icon={faCancel} text="Cancel edit" hover='hover:bg-red-500' />
+               </>
+            )}
+            
+            {replyingComment && (
+               <>
+                 <Button action={handleSend} icon={faReply} text='Reply to comment' hover='hover:bg-green-500' />
+                 <Button action={() => setReplyingComment(null)} icon={faCancel} text="Cancel reply" hover='hover:bg-red-500' />
+               </>
             )}
          </div>
       </div>
