@@ -16,7 +16,7 @@ const PostSection = ({ forSneakerId, sneaker, mutate, replyingComment, setReplyi
    const { addUserComment: replyUserComment } = useCommentCrud(forSneakerId, replyingComment?._id);
    
    useEffect(() => {
-     if (replyingComment) {
+     if (replyingComment) {   
         setEditingComment(null);
         setParentMessageId(replyingComment._id);
         setMessageBody('');
@@ -30,6 +30,14 @@ const PostSection = ({ forSneakerId, sneaker, mutate, replyingComment, setReplyi
          setMessageBody(editingComment.message);
       }
    }, [editingComment, setReplyingComment]);
+
+   const cancelSend = () => {
+      if (editingComment) {
+         setEditingComment(null);
+      } else if (replyingComment) {
+         setReplyingComment(null);
+      }
+   }
     
 
    const handleSend = async () => {
@@ -75,14 +83,14 @@ const PostSection = ({ forSneakerId, sneaker, mutate, replyingComment, setReplyi
             {editingComment && (
                <>
                  <Button action={handleSend} icon={faEdit} text='Update your comment' hover='hover:bg-blue-500' />
-                 <Button action={() => setEditingComment(null)} icon={faCancel} text="Cancel edit" hover='hover:bg-red-500' />
+                 <Button action={cancelSend} icon={faCancel} text="Cancel edit" hover='hover:bg-red-500' />
                </>
             )}
 
             {replyingComment && (
                <>
                  <Button action={handleSend} icon={faReply} text='Reply to comment' hover='hover:bg-green-500' />
-                 <Button action={() => setReplyingComment(null)} icon={faCancel} text="Cancel reply" hover='hover:bg-red-500' />
+                 <Button action={cancelSend} icon={faCancel} text="Cancel reply" hover='hover:bg-red-500' />
                </>
             )}
 

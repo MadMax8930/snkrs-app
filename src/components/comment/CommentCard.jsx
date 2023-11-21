@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from 'react';
+import React from 'react';
 import useCommentCrud from '@/hooks/useCommentCrud';
 import { Button } from '@/components';
 import { faEdit, faReply, faTrash } from '@fortawesome/free-solid-svg-icons';

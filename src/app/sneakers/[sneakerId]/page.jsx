@@ -1,17 +1,27 @@
 "use client";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { UserContext } from '@/context/UserContext';
+import useUserProfile from '@/hooks/useUserProfile';
+
 import { useParams } from 'next/navigation';
 import useSneaker from '@/hooks/useSneaker';
 import useCommentsForSneaker from '@/hooks/useCommentsForSneaker';
 import { Loader, LoaderLayer, NotFound, PostSection, CommentSection } from '@/components';
 
 const SneakerIdPage = () => {
+   const { user, setUser } = useContext(UserContext);
+   const { data: profileData } = useUserProfile();
+   useEffect(() => {
+      if (profileData) setUser(profileData);
+   }, [profileData, setUser]);
+
    const { sneakerId } = useParams()
    const { data: fetchedSneaker, isLoading: loadSneaker, error: errorSneaker } = useSneaker(sneakerId);
    const { data: fetchedComments, isLoading: loadComments, mutate: mutateComments } = useCommentsForSneaker(sneakerId);
 
    const [replyingComment, setReplyingComment] = useState(null);
    const [editingComment, setEditingComment] = useState(null);
+
    const handleReply = (comm) => setReplyingComment(comm);
    const handleEdit = (comm) => setEditingComment(comm);
 
@@ -35,14 +45,16 @@ const SneakerIdPage = () => {
                replyingComment={replyingComment}
                setReplyingComment={setReplyingComment}
                editingComment={editingComment} 
-               setEditingComment={setEditingComment} />
+               setEditingComment={setEditingComment}
+               authenticatedUser={user?._id} />
             <CommentSection 
                comments={fetchedComments} 
                isLoading={loadComments} 
                mutate={mutateComments} 
                onReply={handleReply}
                onEdit={handleEdit}
-               forSneakerId={sneakerId} />    
+               forSneakerId={sneakerId}
+               authenticatedUser={user?._id} />    
          </div>) 
       : <Loader />}
     </>
