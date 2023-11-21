@@ -1,8 +1,12 @@
 import useSWR from 'swr';
 import fetcherWithCookie from './fetcherWithCookie';
+import { useCookies } from 'react-cookie';
 
 const useUserProfile = () => {
-   const { data, error, isLoading, mutate } = useSWR('/profile', fetcherWithCookie);
+   const [cookies] = useCookies(['token']);
+
+   const { data, error, isLoading, mutate } = useSWR(
+       cookies.token ? '/profile' : null, fetcherWithCookie);
 
    return { data, error, isLoading, mutate };
 };

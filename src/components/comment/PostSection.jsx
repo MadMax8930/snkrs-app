@@ -63,7 +63,7 @@ const PostSection = ({ forSneakerId, sneaker, mutate, replyingComment, setReplyi
 
   return (
     <div className={styles.sticky}>
-      <SneakerInfo sneaker={sneaker}/>
+      <SneakerInfo sneaker={sneaker} />
       <p className={styles.infoContainer}>{btnAction} {selectedCommentId}</p>
       <div className={styles.postContainer}>
          <input className={styles.postContainerInput} value={messageBody} onChange={(e) => setMessageBody(e.target.value)}/>

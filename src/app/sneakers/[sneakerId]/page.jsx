@@ -1,21 +1,15 @@
 "use client";
 import React, { useState, useEffect, useContext } from 'react';
 import { UserContext } from '@/context/UserContext';
-import useUserProfile from '@/hooks/useUserProfile';
-
+import { withUserFetch } from '@/guards/withUserFetch';
 import { useParams } from 'next/navigation';
 import useSneaker from '@/hooks/useSneaker';
 import useCommentsForSneaker from '@/hooks/useCommentsForSneaker';
-import { Loader, LoaderLayer, NotFound, PostSection, CommentSection } from '@/components';
+import { Navbar, LoaderLayer, NotFound, PostSection, CommentSection } from '@/components';
 
 const SneakerIdPage = () => {
    // identify user
-   const { user, setUser } = useContext(UserContext);
-   const { data: profileData } = useUserProfile();
-
-   useEffect(() => {
-      if (profileData) setUser(profileData);
-   }, [profileData, setUser]);
+   const { user } = useContext(UserContext);
 
    // hooks
    const { sneakerId } = useParams()
@@ -56,16 +50,18 @@ const SneakerIdPage = () => {
       console.log('comments for the shoe:', { fetchedComments });
    }, [sneakerId, fetchedSneaker, fetchedComments])
 
-   if (loadSneaker || loadComments) { return <LoaderLayer />; }
    if (errorSneaker || !sneakerId) { return <NotFound />; }
+   if (loadSneaker || loadComments) { return <LoaderLayer />; }
 
   return (
     <>
-      {fetchedSneaker ? (
-         <div> 
+      {fetchedSneaker && fetchedComments ? (
+         <> 
+         <Navbar />
+         <div className='pt-[4.5rem]'> 
             <PostSection 
                forSneakerId={sneakerId} 
-               sneaker={fetchedSneaker} 
+               sneaker={fetchedSneaker}
                mutate={mutateComments} 
                replyingComment={replyingComment}
                setReplyingComment={setReplyingComment}
@@ -95,10 +91,11 @@ const SneakerIdPage = () => {
                   selectedCommentId,
                   btnAction,
                }} />    
-         </div>) 
-      : <Loader />}
+         </div>
+         </>) 
+      : <LoaderLayer />}
     </>
   )
 }
 
-export default SneakerIdPage
+export default withUserFetch(SneakerIdPage)
