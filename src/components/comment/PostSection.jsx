@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import useCommentCrud from '@/hooks/useCommentCrud';
 import { Button, SneakerInfo } from '@/components';
 import { faReply, faCancel, faEnvelope, faEdit, faStar } from '@fortawesome/free-solid-svg-icons';
@@ -7,11 +7,9 @@ import { useRouter } from 'next/navigation';
 import { toast } from 'react-hot-toast';
 import styles from './comment.module.css';
 
-const PostSection = ({ forSneakerId, sneaker, mutate, replyingComment, setReplyingComment, editingComment, setEditingComment, authenticatedUser }) => {
+const PostSection = ({ forSneakerId, sneaker, mutate, replyingComment, setReplyingComment, editingComment, setEditingComment, cancelSend, authenticatedUser, messageBody, setMessageBody, parentMessageId, setParentMessageId, btnSelection }) => {
    const router = useRouter();
-   const [messageBody, setMessageBody] = useState('');
-   const [parentMessageId, setParentMessageId] = useState(null);
-
+   const { btnAction, selectedCommentId, handleCommentClick } = btnSelection;
    const { addUserComment, updateUserComment } = useCommentCrud(forSneakerId, editingComment?._id );
    const { addUserComment: replyUserComment } = useCommentCrud(forSneakerId, replyingComment?._id);
    
@@ -19,7 +17,6 @@ const PostSection = ({ forSneakerId, sneaker, mutate, replyingComment, setReplyi
      if (replyingComment) {   
         setEditingComment(null);
         setParentMessageId(replyingComment._id);
-        setMessageBody('');
      }
    }, [replyingComment, setEditingComment]);
 
@@ -30,15 +27,6 @@ const PostSection = ({ forSneakerId, sneaker, mutate, replyingComment, setReplyi
          setMessageBody(editingComment.message);
       }
    }, [editingComment, setReplyingComment]);
-
-   const cancelSend = () => {
-      if (editingComment) {
-         setEditingComment(null);
-      } else if (replyingComment) {
-         setReplyingComment(null);
-      }
-   }
-    
 
    const handleSend = async () => {
       try {
@@ -53,32 +41,33 @@ const PostSection = ({ forSneakerId, sneaker, mutate, replyingComment, setReplyi
          if (replyingComment) {
             await replyUserComment(commData);
             toast.success('Comment replied successfully');
-            setReplyingComment(null);
          } else if (editingComment) {
             await updateUserComment(commData);
             toast.success('Comment updated successfully');
-            setEditingComment(null);
          } else {
+            setParentMessageId(null)
             await addUserComment(commData);
             toast.success('Comment posted successfully');
-            setReplyingComment(null);
-            setEditingComment(null);
          }
-         setMessageBody('');
+         handleCommentClick(null, null);
+         setEditingComment(null);
+         setReplyingComment(null);
          setParentMessageId(null);
+         setMessageBody('');
          mutate();
       } catch (error) {
          console.error('Error sending the comment:', error);
-         toast.error(`Error: You need an account`)
+         toast.error(`Error: You need to be logged in.`)
       }
    };
 
   return (
     <div className={styles.sticky}>
-      <SneakerInfo sneaker={sneaker}/> 
+      <SneakerInfo sneaker={sneaker}/>
+      <p className={styles.infoContainer}>{btnAction} {selectedCommentId}</p>
       <div className={styles.postContainer}>
-         <input value={messageBody} onChange={(e) => setMessageBody(e.target.value)}/>
-         <div className={styles.btnActions}>
+         <input className={styles.postContainerInput} value={messageBody} onChange={(e) => setMessageBody(e.target.value)}/>
+         <div className={styles.btnContainer}>
 
             {editingComment && (
                <>
@@ -96,8 +85,15 @@ const PostSection = ({ forSneakerId, sneaker, mutate, replyingComment, setReplyi
 
             {authenticatedUser ? (
                <>
-                 <Button action={handleSend} icon={faEnvelope} text='Post new comment' hover='hover:bg-yellow-500' /></>) : (<>
-                 <Button action={() => router.push('/auth?variant=register')} icon={faStar} text='Register/Login' hover='hover:bg-yellow-500' /> <Button icon={faEnvelope} disabled={true} />
+                  {(btnAction === 'reply' && selectedCommentId || btnAction === 'edit' && selectedCommentId) ? 
+                     <Button icon={faEnvelope} disabled={true} /> :
+                     <Button action={handleSend} icon={faEnvelope} text='Post new comment' hover='hover:bg-yellow-500' />
+                  }
+               </>
+            ) : (
+               <>
+                 <Button action={() => router.push('/auth?variant=register')} icon={faStar} text='Register/Login' hover='hover:bg-yellow-500' />
+                 <Button icon={faEnvelope} disabled={true} />
                </>
             )}
 

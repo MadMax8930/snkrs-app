@@ -1,18 +1,9 @@
-"use client";
-import React, { useState } from 'react';
+import React from 'react';
 import { Loader, NoComs, CommentCard } from '@/components';
 import styles from './comment.module.css';
 
-const CommentSection = ({ comments, isLoading, mutate, onReply, onEdit, forSneakerId, authenticatedUser }) => {
-   
-   const [selectedCommentId, setSelectedCommentId] = useState(null);
-   const [btnAction, setBtnAction] = useState(null);
+const CommentSection = ({ comments, isLoading, mutate, onReply, onEdit, forSneakerId, authenticatedUser, btnSelection }) => {
 
-   const handleCommentClick = (commId, action) => {
-      setSelectedCommentId(commId);
-      setBtnAction(action);
-   };
-   
    if (isLoading) { return <Loader />; }
    if (!comments || comments.length === 0) { return <NoComs />; }
 
@@ -28,11 +19,10 @@ const CommentSection = ({ comments, isLoading, mutate, onReply, onEdit, forSneak
              forCommentId={comment._id} 
              authenticatedUser={authenticatedUser}
              btnSelection={{
-               handleCommentClick,
-               isSelected: selectedCommentId === comment._id,
-               btnAction,
-             }}
-          />
+               handleCommentClick: btnSelection.handleCommentClick,
+               isSelected: btnSelection.selectedCommentId === comment._id,
+               btnAction: btnSelection.btnAction,
+             }} />
        ))}
     </div>
   )

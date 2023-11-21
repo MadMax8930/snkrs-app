@@ -26,7 +26,7 @@
    position: relative;
 }
 
-.postContainer input {
+.postContainerInput {
    color: #897e7e;
    font-weight: 500;
    width: 72.5%;
@@ -36,6 +36,18 @@
    border-radius: 4px;
    box-sizing: border-box;
    background-color: rgba(255, 255, 255, 0.524);
+}
+
+.infoContainer {
+   position: absolute;
+   right: 6%;
+   top: 60%;
+   text-transform: uppercase;
+   font-size: 0.5rem;
+   font-weight: 600;
+   color: salmon;
+   background-color: rgba(255, 255, 255, 0.775);
+   padding: 0.175rem 0.35rem;
 }
 
 /* Comment Section */
@@ -108,7 +120,7 @@
 
 /* General Buttons */
 
-.btnActions {
+.btnContainer {
    position: absolute;
    bottom: 2%;
    right: 0;
@@ -117,7 +129,7 @@
    padding: 0.75rem;
 }
 
-.btnActions button {
+.btnContainer button {
    font-size: 0.85em;
    padding: 0.5em;
    border-radius: 6px;
@@ -166,25 +178,30 @@
 }
 
 @media (max-width: 450px) {
-
-   .postContainer input {
+   .postContainerInput {
       padding: 0.3em;
    }
 
-   .btnActions {
+   .btnContainer {
       position: absolute;
       bottom: 4%;
       right: -2%;
    }
 
-   .btnActions button {
+   .btnContainer button {
       font-size: 0.725em;
    }
 }
 
+
 @media (min-width: 450px) and (max-width: 660px) {
    .sticky {
       padding: 1.5em 2.25em 0.5em; 
+   }
+
+   .infoContainer {
+      right: 6%;
+      top: 57%;
    }
 
    .commentsContainer {
@@ -206,7 +223,7 @@
 }
 
 @media (min-width: 550px) and (max-width: 660px) {
-   .postContainer input {
+   .postContainerInput {
       width: 75%;
    }
 }
@@ -234,15 +251,63 @@
    }
 }
 
+@media (min-width: 660px) and (max-width: 860px) {
+   .infoContainer {
+      right: 8.5%;
+      top: 55%;
+      font-size: 0.55rem;
+   }  
+}
+
+@media (min-width: 860px) and (max-width: 1000px) {
+   .infoContainer {
+      right: 9%;
+      top: 55%;
+      font-size: 0.575rem;
+   }  
+}
+
+@media (min-width: 1000px) and (max-width: 1100px) {
+   .infoContainer {
+      right: 8.5%;
+      top: 55%;
+      font-size: 0.575rem;
+   }  
+}
+
 @media (min-width: 660px) and (max-width: 720px) {
-   .postContainer input {
+   .postContainerInput {
       width: 77.5%;
    }
 }
 
 @media (min-width: 720px) and (max-width: 850px) {
-   .postContainer input {
+   .postContainerInput {
       width: 80%;
+   }
+}
+
+@media (min-width: 1100px) and (max-width: 1250px) {
+   .infoContainer {
+      right: 8%;
+      top: 55%;
+      font-size: 0.6rem;
+   }
+}
+
+@media (min-width: 1250px) and (max-width: 1500px) {
+   .infoContainer {
+      right: 9%;
+      top: 55%;
+      font-size: 0.6rem;
+   }
+}
+
+@media (min-width: 1500px) {
+   .infoContainer {
+      right: 11%;
+      top: 54%;
+      font-size: 0.625rem;
    }
 }
 
@@ -251,7 +316,7 @@
       padding: 1.75em 5.5em 0.875em; 
    }
 
-   .postContainer input {
+   .postContainerInput {
       width: 82.5%;
    }
 
@@ -278,7 +343,7 @@
       padding: 2em 7.75em 1em; 
    }
 
-   .postContainer input {
+   .postContainerInput {
       width: 87.5%;
    }
 
@@ -305,7 +370,7 @@
       padding: 2.25em 11em 1.25em; 
    }
 
-   .postContainer input {
+   .postContainerInput {
       width: 90%;
    }
 
