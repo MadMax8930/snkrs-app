@@ -2,32 +2,34 @@
 import React, { useState, useEffect } from 'react';
 import useCommentCrud from '@/hooks/useCommentCrud';
 import { Button, SneakerInfo } from '@/components';
-import { faReply, faCancel, faEnvelope, faEdit } from '@fortawesome/free-solid-svg-icons';
+import { faReply, faCancel, faEnvelope, faEdit, faStar } from '@fortawesome/free-solid-svg-icons';
+import { useRouter } from 'next/navigation';
 import { toast } from 'react-hot-toast';
 import styles from './comment.module.css';
 
-const PostSection = ({ forSneakerId, sneaker, mutate, replyingComment, setReplyingComment, editingComment, setEditingComment }) => {
-   const { addUserComment, updateUserComment } = useCommentCrud(forSneakerId, editingComment?._id );
-   const { addUserComment: replyUserComment } = useCommentCrud(forSneakerId, replyingComment?._id);
-
+const PostSection = ({ forSneakerId, sneaker, mutate, replyingComment, setReplyingComment, editingComment, setEditingComment, authenticatedUser }) => {
+   const router = useRouter();
    const [messageBody, setMessageBody] = useState('');
    const [parentMessageId, setParentMessageId] = useState(null);
+
+   const { addUserComment, updateUserComment } = useCommentCrud(forSneakerId, editingComment?._id );
+   const { addUserComment: replyUserComment } = useCommentCrud(forSneakerId, replyingComment?._id);
    
    useEffect(() => {
-      if ((editingComment && replyingComment) 
-      || (!editingComment && !replyingComment)) {
+     if (replyingComment) {
         setEditingComment(null);
-        setReplyingComment(null);
-      } else if (editingComment) {
-        setMessageBody(editingComment.message);
-        setParentMessageId(editingComment.parentMessageId);
-        setReplyingComment(null);
-      } else if (replyingComment) {
-        setMessageBody('');
         setParentMessageId(replyingComment._id);
-        setEditingComment(null);
+        setMessageBody('');
+     }
+   }, [replyingComment, setEditingComment]);
+
+   useEffect(() => {
+      if (editingComment) {
+         setReplyingComment(null);
+         setParentMessageId(editingComment.parentMessageId);
+         setMessageBody(editingComment.message);
       }
-   }, [editingComment, replyingComment, setEditingComment, setReplyingComment]);
+   }, [editingComment, setReplyingComment]);
     
 
    const handleSend = async () => {
@@ -59,7 +61,7 @@ const PostSection = ({ forSneakerId, sneaker, mutate, replyingComment, setReplyi
          mutate();
       } catch (error) {
          console.error('Error sending the comment:', error);
-         toast.error(`Error: ${error.message}`)
+         toast.error(`Error: You need an account`)
       }
    };
 
@@ -70,25 +72,27 @@ const PostSection = ({ forSneakerId, sneaker, mutate, replyingComment, setReplyi
          <input value={messageBody} onChange={(e) => setMessageBody(e.target.value)}/>
          <div className={styles.btnActions}>
 
-            {(!editingComment && !replyingComment) && (
-               <>
-                 <Button action={handleSend} icon={faEnvelope} text='Post new comment' hover='hover:bg-yellow-500' />
-               </>
-            )}
-
             {editingComment && (
                <>
                  <Button action={handleSend} icon={faEdit} text='Update your comment' hover='hover:bg-blue-500' />
                  <Button action={() => setEditingComment(null)} icon={faCancel} text="Cancel edit" hover='hover:bg-red-500' />
                </>
             )}
-            
+
             {replyingComment && (
                <>
                  <Button action={handleSend} icon={faReply} text='Reply to comment' hover='hover:bg-green-500' />
                  <Button action={() => setReplyingComment(null)} icon={faCancel} text="Cancel reply" hover='hover:bg-red-500' />
                </>
             )}
+
+            {authenticatedUser ? (
+               <>
+                 <Button action={handleSend} icon={faEnvelope} text='Post new comment' hover='hover:bg-yellow-500' /></>) : (<>
+                 <Button action={() => router.push('/auth?variant=register')} icon={faStar} text='Register/Login' hover='hover:bg-yellow-500' /> <Button icon={faEnvelope} disabled={true} />
+               </>
+            )}
+
          </div>
       </div>
     </div>

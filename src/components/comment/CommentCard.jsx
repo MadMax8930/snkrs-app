@@ -1,7 +1,5 @@
 "use client";
-import React, { useContext, useEffect } from 'react';
-import { UserContext } from '@/context/UserContext';
-import useUserProfile from '@/hooks/useUserProfile';
+import React, { useState } from 'react';
 import useCommentCrud from '@/hooks/useCommentCrud';
 import { Button } from '@/components';
 import { faEdit, faReply, faTrash } from '@fortawesome/free-solid-svg-icons';
@@ -9,18 +7,19 @@ import { toast } from 'react-hot-toast';
 import { formatDate } from './utils';
 import styles from './comment.module.css';
 
-const CommentCard = ({ comment, mutate, onReply, onEdit, forSneakerId, forCommentId }) => {
+const CommentCard = ({ comment, mutate, onReply, onEdit, forSneakerId, forCommentId, authenticatedUser, btnSelection }) => {
+   const { handleCommentClick, isSelected, btnAction } = btnSelection;
+
+   const handleReply = () => { 
+      onReply(comment);
+      handleCommentClick(comment._id, 'reply'); 
+   };
+   const handleEdit = () => { 
+      onEdit(comment);
+      handleCommentClick(comment._id, 'edit'); 
+   };
+
    const { deleteUserComment } = useCommentCrud(forSneakerId, forCommentId);
-
-   const { user, setUser } = useContext(UserContext);
-   const { data: profileData } = useUserProfile();
-   useEffect(() => {
-     if (profileData) setUser(profileData);
-   }, [profileData, setUser]);
-
-   const handleReply = () => { onReply(comment) };
-
-   const handleEdit = () => { onEdit(comment) };
 
    const handleDelete = async () => {
       try {
@@ -46,16 +45,32 @@ const CommentCard = ({ comment, mutate, onReply, onEdit, forSneakerId, forCommen
       <div className={styles.content}>{comment.message}</div>
 
       <div className={styles.btnActions}>
-         <Button action={() => handleReply(comment._id)} icon={faReply} text="Reply to comment" hover='hover:bg-green-400' />
-         {comment.user?._id === user?._id && (
-         <Button action={() => handleEdit(comment._id)} icon={faEdit} text="Edit your comment" hover='hover:bg-blue-400' />)}
-         {comment.user?._id === user?._id && (
-         <Button action={() => handleDelete(comment._id)} icon={faTrash} text="Delete your comment" hover='hover:bg-red-400' />)}
+         <Button 
+            action={() => handleReply(comment._id)}
+            icon={faReply}
+            text="Reply to comment" 
+            hover='hover:bg-green-400'
+            backgroundColor={isSelected && btnAction === 'reply' ? '#16a34a' : '#525257'}
+            disabled={authenticatedUser ? false : true} />
+         {comment.user?._id === authenticatedUser && (
+         <Button 
+            action={() => handleEdit(comment._id)} 
+            icon={faEdit} 
+            text="Edit your comment" 
+            hover='hover:bg-blue-400' 
+            backgroundColor={isSelected && btnAction === 'edit' ? '#eab308' : '#525257'} />)}
+         {comment.user?._id === authenticatedUser && (
+         <Button 
+            action={() => handleDelete(comment._id)} 
+            icon={faTrash} 
+            text="Delete your comment" 
+            hover='hover:bg-red-400' />)}
       </div>
 
-      {comment.parentMessage && (
-         <p className={styles.reply}>{comment.parentMessage}</p>
-      )}
+      <div className={styles.replyContainer}>
+         {comment.parentMessage && (
+         <p className={styles.reply}>{comment.parentMessage}</p>)}
+      </div>
     </div>
   )
 }
