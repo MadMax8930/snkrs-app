@@ -1,14 +1,23 @@
-import useSWR from 'swr';
 import fetcherWithCookieAndMethod from './fetcherWithCookieAndMethod';
 
 const useCommentCrud = (sneakerId, commentId) => {
   const endpoint = `/profile/sneakers/${sneakerId}/comments`;
   
-  const { data: allUserComments, error: allUserCommentsError, isLoading: allUserCommentsLoading, mutate: allUserCommentsMutation } = 
-  useSWR(['/profile/sneakers-comments', 'GET'], fetcherWithCookieAndMethod);
+  const getAllUserComments = async () => {
+    try {
+      await fetcherWithCookieAndMethod('/profile/sneakers-comments', { method: 'GET'});
+    } catch (error) {
+      throw error;
+    }
+  };
 
-  const { data: userComment, error: userCommentError, isLoading: userCommentLoading, mutate: userCommentMutation } = 
-  useSWR([`${endpoint}/${commentId}`, 'GET'], fetcherWithCookieAndMethod);
+  const getUserComment = async () => {
+    try {
+      await fetcherWithCookieAndMethod(`${endpoint}/${commentId}`, { method: 'GET'});
+    } catch (error) {
+      throw error;
+    }
+  };
 
   const addUserComment = async (newCommentData) => {
     try {
@@ -35,18 +44,12 @@ const useCommentCrud = (sneakerId, commentId) => {
   };
 
   return {
-   allUserComments,
-   allUserCommentsError,
-   allUserCommentsLoading,
-   allUserCommentsMutation,
-   userComment,
-   userCommentError,
-   userCommentLoading,
-   userCommentMutation,
-   addUserComment,
-   updateUserComment,
-   deleteUserComment,
- };
+    getAllUserComments,
+    getUserComment,
+    addUserComment,
+    updateUserComment,
+    deleteUserComment,
+  };
 };
 
 export default useCommentCrud

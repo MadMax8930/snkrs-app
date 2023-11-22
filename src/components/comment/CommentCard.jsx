@@ -1,6 +1,7 @@
 "use client";
-import React from 'react';
+import React, { useEffect } from 'react';
 import useCommentCrud from '@/hooks/useCommentCrud';
+import useCommentPub from '@/hooks/useCommentPub';
 import { Button } from '@/components';
 import { faEdit, faReply, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { toast } from 'react-hot-toast';
@@ -8,7 +9,10 @@ import { formatDate } from './utils';
 import styles from './comment.module.css';
 
 const CommentCard = ({ comment, mutate, onReply, onEdit, forSneakerId, forCommentId, authenticatedUser, btnSelection }) => {
+ 
    const { handleCommentClick, isSelected, btnAction } = btnSelection;
+   const { deleteUserComment } = useCommentCrud(forSneakerId, forCommentId);
+   const { data: parentComment } = comment.parentMessage ? useCommentPub(forSneakerId, comment.parentMessage) : { data: null };
 
    const handleReply = () => { 
       onReply(comment);
@@ -18,9 +22,6 @@ const CommentCard = ({ comment, mutate, onReply, onEdit, forSneakerId, forCommen
       onEdit(comment);
       handleCommentClick(comment._id, 'edit'); 
    };
-
-   const { deleteUserComment } = useCommentCrud(forSneakerId, forCommentId);
-
    const handleDelete = async () => {
       try {
          await deleteUserComment();
@@ -31,6 +32,13 @@ const CommentCard = ({ comment, mutate, onReply, onEdit, forSneakerId, forCommen
          toast.error(`Error: ${error.message}`) 
       }
    };
+
+   useEffect(() => {
+      console.log('id:', parentComment?._id);
+      console.log('message', parentComment?.message);
+      console.log('parentMessage', parentComment?.parentMessage);
+      console.log('parentMessage', parentComment);
+   }, [parentComment])
 
   return (
     <div className={styles.commentContainer}>
@@ -68,8 +76,12 @@ const CommentCard = ({ comment, mutate, onReply, onEdit, forSneakerId, forCommen
       </div>
 
       <div className={styles.replyContainer}>
-         {comment.parentMessage && (
-         <p className={styles.reply}>{comment.parentMessage}</p>)}
+      {comment.parentMessage && (<>
+         <p className={styles.reply}>Replied to this comment id: {comment.parentMessage}</p>
+         <p className={styles.reply}>Parent comment id: {parentComment?._id}</p>
+         <p className={styles.reply}>user: {parentComment?.user.username}</p>
+         <p className={styles.reply}>Parent message: {parentComment?.message}</p>
+         </>)}
       </div>
     </div>
   )

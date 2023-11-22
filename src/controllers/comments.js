@@ -16,7 +16,7 @@ const getCommentByIdForSneaker = async (req, res) => {
    const { commentId, sneakerId } = req.params;
  
    try {
-     const comment = await Comment.findOne({ _id: commentId, sneaker: sneakerId });
+     const comment = await Comment.findOne({ _id: commentId, sneaker: sneakerId }).populate({ path: 'user', select: 'username profilePic' });
      if (!comment) { return res.status(404).json({ error: 'Comment not found.' }); }
      return res.status(200).json(comment);
    } catch (error) {

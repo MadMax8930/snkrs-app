@@ -4,7 +4,7 @@ import { UserContext } from '@/context/UserContext';
 import { withUserFetch } from '@/guards/withUserFetch';
 import { useParams } from 'next/navigation';
 import useSneaker from '@/hooks/useSneaker';
-import useCommentsForSneaker from '@/hooks/useCommentsForSneaker';
+import useCommentsPub from '@/hooks/useCommentsPub';
 import { Navbar, LoaderLayer, NotFound, PostSection, CommentSection } from '@/components';
 
 const SneakerIdPage = () => {
@@ -14,7 +14,7 @@ const SneakerIdPage = () => {
    // hooks
    const { sneakerId } = useParams()
    const { data: fetchedSneaker, isLoading: loadSneaker, error: errorSneaker } = useSneaker(sneakerId);
-   const { data: fetchedComments, isLoading: loadComments, mutate: mutateComments } = useCommentsForSneaker(sneakerId);
+   const { data: fetchedComments, isLoading: loadComments, mutate: mutateComments } = useCommentsPub(sneakerId);
 
    // comment state
    const [messageBody, setMessageBody] = useState('');
