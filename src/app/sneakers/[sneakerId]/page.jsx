@@ -4,7 +4,7 @@ import { UserContext } from '@/context/UserContext';
 import { withUserFetch } from '@/guards/withUserFetch';
 import { useParams } from 'next/navigation';
 import useSneaker from '@/hooks/useSneaker';
-import useCommentsPub from '@/hooks/useCommentsPub';
+import { useCommentsPub } from '@/hooks/useCommentPublic';
 import { Navbar, LoaderLayer, NotFound, PostSection, CommentSection } from '@/components';
 
 const SneakerIdPage = () => {

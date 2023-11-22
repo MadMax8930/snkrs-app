@@ -4,14 +4,14 @@ import styles from './comment.module.css';
 
 const CommentSection = ({ comments, isLoading, mutate, onReply, onEdit, forSneakerId, authenticatedUser, btnSelection }) => {
 
-   if (isLoading) { return <Loader />; }
+   if (isLoading) { return <div className='layer pt-24'><Loader /></div>; }
    if (!comments || comments.length === 0) { return <NoComs />; }
 
   return (
     <div className={styles.commentsContainer}>
        {comments.map((comment) => (
           <CommentCard key={comment._id} 
-             comment={comment} 
+             comment={comment}
              mutate={mutate} 
              onReply={onReply}
              onEdit={onEdit}

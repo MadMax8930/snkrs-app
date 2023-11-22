@@ -68,21 +68,18 @@ const PostSection = ({ forSneakerId, sneaker, mutate, replyingComment, setReplyi
       <div className={styles.postContainer}>
          <input className={styles.postContainerInput} value={messageBody} onChange={(e) => setMessageBody(e.target.value)}/>
          <div className={styles.btnContainer}>
-
             {editingComment && (
                <>
                  <Button action={handleSend} icon={faEdit} text='Update your comment' hover='hover:bg-blue-500' />
                  <Button action={cancelSend} icon={faCancel} text="Cancel edit" hover='hover:bg-red-500' />
                </>
             )}
-
             {replyingComment && (
                <>
                  <Button action={handleSend} icon={faReply} text='Reply to comment' hover='hover:bg-green-500' />
                  <Button action={cancelSend} icon={faCancel} text="Cancel reply" hover='hover:bg-red-500' />
                </>
             )}
-
             {authenticatedUser ? (
                <>
                   {(btnAction === 'reply' && selectedCommentId || btnAction === 'edit' && selectedCommentId) ? 
@@ -96,7 +93,6 @@ const PostSection = ({ forSneakerId, sneaker, mutate, replyingComment, setReplyi
                  <Button icon={faEnvelope} disabled={true} />
                </>
             )}
-
          </div>
       </div>
     </div>

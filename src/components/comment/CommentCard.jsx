@@ -1,7 +1,7 @@
 "use client";
-import React, { useEffect } from 'react';
+import React from 'react';
 import useCommentCrud from '@/hooks/useCommentCrud';
-import useCommentPub from '@/hooks/useCommentPub';
+import { useCommentPub } from '@/hooks/useCommentPublic';
 import { Button } from '@/components';
 import { faEdit, faReply, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { toast } from 'react-hot-toast';
@@ -33,13 +33,6 @@ const CommentCard = ({ comment, mutate, onReply, onEdit, forSneakerId, forCommen
       }
    };
 
-   useEffect(() => {
-      console.log('id:', parentComment?._id);
-      console.log('message', parentComment?.message);
-      console.log('parentMessage', parentComment?.parentMessage);
-      console.log('parentMessage', parentComment);
-   }, [parentComment])
-
   return (
     <div className={styles.commentContainer}>
       <div className={styles.topBetween}>
@@ -49,9 +42,7 @@ const CommentCard = ({ comment, mutate, onReply, onEdit, forSneakerId, forCommen
          </div>
          <p className={styles.date}>{formatDate(comment.createdAt)}</p>
       </div>
-
       <div className={styles.content}>{comment.message}</div>
-
       <div className={styles.btnContainer}>
          <Button 
             action={() => handleReply(comment._id)}
@@ -74,15 +65,12 @@ const CommentCard = ({ comment, mutate, onReply, onEdit, forSneakerId, forCommen
             text="Delete your comment" 
             hover='hover:bg-red-400' />)}
       </div>
-
-      <div className={styles.replyContainer}>
-      {comment.parentMessage && (<>
-         <p className={styles.reply}>Replied to this comment id: {comment.parentMessage}</p>
-         <p className={styles.reply}>Parent comment id: {parentComment?._id}</p>
-         <p className={styles.reply}>user: {parentComment?.user.username}</p>
-         <p className={styles.reply}>Parent message: {parentComment?.message}</p>
-         </>)}
-      </div>
+      {comment.parentMessage && (
+         <div className={styles.replyContainer}>
+            <span className={styles.replyToUser}>Replied to: <strong>{parentComment?.user.username}</strong></span>
+            <p className={styles.replyToComm}>{parentComment?.message}</p>
+         </div>
+      )}
     </div>
   )
 }

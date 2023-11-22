@@ -8,4 +8,11 @@ const useCommentPub = (sneakerId, commentId) => {
    return { data, error, isLoading, mutate };
 };
 
-export default useCommentPub
+const useCommentsPub = (sneakerId) => {
+   const { data, error, isLoading, mutate } = useSWR(
+      `/sneakers/${sneakerId}/comments`, fetcher);
+
+   return { data, error, isLoading, mutate };
+};
+
+export { useCommentPub, useCommentsPub }
