@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect } from 'react';
 import useCommentCrud from '@/hooks/useCommentCrud';
-import { Button, SneakerInfo } from '@/components';
+import { Button } from '@/components';
 import { faReply, faCancel, faEnvelope, faEdit, faStar } from '@fortawesome/free-solid-svg-icons';
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-hot-toast';
@@ -63,10 +63,16 @@ const PostSection = ({ forSneakerId, sneaker, mutate, replyingComment, setReplyi
 
   return (
     <div className={styles.sticky}>
-      <SneakerInfo sneaker={sneaker} />
-      <p className={styles.infoContainer}>{btnAction} {selectedCommentId}</p>
+      <img className={styles.sneakerContainer} src={sneaker.img} alt="Sneaker Id Image" />
+      {(btnAction === 'reply' && selectedCommentId) 
+         ? <p className={styles.infoContainer}>{btnAction} {selectedCommentId}</p>
+         : (btnAction === 'edit' && selectedCommentId) 
+         ? <p className={styles.infoContainer} style={{ backgroundColor: '#eab308' }}>{btnAction} {selectedCommentId}</p> 
+         : null
+      }
       <div className={styles.postContainer}>
-         <input className={styles.postContainerInput} value={messageBody} onChange={(e) => setMessageBody(e.target.value)}/>
+         <input className={styles.postContainerInput} placeholder={`💬 ${sneaker.name} ${sneaker.model} - share your thoughts...`}
+                value={messageBody} onChange={(e) => setMessageBody(e.target.value)}/>
          <div className={styles.btnContainer}>
             {editingComment && (
                <>

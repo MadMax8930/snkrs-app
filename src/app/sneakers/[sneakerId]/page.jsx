@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { UserContext } from '@/context/UserContext';
 import { withUserFetch } from '@/guards/withUserFetch';
 import { useParams } from 'next/navigation';
@@ -8,27 +8,20 @@ import { useCommentsPub } from '@/hooks/useCommentPublic';
 import { Navbar, LoaderLayer, NotFound, PostSection, CommentSection } from '@/components';
 
 const SneakerIdPage = () => {
-   // identify user
    const { user } = useContext(UserContext);
 
-   // hooks
    const { sneakerId } = useParams()
    const { data: fetchedSneaker, isLoading: loadSneaker, error: errorSneaker } = useSneaker(sneakerId);
    const { data: fetchedComments, isLoading: loadComments, mutate: mutateComments } = useCommentsPub(sneakerId);
 
-   // comment state
    const [messageBody, setMessageBody] = useState('');
    const [parentMessageId, setParentMessageId] = useState(null);
-
-   // edit and reply
+   const [selectedCommentId, setSelectedCommentId] = useState(null);
+   const [btnAction, setBtnAction] = useState(null);
    const [replyingComment, setReplyingComment] = useState(null);
-   const [editingComment, setEditingComment] = useState(null); 
+   const [editingComment, setEditingComment] = useState(null);
    const handleReply = (comm) => setReplyingComment(comm);
    const handleEdit = (comm) => setEditingComment(comm);
-
-   // select comment
-   const [btnAction, setBtnAction] = useState(null);
-   const [selectedCommentId, setSelectedCommentId] = useState(null);
 
    const handleCommentClick = (commId, action) => {
       setSelectedCommentId(commId);
@@ -44,12 +37,6 @@ const SneakerIdPage = () => {
       setMessageBody('');
    };
 
-   useEffect(() => {
-      console.log('fetchedSneaker:', { fetchedSneaker });
-      console.log('sneakerId:', sneakerId);
-      console.log('comments for the shoe:', { fetchedComments });
-   }, [sneakerId, fetchedSneaker, fetchedComments])
-
    if (errorSneaker || !sneakerId) { return <NotFound />; }
    if (loadSneaker || loadComments) { return <LoaderLayer />; }
 
@@ -60,7 +47,7 @@ const SneakerIdPage = () => {
          <Navbar />
          <div className='pt-[4.5rem]'> 
             <PostSection 
-               forSneakerId={sneakerId} 
+               forSneakerId={sneakerId}
                sneaker={fetchedSneaker}
                mutate={mutateComments} 
                replyingComment={replyingComment}

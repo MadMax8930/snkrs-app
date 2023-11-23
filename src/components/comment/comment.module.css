@@ -2,28 +2,34 @@
 .sticky {
    position: sticky;
    top: 4.4rem;
-   padding: 1.5em 1.5em 0.5em; 
-   box-shadow: 0 0 15px rgba(21, 14, 07, 0.6);
+   padding: 0.5em 1.5em 0.5em;
    z-index: 10;
 }
 
 .sticky::before {
+   position: absolute;
+   width: 100%;
+   height: 100%;
+   top: 0;
+   left: 0;
+   background: linear-gradient(to bottom,#2d2b2a, transparent), url('/wall.png') no-repeat center center;
    content: "";
-   position:absolute;
-   left:0;
-   top:0;
-   width:100%;
-   height:100%;
-   filter: grayscale(0.8);
-   background: url('/post.png') no-repeat center center;
    background-size: cover;
 }
 
+.sneakerContainer {
+   position: absolute;
+   width: 40px;
+   bottom: 30%;
+   left: 8%;
+   z-index: 11;
+}
+
 .postContainer {
+   position: relative;
    padding: 0.5em;
    border: 2px solid #938d8d;
    background-color: #ccc;
-   position: relative;
 }
 
 .postContainerInput {
@@ -38,16 +44,29 @@
    background-color: rgba(255, 255, 255, 0.524);
 }
 
+.postContainerInput::placeholder {
+   font-size: 0.75em;
+   font-style: oblique;
+   color: #c1baba;
+}
+
+@media (min-width: 660px) {
+   .postContainerInput::placeholder {
+      font-size: 1em;
+   }
+}
+
 .infoContainer {
    position: absolute;
    right: 6%;
-   top: 60%;
+   bottom: -30%;
    text-transform: uppercase;
    font-size: 0.5rem;
    font-weight: 600;
-   color: salmon;
-   background-color: rgba(255, 255, 255, 0.775);
+   color: rgba(244, 241, 239, 0.923);
+   background-color: #16a34a;
    padding: 0.175rem 0.35rem;
+   z-index: 100;
 }
 
 /* Comment Section */
@@ -56,7 +75,7 @@
    display: flex;
    flex-direction: column;
    width: 100%;
-   padding: 0.375em 1.25em;
+   padding: 1.5em 1.25em 0.5em;
 }
 
 /* Comment Card */
@@ -214,16 +233,16 @@
 
 @media (min-width: 450px) and (max-width: 660px) {
    .sticky {
-      padding: 1.5em 2.25em 0.5em; 
+      padding: 0.5em 2.25em 0.5em; 
    }
 
    .infoContainer {
       right: 6%;
-      top: 57%;
+      bottom: -27%;
    }
 
    .commentsContainer {
-      padding: 0.375em 1.75em;
+      padding: 1.5em 1.75em 0.375em;
    }
 
    .commentContainer {
@@ -248,11 +267,11 @@
 
 @media (min-width: 660px) and (max-width: 850px) {
    .sticky {
-      padding: 1.625em 4em 0.75em; 
+      padding: 0.75em 4em 0.75em; 
    }
 
    .commentsContainer {
-      padding: 0.5em 4em;
+      padding: 1.625em 4em 0.5em;
    }
 
    .commentContainer {
@@ -269,26 +288,42 @@
    }
 }
 
-@media (min-width: 660px) and (max-width: 860px) {
+@media (min-width: 660px) and (max-width: 705px) {
    .infoContainer {
-      right: 8.5%;
-      top: 55%;
+      right: 9%;
+      bottom: -27%;
       font-size: 0.55rem;
    }  
 }
 
-@media (min-width: 860px) and (max-width: 1000px) {
+@media (min-width: 705px) and (max-width: 760px) {
    .infoContainer {
-      right: 9%;
-      top: 55%;
+      right: 8.5%;
+      bottom: -27%;
+      font-size: 0.55rem;
+   }  
+}
+
+@media (min-width: 760px) and (max-width: 850px) {
+   .infoContainer {
+      right: 7.5%;
+      bottom: -27%;
+      font-size: 0.55rem;
+   }  
+}
+
+@media (min-width: 850px) and (max-width: 1000px) {
+   .infoContainer {
+      right: 10%;
+      bottom: -27%;
       font-size: 0.575rem;
    }  
 }
 
 @media (min-width: 1000px) and (max-width: 1100px) {
    .infoContainer {
-      right: 8.5%;
-      top: 55%;
+      right: 8%;
+      bottom: -27%;
       font-size: 0.575rem;
    }  
 }
@@ -307,8 +342,8 @@
 
 @media (min-width: 1100px) and (max-width: 1250px) {
    .infoContainer {
-      right: 8%;
-      top: 55%;
+      right: 7.75%;
+      bottom: -27%;
       font-size: 0.6rem;
    }
 }
@@ -316,22 +351,30 @@
 @media (min-width: 1250px) and (max-width: 1500px) {
    .infoContainer {
       right: 9%;
-      top: 55%;
+      bottom: -27%;
       font-size: 0.6rem;
    }
 }
 
-@media (min-width: 1500px) {
+@media (min-width: 1500px) and (max-width: 1700px) {
    .infoContainer {
       right: 11%;
-      top: 54%;
+      bottom: -23%;
+      font-size: 0.625rem;
+   }
+}
+
+@media (min-width: 1700px) {
+   .infoContainer {
+      right: 9.875%;
+      bottom: -23%;
       font-size: 0.625rem;
    }
 }
 
 @media (min-width: 850px) and (max-width: 1250px) {
    .sticky {
-      padding: 1.75em 5.5em 0.875em; 
+      padding: 0.875em 5.5em 0.875em; 
    }
 
    .postContainerInput {
@@ -339,7 +382,7 @@
    }
 
    .commentsContainer {
-      padding: 0.625em 5.5em 0.5em;
+      padding: 1.75em 5.5em 0.5em;
    }
 
    .commentContainer {
@@ -358,7 +401,7 @@
 
 @media (min-width: 1250px) and (max-width: 1500px) {
    .sticky {
-      padding: 2em 7.75em 1em; 
+      padding: 1em 7.75em 1em; 
    }
 
    .postContainerInput {
@@ -366,7 +409,7 @@
    }
 
    .commentsContainer {
-      padding: 0.75em 7.75em 0.5em;
+      padding: 1.875em 7.75em 0.75em;
    }
 
    .commentContainer {
@@ -385,7 +428,7 @@
 
 @media (min-width: 1500px) {
    .sticky {
-      padding: 2.25em 11em 1.25em; 
+      padding: 1.5em 11em 1.5em; 
    }
 
    .postContainerInput {
@@ -393,7 +436,7 @@
    }
 
    .commentsContainer {
-      padding: 1em 11em 0.75em;
+      padding: 1.8em 11em 1.5em;
    }
 
    .commentContainer {
