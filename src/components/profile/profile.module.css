@@ -21,9 +21,9 @@
 }
 
 .imageSection {
-   max-width: 85px;
-   max-height: 85px;
-   border: 2px solid #ccc;
+   max-width: 100px;
+   max-height: 100px;
+   border: 2px solid #dcd5d5;
    overflow: hidden;
 }
 
@@ -47,19 +47,46 @@
    font-size: 0.8em;
    color: gray;
    border: 1px solid #ccc;
-   border-top-left-radius: 5px;
-   border-bottom-left-radius: 5px;
    outline: none;
 }
 
 .inputSection button {
    background-color: #464655;
-   padding: 0 0.25em;
    color: white;
    border: 1px solid #ccc;
+   cursor: pointer; 
+}
+
+.inputSection .leftBtn {
+   padding: 0 0.3em;
+   border-top-left-radius: 5px;
+   border-bottom-left-radius: 5px;
+}
+
+.inputSection .rightBtn {
+   padding: 0 0.25em;
    border-top-right-radius: 5px;
    border-bottom-right-radius: 5px;
-   cursor: pointer; 
+}
+
+.inputSection .rightBtn:disabled {
+   background-color: #545462;
+   cursor: not-allowed;
+   opacity: 0.5;
+}
+
+.nameDisplay {
+   font-size: 1rem;
+   line-height: 1.5rem;
+   font-weight: 700;
+   text-transform: capitalize;
+}
+
+@media (min-width: 768px) {
+   .nameDisplay {
+      font-size: 1.125rem;
+      line-height: 1.75rem;
+   }
 }
 
 @media (min-width: 380px) and (max-width: 660px) {
