@@ -1,63 +1,50 @@
 .container {
-   display: flex;
-   flex-direction: column;
    position: relative;
-   padding: 0.25em 1.25em 2.5em;
-   height: auto;
-}
-
-.container img {
-   position: absolute;
-   width: 60px;
-   top: 57.5%;
-   left: 17.5%;
-   border: 2px solid #ccc;
-   transform: translate(-50%, -50%);
-}
-
-.profileContainer {
    display: flex;
    flex-direction: column;
-   gap: 0.25rem;
-}
-
-.userInfoSection,
-.userInputSection {
-   flex: 1;
-   font-size: 0.65em;
-}
-
-.userInfoSection {
-   display: flex;
    align-items: center;
    justify-content: center;
+   background: url('/account.png') no-repeat bottom center;
+   background-size: cover;
+   gap: 0.25rem;
+   padding: 0.25em 1.25em 2.5em;
 }
 
-.userInfoSection p:nth-child(1) {
-   font-size: 1em;
+.gifAbsolute {
+   background-size: cover;
+   height: 2.75rem;
+   width: 4.25rem;
+   position: absolute;
+   right: 8.5%;
+   top: 82%;
+   transform: translateX(-50%)
 }
 
-.userInfoSection p:nth-child(2) {
-   font-size: 0.75em;
+.imageSection {
+   max-width: 85px;
+   max-height: 85px;
+   border: 2px solid #ccc;
+   overflow: hidden;
 }
 
-.userInputSection {
+.imageSection img {
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
+}
+
+.inputSection {
    display: flex;
-   flex-direction: column;
-   align-items: center;
-}
-
-.groupInputAndBtn {
-   display: flex;
+   justify-content: center;
    cursor: pointer;
    height: 25px;
    width: 125px;
 }
 
-.groupInputAndBtn input {
-   padding: 0.5em;
+.inputSection input {
+   flex: 1;
+   padding: 0.75em;
    font-size: 0.8em;
-   width: 100%;
    color: gray;
    border: 1px solid #ccc;
    border-top-left-radius: 5px;
@@ -65,110 +52,66 @@
    outline: none;
 }
 
-.groupInputAndBtn button {
-   padding: 0.5em;
-   width: max-content;
+.inputSection button {
    background-color: #464655;
+   padding: 0 0.25em;
    color: white;
    border: 1px solid #ccc;
    border-top-right-radius: 5px;
    border-bottom-right-radius: 5px;
-   border: none;
    cursor: pointer; 
 }
 
-@media (min-width: 460px) and (max-width: 660px) {
-   .container {
-      padding: 0.5em 1.25em 3em;
-   }
-
-   .container img {
-      width: 70px;
-      top: 47.5%;
-      left: 17.5%;
-   }
-
-   .userInfoSection,
-   .userInputSection {
-      font-size: 0.75em;
-   }    
-
-   .groupInputAndBtn {
-      height: 27.5px;
-      width: 180px;
+@media (min-width: 380px) and (max-width: 660px) {
+   .gifAbsolute {
+      height: 2.95rem;
+      width: 4.45rem;
+      right: 10.75%;
+      top: 81%;
    }
 }
 
 @media (min-width: 660px) and (max-width: 1000px) {
-   .container {
-      padding: 0.75em 1.25em 3.25em;
-   }
-
-   .container img {
-      width: 82.5px;
-      top: 52.5%;
-      left: 20%;
-   }
-
-   .userInfoSection,
-   .userInputSection {
-      font-size: 0.85em;
-   }    
-
-   .groupInputAndBtn {
-      height: 30px;
-      width: 220px;
+   .gifAbsolute {
+      height: 3.25rem;
+      width: 4.75rem;
+      right: 17.5%;
+      top: 79%;
    }
 }
 
-@media (min-width: 1000px) and (max-width: 1500px) {
-   .container {
-      padding: 1.25em 1.25em 3.65em;
+@media (min-width: 1000px) and (max-width: 1150px) {
+   .gifAbsolute {
+      height: 3.75rem;
+      width: 5.5rem;
+      right: 18.25%;
+      top: 77%;
    }
+}
 
-   .container img {
-      width: 100px;
-      top: 50%;
-      left: 17.5%;
+@media (min-width: 1150px) and (max-width: 1250px) {
+   .gifAbsolute {
+      height: 3.85rem;
+      width: 5.625rem;
+      right: 15.25%;
+      top: 75%;
    }
+}
 
-   .userInfoSection,
-   .userInputSection {
-      font-size: 1em;
-   }    
-
-   .groupInputAndBtn {
-      height: 35px;
-      width: 250px;
-   }
-
-   .profileContainer {
-      gap: 0.5rem;
+@media (min-width: 1250px) and (max-width: 1500px) {
+   .gifAbsolute {
+      height: 4rem;
+      width: 5.75rem;
+      right: 16.25%;
+      top: 74%;
    }
 }
 
 @media (min-width: 1500px) {
-   .container {
-      padding: 1.5em 1.25em 3.5em;
-   }
-
-   .container img {
-      width: 120px;
-      top: 45%;
-      left: 17.5%;
-   }
-
-   .userInfoSection,
-   .userInputSection {
-      font-size: 1.2em;
-   }    
-
-   .groupInputAndBtn {
-      height: 42.5px;
-      width: 280px;
-   }
-
-   .profileContainer {
-      gap: 0.75rem;
+   .gifAbsolute {
+      height: 4.5rem;
+      width: 6.5rem;
+      right: 17%;
+      top: 70%;
    }
 }

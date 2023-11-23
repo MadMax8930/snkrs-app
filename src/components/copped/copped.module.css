@@ -11,7 +11,7 @@
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: calc(var(--index) * 1.5);
   padding: calc(var(--index) * 2.75);
-  padding-top: 0;
+  padding-top: 0.375em;
   border-top: 1px transparent rgb(245, 242, 242);
   margin-top: 0.75rem;
   position: relative;
@@ -21,9 +21,9 @@
   content: "My Copped Sneakers";
   position: absolute;
   top: -22px;
-  left: 50%;
+  left: 34%;
   transform: translateX(-50%);
-  background-color: rgb(179, 23, 54);
+  background-color: #363332;
   color: white;
   padding: 0 10px;
   font-size: 10px;
@@ -161,11 +161,19 @@
    .listImage {
       --cursor-transform: translate3d(17.5%, 25%, 0);
    }
+
+   .list::before {
+      left: 31%;
+   }
 }
 
 @media (min-width: 400px) and (max-width: 460px) {
    .listImage {
       --cursor-transform: translate3d(20%, 25%, 0);
+   }
+
+   .list::before {
+      left: 27%;
    }
 }
 
@@ -173,11 +181,19 @@
    .listImage {
       --cursor-transform: translate3d(22.5%, 25%, 0);
    }
+
+   .list::before {
+      left: 25%;
+   }
 }
 
 @media (min-width: 550px) and (max-width: 660px) {
    .listImage {
       --cursor-transform: translate3d(25%, 25%, 0);
+   }
+
+   .list::before {
+      left: 22%;
    }
 }
 
@@ -185,11 +201,19 @@
    .listImage {
       --cursor-transform: translate3d(13.5%, 25%, 0);
    }
+
+   .list::before {
+      left: 25%;
+   }
 }
 
 @media (min-width: 720px) and (max-width: 820px) {
    .listImage {
       --cursor-transform: translate3d(15.5%, 25%, 0);
+   }
+
+   .list::before {
+      left: 23%;
    }
 }
 
@@ -197,11 +221,19 @@
    .listImage {
       --cursor-transform: translate3d(17.5%, 25%, 0);
    }
+
+   .list::before {
+      left: 23%;
+   }
 }
 
 @media (min-width: 875px) and (max-width: 1000px) {
    .listImage {
       --cursor-transform: translate3d(18.5%, 25%, 0);
+   }
+
+   .list::before {
+      left: 21%;
    }
 }
 
@@ -209,11 +241,45 @@
    .listImage {
       --cursor-transform: translate3d(15.5%, 25%, 0);
    }
+
+   .list::before {
+      left: 22%;
+   }
 }
 
 @media (min-width: 1150px) {
    .listImage {
       --cursor-transform: translate3d(20%, 25%, 0);
+   }
+}
+
+@media (min-width: 1150px) and (max-width: 1275px) {
+   .list::before {
+      left: 21%;
+   }
+}
+
+@media (min-width: 1275px) and (max-width: 1350px) {
+   .list::before {
+      left: 20%;
+   }
+}
+
+@media (min-width: 1350px) and (max-width: 1550px) {
+   .list::before {
+      left: 19%;
+   }
+}
+
+@media (min-width: 1550px) and (max-width: 1700px) {
+   .list::before {
+      left: 18%;
+   }
+}
+
+@media (min-width: 1700px) {
+   .list::before {
+      left: 17%;
    }
 }
 

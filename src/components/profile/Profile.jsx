@@ -29,36 +29,29 @@ const Profile = () => {
   
   return (
     <div className={styles.container}>
-      
-         <img src={user.profilePic || '/default.png'} alt="Profile Pic" 
-              onError={(e) => e.target.src = '/default.png'} />
-     
-      <div className={styles.profileContainer}>
-         
-         <div className={styles.userInfoSection}>
-            <div className='flex items-center gap-1 leading-4'>
-               <p className='text-base md:text-lg font-bold capitalize'>{user.username}</p>
-               <p className='text-xs md:text-base text-zinc-600 underline'>{user.email}</p>
-            </div>
-         </div>
+      <img className={styles.gifAbsolute} src="/color.gif" alt="Sneaker Gif" />
+      <p className='text-base md:text-lg font-bold capitalize'>{user.username}</p>
 
-         <div className={styles.userInputSection}>
-            <div className={styles.groupInputAndBtn}> 
-               <input
-                  type="text"
-                  placeholder="New Profile Picture URL"
-                  value={pictureState}
-                  onChange={(e) => setPictureState(e.target.value)}
-               />
-               <button onClick={updateProfilePic} disabled={loading}>
-                  {loading
-                     ? <FontAwesomeIcon icon={faSpinner} size="sm" />
-                     : <FontAwesomeIcon icon={faUpload} size="sm" /> 
-                  }
-               </button>
-            </div>
-         </div>
+      <div className={styles.imageSection}>
+         <img src={user.profilePic || '/default.png'} alt="Profile Pic" 
+            onError={(e) => e.target.src = '/default.png'} />
       </div>
+
+      <div className={styles.inputSection}> 
+         <input
+            type="text"
+            placeholder="New Profile Picture URL"
+            value={pictureState}
+            onChange={(e) => setPictureState(e.target.value)}
+         />
+         <button onClick={updateProfilePic} disabled={loading}>
+            {loading
+               ? <FontAwesomeIcon icon={faSpinner} size="sm" />
+               : <FontAwesomeIcon icon={faUpload} size="sm" /> 
+            }
+         </button>
+      </div>   
+      
     </div>
   )
 }

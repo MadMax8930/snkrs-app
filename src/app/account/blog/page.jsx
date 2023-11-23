@@ -2,7 +2,7 @@
 import React, { useContext } from 'react';
 import { UserContext } from '@/context/UserContext';
 import { withAuth } from '@/guards/withAuth';
- /* blog page + removeLogs/clearDB/Deploy/cert + notif esp + ssr loader + scrap script */
+ /* (4sm + prof) // blog page + scrap script + /ssr-loader/removeLogs/Deploy/ + notif-esp/cert */
 const BlogPage = () => {
    const { user } = useContext(UserContext);
 

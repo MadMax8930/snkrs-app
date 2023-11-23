@@ -37,7 +37,7 @@ const CommentCard = ({ comment, mutate, onReply, onEdit, forSneakerId, forCommen
     <div className={styles.commentContainer}>
       <div className={styles.topBetween}>
          <div className={styles.profile}>
-            <img src={comment.user.profilePic} alt="Profile Picture" />
+            <img src={comment.user.profilePic} loading='lazy' alt="Profile Picture" />
             <p>{comment.user.username}</p>
          </div>
          <p className={styles.date}>{formatDate(comment.createdAt)}</p>
