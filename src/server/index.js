@@ -56,9 +56,10 @@ app.delete('/profile/sneakers/:sneakerId/delete-comments', authorizeDev, require
 app.delete('/profile/remove-notifications/:sneakerId', authorizeDev, requireAuth, notificationsController.removeAllNotificationsForUserPerSneaker);
 app.delete('/profile/remove-notifications-for-all-sneakers', authorizeDev, requireAuth, notificationsController.removeAllNotificationsForUserForAllSneakers);
 
-mongoose.connect(process.env.MONGODB_URL, {
+mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
+  dbName: 'db',
 });
 
 mongoose.connection.on('error', console.error.bind(console, 'MongoDB connection error:'));
