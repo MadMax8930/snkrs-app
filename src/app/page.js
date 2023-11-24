@@ -6,7 +6,7 @@ import useSneakers from '@/hooks/useSneakers';
 import { withTokenCleanup } from '@/guards/withTokenCleanUp';
 import { fetchServerData as _serverData } from './ssr';
 
-function Home({ initialSneakersData, initialFilterData }) {
+function Home({ initialSneakersData }) {
    
    const containerWidth = { width: '-webkit-fill-available' };
   
@@ -47,5 +47,11 @@ function Home({ initialSneakersData, initialFilterData }) {
     </>
   )
 }
+
+Home.getInitialProps = async (ctx) => {
+   const { initialSneakersData } = await _serverData(ctx.req);
+ 
+   return { initialSneakersData };
+};
 
 export default withTokenCleanup(Home)

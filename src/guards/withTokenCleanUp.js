@@ -7,6 +7,7 @@ import { LoaderGif } from '@/components';
 export const withTokenCleanup = (WrappedComponent) => {
   const TokenCleanupHOC = (props) => {
      const [isLoading, setIsLoading] = useState(true);
+     const [cleanupDone, setCleanupDone] = useState(false);
      const [cookies, _, removeCookie] = useCookies(['token']);
 
      useEffect(() => {
@@ -19,17 +20,14 @@ export const withTokenCleanup = (WrappedComponent) => {
               const decodedToken = jwtDecode(token);
               if (decodedToken.exp && currentUNIXTimestamp > decodedToken.exp) {
                  removeCookie('token');
-                 setIsLoading(false);
-              } else {
-                 setIsLoading(false);
               }
-           } else { 
-              setIsLoading(false);
            }
+           setIsLoading(false);
+           setCleanupDone(true);
         };
         
-        cleanupToken();
-     }, [cookies, removeCookie]);
+        if (!cleanupDone) { cleanupToken(); }
+     }, [cookies, removeCookie, cleanupDone]);
 
      if (isLoading) { return <LoaderGif />; }
 
