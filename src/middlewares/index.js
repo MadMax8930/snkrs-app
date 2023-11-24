@@ -23,7 +23,7 @@ const setHeaderContentType = (req, res, next) => {
 
 const customMiddleware = [
    express.json(),
-   cors({ credentials: true, origin: process.env.EXPRESS_CONNECTION_TO_FRONTEND, optionsSuccessStatus: 204 }),
+   cors({ credentials: true, origin: "*" }),
    cookieParser(),
    logIncomingRequest, 
    logServerResponse, 
