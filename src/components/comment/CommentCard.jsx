@@ -12,7 +12,14 @@ const CommentCard = ({ comment, mutate, onReply, onEdit, forSneakerId, forCommen
  
    const { handleCommentClick, isSelected, btnAction } = btnSelection;
    const { deleteUserComment } = useCommentCrud(forSneakerId, forCommentId);
-   const { data: parentComment } = comment.parentMessage ? useCommentPub(forSneakerId, comment.parentMessage) : { data: null };
+
+   let commentIsTopLevel = { data: null };
+   if (comment.parentMessage) {
+     const hookResult = useCommentPub(forSneakerId, comment.parentMessage);
+     commentIsTopLevel = { ...hookResult };
+   }
+
+   const { data: parentComment } = commentIsTopLevel;
 
    const handleReply = () => { 
       onReply(comment);
