@@ -59,7 +59,6 @@ app.delete('/profile/remove-notifications-for-all-sneakers', authorizeDev, requi
 mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-  dbName: 'db',
 });
 
 mongoose.connection.on('error', console.error.bind(console, 'MongoDB connection error:'));
