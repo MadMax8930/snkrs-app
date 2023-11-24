@@ -12,7 +12,7 @@ import Filter from "./filter/Filter";
 import Search from "./search/Search";
 import Input from "./input/Input";
 import Profile from "./profile/Profile";
-import NotFound from "./notfound/NotFound";
+import NotFound from "./404/Notfound";
 import CoppedSnkrs from "./copped/CoppedSnkrs";
 import CoppedCard from "./copped/CoppedCard";
 import NoSnkrs from "./copped/NoSnkrs";
