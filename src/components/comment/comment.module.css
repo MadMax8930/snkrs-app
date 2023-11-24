@@ -15,14 +15,7 @@
    background: linear-gradient(to bottom,#2d2b2a, transparent), url('/wall.png') no-repeat center center;
    content: "";
    background-size: cover;
-}
-
-.sneakerContainer {
-   position: absolute;
-   width: 40px;
-   bottom: 30%;
-   left: 8%;
-   z-index: 11;
+   box-shadow: 0 3px 7px rgb(205, 201, 201);
 }
 
 .postContainer {
@@ -35,7 +28,7 @@
 .postContainerInput {
    color: #897e7e;
    font-weight: 500;
-   width: 72.5%;
+   width: 52.5%;
    border: none;
    outline: none;
    padding: 0.5em;
@@ -176,6 +169,11 @@
    cursor: pointer;
 }
 
+.sneakerContainer {
+   width: 38px;
+   margin-right: 0.5rem;
+}
+
 /* No Comments */
 
 .ncContainer {
@@ -257,11 +255,87 @@
    .profile p {
       font-size: 1.1em;
    }
+
+   .sneakerContainer {
+      width: 40px;
+   }
+}
+
+@media (min-width: 380px) and (max-width: 400px) {
+   .postContainerInput {
+      width: 57.5%;
+   }
+}
+
+@media (min-width: 400px) and (max-width: 420px) {
+   .postContainerInput {
+      width: 60%;
+   }
+}
+
+@media (min-width: 420px) and (max-width: 450px) {
+   .postContainerInput {
+      width: 61.5%;
+   }
+}
+
+@media (min-width: 450px) and (max-width: 475px) {
+   .postContainerInput {
+      width: 57.5%;
+   }
+}
+
+@media (min-width: 475px) and (max-width: 500px) {
+   .postContainerInput {
+      width: 60%;
+   }
+}
+
+@media (min-width: 500px) and (max-width: 550px) {
+   .postContainerInput {
+      width: 62.5%;
+   }
 }
 
 @media (min-width: 550px) and (max-width: 660px) {
    .postContainerInput {
+      width: 65%;
+   }
+}
+
+@media (min-width: 660px) and (max-width: 850px) {
+   .postContainerInput {
+      width: 67.5%;
+   }
+}
+
+@media (min-width: 850px) and (max-width: 1000px) {
+   .postContainerInput {
+      width: 70%;
+   }
+}
+
+@media (min-width: 1000px) and (max-width: 1200px) {
+   .postContainerInput {
+      width: 72.5%;
+   }
+}
+
+@media (min-width: 1200px) and (max-width: 1400px) {
+   .postContainerInput {
       width: 75%;
+   }
+}
+
+@media (min-width: 1400px) and (max-width: 1600px) {
+   .postContainerInput {
+      width: 80%;
+   }
+}
+
+@media (min-width: 1600px) {
+   .postContainerInput {
+      width: 82.5%;
    }
 }
 
@@ -285,6 +359,10 @@
 
    .profile p {
       font-size: 1.2em;
+   }
+
+   .sneakerContainer {
+      width: 44px;
    }
 }
 
@@ -317,7 +395,25 @@
       right: 10%;
       bottom: -27%;
       font-size: 0.575rem;
-   }  
+   }
+
+   .sneakerContainer {
+      width: 45px;
+      bottom: 25%;
+      left: -82%;
+   }
+}
+
+@media (min-width: 1000px) and (max-width: 1250px) {
+   .sneakerContainer {
+      width: 46px;
+   }
+}
+
+@media (min-width: 1250px) {
+   .sneakerContainer {
+      width: 47px;
+   }
 }
 
 @media (min-width: 1000px) and (max-width: 1100px) {
@@ -326,18 +422,6 @@
       bottom: -27%;
       font-size: 0.575rem;
    }  
-}
-
-@media (min-width: 660px) and (max-width: 720px) {
-   .postContainerInput {
-      width: 77.5%;
-   }
-}
-
-@media (min-width: 720px) and (max-width: 850px) {
-   .postContainerInput {
-      width: 80%;
-   }
 }
 
 @media (min-width: 1100px) and (max-width: 1250px) {
@@ -377,10 +461,6 @@
       padding: 0.875em 5.5em 0.875em; 
    }
 
-   .postContainerInput {
-      width: 82.5%;
-   }
-
    .commentsContainer {
       padding: 1.75em 5.5em 0.5em;
    }
@@ -404,10 +484,6 @@
       padding: 1em 7.75em 1em; 
    }
 
-   .postContainerInput {
-      width: 87.5%;
-   }
-
    .commentsContainer {
       padding: 1.875em 7.75em 0.75em;
    }
@@ -429,10 +505,6 @@
 @media (min-width: 1500px) {
    .sticky {
       padding: 1.5em 11em 1.5em; 
-   }
-
-   .postContainerInput {
-      width: 90%;
    }
 
    .commentsContainer {

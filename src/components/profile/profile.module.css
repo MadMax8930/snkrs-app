@@ -17,7 +17,15 @@
    position: absolute;
    right: 8.5%;
    top: 82%;
-   transform: translateX(-50%)
+   transform: translateX(-50%);
+   cursor: pointer;
+}
+
+.nameDisplay {
+   font-size: 1rem;
+   line-height: 1.5rem;
+   font-weight: 700;
+   text-transform: capitalize;
 }
 
 .imageSection {
@@ -75,13 +83,6 @@
    opacity: 0.5;
 }
 
-.nameDisplay {
-   font-size: 1rem;
-   line-height: 1.5rem;
-   font-weight: 700;
-   text-transform: capitalize;
-}
-
 @media (min-width: 768px) {
    .nameDisplay {
       font-size: 1.125rem;
@@ -89,11 +90,38 @@
    }
 }
 
-@media (min-width: 380px) and (max-width: 660px) {
+@media (min-width: 380px) and (max-width: 460px) {
    .gifAbsolute {
       height: 2.95rem;
       width: 4.45rem;
-      right: 10.75%;
+      right: 9.75%;
+      top: 81%;
+   }
+}
+
+@media (min-width: 460px) and (max-width: 550px) {
+   .gifAbsolute {
+      height: 2.95rem;
+      width: 4.45rem;
+      right: 10.25%;
+      top: 81%;
+   }
+}
+
+@media (min-width: 550px) and (max-width: 600px) {
+   .gifAbsolute {
+      height: 2.95rem;
+      width: 4.45rem;
+      right: 10%;
+      top: 81%;
+   }
+}
+
+@media (min-width: 600px) and (max-width: 660px) {
+   .gifAbsolute {
+      height: 2.95rem;
+      width: 4.45rem;
+      right: 11.5%;
       top: 81%;
    }
 }

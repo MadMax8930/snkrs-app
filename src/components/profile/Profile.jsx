@@ -1,4 +1,5 @@
 "use client";
+import Link from 'next/link';
 import axios from '../../../axios.config';
 import React, { useContext, useState } from 'react';
 import { UserContext } from '@/context/UserContext';
@@ -34,8 +35,9 @@ const Profile = () => {
   
   return (
     <div className={styles.container}>
-      <img className={styles.gifAbsolute} src="/color.gif" alt="Sneaker Gif" />
-
+      <Link href={'/account/blog'}>
+         <img className={styles.gifAbsolute} src="/color.gif" alt="Sneaker Gif" title="Blog page" />
+      </Link>
       <p className={styles.nameDisplay}>{user.username}</p>
 
       <div className={styles.imageSection}>

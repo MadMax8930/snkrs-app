@@ -63,17 +63,17 @@ const PostSection = ({ forSneakerId, sneaker, mutate, replyingComment, setReplyi
 
   return (
     <div className={styles.sticky}>
-      <img className={styles.sneakerContainer} src={sneaker.img} alt="Sneaker Id Image" />
       {(btnAction === 'reply' && selectedCommentId) 
-         ? <p className={styles.infoContainer}>{btnAction} {selectedCommentId}</p>
+         ? <p className={styles.infoContainer}>{btnAction} - {selectedCommentId}</p>
          : (btnAction === 'edit' && selectedCommentId) 
-         ? <p className={styles.infoContainer} style={{ backgroundColor: '#eab308' }}>{btnAction} {selectedCommentId}</p> 
+         ? <p className={styles.infoContainer} style={{ backgroundColor: '#eab308' }}>{btnAction} - {selectedCommentId}</p> 
          : null
       }
       <div className={styles.postContainer}>
-         <input className={styles.postContainerInput} placeholder={`💬 ${sneaker.name} ${sneaker.model} - share your thoughts...`}
+         <input className={styles.postContainerInput} placeholder={`💬  ${sneaker.name} - Share your thoughts...`}
                 value={messageBody} onChange={(e) => setMessageBody(e.target.value)}/>
          <div className={styles.btnContainer}>
+            <img className={styles.sneakerContainer} src={sneaker.img} alt="Sneaker Id Image" />
             {editingComment && (
                <>
                  <Button action={handleSend} icon={faEdit} text='Update your comment' hover='hover:bg-blue-500' />
