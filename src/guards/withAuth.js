@@ -17,6 +17,7 @@ export const withAuth = (WrappedComponent) => {
      useEffect(() => {
       if (profileData) setUser(profileData);
     }, [profileData, setUser]);
+    
      useEffect(() => {
       if (!cookies.token) {
         router.push('/auth?variant=register');

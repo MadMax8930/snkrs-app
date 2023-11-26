@@ -1,24 +1,25 @@
 "use client";
 import axios from '../../../axios.config';
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useContext } from 'react';
+import { UserContext } from '@/context/UserContext';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Input } from '@/components';
 import { useCookies } from 'react-cookie';
 import { toast } from 'react-hot-toast';
 import { withTokenCleanup } from '@/guards/withTokenCleanUp';
 import styles from './auth.module.css';
-import { withUserFetch } from '@/guards/withUserFetch';
 
 const AuthPage = () => {
    const router = useRouter();
    const searchParams = useSearchParams()
+   const { setUser } = useContext(UserContext);
 
    const [username, setUsername] = useState('');
    const [email, setEmail] = useState('');
    const [password, setPassword] = useState('');
    const [variant, setVariant] = useState('login');
 
-   const [_, setCookie] = useCookies(['token']);
+   const [cookies, setCookie] = useCookies(['token']);
 
    useEffect(() => {
       const urlParam = searchParams.get('variant');
@@ -42,6 +43,11 @@ const AuthPage = () => {
          const { token } = response.data;
          if (response.status === 200 && token) {
             setCookie('token', token, { path: '/' });
+            if (cookies.token) {
+               const profileResponse = await axios.get('/api/profile');
+               const userData = profileResponse.data;
+               setUser(userData); 
+            }
             router.push('/account');
             toast.success("Logged in successfully!");
          } else { throw new Error("Invalid email or password. Please try again."); }
@@ -86,4 +92,4 @@ const AuthPage = () => {
   )
 }
 
-export default withUserFetch(AuthPage)
+export default withTokenCleanup(AuthPage)
