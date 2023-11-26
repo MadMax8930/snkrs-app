@@ -1,5 +1,6 @@
 "use client";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { UserContext } from '@/context/UserContext';
 import { Filter, Search, Sneakers, LoaderLayer, Navbar, Footer } from '@/components';
 import useFilterSneakers from '@/hooks/useFilterSneakers';
 import useSneakers from '@/hooks/useSneakers';
@@ -16,6 +17,9 @@ function Home({ initialSneakersData }) {
    const { data: filteredSnkrs, isLoading: isLoadingFiltered } = useFilterSneakers(param1, param2, param3);
    const { data: sneakerDrops, isLoading: isLoadingPublic } = useSneakers();
    const [isHomeLoading, setIsHomeLoading] = useState(true);
+   const { user } = useContext(UserContext);
+
+   console.log("home-account", {user}, user._id);
 
    useEffect(() => {
       if (!isLoadingFiltered || !isLoadingPublic) { 

@@ -1,6 +1,7 @@
 "use client";
 import axios from '../../../axios.config';
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useContext  } from 'react';
+import { UserContext } from '@/context/UserContext';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Input } from '@/components';
 import { useCookies } from 'react-cookie';
@@ -18,6 +19,9 @@ const AuthPage = () => {
    const [variant, setVariant] = useState('login');
 
    const [_, setCookie] = useCookies(['token']);
+   const { user } = useContext(UserContext);
+
+   console.log("auth-account", {user}, user._id);
 
    useEffect(() => {
       const urlParam = searchParams.get('variant');
