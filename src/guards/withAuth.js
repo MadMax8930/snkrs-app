@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import { UserContext } from '@/context/UserContext';
 import { LoaderLayer } from '@/components';
 import { useCookies } from 'react-cookie';
+import useUserProfile from '@/hooks/useUserProfile';
 
 // Higher-order component (guard)
 export const withAuth = (WrappedComponent) => {
