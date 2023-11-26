@@ -9,7 +9,7 @@ import useUserProfile from '@/hooks/useUserProfile';
 export const withAuth = (WrappedComponent) => {
   const ComponentWithAuth = (props) => {
      const { user, setUser } = useContext(UserContext);
-     const { data: profileData, error: errorFetching, isLoading: isLoadingProfile } = useUserProfile();
+     const { data: profileData, isLoading: isLoadingProfile } = useUserProfile();
      const [cookies] = useCookies(['token']);
      const router = useRouter();
 
@@ -18,11 +18,11 @@ export const withAuth = (WrappedComponent) => {
      }, [profileData, setUser]);
 
      useEffect(() => {
-       if (!cookies.token || errorFetching) {
+       if (!cookies.token) {
          const timer = setTimeout(() => router.push('/auth?variant=register'), 1500);
          return () => clearTimeout(timer);
        }
-     }, [cookies.token, errorFetching, router]);
+     }, [cookies.token, router]);
 
      if (isLoadingProfile) return <LoaderLayer />;
 
