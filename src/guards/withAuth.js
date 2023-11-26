@@ -8,7 +8,7 @@ import useUserProfile from '@/hooks/useUserProfile';
 // Higher-order component (guard)
 export const withAuth = (WrappedComponent) => {
   const ComponentWithAuth = (props) => {
-     const { user, setUser } = useContext(UserContext);
+     const { setUser } = useContext(UserContext);
      const { data: profileData, error: errorFetching, isLoading: isLoadingProfile } = useUserProfile();
      const [cookies] = useCookies(['token']);
      const router = useRouter();
@@ -26,7 +26,7 @@ export const withAuth = (WrappedComponent) => {
 
      if (isLoadingProfile) return <LoaderLayer />;
 
-     return user && user._id ? <WrappedComponent {...props} /> : <LoaderLayer />;
+     return cookies.token ? <WrappedComponent {...props} /> : <LoaderLayer />;
   };
 
   ComponentWithAuth.displayName = `withAuth(${WrappedComponent.displayName || WrappedComponent.name || 'Component'})`;
