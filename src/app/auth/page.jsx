@@ -7,6 +7,7 @@ import { useCookies } from 'react-cookie';
 import { toast } from 'react-hot-toast';
 import { withTokenCleanup } from '@/guards/withTokenCleanUp';
 import styles from './auth.module.css';
+import { withUserFetch } from '@/guards/withUserFetch';
 
 const AuthPage = () => {
    const router = useRouter();
@@ -85,4 +86,4 @@ const AuthPage = () => {
   )
 }
 
-export default withTokenCleanup(AuthPage)
+export default withUserFetch(AuthPage)

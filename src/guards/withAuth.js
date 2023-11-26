@@ -4,7 +4,6 @@ import { useRouter } from 'next/navigation';
 import { UserContext } from '@/context/UserContext';
 import { LoaderLayer } from '@/components';
 import { useCookies } from 'react-cookie';
-import useUserProfile from '@/hooks/useUserProfile';
 
 // Higher-order component (guard)
 export const withAuth = (WrappedComponent) => {
@@ -17,16 +16,14 @@ export const withAuth = (WrappedComponent) => {
      useEffect(() => {
       if (profileData) setUser(profileData);
     }, [profileData, setUser]);
-
      useEffect(() => {
       if (!cookies.token) {
         router.push('/auth?variant=register');
         return;
       }
     }, [cookies.token, router]);
-    console.log('tok', cookies.token)
 
-     return <WrappedComponent {...props} />;
+     return user && user._id ? <WrappedComponent {...props} /> : <LoaderLayer />;
   };
 
   ComponentWithAuth.displayName = `withAuth(${WrappedComponent.displayName || WrappedComponent.name || 'Component'})`;
