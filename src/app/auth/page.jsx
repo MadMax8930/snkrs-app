@@ -12,7 +12,7 @@ import styles from './auth.module.css';
 const AuthPage = () => {
    const router = useRouter();
    const searchParams = useSearchParams()
-   const { user, setUser } = useContext(UserContext);
+   const { setUser } = useContext(UserContext);
 
    const [username, setUsername] = useState('');
    const [email, setEmail] = useState('');
@@ -25,8 +25,9 @@ const AuthPage = () => {
       const urlParam = searchParams.get('variant');
       if (urlParam === 'register' || urlParam === 'login') {
          setVariant(String(urlParam));
-      } else {
-         setVariant('login');
+      }
+      if (setVariant('login')) {
+         router.push('/auth');
       }
    }, [searchParams, router]);
    
