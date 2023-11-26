@@ -25,8 +25,8 @@ const AuthPage = () => {
       const urlParam = searchParams.get('variant');
       if (urlParam === 'register' || urlParam === 'login') {
          setVariant(String(urlParam));
-      }
-      if (setVariant('login')) {
+      } else {
+         setVariant('login');
          router.push('/auth');
       }
    }, [searchParams, router]);

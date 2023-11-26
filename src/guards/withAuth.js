@@ -15,17 +15,25 @@ export const withAuth = (WrappedComponent) => {
      const router = useRouter();
 
      useEffect(() => {
-      if (profileData) setUser(profileData);
-    }, [profileData, setUser]);
+         const fetchData = async () => {
+         const profileResponse = await axios.get('/api/profile');
+         const userData = profileResponse.data;
+         setUser(userData);
+
+         if (cookies.token) {
+            fetchData();
+         }
+      }
+    }, [cookies.token, setUser]);
 
     console.log("user login", user);
 
      useEffect(() => {
-      if (!cookies.token) {
+      if (!user._id) {
         router.push('/auth?variant=register');
         return;
       }
-    }, [cookies.token, router]);
+    }, [user._id, router]);
 
      return user && user._id ? <WrappedComponent {...props} /> : <LoaderLayer />;
   };
