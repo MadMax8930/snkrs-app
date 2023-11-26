@@ -20,17 +20,17 @@ export const withAuth = (WrappedComponent) => {
      }, [profileData, setUser]);
 
      useEffect(() => {
-       if (!cookies.token || errorFetching) {
+       if (!cookies.token) {
          const timer = setTimeout(() => router.push('/auth?variant=register'), 3500);
          return () => clearTimeout(timer);
        }
-     }, [cookies.token, errorFetching, router]);
+     }, [cookies.token, router]);
 
      if (isLoadingProfile) return <LoaderLayer />;
 
      console.log('User:', user);
 
-     return user && user._id ? <WrappedComponent {...props} /> : <LoaderLayer />;
+     return cookies.token ? <WrappedComponent {...props} /> : <LoaderLayer />;
   };
 
   ComponentWithAuth.displayName = `withAuth(${WrappedComponent.displayName || WrappedComponent.name || 'Component'})`;
