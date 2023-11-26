@@ -9,8 +9,8 @@ const BlogPage = () => {
    console.log("user-blog", {user}, user._id);
 
   return (
-    <div className='pt-20'>
-      Blog Page
+    <div className='pt-20 text-center'>
+      Blog Page (to be done)
     </div>
   )
 }

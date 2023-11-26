@@ -6,7 +6,7 @@ const useUserProfile = () => {
    const [cookies] = useCookies(['token']);
 
    const { data, error, isLoading, mutate } = useSWR(
-       cookies.token ? '/profile' : null, fetcherWithCookie);
+       cookies.token ? '/api/profile' : null, fetcherWithCookie);
 
    return { data, error, isLoading, mutate };
 };
