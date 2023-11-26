@@ -1,5 +1,5 @@
+import React, { useContext, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { useContext, useState, useEffect } from 'react';
 import { UserContext } from '@/context/UserContext';
 import { LoaderLayer } from '@/components';
 import { useCookies } from 'react-cookie';
@@ -12,14 +12,11 @@ export const withAuth = (WrappedComponent) => {
      const { data: profileData, error: errorFetching, isLoading: isLoadingProfile } = useUserProfile();
      const [cookies] = useCookies(['token']);
      const router = useRouter();
-     const [loading, setLoading] = useState(true);
 
      useEffect(() => {
        if (profileData) {
          setUser(profileData);
-         setLoading(false); // Set loading to false after user data is updated
        }
-       console.log('User1:', user);
      }, [profileData, setUser]);
 
      useEffect(() => {
@@ -29,7 +26,7 @@ export const withAuth = (WrappedComponent) => {
        }
      }, [cookies.token, errorFetching, router]);
 
-     if (isLoadingProfile || loading) return <LoaderLayer />;
+     if (isLoadingProfile) return <LoaderLayer />;
 
      console.log('User:', user);
 
