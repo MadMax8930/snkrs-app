@@ -9,6 +9,24 @@ const { startCronJob } = require('./notificationScheduler');
 const { customMiddleware } = require('../middlewares'); 
 app.use(customMiddleware);
 
+app.use((req, res, next) => {
+   // Set no-store for routes with sensitive or dynamic content
+   if (
+     req.path.startsWith('/api/profile') ||
+     req.path.startsWith('/api/sneakers') ||
+     req.path.startsWith('/api/comments') ||
+     req.path.startsWith('/api/notifications')
+   ) {
+     res.setHeader('Cache-Control', 'no-store');
+   } else {
+     // Set other cache headers as needed
+     res.setHeader('Cache-Control', 'public, max-age=3600'); // Adjust max-age as needed
+   }
+ 
+   // Continue to the next middleware
+   next();
+ });
+
 const requireAuth = require('../middlewares/requireAuth'); 
 const authorizeDev = require('../middlewares/authorizeDev');
 const authController = require('../controllers/auth');

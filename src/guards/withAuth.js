@@ -28,7 +28,7 @@ export const withAuth = (WrappedComponent) => {
 
      if (isLoadingProfile) return <LoaderLayer />;
 
-     console.log('User:', user);
+     console.log('Userr:', user);
 
      return cookies.token ? <WrappedComponent {...props} /> : <LoaderLayer />;
   };
