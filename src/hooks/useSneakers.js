@@ -8,11 +8,11 @@ const useSneakers = () => {
    const [cookies] = useCookies(['token']);
 
    const { data, error, isLoading, mutate } = useSWR(
-      cookies.token ? '/profile/sneakers' : '/sneakers', 
+      cookies.token ? '/api/profile/sneakers' : '/api/sneakers', 
       cookies.token ? fetcherWithCookie : fetcher, 
       useSWROptions);
 
-      // console.log("API Endpoint:", cookies.token ? '/profile/sneakers' : '/sneakers');
+      // console.log("API Endpoint:", cookies.token ? '/api/profile/sneakers' : '/api/sneakers');
 
    return { data, error, isLoading, mutate };
 };

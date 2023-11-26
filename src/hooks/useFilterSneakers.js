@@ -20,11 +20,11 @@ const useFilterSneakers = (query1, query2, query3) => {
    const newUrl = buildFilterUrl(query1, query2, query3);
 
    const { data, error, isLoading, mutate } = useSWR(
-      cookies.token ? '/profile' + newUrl : newUrl, 
+      cookies.token ? '/api/profile' + newUrl : '/api' + newUrl, 
       cookies.token ? fetcherWithCookie : fetcher, 
       useSWROptions);
       
-      // console.log("API Endpoint:", cookies.token ? '/profile/sneakers-filter' : '/sneakers-filter');
+      // console.log("API Endpoint:", cookies.token ? '/api/profile/sneakers-filter' : '/api/sneakers-filter');
 
    return { data, error, isLoading, mutate };
 };

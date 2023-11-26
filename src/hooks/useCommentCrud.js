@@ -1,11 +1,11 @@
 import fetcherWithCookieAndMethod from './fetcherWithCookieAndMethod';
 
 const useCommentCrud = (sneakerId, commentId) => {
-  const endpoint = `/profile/sneakers/${sneakerId}/comments`;
+  const endpoint = `/api/profile/sneakers/${sneakerId}/comments`;
   
   const getAllUserComments = async () => {
     try {
-      await fetcherWithCookieAndMethod('/profile/sneakers-comments', { method: 'GET'});
+      await fetcherWithCookieAndMethod('/api/profile/sneakers-comments', { method: 'GET'});
     } catch (error) {
       throw error;
     }
