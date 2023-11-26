@@ -29,6 +29,7 @@ const AuthPage = () => {
          setVariant('login');
          router.push('/auth');
       }
+      console.log("user login", user);
    }, [searchParams, router]);
    
    const toggleVariant = useCallback(() => { 
@@ -47,6 +48,7 @@ const AuthPage = () => {
                const profileResponse = await axios.get('/api/profile');
                const userData = profileResponse.data;
                setUser(userData); 
+               console.log("user login", user);
             }
             router.push('/account');
             toast.success("Logged in successfully!");
