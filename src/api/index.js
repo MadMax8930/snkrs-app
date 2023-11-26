@@ -23,18 +23,18 @@ app.get('/api/test', (req, res) => {
 
 /* AUTH */
 app.post('/login', authController.login);
-app.post('https://maxsneakers.vercel.app/register', authController.register);
+app.post('/api/register', authController.register);
 app.get('/profile', requireAuth, usersController.getUserProfile);
 app.put('/profile/picture', requireAuth, usersController.uploadPicture);
 
 /* SNKRS */
-app.get('https://maxsneakers.vercel.app/api/sneakers', sneakersController.getPublicSneakers);
-app.get('/sneakers/:sneakerId', sneakersController.getPublicSneakerById);
+app.get('/api/sneakers', sneakersController.getPublicSneakers);
+app.get('/api/sneakers/:sneakerId', sneakersController.getPublicSneakerById);
 app.get('/profile/sneakers', requireAuth, sneakersController.getUserSneakers);
 app.get('/profile/sneakers/:sneakerId', requireAuth, sneakersController.getUserSneakerById);
 app.get('/profile/sneakers-copped', requireAuth, sneakersController.getCoppedSneakers);
 app.patch('/profile/sneakers/:sneakerId/toggle', requireAuth, sneakersController.toggleCopping)
-app.get('https://maxsneakers.vercel.app/sneakers-filter', sneakersController.filterSneakers);
+app.get('/api/sneakers-filter', sneakersController.filterSneakers);
 app.get('/profile/sneakers-filter', requireAuth, sneakersController.filterUserSneakers);
 
 /* COMMENTS */
