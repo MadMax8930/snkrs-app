@@ -18,15 +18,15 @@ const commentsController = require('../controllers/comments');
 const notificationsController = require('../controllers/notifications');
 
 /* AUTH */
-app.post('/login', authController.login);
-app.post('/register', authController.register);
-app.get('/profile', requireAuth, usersController.getUserProfile);
-app.put('/profile/picture', requireAuth, usersController.uploadPicture);
+app.post('/api/login', authController.login);
+app.post('/api/register', authController.register);
+app.get('/api/profile', requireAuth, usersController.getUserProfile);
+app.put('/api/profile/picture', requireAuth, usersController.uploadPicture);
 
 /* SNKRS */
-app.get('/sneakers', sneakersController.getPublicSneakers);
-app.get('/sneakers/:sneakerId', sneakersController.getPublicSneakerById);
-app.get('/profile/sneakers', requireAuth, sneakersController.getUserSneakers);
+app.get('/api/sneakers', sneakersController.getPublicSneakers);
+app.get('/api/sneakers/:sneakerId', sneakersController.getPublicSneakerById);
+app.get('/api/profile/sneakers', requireAuth, sneakersController.getUserSneakers);
 app.get('/profile/sneakers/:sneakerId', requireAuth, sneakersController.getUserSneakerById);
 app.get('/profile/sneakers-copped', requireAuth, sneakersController.getCoppedSneakers);
 app.patch('/profile/sneakers/:sneakerId/toggle', requireAuth, sneakersController.toggleCopping)
