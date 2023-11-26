@@ -1,16 +1,15 @@
-import React, { useContext, useEffect } from 'react';
 import axios from '../../axios.config';
+import React, { useState, useContext, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { UserContext } from '@/context/UserContext';
 import { LoaderLayer } from '@/components';
 import { useCookies } from 'react-cookie';
-import useUserProfile from '@/hooks/useUserProfile';
 
 // Higher-order component (guard)
 export const withAuth = (WrappedComponent) => {
   const ComponentWithAuth = (props) => {
      const { user, setUser } = useContext(UserContext);
-     const { data: profileData, isLoading: isLoadingProfile } = useUserProfile();
+     const [loading, setLoading] = useState(true);
      const [cookies] = useCookies(['token']);
      const router = useRouter();
 
@@ -19,27 +18,34 @@ export const withAuth = (WrappedComponent) => {
      useEffect(() => {
       const fetchData = async () => {
         try {
-          const profileResponse = await axios.get('/api/profile'); // Adjust the API endpoint as needed
-          setUser(profileResponse.data);
+          console.log('Fetching data...');
+          if (cookies.token) {
+            const profileResponse = await axios.get('/api/profile');
+            console.log('Profile data:', profileResponse.data);
+            setUser(profileResponse.data);
+          }
         } catch (error) {
           console.error('Error fetching user profile:', error);
+        } finally {
+          console.log('Setting loading to false');
+          setLoading(false);
         }
       };
     
+      console.log('Checking token:', cookies.token);
+    
+      if (!cookies.token) {
+        console.log('No token, redirecting to auth');
+        router.push('/auth?variant=register');
+        return;
+      }
+    
       fetchData();
-    }, [setUser]);
-
-     useEffect(() => {
-       if (!cookies.token) {
-         const timer = setTimeout(() => router.push('/auth?variant=register'), 3500);
-         return () => clearTimeout(timer);
-       }
-     }, [cookies.token, router]);
-
+    }, [setUser, cookies.token, router]);
      
-     if (isLoadingProfile) return <LoaderLayer />;
+     if (loading) return <LoaderLayer />;
 
-     return user && user._id ? <WrappedComponent {...props} /> : <LoaderLayer />;
+     return cookies.token ? <WrappedComponent {...props} /> : <LoaderLayer />;
   };
 
   ComponentWithAuth.displayName = `withAuth(${WrappedComponent.displayName || WrappedComponent.name || 'Component'})`;
