@@ -89,4 +89,4 @@ const AuthPage = () => {
   )
 }
 
-export default withTokenCleanup(AuthPage)
+export default AuthPage

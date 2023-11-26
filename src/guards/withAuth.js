@@ -13,6 +13,9 @@ export const withAuth = (WrappedComponent) => {
      const [cookies] = useCookies(['token']);
      const router = useRouter();
 
+     console.log('User - AUTH:', user, "cook", cookies.token);
+  
+
      useEffect(() => {
        if (profileData) {
          setUser(profileData);
@@ -26,6 +29,7 @@ export const withAuth = (WrappedComponent) => {
        }
      }, [cookies.token, router]);
 
+     
      if (isLoadingProfile) return <LoaderLayer />;
 
      return user?._id ? <WrappedComponent {...props} /> : <LoaderLayer />;
