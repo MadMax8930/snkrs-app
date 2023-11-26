@@ -5,7 +5,7 @@
   "scripts": {
     "dev-frontend": "next dev",
     "prod-frontend": "next start",
-    "build-frontend": "next build",
+    "vercel-build": "next build",
     "dev-backend": "nodemon src/server/index.js",
     "prod-backend": "node src/server/index.js",
     "scrape": "rm -f src/web/data/sneakers.js src/web/data/sneakers.json && node src/web/scraper.js",
