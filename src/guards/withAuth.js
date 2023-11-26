@@ -20,12 +20,12 @@ export const withAuth = (WrappedComponent) => {
 
     console.log("user login", user);
 
-   //   useEffect(() => {
-   //    if (!cookies.token) {
-   //      router.push('/auth?variant=register');
-   //      return;
-   //    }
-   //  }, [cookies.token, router]);
+     useEffect(() => {
+      if (!cookies.token) {
+        router.push('/auth?variant=register');
+        return;
+      }
+    }, [cookies.token, router]);
 
      return user && user._id ? <WrappedComponent {...props} /> : <LoaderLayer />;
   };

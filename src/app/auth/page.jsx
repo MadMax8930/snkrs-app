@@ -27,9 +27,7 @@ const AuthPage = () => {
          setVariant(String(urlParam));
       } else {
          setVariant('login');
-         router.push('/auth');
       }
-      console.log("user login", user);
    }, [searchParams, router]);
    
    const toggleVariant = useCallback(() => { 
@@ -47,8 +45,7 @@ const AuthPage = () => {
             if (cookies.token) {
                const profileResponse = await axios.get('/api/profile');
                const userData = profileResponse.data;
-               setUser(userData); 
-               console.log("user login", user);
+               setUser(userData);
             }
             router.push('/account');
             toast.success("Logged in successfully!");
