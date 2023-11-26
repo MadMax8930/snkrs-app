@@ -1,15 +1,11 @@
 "use client";
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Filter, Search, Sneakers, LoaderLayer, Navbar, Footer } from '@/components';
 import useFilterSneakers from '@/hooks/useFilterSneakers';
 import useSneakers from '@/hooks/useSneakers';
 import { withTokenCleanup } from '@/guards/withTokenCleanUp';
 import { fetchServerData as _serverData } from './ssr';
    
-import { UserContext } from '@/context/UserContext';
-import { useCookies } from 'react-cookie';
-
-
 function Home({ initialSneakersData }) {
    
    const containerWidth = { width: '-webkit-fill-available' };
@@ -20,10 +16,6 @@ function Home({ initialSneakersData }) {
    const { data: filteredSnkrs, isLoading: isLoadingFiltered } = useFilterSneakers(param1, param2, param3);
    const { data: sneakerDrops, isLoading: isLoadingPublic } = useSneakers();
    const [isHomeLoading, setIsHomeLoading] = useState(true);
-
-   const { user } = useContext(UserContext);
-   const [cookies] = useCookies(['token']);
-   console.log('User:', user, "cook", cookies.token);
 
    useEffect(() => {
       if (!isLoadingFiltered || !isLoadingPublic) { 

@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from 'react';
+import axios from '../../axios.config';
 import { useRouter } from 'next/navigation';
 import { UserContext } from '@/context/UserContext';
 import { LoaderLayer } from '@/components';
@@ -15,12 +16,18 @@ export const withAuth = (WrappedComponent) => {
 
      console.log('User - AUTH:', user, "cook", cookies.token);
   
-
      useEffect(() => {
-       if (profileData) {
-         setUser(profileData);
-       }
-     }, [profileData, setUser]);
+      const fetchData = async () => {
+        try {
+          const profileResponse = await axios.get('/api/profile'); // Adjust the API endpoint as needed
+          setUser(profileResponse.data);
+        } catch (error) {
+          console.error('Error fetching user profile:', error);
+        }
+      };
+    
+      fetchData();
+    }, [setUser]);
 
      useEffect(() => {
        if (!cookies.token) {
@@ -32,7 +39,7 @@ export const withAuth = (WrappedComponent) => {
      
      if (isLoadingProfile) return <LoaderLayer />;
 
-     return user?._id ? <WrappedComponent {...props} /> : <LoaderLayer />;
+     return user && user._id ? <WrappedComponent {...props} /> : <LoaderLayer />;
   };
 
   ComponentWithAuth.displayName = `withAuth(${WrappedComponent.displayName || WrappedComponent.name || 'Component'})`;
