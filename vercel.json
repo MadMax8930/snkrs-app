@@ -1,5 +1,15 @@
 {
    "version": 2,
+   "builds": [
+      {
+        "src": "next.config.js",
+        "use": "@vercel/next"
+      },
+      {
+        "src": "server/index.js",
+        "use": "@vercel/node"
+      }
+   ],
    "routes": [
      {
        "src": "/(.*)",
@@ -7,4 +17,3 @@
      }
    ]
 }
- 
