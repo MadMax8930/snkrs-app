@@ -1,5 +1,3 @@
-"use client";
-import { withTokenCleanup } from '@/guards/withTokenCleanUp';
 import styles from './auth.module.css';
 
 function Layout({ children }) {
@@ -12,4 +10,4 @@ function Layout({ children }) {
   )
 }
 
-export default withTokenCleanup(Layout)
+export default Layout
