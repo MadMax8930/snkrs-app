@@ -12,7 +12,7 @@ import styles from './auth.module.css';
 const AuthPage = () => {
    const router = useRouter();
    const searchParams = useSearchParams()
-   const { setUser } = useContext(UserContext);
+   const { user, setUser } = useContext(UserContext);
 
    const [username, setUsername] = useState('');
    const [email, setEmail] = useState('');
