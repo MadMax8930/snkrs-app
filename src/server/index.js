@@ -28,7 +28,7 @@ app.get('/profile', requireAuth, usersController.getUserProfile);
 app.put('/profile/picture', requireAuth, usersController.uploadPicture);
 
 /* SNKRS */
-app.get('/api/sneakers', sneakersController.getPublicSneakers);
+app.get('/sneakers', sneakersController.getPublicSneakers);
 app.get('/api/sneakers/:sneakerId', sneakersController.getPublicSneakerById);
 app.get('/profile/sneakers', requireAuth, sneakersController.getUserSneakers);
 app.get('/profile/sneakers/:sneakerId', requireAuth, sneakersController.getUserSneakerById);
