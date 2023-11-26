@@ -4,7 +4,7 @@ const useToggle = () => {
    const toggle = async (sneakerId) => {
       try {
          const updatedData = await axios.patch(
-            `/profile/sneakers/${sneakerId}/toggle`, null, { withCredentials: true });
+            `/api/profile/sneakers/${sneakerId}/toggle`, null, { withCredentials: true });
          return updatedData;
       } catch (error) {
          throw new Error('Error toggling:', error);

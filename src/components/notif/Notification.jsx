@@ -17,7 +17,7 @@ const Notification = ({ sneakerId }) => {
    const handleAddCheckbox = async (schedule) => {
       try {
          setLoading(true);
-         await axios.post('/profile/add-notification', { sneakerId, schedule }, { withCredentials: true });
+         await axios.post('/api/profile/add-notification', { sneakerId, schedule }, { withCredentials: true });
          toast.success('Notification added successfully');
          // Trigger a re-fetch data
          mutateNotifications();
@@ -32,7 +32,7 @@ const Notification = ({ sneakerId }) => {
    const handleRemoveCheckbox = async (notificationId) => {
       try {
          setLoading(true);
-         await axios.delete(`/profile/notifications/${notificationId}`, { withCredentials: true });
+         await axios.delete(`/api/profile/notifications/${notificationId}`, { withCredentials: true });
          toast.success('Notification removed successfully');
          // Trigger a re-fetch data
          mutateNotifications();

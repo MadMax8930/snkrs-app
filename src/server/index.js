@@ -17,48 +17,46 @@ const sneakersController = require('../controllers/sneakers');
 const commentsController = require('../controllers/comments');
 const notificationsController = require('../controllers/notifications');
 
-app.get('/api/test', (req, res) => {
-   res.json({ message: 'This is a test route!' });
- });
+app.get('/api/test', (req, res) => { res.json({ message: 'This is a test route!' }) });
 
 /* AUTH */
-app.post('/login', authController.login);
+app.post('/api/login', authController.login);
 app.post('/api/register', authController.register);
-app.get('/profile', requireAuth, usersController.getUserProfile);
-app.put('/profile/picture', requireAuth, usersController.uploadPicture);
+app.get('/api/profile', requireAuth, usersController.getUserProfile);
+app.put('/api/profile/picture', requireAuth, usersController.uploadPicture);
 
 /* SNKRS */
-app.get('/sneakers', sneakersController.getPublicSneakers);
+app.get('/api/sneakers', sneakersController.getPublicSneakers);
 app.get('/api/sneakers/:sneakerId', sneakersController.getPublicSneakerById);
-app.get('/profile/sneakers', requireAuth, sneakersController.getUserSneakers);
-app.get('/profile/sneakers/:sneakerId', requireAuth, sneakersController.getUserSneakerById);
-app.get('/profile/sneakers-copped', requireAuth, sneakersController.getCoppedSneakers);
-app.patch('/profile/sneakers/:sneakerId/toggle', requireAuth, sneakersController.toggleCopping)
+app.get('/api/profile/sneakers', requireAuth, sneakersController.getUserSneakers);
+app.get('/api/profile/sneakers/:sneakerId', requireAuth, sneakersController.getUserSneakerById);
+app.get('/api/profile/sneakers-copped', requireAuth, sneakersController.getCoppedSneakers);
+app.patch('/api/profile/sneakers/:sneakerId/toggle', requireAuth, sneakersController.toggleCopping)
 app.get('/api/sneakers-filter', sneakersController.filterSneakers);
-app.get('/profile/sneakers-filter', requireAuth, sneakersController.filterUserSneakers);
+app.get('/api/profile/sneakers-filter', requireAuth, sneakersController.filterUserSneakers);
 
 /* COMMENTS */
-app.get('/sneakers/:sneakerId/comments', commentsController.getAllCommentsForSneaker);
-app.get('/sneakers/:sneakerId/comments/:commentId', commentsController.getCommentByIdForSneaker);
-app.get('/profile/sneakers-comments', requireAuth, commentsController.getAllUserComments);
-app.get('/profile/sneakers/:sneakerId/comments/:commentId', requireAuth, commentsController.getUserComment);
-app.post('/profile/sneakers/:sneakerId/comments', requireAuth, commentsController.addUserComment);
-app.put('/profile/sneakers/:sneakerId/comments/:commentId', requireAuth, commentsController.updateUserComment);
-app.delete('/profile/sneakers/:sneakerId/comments/:commentId', requireAuth, commentsController.deleteUserComment);
+app.get('/api/sneakers/:sneakerId/comments', commentsController.getAllCommentsForSneaker);
+app.get('/api/sneakers/:sneakerId/comments/:commentId', commentsController.getCommentByIdForSneaker);
+app.get('/api/profile/sneakers-comments', requireAuth, commentsController.getAllUserComments);
+app.get('/api/profile/sneakers/:sneakerId/comments/:commentId', requireAuth, commentsController.getUserComment);
+app.post('/api/profile/sneakers/:sneakerId/comments', requireAuth, commentsController.addUserComment);
+app.put('/api/profile/sneakers/:sneakerId/comments/:commentId', requireAuth, commentsController.updateUserComment);
+app.delete('/api/profile/sneakers/:sneakerId/comments/:commentId', requireAuth, commentsController.deleteUserComment);
 
 /* NOTIFICATIONS */
-app.get('/profile/notifications', requireAuth, notificationsController.getAllNotificationsForUser);
-app.get('/profile/notifications/:notificationId', requireAuth, notificationsController.getOneNotificationForUser);
-app.get('/profile/notifications/sneakers/:sneakerId', requireAuth, notificationsController.getAllNotificationsForUserPerSneaker);
-app.post('/profile/add-notification', requireAuth, notificationsController.createNotificationForUser);
-app.delete('/profile/notifications/:notificationId', requireAuth, notificationsController.removeNotificationForUser);
+app.get('/api/profile/notifications', requireAuth, notificationsController.getAllNotificationsForUser);
+app.get('/api/profile/notifications/:notificationId', requireAuth, notificationsController.getOneNotificationForUser);
+app.get('/api/profile/notifications/sneakers/:sneakerId', requireAuth, notificationsController.getAllNotificationsForUserPerSneaker);
+app.post('/api/profile/add-notification', requireAuth, notificationsController.createNotificationForUser);
+app.delete('/api/profile/notifications/:notificationId', requireAuth, notificationsController.removeNotificationForUser);
 
 /* ADMIN HELPERS */
-app.get('/users', authorizeDev, usersController.getAllUsers);
-app.get('/users/:userId', authorizeDev, usersController.getUserById);
-app.delete('/profile/sneakers/:sneakerId/delete-comments', authorizeDev, requireAuth, commentsController.deleteAllUserCommentsForSneaker);
-app.delete('/profile/remove-notifications/:sneakerId', authorizeDev, requireAuth, notificationsController.removeAllNotificationsForUserPerSneaker);
-app.delete('/profile/remove-notifications-for-all-sneakers', authorizeDev, requireAuth, notificationsController.removeAllNotificationsForUserForAllSneakers);
+app.get('/api/users', authorizeDev, usersController.getAllUsers);
+app.get('/api/users/:userId', authorizeDev, usersController.getUserById);
+app.delete('/api/profile/sneakers/:sneakerId/delete-comments', authorizeDev, requireAuth, commentsController.deleteAllUserCommentsForSneaker);
+app.delete('/api/profile/remove-notifications/:sneakerId', authorizeDev, requireAuth, notificationsController.removeAllNotificationsForUserPerSneaker);
+app.delete('/api/profile/remove-notifications-for-all-sneakers', authorizeDev, requireAuth, notificationsController.removeAllNotificationsForUserForAllSneakers);
 
 mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,

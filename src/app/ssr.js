@@ -7,7 +7,7 @@ export async function fetchServerData(req) {
   const fetchSneakersData = async () => {
     try {
       const response = await axios.get(
-        cookies.token ? '/profile/sneakers' : '/sneakers',
+        cookies.token ? '/api/profile/sneakers' : '/api/sneakers',
         axiosConfig
       );
       return response.data;

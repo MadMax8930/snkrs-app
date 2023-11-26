@@ -17,7 +17,7 @@ const Profile = () => {
    const updateProfilePic = async () => {
       try {
          setLoading(true);
-         const res = await axios.put('/profile/picture', { profilePic: pictureState }, { withCredentials: true });
+         const res = await axios.put('/api/profile/picture', { profilePic: pictureState }, { withCredentials: true });
          const updatedUser = res.data;
          setUser(updatedUser);
       } catch (error) {

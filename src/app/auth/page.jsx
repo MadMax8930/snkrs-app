@@ -37,7 +37,7 @@ const AuthPage = () => {
 
    const login = useCallback(async () => {
       try {
-         const response = await axios.post('/login', { email, password });
+         const response = await axios.post('/api/login', { email, password });
          const { token } = response.data;
          if (response.status === 200 && token) {
             setCookie('token', token, { path: '/' });
@@ -52,7 +52,7 @@ const AuthPage = () => {
 
    const register = useCallback(async () => {
       try {
-         await axios.post('/register', { username, email, password });
+         await axios.post('/api/register', { username, email, password });
          router.push('/auth?variant=login');
          toast.success("User created successfully!");
       } catch (err) {

@@ -16,7 +16,7 @@ const Sneakers = ({ sneakerDropsFiltered, sneakerDrops, isLoadingFiltered, isLoa
    }, [sneakerDropsFiltered, sneakerDrops]);
 
    const handleUpdatedSneaker = async (sneakerId) => {    
-      const response = await axios.get(`/profile/sneakers/${sneakerId}`, { withCredentials: true })
+      const response = await axios.get(`/api/profile/sneakers/${sneakerId}`, { withCredentials: true })
       const updatedSneaker = response.data;
       setSneakersToRender(prevSneakers =>
          prevSneakers.map(sneaker =>
