@@ -17,14 +17,16 @@ export const withAuth = (WrappedComponent) => {
      useEffect(() => {
       if (profileData) setUser(profileData);
     }, [profileData, setUser]);
+
      useEffect(() => {
       if (!cookies.token) {
         router.push('/auth?variant=register');
         return;
       }
     }, [cookies.token, router]);
+    console.log('tok', cookies.token)
 
-     return user && user._id ? <WrappedComponent {...props} /> : <LoaderLayer />;
+     return <WrappedComponent {...props} />;
   };
 
   ComponentWithAuth.displayName = `withAuth(${WrappedComponent.displayName || WrappedComponent.name || 'Component'})`;
