@@ -2,7 +2,7 @@
 import React from 'react';
 import useCoppedSneakers from '@/hooks/useCoppedSneakers';
 import { Profile, CoppedSnkrs, LoaderLayer } from '@/components';
-import { withUserFetch } from '@/guards/withUserFetch';
+import { withAuth } from '@/guards/withAuth';
 
 const AccountPage = () => {
    const { data: sneakersCopped, isLoading: isLoadingCopped, mutate: mutateCopped } = useCoppedSneakers();
@@ -16,4 +16,4 @@ const AccountPage = () => {
   )
 }
 
-export default withUserFetch(AccountPage)
+export default withAuth(AccountPage)

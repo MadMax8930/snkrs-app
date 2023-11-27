@@ -1,6 +1,6 @@
 "use client";
 import { Navbar, Footer } from '@/components';
-import { withAuth } from '@/guards/withAuth';
+import { withUserFetch } from '@/guards/withUserFetch';
 
 function Layout({ children }) {
   return (
@@ -14,4 +14,4 @@ function Layout({ children }) {
   )
 }
 
-export default withAuth(Layout)
+export default withUserFetch(Layout)
