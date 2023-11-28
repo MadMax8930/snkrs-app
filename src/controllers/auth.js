@@ -36,14 +36,14 @@ const login = async (req, res) => {
 
      // Set the token as an HTTP cookie
      const isProduction = process.env.NODE_ENV === 'production';
-
-      const cookieOptions = {
+     const cookieOptions = {
          httpOnly: true,
+         domain: isProduction ? '.maxsneakers.vercel.app' : '.localhost',
          maxAge: 3 * 60 * 60 * 1000,
          path: '/',
          secure: isProduction,
-         sameSite: isProduction ? 'None' : 'Lax',
-      };
+         sameSite: isProduction ? 'None' : 'Lax',     
+     };
 
      res.cookie('token', token, cookieOptions);
 
