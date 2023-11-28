@@ -25,25 +25,25 @@ function Home({ initialSneakersData }) {
    if (isHomeLoading) { return <LoaderLayer /> }
  
   return (
-    <>
-      <Navbar />
-      <main className="flex min-h-screen flex-col items-center justify-between">
-         <div className="h-full" style={containerWidth}>
-            <div className="mt-[4em] p-[2em] pb-0 text-xs md:text-base xl:text-lg md:pt-1 xl:pt-2">
-               <Search sneakers={filteredSnkrs} isLoadingFiltered={isLoadingFiltered} />
-               <Filter
-                  resellQuery={param1} brandQuery={param2} dateQuery={param3}
-                  setResellQuery={setParam1} setBrandQuery={setParam2} setDateQuery={setParam3}
-               />
-            </div>
-            <Sneakers 
-               sneakerDrops={sneakerDrops} isLoadingPublic={isLoadingPublic}
-               sneakerDropsFiltered={filteredSnkrs} isLoadingFiltered={isLoadingFiltered} 
-            />
-         </div>
-      </main>
-      <Footer />
-    </>
+     <section>
+        <Navbar />
+        <main className="flex min-h-screen flex-col items-center justify-between">
+           <div className="h-full" style={containerWidth}>
+              <div className="mt-[4em] p-[2em] pb-0 text-xs md:text-base xl:text-lg md:pt-1 xl:pt-2">
+                 <Search sneakers={filteredSnkrs} isLoadingFiltered={isLoadingFiltered} />
+                 <Filter
+                    resellQuery={param1} brandQuery={param2} dateQuery={param3}
+                    setResellQuery={setParam1} setBrandQuery={setParam2} setDateQuery={setParam3}
+                 />
+              </div>
+              <Sneakers 
+                 sneakerDrops={sneakerDrops} isLoadingPublic={isLoadingPublic}
+                 sneakerDropsFiltered={filteredSnkrs} isLoadingFiltered={isLoadingFiltered} 
+              />
+           </div>
+        </main>
+        <Footer />
+     </section>
   )
 }
 

@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from 'react';
+import { Navbar } from '@/components';
 import emailjs from '@emailjs/browser';
 import nextConfig from '../../../next.config';
 import styles from './contact.module.css';
@@ -42,35 +43,38 @@ const ContactPage = () => {
    }
 
   return (
-   <div className={styles.container}>
-      <h1 className={styles.header}>Get in touch.</h1>
-      <form className={styles.form} onSubmit={handleSubmit}>
-         <label className={styles.inColumn}>
-            <span className={styles.textContainer}>Your Name</span>
-            <input type="text" className={styles.inputContainer} 
-                  name="name" placeholder="What's your name?"
-                  value={form.name} onChange={handleChange} />
-         </label>
-         <label className={styles.inColumn}>
-            <span className={styles.textContainer}>Your Email</span>
-            <input type="email" className={styles.inputContainer} 
-                  name="email" placeholder="What's your email?"
-                  value={form.email} onChange={handleChange} />
-         </label>
-         <label className={styles.inColumn}>
-            <span className={styles.textContainer}>Your Message</span>
-            <textarea rows="7" className={styles.inputContainer} 
-                  name="message" placeholder="What do you want to say?"
-                  value={form.message} onChange={handleChange} />
-         </label>
-         <button className={styles.btn} type="submit">
-            {loading 
-               ? <>Sending...<div className={styles.gif} /></> 
-               : <>Send &nbsp; 📨</>
-            }
-         </button>
-      </form>
-    </div>
+   <section>
+      <Navbar />
+      <div className={styles.container}>
+         <h1 className={styles.header}>Get in touch.</h1>
+         <form className={styles.form} onSubmit={handleSubmit}>
+            <label className={styles.inColumn}>
+               <span className={styles.textContainer}>Your Name</span>
+               <input type="text" className={styles.inputContainer} 
+                     name="name" placeholder="What's your name?"
+                     value={form.name} onChange={handleChange} />
+            </label>
+            <label className={styles.inColumn}>
+               <span className={styles.textContainer}>Your Email</span>
+               <input type="email" className={styles.inputContainer} 
+                     name="email" placeholder="What's your email?"
+                     value={form.email} onChange={handleChange} />
+            </label>
+            <label className={styles.inColumn}>
+               <span className={styles.textContainer}>Your Message</span>
+               <textarea rows="7" className={styles.inputContainer} 
+                     name="message" placeholder="What do you want to say?"
+                     value={form.message} onChange={handleChange} />
+            </label>
+            <button className={styles.btn} type="submit">
+               {loading 
+                  ? <>Sending...<div className={styles.gif} /></> 
+                  : <>Send &nbsp; 📨</>
+               }
+            </button>
+         </form>
+      </div>
+    </section>
   )
 }
 

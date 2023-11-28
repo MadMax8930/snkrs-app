@@ -16,6 +16,10 @@ body {
    color: #bbb;
 }
 
+section {
+   zoom: 0.9;
+}
+
 .theme {
    transition: 1s all ease;
 }

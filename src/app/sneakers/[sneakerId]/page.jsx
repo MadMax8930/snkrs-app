@@ -43,7 +43,7 @@ const SneakerIdPage = () => {
   return (
     <>
       {fetchedSneaker && fetchedComments ? (
-         <> 
+      <section> 
          <Navbar />
          <div className='pt-[4.4rem]'> 
             <PostSection 
@@ -79,8 +79,8 @@ const SneakerIdPage = () => {
                   btnAction,
                }} />    
          </div>
-         </>) 
-      : <LoaderLayer />}
+      </section>) : 
+      <LoaderLayer />}
     </>
   )
 }

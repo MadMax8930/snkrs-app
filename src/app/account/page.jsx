@@ -9,10 +9,10 @@ const AccountPage = () => {
    if (isLoadingCopped || isLoadingProfile) { return <LoaderLayer /> }
 
   return (
-    <>
+    <div className='pt-[4.5em]'>
       <Profile loading={isLoadingProfile} setLoading={setIsLoadingProfile} />
       <CoppedSnkrs sneakers={sneakersCopped} isLoading={isLoadingCopped} mutate={mutateCopped} />
-    </>
+    </div>
   )
 }
 
