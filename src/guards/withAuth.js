@@ -35,21 +35,21 @@ export const withAuth = (WrappedComponent) => {
       fetchUserProfile();
     }, [cookies.token, setUser]);
 
-     useEffect(() => {
-       const checkAuthentication = async () => {
-         try {
-            console.log('Cookies:', cookies); 
-            if (!cookies.token) {
-               console.log('Redirecting to /auth');
-               router.push('/auth');
-            }
-         } catch (error) {
-            console.error('Error redirecting', error);
-         }
-       };
+   //   useEffect(() => {
+   //     const checkAuthentication = async () => {
+   //       try {
+   //          console.log('Cookies:', cookies); 
+   //          if (!cookies.token) {
+   //             console.log('Redirecting to /auth');
+   //             router.push('/auth');
+   //          }
+   //       } catch (error) {
+   //          console.error('Error redirecting', error);
+   //       }
+   //     };
 
-       checkAuthentication();
-     }, [cookies.token, router]);
+   //     checkAuthentication();
+   //   }, [cookies.token, router]);
 
    //   if (isLoadingProfile) return <LoaderLayer />;
      if (!user._id) { 
