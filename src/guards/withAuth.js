@@ -51,7 +51,7 @@ export const withAuth = (WrappedComponent) => {
        checkAuthentication();
      }, [cookies.token, router]);
 
-     if (isLoadingProfile) return <LoaderLayer />;
+   //   if (isLoadingProfile) return <LoaderLayer />;
      if (!cookies.token) { 
       console.log('User not authenticated. Showing LoaderLayer.');
       return <LoaderLayer />;
