@@ -2,7 +2,7 @@ import axios from '../../axios.config';
 import React, { useContext, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { UserContext } from '@/context/UserContext';
-import { LoaderLayer } from '@/components';
+import { LoaderGif } from '@/components';
 import { useCookies } from 'react-cookie';
 
 // Higher-order component (guard)
@@ -13,35 +13,25 @@ export const withAuth = (WrappedComponent) => {
      const router = useRouter();
 
      useEffect(() => {
-      const fetchUserProfile = async () => {
-        try {
-          const response = await axios.get('/api/profile', { withCredentials: true });
-          setUser(response.data);
-        } catch (error) {
-          console.error('Error fetching user profile', error);
-        }
-      };
-
-      fetchUserProfile();
-    }, [setUser]);
-
-     useEffect(() => {
-       const checkAuthentication = async () => {
-         try {
-            if (!cookies.token) {
-               router.push('/auth?variant=register');
-            }
-         } catch (error) {
-            console.error('Error redirecting', error);
-         }
+       const fetchUserProfile = async () => {
+          try {
+            const response = await axios.get('/api/profile', { withCredentials: true });
+            setUser(response.data);
+          } catch (error) {
+            console.error('Error fetching user profile', error);
+          }
        };
 
-       checkAuthentication();
-     }, [cookies.token, router]);
+       if (!cookies.token) {
+         router.push('/auth?variant=register');
+       } else {
+         fetchUserProfile();
+       }
+     }, [cookies.token, router, setUser]);
 
-     if (!cookies.token) return <LoaderLayer />;
+     if (!cookies.token || !user?._id) return <LoaderGif />;
 
-     return user && user._id ? <WrappedComponent {...props} /> : <LoaderLayer />;
+     return <WrappedComponent {...props} />;
   };
 
   ComponentWithAuth.displayName = `withAuth(${WrappedComponent.displayName || WrappedComponent.name || 'Component'})`;
