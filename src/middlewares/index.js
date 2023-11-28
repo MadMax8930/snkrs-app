@@ -21,8 +21,18 @@ const setHeaderContentType = (req, res, next) => {
    next();
 };
 
+const corsOptions = {
+   credentials: true,
+   origin: process.env.NODE_ENV === 'production'
+     ? process.env.EXPRESS_CONNECTION_TO_FRONTEND
+     : 'http://localhost:3000',
+   optionsSuccessStatus: 204,
+};
+
+const corsMiddleware = cors(corsOptions);
+ 
 const customMiddleware = [
-   cors({ credentials: true, origin: process.env.EXPRESS_CONNECTION_TO_FRONTEND || 'http://localhost:3000', optionsSuccessStatus: 204 }),
+   corsMiddleware,
    cookieParser(),
    express.json(),
    logIncomingRequest, 

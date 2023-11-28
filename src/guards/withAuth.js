@@ -21,19 +21,19 @@ export const withAuth = (WrappedComponent) => {
      useEffect(() => {
       const fetchUserProfile = async () => {
         try {
-          if (cookies.token) {
+         
             const response = await axios.get('/api/profile', {
               withCredentials: true,
             });
             setUser(response.data);
-          }
+      
         } catch (error) {
           console.error('Error fetching user profile', error);
         }
       };
 
       fetchUserProfile();
-    }, [cookies.token, setUser]);
+    }, [setUser]);
 
    //   useEffect(() => {
    //     const checkAuthentication = async () => {
@@ -52,7 +52,7 @@ export const withAuth = (WrappedComponent) => {
    //   }, [cookies.token, router]);
 
    //   if (isLoadingProfile) return <LoaderLayer />;
-     if (!user._id) { 
+     if (!cookies.token) { 
       console.log('User not authenticated. Showing LoaderLayer.');
       return <LoaderLayer />;
      }
