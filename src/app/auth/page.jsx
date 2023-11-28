@@ -38,7 +38,7 @@ const AuthPage = () => {
          if (response.status === 200 && token) {
             setCookie('token', token, { path: '/' });
             toast.success("Logged in successfully!");
-            setTimeout(() => { router.push('/account') }, 2000);
+            // setTimeout(() => { router.push('/account') }, 2000);
          } else { throw new Error("Invalid email or password. Please try again."); }
       } catch (err) {
          toast.error("An unexpected error occurred.");
