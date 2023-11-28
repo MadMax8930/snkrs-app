@@ -1,6 +1,7 @@
 const User = require('../models/User');
 const Sneaker = require('../models/Sneaker');
 const Notification = require('../models/Notification');
+const saveToDatabase = require('../web/saveDB');
 
 const getPublicSneakers = async (req, res) => {
    try {
@@ -146,5 +147,15 @@ const filterUserSneakers = async (req, res) => {
      return res.status(500).json({ error: 'Internal Server Error' });
    }
 };
+
+const add10ScrapedSneakers = async (req, res) => {
+   try {
+     await saveToDatabase();
+     res.status(200).send('Sneakers saved to the database successfully.');
+   } catch (error) {
+     console.error('Error saving sneakers to the database:', error);
+     res.status(500).send('Internal server error');
+   }
+};
   
-module.exports = { getPublicSneakers, getPublicSneakerById, getUserSneakers, getUserSneakerById, getCoppedSneakers, toggleCopping, filterSneakers, filterUserSneakers };
+module.exports = { getPublicSneakers, getPublicSneakerById, getUserSneakers, getUserSneakerById, getCoppedSneakers, toggleCopping, filterSneakers, filterUserSneakers, add10ScrapedSneakers };

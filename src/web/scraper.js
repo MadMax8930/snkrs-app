@@ -3,15 +3,16 @@ const path = require('path');
 const fs = require('fs');
 const { v4: uuidv4 } = require('uuid');
 
-const segment = 'vMVgPctMJxNGeuHOE1cpo'
-const baseUrl = `https://www.whentocop.fr/_next/data/${segment}/drops`;
-const mySneakersArray = []; // Array to store sneaker data
-
 function generateUniqueID() { return uuidv4() }
+const uniqueID = generateUniqueID();
 
 const dataPath = path.join(__dirname, '../web/data');
 const jsonFilePath = path.join(dataPath, 'sneakers.json');
 const jsFilePath = path.join(dataPath, 'sneakers.js');
+
+const segment = 'vMVgPctMJxNGeuHOE1cpo'
+const baseUrl = `https://www.whentocop.fr/_next/data/${segment}/drops`;
+const mySneakersArray = []; // Array to store sneaker data
 
 // Function to fetch and add a new sneaker
 async function fetchAndAddSneaker(slug, id) {
@@ -35,13 +36,11 @@ async function fetchAndAddSneaker(slug, id) {
       const resellIndex = drop.resellIndex || 'N/A';
       const brand = drop.brandCategories[0].brandCategoryName;
       const dateRelease = drop.dropDate;
-      const identifier = drop.id;
-      const slugSnkrs = drop.slug;
-
-      const uniqueID = generateUniqueID();
+      const sneakerIdentifier = drop.id;
+      const sneakerSlug = drop.slug;
 
       const newSneaker = {
-        _id: _id || uniqueID,
+        uniqueID,
         img,
         name,
         model,
@@ -51,8 +50,8 @@ async function fetchAndAddSneaker(slug, id) {
         dateRelease,
         brand,
         copping: false,
-        id: identifier,
-        slug: slugSnkrs,
+        id: sneakerIdentifier,
+        slug: sneakerSlug,
       };
 
       mySneakersArray.push(newSneaker);
@@ -87,13 +86,11 @@ async function fetchFirst10Sneakers() {
           const resellIndex = drop.resellIndex || 'N/A';
           const brand = drop.brandCategories[0].brandCategoryName;
           const dateRelease = drop.dropDate;
-          const identifier = drop.id;
-          const slugSnkrs = drop.slug;
-
-          const uniqueID = generateUniqueID();
+          const sneakerIdentifier = drop.id;
+          const sneakerSlug = drop.slug;
 
           mySneakersArray.push({
-            _id: _id || uniqueID,
+            uniqueID,
             img,
             name,
             model,
@@ -103,8 +100,8 @@ async function fetchFirst10Sneakers() {
             dateRelease,
             brand,
             copping: false,
-            id: identifier,
-            slug: slugSnkrs,
+            id: sneakerIdentifier,
+            slug: sneakerSlug,
           });
         });
 

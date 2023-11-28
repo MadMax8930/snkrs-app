@@ -52,6 +52,7 @@ app.delete('/api/profile/notifications/:notificationId', requireAuth, notificati
 /* ADMIN HELPERS */
 app.get('/api/users', authorizeDev, usersController.getAllUsers);
 app.get('/api/users/:userId', authorizeDev, usersController.getUserById);
+app.post('/api/sneakers/add-scrapers', authorizeDev, sneakersController.add10ScrapedSneakers);
 app.delete('/api/profile/sneakers/:sneakerId/delete-comments', authorizeDev, requireAuth, commentsController.deleteAllUserCommentsForSneaker);
 app.delete('/api/profile/remove-notifications/:sneakerId', authorizeDev, requireAuth, notificationsController.removeAllNotificationsForUserPerSneaker);
 app.delete('/api/profile/remove-notifications-for-all-sneakers', authorizeDev, requireAuth, notificationsController.removeAllNotificationsForUserForAllSneakers);
