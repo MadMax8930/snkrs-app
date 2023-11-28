@@ -2,11 +2,9 @@ const axios = require('axios');
 const path = require('path');
 const fs = require('fs');
 const { v4: uuidv4 } = require('uuid');
+const { updateBaseUrl, baseUrl } = require('./_update');
 
-const segment = 'vMVgPctMJxNGeuHOE1cpo'
-const baseUrl = `https://www.whentocop.fr/_next/data/${segment}/drops`;
 const mySneakersArray = []; // Array to store sneaker data
-
 function generateUniqueID() { return uuidv4() }
 
 const dataPath = path.join(__dirname, '../web/data');
@@ -16,7 +14,8 @@ const jsFilePath = path.join(dataPath, 'sneakers.js');
 // Function to fetch and add a new sneaker
 async function fetchAndAddSneaker(slug, id) {
   try {
-    const sneakerUrl = `${baseUrl}/${slug}.json?slug=${slug}&id=${id}`;
+    await updateBaseUrl();
+    const sneakerUrl = `${baseUrl}/drops/${slug}.json?slug=${slug}&id=${id}`;
     const response = await axios.get(sneakerUrl, {
       headers: {
         'Cache-Control': 'no-cache', // Bypass caching
@@ -35,13 +34,11 @@ async function fetchAndAddSneaker(slug, id) {
       const resellIndex = drop.resellIndex || 'N/A';
       const brand = drop.brandCategories[0].brandCategoryName;
       const dateRelease = drop.dropDate;
-      const identifier = drop.id;
-      const slugSnkrs = drop.slug;
 
       const uniqueID = generateUniqueID();
 
       const newSneaker = {
-        _id: _id || uniqueID,
+        _id: uniqueID,
         img,
         name,
         model,
@@ -51,8 +48,6 @@ async function fetchAndAddSneaker(slug, id) {
         dateRelease,
         brand,
         copping: false,
-        id: identifier,
-        slug: slugSnkrs,
       };
 
       mySneakersArray.push(newSneaker);
@@ -71,7 +66,7 @@ async function fetchAndAddSneaker(slug, id) {
 // Function to fetch the first 10 sneakers and save them to the JSON file
 async function fetchFirst10Sneakers() {
   try {
-    const response = await axios.get(baseUrl + '.json');
+    const response = await axios.get(baseUrl + '/drops.json');
     if (response.status === 200) {
       const data = response.data;
 
@@ -87,13 +82,11 @@ async function fetchFirst10Sneakers() {
           const resellIndex = drop.resellIndex || 'N/A';
           const brand = drop.brandCategories[0].brandCategoryName;
           const dateRelease = drop.dropDate;
-          const identifier = drop.id;
-          const slugSnkrs = drop.slug;
 
           const uniqueID = generateUniqueID();
 
           mySneakersArray.push({
-            _id: _id || uniqueID,
+            _id: uniqueID,
             img,
             name,
             model,
@@ -103,8 +96,6 @@ async function fetchFirst10Sneakers() {
             dateRelease,
             brand,
             copping: false,
-            id: identifier,
-            slug: slugSnkrs,
           });
         });
 
@@ -131,4 +122,3 @@ const sneakersData = require('./data/snkrsMapper.json');
 sneakersData.sneakers.forEach((sneaker) => {
   fetchAndAddSneaker(sneaker.slug, sneaker.id);
 });
-
