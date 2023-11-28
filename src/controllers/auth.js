@@ -42,7 +42,7 @@ const login = async (req, res) => {
          maxAge: 3 * 60 * 60 * 1000,
          path: '/',
          secure: isProduction,
-         sameSite: 'Lax',
+         sameSite: isProduction ? 'None' : 'Lax',
       };
 
      res.cookie('token', token, cookieOptions);
