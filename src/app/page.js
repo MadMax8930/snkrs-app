@@ -5,8 +5,12 @@ import useFilterSneakers from '@/hooks/useFilterSneakers';
 import useSneakers from '@/hooks/useSneakers';
 import { withTokenCleanup } from '@/guards/withTokenCleanUp';
 import { fetchServerData as _serverData } from './ssr';
+import { useCookies } from 'react-cookie';
    
 function Home({ initialSneakersData }) {
+
+   const [cookies] = useCookies(['token']);
+   console.log('Token Cookie HOME:', cookies.token);
    
    const containerWidth = { width: '-webkit-fill-available' };
   
