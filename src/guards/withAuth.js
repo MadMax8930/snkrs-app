@@ -18,10 +18,17 @@ export const withAuth = (WrappedComponent) => {
      }, [profileData, setUser]);
 
      useEffect(() => {
-       if (!cookies.token || errorFetching) {
-         const timer = setTimeout(() => router.push('/auth?variant=register'), 2000);
-         return () => clearTimeout(timer);
-       }
+       const checkAuthentication = async () => {
+         try { 
+            if (!cookies.token || errorFetching) {
+               router.push('/auth');
+            }
+         } catch (error) {
+            console.error('Error redirecting', error);
+         }
+       };
+
+       checkAuthentication();
      }, [cookies.token, errorFetching, router]);
 
      if (isLoadingProfile) return <LoaderLayer />;
