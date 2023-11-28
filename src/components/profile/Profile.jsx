@@ -8,11 +8,10 @@ import { faSpinner, faTextWidth, faUpload } from '@fortawesome/free-solid-svg-ic
 import { toast } from 'react-hot-toast';
 import styles from './profile.module.css';
 
-const Profile = () => {
+const Profile = ({ loading, setLoading }) => {
    const { user, setUser } = useContext(UserContext);
    const [pictureState, setPictureState] = useState('');
    const [showInput, setShowInput] = useState(false);
-   const [loading, setLoading] = useState(false);
 
    const updateProfilePic = async () => {
       try {

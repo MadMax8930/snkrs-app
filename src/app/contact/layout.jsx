@@ -6,9 +6,9 @@ function Layout({ children }) {
     <div className="layer">
       <Navbar />
       {children}
-      <div className='fixed bottom-0 w-full'>
+      {/* <div className='fixed bottom-0 w-full'>
          <Footer/>
-      </div>
+      </div> */}
     </div>
   )
 }

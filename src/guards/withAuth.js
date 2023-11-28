@@ -19,7 +19,7 @@ export const withAuth = (WrappedComponent) => {
 
      useEffect(() => {
        if (!cookies.token || errorFetching) {
-         const timer = setTimeout(() => router.push('/auth?variant=register'), 1500);
+         const timer = setTimeout(() => router.push('/auth?variant=register'), 2000);
          return () => clearTimeout(timer);
        }
      }, [cookies.token, errorFetching, router]);

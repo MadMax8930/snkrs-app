@@ -1,7 +1,6 @@
 "use client";
 import axios from '../../../axios.config';
-import React, { useState, useEffect, useCallback, useContext } from 'react';
-import { UserContext } from '@/context/UserContext';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Input } from '@/components';
 import { useCookies } from 'react-cookie';
@@ -11,14 +10,13 @@ import styles from './auth.module.css';
 const AuthPage = () => {
    const router = useRouter();
    const searchParams = useSearchParams()
-   const { setUser } = useContext(UserContext);
 
    const [username, setUsername] = useState('');
    const [email, setEmail] = useState('');
    const [password, setPassword] = useState('');
    const [variant, setVariant] = useState('login');
 
-   const [cookies, setCookie] = useCookies(['token']);
+   const [_, setCookie] = useCookies(['token']);
 
    useEffect(() => {
       const urlParam = searchParams.get('variant');
@@ -39,13 +37,8 @@ const AuthPage = () => {
          const { token } = response.data;
          if (response.status === 200 && token) {
             setCookie('token', token, { path: '/' });
-            if (cookies.token) {
-               const profileResponse = await axios.get('/api/profile');
-               const userData = profileResponse.data;
-               setUser(userData);
-            }
-            router.push('/account');
             toast.success("Logged in successfully!");
+            setTimeout(() => { router.push('/account') }, 2000);
          } else { throw new Error("Invalid email or password. Please try again."); }
       } catch (err) {
          toast.error("An unexpected error occurred.");
@@ -56,8 +49,8 @@ const AuthPage = () => {
    const register = useCallback(async () => {
       try {
          await axios.post('/api/register', { username, email, password });
-         router.push('/auth?variant=login');
          toast.success("User created successfully!");
+         setTimeout(() => { router.push('/auth?variant=login') }, 2000);
       } catch (err) {
          toast.error("An unexpected error occurred.");
          console.log(err);

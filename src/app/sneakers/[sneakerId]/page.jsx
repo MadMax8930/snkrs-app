@@ -45,7 +45,7 @@ const SneakerIdPage = () => {
       {fetchedSneaker && fetchedComments ? (
          <> 
          <Navbar />
-         <div className='pt-[4.5rem]'> 
+         <div className='pt-[4.4rem]'> 
             <PostSection 
                forSneakerId={sneakerId}
                sneaker={fetchedSneaker}
