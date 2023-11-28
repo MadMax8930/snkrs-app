@@ -1,10 +1,8 @@
 "use client";
+import { withTokenCleanup } from '@/guards/withTokenCleanUp';
 import styles from './auth.module.css';
-import { useCookies } from 'react-cookie';
 
 function Layout({ children }) {
-   const [cookies] = useCookies(['token']);
-   console.log('Token Cookie auth:', cookies.token);
   return (
     <div className={styles.wallpaper}>
       <div className={styles.hideHome}>
@@ -14,4 +12,4 @@ function Layout({ children }) {
   )
 }
 
-export default Layout
+export default withTokenCleanup(Layout)

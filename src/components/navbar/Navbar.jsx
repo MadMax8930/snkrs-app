@@ -8,10 +8,8 @@ import styles from './navbar.module.css';
 
 const Navbar = () => {
    const [cookies] = useCookies(['token']);
-   console.log("cookies nav", cookies.token)
    const [isAuthenticated, setIsAuthenticated] = useState(false);
    useEffect(() => {
-      console.log("cookies nav2", cookies.token)
       setIsAuthenticated(!!cookies.token);
    }, [cookies.token]);
    

@@ -2,7 +2,6 @@
 import React, { useState } from 'react';
 import useCoppedSneakers from '@/hooks/useCoppedSneakers';
 import { Profile, CoppedSnkrs, LoaderLayer } from '@/components';
-// import { withUserFetch } from '@/guards/withUserFetch';
 
 const AccountPage = () => {
    const [isLoadingProfile, setIsLoadingProfile] = useState(false);

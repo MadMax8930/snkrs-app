@@ -4,29 +4,19 @@ import { useRouter } from 'next/navigation';
 import { UserContext } from '@/context/UserContext';
 import { LoaderLayer } from '@/components';
 import { useCookies } from 'react-cookie';
-import useUserProfile from '@/hooks/useUserProfile';
 
 // Higher-order component (guard)
 export const withAuth = (WrappedComponent) => {
   const ComponentWithAuth = (props) => {
      const { user, setUser } = useContext(UserContext);
-   //   const { data: profileData, error: errorFetching, isLoading: isLoadingProfile } = useUserProfile();
      const [cookies] = useCookies(['token']);
      const router = useRouter();
-  
-   //   useEffect(() => {
-   //     if (profileData) setUser(profileData);
-   //   }, [profileData, setUser]);
 
      useEffect(() => {
       const fetchUserProfile = async () => {
         try {
-         
-            const response = await axios.get('/api/profile', {
-              withCredentials: true,
-            });
-            setUser(response.data);
-      
+          const response = await axios.get('/api/profile', { withCredentials: true });
+          setUser(response.data);
         } catch (error) {
           console.error('Error fetching user profile', error);
         }
@@ -38,10 +28,8 @@ export const withAuth = (WrappedComponent) => {
      useEffect(() => {
        const checkAuthentication = async () => {
          try {
-            console.log('Cookies:', cookies); 
             if (!cookies.token) {
-               console.log('Redirecting to /auth');
-               router.push('/auth');
+               router.push('/auth?variant=register');
             }
          } catch (error) {
             console.error('Error redirecting', error);
@@ -51,14 +39,9 @@ export const withAuth = (WrappedComponent) => {
        checkAuthentication();
      }, [cookies.token, router]);
 
-   //   if (isLoadingProfile) return <LoaderLayer />;
-     if (!cookies.token) { 
-      console.log('User not authenticated. Showing LoaderLayer.');
-      return <LoaderLayer />;
-     }
+     if (!cookies.token) return <LoaderLayer />;
 
-     console.log('User authenticated. Rendering WrappedComponent.');
-     return <WrappedComponent {...props} />;
+     return user && user._id ? <WrappedComponent {...props} /> : <LoaderLayer />;
   };
 
   ComponentWithAuth.displayName = `withAuth(${WrappedComponent.displayName || WrappedComponent.name || 'Component'})`;

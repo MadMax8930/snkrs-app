@@ -29,7 +29,7 @@ const Profile = ({ loading, setLoading }) => {
    }
 
    const handleShowInput = () => {
-      setShowInput((prev) => !prev)
+      setShowInput((prev) => !prev);
    }
   
   return (
