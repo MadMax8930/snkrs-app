@@ -25,6 +25,7 @@ const getUserById = async (req, res) => {
 const getUserProfile = async (req, res) => {   
   try {
     const user = await User.findById(req.user._id).select('-password -__v');
+    res.setHeader('Cache-Control', 'no-store, must-revalidate');
     return res.status(200).json(user);
   } catch (error) {
     return res.status(500).json({ error: 'Internal Server Error' });
