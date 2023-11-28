@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import useCoppedSneakers from '@/hooks/useCoppedSneakers';
 import { Profile, CoppedSnkrs, LoaderLayer } from '@/components';
-import { withAuth } from '@/guards/withAuth';
+import { withUserFetch } from '@/guards/withUserFetch';
 
 const AccountPage = () => {
    const [isLoadingProfile, setIsLoadingProfile] = useState(false);
@@ -17,4 +17,4 @@ const AccountPage = () => {
   )
 }
 
-export default withAuth(AccountPage)
+export default withUserFetch(AccountPage)
