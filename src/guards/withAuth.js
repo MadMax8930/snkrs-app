@@ -52,10 +52,10 @@ export const withAuth = (WrappedComponent) => {
    //   }, [cookies.token, router]);
 
    //   if (isLoadingProfile) return <LoaderLayer />;
-     if (!cookies.token) { 
-      console.log('User not authenticated. Showing LoaderLayer.');
-      return <LoaderLayer />;
-     }
+   //   if (!cookies.token) { 
+   //    console.log('User not authenticated. Showing LoaderLayer.');
+   //    return <LoaderLayer />;
+   //   }
 
      console.log('User authenticated. Rendering WrappedComponent.');
      return <WrappedComponent {...props} />;

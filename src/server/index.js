@@ -17,6 +17,7 @@ const sneakersController = require('../controllers/sneakers');
 const commentsController = require('../controllers/comments');
 const notificationsController = require('../controllers/notifications');
 
+app.get('/favicon.ico', (req, res) => res.status(204).end());
 /* AUTH */
 app.post('/api/login', authController.login);
 app.post('/api/register', authController.register);
