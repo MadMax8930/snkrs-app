@@ -9,6 +9,7 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata = {
   title: 'Max Sneakers Application',
   description: 'Next popular sneaker releases with cop guides and price estimations resell',
+  icons: { icon: '/favicon.ico' },
 }
 
 export default function RootLayout({ children }) {
