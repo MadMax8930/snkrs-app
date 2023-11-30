@@ -7,6 +7,7 @@ import Loader from "./loader/Loader";
 import LoaderLayer from "./loader/LoaderLayer";
 import LoaderGif from "./loader/LoaderGif";
 import Sneakers from "./sneakers/Sneakers";
+import NoKickz from "./sneakers/NoKickz";
 import Toggler from "./toggler/Toggler";
 import Filter from "./filter/Filter";
 import Search from "./search/Search";
@@ -33,6 +34,7 @@ export {
    LoaderLayer,
    LoaderGif,
    Sneakers,
+   NoKickz,
    Toggler,
    Filter,
    Search,

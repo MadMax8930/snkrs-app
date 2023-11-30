@@ -266,3 +266,26 @@
       font-size: calc(var(--index) * 0.625);
    }
 }
+
+.nkContainer {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   text-align: center;
+   padding: 2em;
+   cursor: pointer;
+}
+
+.nkDescription {
+   font-size: 1rem;
+   margin-bottom: 2rem;
+   text-align: center;
+}
+ 
+.nkImage {
+   width: 100%;
+   max-width: 160px;
+   margin-left: 1rem;
+   height: auto;
+}
