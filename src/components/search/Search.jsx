@@ -1,7 +1,7 @@
 "use client";
 import Link from 'next/link';
 import React, { useState } from 'react';
-import { Loader } from '@/components';
+import { Load } from '@/components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes, faSearch } from '@fortawesome/free-solid-svg-icons';
 import styles from './search.module.css';
@@ -36,7 +36,7 @@ const Search = ({ sneakers, isLoadingFiltered }) => {
     }
   };
 
-  if (isLoadingFiltered && !sneakers) { return <div className='pt-6 md:pt-12 text-base xl:text-md'><Loader /></div> }
+  if (isLoadingFiltered && !sneakers) { return <Load /> }
 
   return (
     <div className={styles.container}>
@@ -58,7 +58,6 @@ const Search = ({ sneakers, isLoadingFiltered }) => {
            )}
        </div>
       
-     
        {isSearching && searchResults.length > 0
          ? (<ul className={styles.results}>
               {searchResults.slice(0, 4).map((sneaker) => (
