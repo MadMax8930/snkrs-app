@@ -3,7 +3,7 @@ import Link from 'next/link';
 import axios from '../../../axios.config';
 import React, { useState, useEffect } from 'react';
 import { getCircleColor } from './circleColor';
-import { Loader, NoKickz, Toggler } from '@/components';
+import { Load, NoKickz, Toggler } from '@/components';
 import styles from './sneakers.module.css';
 // import { sneakerDropsScraper } from '@/web/data/sneakers'; // scraper data
 
@@ -26,7 +26,7 @@ const Sneakers = ({ sneakerDropsFiltered, sneakerDrops, isLoadingFiltered, isLoa
    };
 
    if (!sneakersToRender || sneakersToRender.length === 0) { return <NoKickz /> }
-   if (isLoadingFiltered || isLoadingPublic) { return <Loader /> }
+   if (isLoadingFiltered || isLoadingPublic) { return <Load /> }
 
   return (
       <div className={styles.container}>

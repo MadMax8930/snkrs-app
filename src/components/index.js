@@ -3,6 +3,7 @@ import NavItem from "./navbar/NavItem";
 import Footer from "./footer/Footer";
 import FooterItem from "./footer/FooterItem";
 import DarkMode from "./darkm/DarkMode";
+import Load from "./loader/Load";
 import Loader from "./loader/Loader";
 import LoaderLayer from "./loader/LoaderLayer";
 import LoaderGif from "./loader/LoaderGif";
@@ -30,6 +31,7 @@ export {
    Footer,
    FooterItem,
    DarkMode,
+   Load,
    Loader,
    LoaderLayer,
    LoaderGif,
