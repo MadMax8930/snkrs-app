@@ -8,23 +8,21 @@ const isItTimeToNotify = (timestamp) => {
 }
  
 const startCronJob = () => {
-  cron.schedule('* * * * *', async () => {
+  cron.schedule('0 */8 * * *', async () => {
       try {
-         console.log('Running notification scheduler cron job...');
+         const { userEmail, notifications } = notificationsController.getAllNotificationsForUser;
 
-         const pendingNotifications = notificationsController.getAllNotificationsForUser;
-         // Process each pending notification
-         for (const notification of pendingNotifications) {
-            const { userId, content, schedule, sneakerId, timestamp } = notification;
+         for (const notification of notifications) {
+            const { content, schedule, sneakerId, timestamp } = notification;
 
             if (isItTimeToNotify(timestamp)) {
-               await sendNotification(userId, sneakerId, schedule, content);
+               await sendNotification(userEmail, sneakerId, schedule, content);
             }
          };
 
          console.log('Notification scheduler cron job completed.');
       } catch (error) {
-         console.error('Error in notification scheduler cron job:', error);
+         console.error('Notification scheduler cron job failed:', error);
       }
   });
 }

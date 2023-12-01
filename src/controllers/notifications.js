@@ -6,10 +6,11 @@ const getAllNotificationsForUser = async (req, res) => {
    try {
      const userId = req.user._id;
 
-     const notifications = await Notification.find({ user: userId });   
-     if (!notifications) { return res.status(200).json([]); }      
+     const user = await User.findById(userId).select('email');
+     const notifications = await Notification.find({ user: userId }, '-user -__v');
+     if (!user || !notifications) { return res.status(200).json([]); }      
 
-     return res.status(200).json(notifications);
+     return res.status(200).json({userEmail: user.email, notifications});
    } catch (error) {
      return res.status(500).json({ error: 'Internal Server Error' });
    }
