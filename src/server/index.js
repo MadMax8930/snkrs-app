@@ -5,8 +5,8 @@ require('dotenv').config();
 const app = express();
 const port = process.env.PORT || 3001;
 
-// const { startCronJob } = require('./notificationScheduler');
-const { customMiddleware } = require('../middlewares'); 
+const { startCronJob } = require('./notificationScheduler');
+const { customMiddleware } = require('../middlewares');
 app.use(customMiddleware);
 
 const requireAuth = require('../middlewares/requireAuth'); 
@@ -53,6 +53,8 @@ app.delete('/api/profile/notifications/:notificationId', requireAuth, notificati
 app.get('/api/users', authorizeDev, usersController.getAllUsers);
 app.get('/api/users/:userId', authorizeDev, usersController.getUserById);
 app.post('/api/sneakers/add-scrapers', authorizeDev, sneakersController.add10ScrapedSneakers);
+app.get('/api/cron-all-notifications', authorizeDev, notificationsController.getAllNotificationsForCronJob);
+app.delete('/api/cron-notification/:notificationId', authorizeDev, notificationsController.clearNotificationByIdForCronJob);
 app.delete('/api/profile/sneakers/:sneakerId/delete-comments', authorizeDev, requireAuth, commentsController.deleteAllUserCommentsForSneaker);
 app.delete('/api/profile/remove-notifications/:sneakerId', authorizeDev, requireAuth, notificationsController.removeAllNotificationsForUserPerSneaker);
 app.delete('/api/profile/remove-notifications-for-all-sneakers', authorizeDev, requireAuth, notificationsController.removeAllNotificationsForUserForAllSneakers);
@@ -65,7 +67,7 @@ mongoose.connect(process.env.MONGODB_URI, {
 mongoose.connection.on('error', console.error.bind(console, 'MongoDB connection error:'));
 mongoose.connection.once('open', () => { 
    console.log('Connected to MongoDB database');
-   // startCronJob();
+   startCronJob();
 });
 
 app.listen(port, () => {

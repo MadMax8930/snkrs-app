@@ -1,16 +1,43 @@
 const User = require('../models/User');
 const Sneaker = require('../models/Sneaker');
 const Notification = require('../models/Notification');
+
+const getAllNotificationsForCronJob = async (req, res) => {
+   try {
+     const notifications = await Notification.find().populate({ path: 'user', select: 'email' }).sort({ timestamp: 1 });
+     if (!notifications || notifications.length === 0) { return res.status(204).json([]); }
+
+     return res.status(200).json(notifications);
+   } catch (error) {
+     return res.status(500).json({ error: 'Internal Server Error' });
+   }
+};
+
+const clearNotificationByIdForCronJob = async (req, res) => {
+   const { notificationId } = req.params;
+
+   try {
+      // Remove the notification from the user's notifications array
+      const user = await User.findOne({ notifications: notificationId });
+      user.notifications = user.notifications.filter((item) => item._id.toString() !== notificationId);
+      await user.save();
+
+      await Notification.findByIdAndRemove(notificationId);
+      return res.status(200).json({ message: 'Notification removed successfully' });                        
+   } catch (error) {
+      return res.status(500).json({ error: 'Internal Server Error' });
+   }
+};
  
 const getAllNotificationsForUser = async (req, res) => {
    try {
      const userId = req.user._id;
 
-     const user = await User.findById(userId).select('email');
+     const userEmail = await User.findById(userId).select('email');
      const notifications = await Notification.find({ user: userId }, '-user -__v');
-     if (!user || !notifications) { return res.status(200).json([]); }      
+     if (!notifications) { return res.json([]); }
 
-     return res.status(200).json({userEmail: user.email, notifications});
+     return res.status(200).json({ userEmail: userEmail.email, notifications });
    } catch (error) {
      return res.status(500).json({ error: 'Internal Server Error' });
    }
@@ -87,9 +114,9 @@ const createNotificationForUser = async (req, res) => {
      const newNotification = new Notification({ 
          user, 
          sneaker, 
-         schedule, 
-         content: `Yay! The sneaker that you are planning to cop - ${sneaker.name} ${sneaker.model} - will be available in ${schedule.split(' before')} Good luck to you ${user.username}! [Notification alert]`, 
-         timestamp 
+         schedule,
+         timestamp,
+         content:`Hey! The sneaker that you are planning to cop - ${sneaker.name} ${sneaker.model} - will be available in ${schedule.split(' before')} hope you visit our site again for more notifications (https://maxsneakers.vercel.app). Good luck to you ${user.username}! [Notification alert]`,
      });
      await newNotification.save();
 
@@ -190,4 +217,4 @@ const removeAllNotificationsForUserForAllSneakers  = async (req, res) => {
 };
  
 
-module.exports = { getAllNotificationsForUser, getAllNotificationsForUserPerSneaker, getOneNotificationForUser, createNotificationForUser, removeNotificationForUser, removeAllNotificationsForUserPerSneaker, removeAllNotificationsForUserForAllSneakers };
+module.exports = { getAllNotificationsForCronJob, clearNotificationByIdForCronJob, getAllNotificationsForUser, getAllNotificationsForUserPerSneaker, getOneNotificationForUser, createNotificationForUser, removeNotificationForUser, removeAllNotificationsForUserPerSneaker, removeAllNotificationsForUserForAllSneakers };
