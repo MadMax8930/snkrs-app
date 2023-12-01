@@ -10,7 +10,7 @@ const BlogPage = () => {
 
   return (
     <div className='pt-20 text-center'>
-      Blog Page (to be done)
+      Blog Page (to be done) testing
     </div>
   )
 }
