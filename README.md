@@ -13,10 +13,13 @@ npm run dev-backend
 
 ### Dependencies:
 ```bash
-npm express mongoose axios bcrypt jsonwebtoken jwt-decode cors cookie cookie-parser react-cookie node-cron fs uuid https -g nodemon validator redux react-redux react-hot-toast react-spinners @fortawesome/react-fontawesome @fortawesome/free-solid-svg-icons @fortawesome/fontawesome-svg-core @emailjs/browser
+npm express mongoose axios bcrypt jsonwebtoken jwt-decode cors cookie cookie-parser react-cookie node-cron fs uuid https -g nodemon validator redux react-redux react-hot-toast react-spinners nodemailer @fortawesome/react-fontawesome @fortawesome/free-solid-svg-icons @fortawesome/fontawesome-svg-core @emailjs/browser
 ```
 
 ### Script that generates scraping data for testing purposes:
 ```bash
 npm run scrape
 ```
+
+### App deployed on Vercel:
+[Try it by yourself](https://maxsneakers.vercel.app/)

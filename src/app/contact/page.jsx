@@ -5,7 +5,7 @@ import emailjs from '@emailjs/browser';
 import nextConfig from '../../../next.config';
 import styles from './contact.module.css';
 
-const { EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, EMAILJS_PUBLIC_KEY } = nextConfig.publicRuntimeConfig;
+const { EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, EMAILJS_PUBLIC_KEY, ADMIN_CONTACT } = nextConfig.publicRuntimeConfig;
 
 const ContactPage = () => {
    const [form, setForm] = useState({ name: '', email: '', message: '' })
@@ -27,7 +27,7 @@ const ContactPage = () => {
             from_name: form.name,
             to_name: 'Max',
             from_email: form.email,
-            to_email: 'madmax8930@gmail.com',
+            to_email: ADMIN_CONTACT,
             message: form.message,
          }, 
          EMAILJS_PUBLIC_KEY
