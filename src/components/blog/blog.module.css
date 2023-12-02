@@ -48,8 +48,6 @@
    margin-top: 0.5em;
 }
 
-
-
 .sneakerContainer {
    display: flex;
    flex-direction: column;
@@ -139,43 +137,4 @@
    .blogsContainer {
       padding: 1.8em 11em 1.5em;
    }
-}
-
-/* No Blogs */
-
-.nbContainer {
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   justify-content: center;
-   text-align: center;
-   padding: 0 2em 14em;
-   cursor: pointer;
-}
- 
-.nbTitle {
-   font-weight: 500;
-   font-size: 1.25rem;
-   margin-bottom: 0.35rem;
-   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-}
- 
-.nbDescription {
-   font-size: 0.85rem;
-   margin-bottom: 1.5rem;
-}
- 
-.nbImage {
-   width: 100%;
-   max-width: 200px;
-   height: auto;
-   cursor: pointer;
-   text-align: center;
-}
-
-.nbLink {
-   font-size: 1em;
-   display: flex;
-   flex-direction: column;
-   align-items: center;
 }

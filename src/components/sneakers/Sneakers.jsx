@@ -3,7 +3,7 @@ import Link from 'next/link';
 import axios from '../../../axios.config';
 import React, { useState, useEffect } from 'react';
 import { getCircleColor } from './circleColor';
-import { Load, NoKickz, Toggler } from '@/components';
+import { Load, Toggler, NoItems } from '@/components';
 import styles from './sneakers.module.css';
 // import { sneakerDropsScraper } from '@/web/data/sneakers'; // scraper data
 
@@ -25,7 +25,7 @@ const Sneakers = ({ sneakerDropsFiltered, sneakerDrops, isLoadingFiltered, isLoa
       );
    };
 
-   if (!sneakersToRender || sneakersToRender.length === 0) { return <NoKickz /> }
+   if (!sneakersToRender || sneakersToRender.length === 0) { return <NoItems variation={'nk'} linkHref="/auth" title="Oops..." description="😟 No sneakers found." imageSrc="/sad-face.png" imageAlt="No Sneakers Found" />; }
    if (isLoadingFiltered || isLoadingPublic) { return <Load /> }
 
   return (

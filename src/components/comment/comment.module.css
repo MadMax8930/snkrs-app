@@ -173,45 +173,6 @@
    margin-right: 0.5rem;
 }
 
-/* No Comments */
-
-.ncContainer {
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   justify-content: center;
-   text-align: center;
-   padding: 0 2em 24em;
-   cursor: pointer;
-}
- 
-.ncTitle {
-   font-weight: 500;
-   font-size: 1.25rem;
-   margin-bottom: 0.35rem;
-   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-}
- 
-.ncDescription {
-   font-size: 0.85rem;
-   margin-bottom: 1.5rem;
-}
- 
-.ncImage {
-   width: 100%;
-   max-width: 200px;
-   height: auto;
-   cursor: pointer;
-   text-align: center;
-}
-
-.ncLink {
-   font-size: 1em;
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-}
-
 @media (max-width: 450px) {
    .postContainerInput {
       padding: 0.3em;

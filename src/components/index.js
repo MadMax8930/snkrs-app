@@ -8,7 +8,6 @@ import Loader from "./loader/Loader";
 import LoaderLayer from "./loader/LoaderLayer";
 import LoaderGif from "./loader/LoaderGif";
 import Sneakers from "./sneakers/Sneakers";
-import NoKickz from "./sneakers/NoKickz";
 import Toggler from "./toggler/Toggler";
 import Filter from "./filter/Filter";
 import Search from "./search/Search";
@@ -17,16 +16,14 @@ import Profile from "./profile/Profile";
 import NotFound from "./404/Notfound";
 import CoppedSnkrs from "./copped/CoppedSnkrs";
 import CoppedCard from "./copped/CoppedCard";
-import NoSnkrs from "./copped/NoSnkrs";
 import Notification from "./notif/Notification";
 import PostSection from "./comment/PostSection";
 import CommentSection from "./comment/CommentSection";
 import CommentCard from "./comment/CommentCard";
-import NoComs from "./comment/NoComs";
 import Button from "./button/Button";
 import BlogSection from "./blog/BlogSection";
 import BlogCard from "./blog/BlogCard";
-import NoBlogs from "./blog/NoBlogs";
+import NoItems from "./noitems/NoItems";
 
 export { 
    Navbar,
@@ -39,7 +36,6 @@ export {
    LoaderLayer,
    LoaderGif,
    Sneakers,
-   NoKickz,
    Toggler,
    Filter,
    Search,
@@ -48,14 +44,12 @@ export {
    NotFound,
    CoppedSnkrs,
    CoppedCard,
-   NoSnkrs,
    Notification,
    PostSection,
    CommentSection,
    CommentCard,
-   NoComs,
    Button,
    BlogSection,
    BlogCard,
-   NoBlogs,
+   NoItems,
 }
