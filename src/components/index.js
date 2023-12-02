@@ -24,6 +24,8 @@ import CommentSection from "./comment/CommentSection";
 import CommentCard from "./comment/CommentCard";
 import NoComs from "./comment/NoComs";
 import Button from "./button/Button";
+import BlogSection from "./blog/BlogSection";
+import BlogCard from "./blog/BlogCard";
 
 export { 
    Navbar,
@@ -52,4 +54,6 @@ export {
    CommentCard,
    NoComs,
    Button,
+   BlogSection,
+   BlogCard,
 }

@@ -1,3 +1,4 @@
+const User = require('../models/User');
 const Sneaker = require('../models/Sneaker');
 const Comment = require('../models/Comment');
  
@@ -24,12 +25,15 @@ const getCommentByIdForSneaker = async (req, res) => {
    }
 };
 
-const getAllUserComments = async (req, res) => {
+const getAllUserCommentsForBlogs = async (req, res) => {
    try {
      const userId = req.user._id;
 
-     const comments = await Comment.find({ user: userId, sneaker: { $exists: true } })
-     return res.status(200).json(comments);
+     const user = await User.findById(userId).select('username email profilePic');
+     const comments = await Comment.find({ user: userId, sneaker: { $exists: true } }, '-user -__v')
+     .populate({ path: 'parentMessage', select: 'message parentMessage user createdAt', populate: { path: 'user', select: 'username email profilePic' } })
+     .populate({ path: 'sneaker', select: 'img name model brand dateRelease copping coppers', populate: { path: 'coppers', select: 'profilePic' } });
+     return res.status(200).json({ user, comments });
    } catch (error) {
      return res.status(500).json({ error: 'Internal Server Error' });
    }
@@ -129,4 +133,4 @@ const deleteAllUserCommentsForSneaker = async (req, res) => {
    }
 };
  
-module.exports = { getAllCommentsForSneaker, getCommentByIdForSneaker, getAllUserComments, getUserComment, addUserComment, updateUserComment, deleteUserComment, deleteAllUserCommentsForSneaker };
+module.exports = { getAllCommentsForSneaker, getCommentByIdForSneaker, getAllUserCommentsForBlogs, getUserComment, addUserComment, updateUserComment, deleteUserComment, deleteAllUserCommentsForSneaker };

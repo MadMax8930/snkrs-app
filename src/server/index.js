@@ -36,7 +36,7 @@ app.get('/api/profile/sneakers-filter', requireAuth, sneakersController.filterUs
 /* COMMENTS */
 app.get('/api/sneakers/:sneakerId/comments', commentsController.getAllCommentsForSneaker);
 app.get('/api/sneakers/:sneakerId/comments/:commentId', commentsController.getCommentByIdForSneaker);
-app.get('/api/profile/sneakers-comments', requireAuth, commentsController.getAllUserComments);
+app.get('/api/profile/sneakers-comments', requireAuth, commentsController.getAllUserCommentsForBlogs);
 app.get('/api/profile/sneakers/:sneakerId/comments/:commentId', requireAuth, commentsController.getUserComment);
 app.post('/api/profile/sneakers/:sneakerId/comments', requireAuth, commentsController.addUserComment);
 app.put('/api/profile/sneakers/:sneakerId/comments/:commentId', requireAuth, commentsController.updateUserComment);
