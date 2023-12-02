@@ -20,8 +20,8 @@
 .list::before {
   content: "My Copped Sneakers";
   position: absolute;
-  top: -22px;
-  left: 34%;
+  top: -26px;
+  left: 28%;
   transform: translateX(-50%);
   background-color: #363332;
   color: white;
@@ -163,7 +163,8 @@
    }
 
    .list::before {
-      left: 31%;
+      left: 26%;
+      top: -28px;
    }
 }
 
@@ -173,7 +174,8 @@
    }
 
    .list::before {
-      left: 27%;
+      left: 24%;
+      top: -30px;
    }
 }
 
@@ -183,7 +185,8 @@
    }
 
    .list::before {
-      left: 25%;
+      left: 22%;
+      top: -31px;
    }
 }
 
@@ -193,7 +196,8 @@
    }
 
    .list::before {
-      left: 22%;
+      left: 20%;
+      top: -32px;
    }
 }
 
@@ -203,7 +207,8 @@
    }
 
    .list::before {
-      left: 25%;
+      left: 20%;
+      top: -30px;
    }
 }
 
@@ -213,7 +218,8 @@
    }
 
    .list::before {
-      left: 23%;
+      left: 20%;
+      top: -30px;
    }
 }
 
@@ -223,7 +229,8 @@
    }
 
    .list::before {
-      left: 23%;
+      left: 20%;
+      top: -30px;
    }
 }
 
@@ -233,7 +240,8 @@
    }
 
    .list::before {
-      left: 21%;
+      left: 19%;
+      top: -30px;
    }
 }
 
@@ -243,7 +251,8 @@
    }
 
    .list::before {
-      left: 22%;
+      left: 18.5%;
+      top: -30px;
    }
 }
 
@@ -255,31 +264,36 @@
 
 @media (min-width: 1150px) and (max-width: 1275px) {
    .list::before {
-      left: 21%;
+      left: 18%;
+      top: -32px;
    }
 }
 
 @media (min-width: 1275px) and (max-width: 1350px) {
    .list::before {
-      left: 20%;
+      left: 17%;
+      top: -33px;
    }
 }
 
 @media (min-width: 1350px) and (max-width: 1550px) {
    .list::before {
-      left: 19%;
+      left: 16%;
+      top: -34px;
    }
 }
 
 @media (min-width: 1550px) and (max-width: 1700px) {
    .list::before {
-      left: 18%;
+      left: 15%;
+      top: -35px;
    }
 }
 
 @media (min-width: 1700px) {
    .list::before {
-      left: 17%;
+      left: 15%;
+      top: -36px;
    }
 }
 

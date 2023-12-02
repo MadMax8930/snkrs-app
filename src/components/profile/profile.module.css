@@ -4,8 +4,6 @@
    flex-direction: column;
    align-items: center;
    justify-content: center;
-   background: url('/account.png') no-repeat bottom center;
-   background-size: cover;
    gap: 0.25rem;
    padding: 0.25em 1.25em 2.5em;
 }
@@ -15,7 +13,7 @@
    height: 2.75rem;
    width: 4.25rem;
    position: absolute;
-   right: 8.5%;
+   right: 10%;
    top: 82%;
    transform: translateX(-50%);
    cursor: pointer;
@@ -94,16 +92,34 @@
    .gifAbsolute {
       height: 2.95rem;
       width: 4.45rem;
-      right: 9.75%;
+      right: 11%;
       top: 81%;
    }
 }
 
-@media (min-width: 460px) and (max-width: 550px) {
+@media (min-width: 460px) and (max-width: 500px) {
    .gifAbsolute {
       height: 2.95rem;
       width: 4.45rem;
-      right: 10.25%;
+      right: 11.25%;
+      top: 81%;
+   }
+}
+
+@media (min-width: 500px) and (max-width: 530px) {
+   .gifAbsolute {
+      height: 2.95rem;
+      width: 4.45rem;
+      right: 11.75%;
+      top: 81%;
+   }
+}
+
+@media (min-width: 530px) and (max-width: 550px) {
+   .gifAbsolute {
+      height: 2.95rem;
+      width: 4.45rem;
+      right: 12.25%;
       top: 81%;
    }
 }
@@ -112,34 +128,61 @@
    .gifAbsolute {
       height: 2.95rem;
       width: 4.45rem;
-      right: 10%;
+      right: 11.25%;
       top: 81%;
    }
 }
 
-@media (min-width: 600px) and (max-width: 660px) {
+@media (min-width: 600px) and (max-width: 630px) {
    .gifAbsolute {
       height: 2.95rem;
       width: 4.45rem;
-      right: 11.5%;
+      right: 12%;
       top: 81%;
    }
 }
 
-@media (min-width: 660px) and (max-width: 1000px) {
+@media (min-width: 630px) and (max-width: 660px) {
+   .gifAbsolute {
+      height: 2.95rem;
+      width: 4.45rem;
+      right: 12.25%;
+      top: 81%;
+   }
+}
+
+@media (min-width: 660px) and (max-width: 950px) {
    .gifAbsolute {
       height: 3.25rem;
       width: 4.75rem;
-      right: 17.5%;
+      right: 18.5%;
       top: 79%;
    }
 }
 
-@media (min-width: 1000px) and (max-width: 1150px) {
+@media (min-width: 950px) and (max-width: 1000px) {
    .gifAbsolute {
       height: 3.75rem;
       width: 5.5rem;
-      right: 18.25%;
+      right: 17.25%;
+      top: 77%;
+   }
+}
+
+@media (min-width: 1000px) and (max-width: 1050px) {
+   .gifAbsolute {
+      height: 3.75rem;
+      width: 5.5rem;
+      right: 19.25%;
+      top: 77%;
+   }
+}
+
+@media (min-width: 1050px) and (max-width: 1150px) {
+   .gifAbsolute {
+      height: 3.75rem;
+      width: 5.5rem;
+      right: 20%;
       top: 77%;
    }
 }
@@ -148,7 +191,7 @@
    .gifAbsolute {
       height: 3.85rem;
       width: 5.625rem;
-      right: 15.25%;
+      right: 16.5%;
       top: 75%;
    }
 }
@@ -157,7 +200,7 @@
    .gifAbsolute {
       height: 4rem;
       width: 5.75rem;
-      right: 16.25%;
+      right: 17%;
       top: 74%;
    }
 }
@@ -166,7 +209,7 @@
    .gifAbsolute {
       height: 4.5rem;
       width: 6.5rem;
-      right: 17%;
+      right: 18.5%;
       top: 70%;
    }
 }
