@@ -26,6 +26,7 @@ import NoComs from "./comment/NoComs";
 import Button from "./button/Button";
 import BlogSection from "./blog/BlogSection";
 import BlogCard from "./blog/BlogCard";
+import NoBlogs from "./blog/NoBlogs";
 
 export { 
    Navbar,
@@ -56,4 +57,5 @@ export {
    Button,
    BlogSection,
    BlogCard,
+   NoBlogs,
 }

@@ -1,0 +1,181 @@
+.blogsContainer {
+   display: flex;
+   flex-direction: column;
+   width: 100%;
+   padding: 1.5em 1.25em 0.5em;
+}
+
+.blogContainer {
+   border: 1px solid #ccc;
+   margin-bottom: 1em;
+   padding: 1rem 2rem;
+   border-radius: 12px;
+   background-color: rgba(176, 165, 165, 0.141);
+   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.blogHeader {
+   display: flex;
+   align-items: center;
+}
+ 
+.userProfilePic {
+   width: 30px;
+   height: 30px;
+   border-radius: 50%;
+   margin-right: 8px;
+}
+ 
+.blogDate {
+   margin-left: auto;
+}
+ 
+.blogContent {
+   margin-top: 1em;
+}
+ 
+.replyContainer {
+   border-top: 1px solid #eee;
+   margin-top: 1em;
+   padding-top: 1em;
+}
+ 
+.replyToUser {
+   font-weight: bold;
+}
+ 
+.replyToComm {
+   margin-top: 0.5em;
+}
+
+
+
+.sneakerContainer {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   margin-top: 1em;
+   width: 100%;
+   margin-left: auto;
+   margin-right: auto;
+}
+ 
+.sneakerImage {
+   width: 100%;
+   max-width: 180px;
+   height: auto;
+   margin-bottom: 1em;
+}
+ 
+.coppersContainer {
+   display: flex;
+   align-items: center;
+   gap: 0.35rem;
+   padding-bottom: 0.25rem;
+}
+ 
+.copperProfilePic {
+   width: 30px;
+   height: 30px;
+   border-radius: 50%;
+   border: 2px solid #53c28b;
+   object-fit: cover;
+}
+
+.moreCopperPlaceholder {
+   /* display: flex;
+   align-items: center;
+   justify-content: center; */
+   width: 30px;
+   height: 30px;
+   border-radius: 50%;
+   border: 2px dashed rgba(118, 114, 114, 0.791);
+   color: rgba(118, 114, 114, 0.791);
+   margin-right: 5px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   font-size: 0.75rem;
+   font-weight: 600;
+}
+
+@media (min-width: 1200px) {
+   .sneakerContainer {
+     flex-direction: row-reverse;
+     justify-content: space-between;
+     align-items: flex-end;
+   }
+ 
+   .sneakerImage {
+     margin-bottom: 0;
+   }
+}
+
+@media (min-width: 450px) and (max-width: 660px) {
+   .blogsContainer {
+      padding: 1.5em 1.75em 0.375em;
+   }
+}
+
+@media (min-width: 660px) and (max-width: 850px) {
+   .blogsContainer {
+      padding: 1.625em 4em 0.5em;
+   }
+}
+
+@media (min-width: 850px) and (max-width: 1250px) {
+   .blogsContainer {
+      padding: 1.75em 5.5em 0.5em;
+   }
+}
+
+@media (min-width: 1250px) and (max-width: 1500px) {
+   .blogsContainer {
+      padding: 1.875em 7.75em 0.75em;
+   }
+}
+
+@media (min-width: 1500px) {
+   .blogsContainer {
+      padding: 1.8em 11em 1.5em;
+   }
+}
+
+/* No Blogs */
+
+.nbContainer {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   text-align: center;
+   padding: 0 2em 14em;
+   cursor: pointer;
+}
+ 
+.nbTitle {
+   font-weight: 500;
+   font-size: 1.25rem;
+   margin-bottom: 0.35rem;
+   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+ 
+.nbDescription {
+   font-size: 0.85rem;
+   margin-bottom: 1.5rem;
+}
+ 
+.nbImage {
+   width: 100%;
+   max-width: 200px;
+   height: auto;
+   cursor: pointer;
+   text-align: center;
+}
+
+.nbLink {
+   font-size: 1em;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
