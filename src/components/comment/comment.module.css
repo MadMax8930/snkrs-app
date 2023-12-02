@@ -2,7 +2,7 @@
 .sticky {
    position: sticky;
    top: 4.4rem;
-   padding: 0.5em 1.5em 0.5em;
+   padding: 0.5em 1.5em 0em;
    z-index: 10;
 }
 
@@ -19,27 +19,66 @@
 
 .postContainer {
    position: relative;
-   padding: 0.5em;
-   border: 2px solid #938d8d;
-   background-color: #ccc;
+   padding: 0.25em;
+   background-color: #ccccccef;
+}
+
+.postContainerInputWrapper {
+   width: 100%;
+   background-color: rgba(246, 240, 240, 0.841);
 }
 
 .postContainerInput {
    color: #897e7e;
    font-weight: 500;
-   width: 52.5%;
+   width: 70%;
    border: none;
    outline: none;
    padding: 0.5em;
    border-radius: 4px;
    box-sizing: border-box;
-   background-color: rgba(255, 255, 255, 0.524);
+   background-color: transparent;
 }
 
 .postContainerInput::placeholder {
    font-size: 0.75em;
    font-style: oblique;
    color: #c1baba;
+   max-width: 95%;
+   text-overflow: ellipsis;
+   overflow: hidden;
+   white-space: nowrap;
+   text-transform: uppercase;
+}
+
+@media (min-width: 320px) and (max-width: 350px) {
+   .postContainerInput {
+      width: 50%;
+   }
+}
+
+@media (min-width: 350px) and (max-width: 380px) {
+   .postContainerInput {
+      width: 55%;
+   }
+}
+
+@media (min-width: 380px) and (max-width: 420px) {
+   .postContainerInput {
+      width: 60%;
+   }
+}
+
+@media (min-width: 420px) and (max-width: 460px) {
+   .postContainerInput {
+      width: 62.5%;
+   }
+}
+
+@media (min-width: 460px) and (max-width: 525px) {
+   .postContainerInput {
+      width: 65%;
+   }
 }
 
 @media (min-width: 660px) {
@@ -67,18 +106,20 @@
    display: flex;
    flex-direction: column;
    width: 100%;
-   padding: 1.5em 1.25em 0.5em;
 }
 
 /* Comment Card */
 
 .commentContainer {
-   padding: 0.65em 1.125em 1.1em;
-   margin-bottom: 0.375em;
-   border: 2px solid #ccc;
-   border-radius: 12px;
+   padding: 0.65em 1.5em 1.1em;
+   border-top: 2px dashed #635f5f;
+   border-bottom: 2px dashed #635f5f;
    position: relative;
    background-color: rgba(157, 163, 163, 0.16);
+}
+
+.commentContainer:nth-child(1){
+   border-top: none;
 }
 
 .topBetween {
@@ -98,6 +139,8 @@
    height: 1em;
    object-fit: cover;
    margin-right: 0.25em;
+   border-radius: 50%;
+   border: 2px solid #53c28b;
 }
 
 .profile p {
@@ -150,7 +193,26 @@
 
 /* General Buttons */
 
-.btnContainer {
+.btnContainerOne {
+   position: absolute;
+   bottom: 0;
+   right: 0;
+   display: flex;
+   gap: 0.25rem;
+   padding: 0.75rem;
+   margin-right: 1.5rem;
+}
+
+.btnContainerOne button {
+   font-size: 0.85em;
+   padding: 0.5em;
+   border-radius: 6px;
+   color: #fff;
+   border: none;
+   cursor: pointer;
+}
+
+.btnContainerTwo {
    position: absolute;
    bottom: 0;
    right: 0;
@@ -159,7 +221,7 @@
    padding: 0.75rem;
 }
 
-.btnContainer button {
+.btnContainerTwo button {
    font-size: 0.85em;
    padding: 0.5em;
    border-radius: 6px;
@@ -173,25 +235,9 @@
    margin-right: 0.5rem;
 }
 
-@media (max-width: 450px) {
-   .postContainerInput {
-      padding: 0.3em;
-   }
-
-   .btnContainer {
-      position: absolute;
-      bottom: 0;
-      right: -2%;
-   }
-
-   .btnContainer button {
-      font-size: 0.725em;
-   }
-}
-
 @media (min-width: 450px) and (max-width: 660px) {
    .sticky {
-      padding: 0.5em 2.25em 0.5em; 
+      padding: 0.5em 2.25em 0; 
    }
 
    .infoContainer {
@@ -199,13 +245,8 @@
       bottom: -27%;
    }
 
-   .commentsContainer {
-      padding: 1.5em 1.75em 0.375em;
-   }
-
    .commentContainer {
-      padding: 0.75em 1.15em 1.125em;
-      margin-bottom: 0.4em;
+      padding: 0.75em 2.25em 1.125em;
    }
 
    .content {
@@ -219,98 +260,61 @@
    .sneakerContainer {
       width: 40px;
    }
-}
 
-@media (min-width: 380px) and (max-width: 400px) {
-   .postContainerInput {
-      width: 57.5%;
-   }
-}
-
-@media (min-width: 400px) and (max-width: 420px) {
-   .postContainerInput {
-      width: 60%;
+   .btnContainerOne {
+      margin-right: 2.25rem;
    }
 }
 
 @media (min-width: 420px) and (max-width: 450px) {
-   .postContainerInput {
-      width: 61.5%;
-   }
-}
-
-@media (min-width: 450px) and (max-width: 475px) {
-   .postContainerInput {
-      width: 57.5%;
-   }
-}
-
-@media (min-width: 475px) and (max-width: 500px) {
-   .postContainerInput {
-      width: 60%;
-   }
-}
-
-@media (min-width: 500px) and (max-width: 550px) {
-   .postContainerInput {
-      width: 62.5%;
-   }
-}
-
-@media (min-width: 550px) and (max-width: 660px) {
-   .postContainerInput {
-      width: 65%;
+   .btnContainerOne {
+      margin-right: 1.5rem;
    }
 }
 
 @media (min-width: 660px) and (max-width: 850px) {
-   .postContainerInput {
-      width: 67.5%;
+   .btnContainerOne {
+      margin-right: 4rem;
    }
 }
 
 @media (min-width: 850px) and (max-width: 1000px) {
-   .postContainerInput {
-      width: 70%;
+   .btnContainerOne {
+      margin-right: 5.5rem;
    }
 }
 
 @media (min-width: 1000px) and (max-width: 1200px) {
-   .postContainerInput {
-      width: 72.5%;
+   .btnContainerOne {
+      margin-right: 5.5rem;
    }
 }
 
-@media (min-width: 1200px) and (max-width: 1400px) {
-   .postContainerInput {
-      width: 75%;
+@media (min-width: 1200px) and (max-width: 1250px) {
+   .btnContainerOne {
+      margin-right: 5.5rem;
+   }
+}
+
+@media (min-width: 1250px) and (max-width: 1400px) {
+   .btnContainerOne {
+      margin-right: 7.75rem;
    }
 }
 
 @media (min-width: 1400px) and (max-width: 1600px) {
-   .postContainerInput {
-      width: 80%;
-   }
-}
-
-@media (min-width: 1600px) {
-   .postContainerInput {
-      width: 82.5%;
+   .btnContainerOne {
+      margin-right: 7.75rem;
    }
 }
 
 @media (min-width: 660px) and (max-width: 850px) {
    .sticky {
-      padding: 0.75em 4em 0.75em; 
-   }
-
-   .commentsContainer {
-      padding: 1.625em 4em 0.5em;
+      padding: 0.75em 4em 0; 
    }
 
    .commentContainer {
-      padding: 0.8em 1.2em 1.25em;
-      margin-bottom: 0.45em;
+      padding: 0.8em 4em 1.25em;
    }
 
    .content {
@@ -418,16 +422,11 @@
 
 @media (min-width: 850px) and (max-width: 1250px) {
    .sticky {
-      padding: 0.875em 5.5em 0.875em; 
-   }
-
-   .commentsContainer {
-      padding: 1.75em 5.5em 0.5em;
+      padding: 0.875em 5.5em 0; 
    }
 
    .commentContainer {
-      padding: 0.6em 1.25em 1.375em;
-      margin-bottom: 0.5em;
+      padding: 0.6em 5.5em 1.375em;
    }
 
    .content {
@@ -441,16 +440,11 @@
 
 @media (min-width: 1250px) and (max-width: 1500px) {
    .sticky {
-      padding: 1em 7.75em 1em; 
-   }
-
-   .commentsContainer {
-      padding: 1.875em 7.75em 0.75em;
+      padding: 1em 7.75em 0; 
    }
 
    .commentContainer {
-      padding: 0.8em 1.375em 1.5em;
-      margin-bottom: 0.625em;
+      padding: 0.8em 7.75em 1.5em;
    }
 
    .content {
@@ -464,16 +458,11 @@
 
 @media (min-width: 1500px) {
    .sticky {
-      padding: 1.5em 11em 1.5em; 
-   }
-
-   .commentsContainer {
-      padding: 1.8em 11em 1.5em;
+      padding: 1.5em 11em 0; 
    }
 
    .commentContainer {
-      padding: 0.75em 1.5em 1.625em;
-      margin-bottom: 0.75em;
+      padding: 0.75em 11em 1.625em;
    }
 
    .content {

@@ -70,9 +70,10 @@ const PostSection = ({ forSneakerId, sneaker, mutate, replyingComment, setReplyi
          : null
       }
       <div className={styles.postContainer}>
-         <input className={styles.postContainerInput} placeholder={`💬  ${sneaker.name} - Share your thoughts...`}
-                value={messageBody} onChange={(e) => setMessageBody(e.target.value)}/>
-         <div className={styles.btnContainer}>
+         <div className={styles.postContainerInputWrapper}>
+            <input className={styles.postContainerInput} placeholder={`💬  ${sneaker.name} ${sneaker.model} ...`}
+               value={messageBody} onChange={(e) => setMessageBody(e.target.value)}/></div>
+         <div className={styles.btnContainerTwo}>
             <img className={styles.sneakerContainer} src={sneaker.img} alt="Sneaker Id Image" />
             {editingComment && (
                <>

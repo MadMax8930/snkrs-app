@@ -45,7 +45,7 @@ const CommentCard = ({ comment, mutate, onReply, onEdit, forSneakerId, forCommen
          <p className={styles.date}>{formatDate(comment.createdAt)}</p>
       </div>
       <div className={styles.content}>{comment.message}</div>
-      <div className={styles.btnContainer}>
+      <div className={styles.btnContainerOne}>
          <Button 
             action={() => handleReply(comment._id)}
             icon={faReply}
