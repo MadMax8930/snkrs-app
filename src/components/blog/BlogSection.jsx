@@ -13,7 +13,6 @@ const BlogSection = ({ blogs, isLoading, mutate, authenticatedUser }) => {
             blog={blog}
             mutate={mutate}
             authenticatedUser={authenticatedUser}
-
          />
       ))}
     </div>

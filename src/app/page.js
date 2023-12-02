@@ -25,7 +25,7 @@ function Home() {
        <section>
           <Navbar />
           <main className="flex min-h-screen flex-col items-center justify-between">
-             <div className="h-full" style={containerWidth}>
+             <div className="h-full layer-full" style={containerWidth}>
                <div className="mt-[4em] p-[2em] pb-0 text-xs md:text-base xl:text-lg md:pt-1 xl:pt-2">
                   <Search sneakers={filteredSnkrs} isLoadingFiltered={isLoadingFiltered} />
                   <Filter

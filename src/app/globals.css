@@ -61,3 +61,23 @@ section {
    opacity: 0.1;
    z-index: -1;
 }
+ 
+.layer-full {
+   position: relative;
+   width: 100%;
+   min-height: 100vh;
+   z-index: 0;
+}
+
+.layer-full::before {
+   content: "";
+   background: url('/layer.png') repeat center center;
+   background-size: contain;
+   position: absolute;
+   top: 0;
+   left: 0;
+   right: 0;
+   bottom: 0;
+   opacity: 0.1;
+   z-index: -1;
+}

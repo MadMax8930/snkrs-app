@@ -25,13 +25,13 @@ app.put('/api/profile/picture', requireAuth, usersController.uploadPicture);
 
 /* SNKRS */
 app.get('/api/sneakers', sneakersController.getPublicSneakers);
+app.get('/api/sneakers-filter', sneakersController.filterSneakers);
 app.get('/api/sneakers/:sneakerId', sneakersController.getPublicSneakerById);
 app.get('/api/profile/sneakers', requireAuth, sneakersController.getUserSneakers);
+app.get('/api/profile/sneakers-filter', requireAuth, sneakersController.filterUserSneakers);
 app.get('/api/profile/sneakers/:sneakerId', requireAuth, sneakersController.getUserSneakerById);
 app.get('/api/profile/sneakers-copped', requireAuth, sneakersController.getCoppedSneakers);
 app.patch('/api/profile/sneakers/:sneakerId/toggle', requireAuth, sneakersController.toggleCopping)
-app.get('/api/sneakers-filter', sneakersController.filterSneakers);
-app.get('/api/profile/sneakers-filter', requireAuth, sneakersController.filterUserSneakers);
 
 /* COMMENTS */
 app.get('/api/sneakers/:sneakerId/comments', commentsController.getAllCommentsForSneaker);

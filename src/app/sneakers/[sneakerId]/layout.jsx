@@ -5,7 +5,7 @@ import { withTokenCleanup } from '@/guards/withTokenCleanUp';
 function Layout({ children }) {
   return (
     <div className='h-screen overflow-auto'>
-      <div className='min-h-[92.3svh]'>
+      <div className='min-h-[92.3svh] layer-full'>
          {children}
       </div>
       <Footer />
