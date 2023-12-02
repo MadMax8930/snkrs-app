@@ -4,6 +4,7 @@ import axios from '../../../axios.config';
 import React, { useState, useEffect } from 'react';
 import { getCircleColor } from './circleColor';
 import { Load, Toggler, NoItems } from '@/components';
+import { translateProperty } from './translate';
 import styles from './sneakers.module.css';
 // import { sneakerDropsScraper } from '@/web/data/sneakers'; // scraper data
 
@@ -46,9 +47,9 @@ const Sneakers = ({ sneakerDropsFiltered, sneakerDrops, isLoadingFiltered, isLoa
                   <div className={styles.listResell}>
                      <Link href={`/sneakers/${sneaker._id}`} className={styles.resell}>    
                         <div className={styles.circle} style={{ backgroundColor: getCircleColor(sneaker.resellIndex) }} />
-                        <span>{sneaker.resellIndex} resell</span>
+                        <span>{translateProperty('resellIndex', sneaker.resellIndex)} resell</span>
                         <span>({sneaker.retailPrice === 'N/A' ? `${sneaker.retailPrice}` : `${sneaker.retailPrice}€`})</span>
-                        <i>{sneaker.resellPrice}</i>
+                        <i>{translateProperty('resellPrice', sneaker.resellPrice)}</i>
                      </Link>
                      <div className={styles.move}>
                          <Toggler 

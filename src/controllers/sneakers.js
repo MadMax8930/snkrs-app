@@ -5,7 +5,7 @@ const saveToDatabase = require('../web/saveDB');
 
 const getPublicSneakers = async (req, res) => {
    try {
-     const sneakers = await Sneaker.find({}, '-coppers -comments -__v');
+     const sneakers = await Sneaker.find({}, '-coppers -comments -__v').sort({ dateRelease: 1 });
      sneakers.forEach(sneaker => sneaker.copping = false);
      return res.status(200).json(sneakers);
    } catch (error) {
@@ -31,7 +31,7 @@ const getPublicSneakerById = async (req, res) => {
 
 const getUserSneakers = async (req, res) => {
    try {
-     const sneakers = await Sneaker.find({}, '-comments -__v');
+     const sneakers = await Sneaker.find({}, '-comments -__v').sort({ dateRelease: 1 });
      sneakers.forEach((sneaker) => sneaker.copping = sneaker.coppers.includes(req.user._id));
      return res.status(200).json(sneakers);
    } catch (error) {
@@ -120,7 +120,7 @@ const filterSneakers = async (req, res) => {
      if (resellIndex) { filter.resellIndex = resellIndex; }
      if (dateRelease) { filter.dateRelease = dateRelease; }
 
-     const sneakers = await Sneaker.find(filter, '-coppers -comments -__v');
+     const sneakers = await Sneaker.find(filter, '-coppers -comments -__v').sort({ dateRelease: 1 });
      sneakers.forEach(sneaker => sneaker.copping = false);
      if (sneakers.length === 0) { return res.status(200).json([]); }
      return res.status(200).json(sneakers);
@@ -139,7 +139,7 @@ const filterUserSneakers = async (req, res) => {
      if (resellIndex) { filter.resellIndex = resellIndex; }
      if (dateRelease) { filter.dateRelease = dateRelease; }
 
-     const sneakers = await Sneaker.find(filter, '-comments -__v');
+     const sneakers = await Sneaker.find(filter, '-comments -__v').sort({ dateRelease: 1 });
      sneakers.forEach(sneaker => sneaker.copping = sneaker.coppers.includes(req.user._id));
      if (sneakers.length === 0) { return res.status(200).json([]); }
      return res.status(200).json(sneakers);

@@ -112,14 +112,27 @@
 
 .commentContainer {
    padding: 0.65em 1.5em 1.1em;
-   border-top: 2px dashed #635f5f;
-   border-bottom: 2px dashed #635f5f;
    position: relative;
    background-color: rgba(157, 163, 163, 0.16);
 }
 
-.commentContainer:nth-child(1){
-   border-top: none;
+.commentContainer::before,
+.commentContainer::after {
+  content: '';
+  display: block;
+  height: 1.25px;
+  background-color: #635f5f57;
+  position: absolute;
+  left: 1.5em;
+  right: 1.5em;
+}
+
+.commentContainer::before {
+  top: 0;
+}
+
+.commentContainer::after {
+  bottom: 0;
 }
 
 .topBetween {
@@ -161,7 +174,7 @@
 }
 
 .content {
-   margin: 0.5em 0em 2.125em;
+   margin: 0.5em 0em 1.5em;
    text-align: justify;
    font-size: 0.75em;
    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -264,6 +277,12 @@
    .btnContainerOne {
       margin-right: 2.25rem;
    }
+
+   .commentContainer::before,
+   .commentContainer::after {
+     left: 2em;
+     right: 2em;
+   }
 }
 
 @media (min-width: 420px) and (max-width: 450px) {
@@ -276,11 +295,23 @@
    .btnContainerOne {
       margin-right: 4rem;
    }
+
+   .commentContainer::before,
+   .commentContainer::after {
+     left: 3.75em;
+     right: 3.75em;
+   }
 }
 
 @media (min-width: 850px) and (max-width: 1000px) {
    .btnContainerOne {
       margin-right: 5.5rem;
+   }
+
+   .commentContainer::before,
+   .commentContainer::after {
+     left: 5.25em;
+     right: 5.25em;
    }
 }
 
@@ -288,11 +319,23 @@
    .btnContainerOne {
       margin-right: 5.5rem;
    }
+
+   .commentContainer::before,
+   .commentContainer::after {
+     left: 5.5em;
+     right: 5.5em;
+   }
 }
 
 @media (min-width: 1200px) and (max-width: 1250px) {
    .btnContainerOne {
       margin-right: 5.5rem;
+   }
+
+   .commentContainer::before,
+   .commentContainer::after {
+     left: 5.25em;
+     right: 5.25em;
    }
 }
 
@@ -402,6 +445,12 @@
       bottom: -27%;
       font-size: 0.6rem;
    }
+
+   .commentContainer::before,
+   .commentContainer::after {
+     left: 7.5em;
+     right: 7.5em;
+   }
 }
 
 @media (min-width: 1500px) and (max-width: 1700px) {
@@ -431,6 +480,7 @@
 
    .content {
       font-size: 1em;
+      margin: 0.5em 0em 1.25em;
    }
 
    .profile p {
@@ -449,6 +499,7 @@
 
    .content {
       font-size: 1.1em;
+      margin: 0.5em 0em 1.2em;
    }
 
    .profile p {
@@ -467,6 +518,7 @@
 
    .content {
       font-size: 1.2em;
+      margin: 0.5em 0em 1.15em;
    }
 
    .profile p {
