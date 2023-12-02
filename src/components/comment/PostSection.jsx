@@ -18,7 +18,7 @@ const PostSection = ({ forSneakerId, sneaker, mutate, replyingComment, setReplyi
         setEditingComment(null);
         setParentMessageId(replyingComment._id);
      }
-   }, [replyingComment, setEditingComment]);
+   }, [replyingComment, setEditingComment, setParentMessageId]);
 
    useEffect(() => {
       if (editingComment) {
@@ -26,7 +26,7 @@ const PostSection = ({ forSneakerId, sneaker, mutate, replyingComment, setReplyi
          setParentMessageId(editingComment.parentMessageId);
          setMessageBody(editingComment.message);
       }
-   }, [editingComment, setReplyingComment]);
+   }, [editingComment, setReplyingComment, setParentMessageId, setMessageBody]);
 
    const handleSend = async () => {
       try {

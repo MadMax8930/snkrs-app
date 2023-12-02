@@ -3,7 +3,8 @@ import fetcher from './fetcher';
 
 const useCommentPub = (sneakerId, commentId) => {
    const { data, error, isLoading, mutate } = useSWR(
-      `/api/sneakers/${sneakerId}/comments/${commentId}`, fetcher);
+      commentId ? `/api/sneakers/${sneakerId}/comments/${commentId}` : null, 
+      fetcher);
 
    return { data, error, isLoading, mutate };
 };
