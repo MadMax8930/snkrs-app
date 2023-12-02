@@ -4,7 +4,7 @@ import styles from './copped.module.css';
 
 const NoSnkrs = () => {
   return (
-    <div className={styles.nsContainer}>
+    <div className={`${styles.nsContainer} layer`}>
       <Link href="/" className={styles.nsLink}>
          <h1 className={styles.nsTitle}>No sneakers found</h1>
          <p className={styles.nsDescription}>You have not copped any sneakers yet.</p>

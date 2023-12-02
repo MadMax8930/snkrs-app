@@ -4,7 +4,7 @@ import styles from './comment.module.css';
 
 const NoComs = () => {
   return (
-    <div className={styles.ncContainer}>
+    <div className={`${styles.ncContainer} layer`}>
       <Link href="/" className={styles.ncLink}>
          <h1 className={styles.ncTitle}>No comments found</h1>
          <p className={styles.ncDescription}>Be the first one to share your thoughts.</p>

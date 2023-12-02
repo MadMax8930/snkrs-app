@@ -3,8 +3,7 @@ import { Loader, NoComs, CommentCard } from '@/components';
 import styles from './comment.module.css';
 
 const CommentSection = ({ comments, isLoading, mutate, onReply, onEdit, forSneakerId, authenticatedUser, btnSelection }) => {
-
-   if (isLoading) { return <div className='layer pt-24'><Loader /></div>; }
+   if (isLoading) { return <Loader extra={'pt-48'} />; }
    if (!comments || comments.length === 0) { return <NoComs />; }
 
   return (

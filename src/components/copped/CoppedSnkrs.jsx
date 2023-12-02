@@ -3,7 +3,7 @@ import { Loader, CoppedCard, NoSnkrs } from '@/components';
 import styles from './copped.module.css';
 
 const CoppedSnkrs = ({ sneakers, isLoading, mutate }) => {
-   if (isLoading) { return <Loader />; }
+   if (isLoading) { return <Loader extra={'pt-16'} />; }
    if (!sneakers || sneakers.length === 0) { return <NoSnkrs />; }
 
   return (

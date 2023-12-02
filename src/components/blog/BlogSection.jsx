@@ -1,10 +1,10 @@
 import React from 'react';
-import { Load, NoBlogs, BlogCard } from '@/components';
+import { Loader, NoBlogs, BlogCard } from '@/components';
 import styles from './blog.module.css';
 
 const BlogSection = ({ blogs, isLoading, mutate, authenticatedUser }) => {
 
-   if (isLoading) { return <div className='layer pt-24'><Load /></div>; }
+   if (isLoading) { return <Loader extra={'pt-64'} />; }
    if (!blogs || blogs.length === 0) { return <NoBlogs />; }
 
   return (

@@ -56,7 +56,7 @@ const Notification = ({ sneakerId }) => {
       }
    };
    
-   if (loading) { return <p className='pt-2 lg:text-base md:text-sm text-xs text-gray-600'>Loading...</p>; }
+   if (loading) { return <p className='pt-2 lg:text-base md:text-sm text-xs text-gray-400'>Loading...</p>; }
 
   return (
     <div className={styles.container}>
