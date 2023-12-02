@@ -1,4 +1,3 @@
-const User = require('../models/User');
 const Sneaker = require('../models/Sneaker');
 const Comment = require('../models/Comment');
  
@@ -29,11 +28,10 @@ const getAllUserCommentsForBlogs = async (req, res) => {
    try {
      const userId = req.user._id;
 
-     const user = await User.findById(userId).select('username email profilePic');
      const comments = await Comment.find({ user: userId, sneaker: { $exists: true } }, '-user -__v')
      .populate({ path: 'parentMessage', select: 'message parentMessage user createdAt', populate: { path: 'user', select: 'username email profilePic' } })
      .populate({ path: 'sneaker', select: 'img name model brand dateRelease copping coppers', populate: { path: 'coppers', select: 'profilePic' } });
-     return res.status(200).json({ user, comments });
+     return res.status(200).json(comments);
    } catch (error) {
      return res.status(500).json({ error: 'Internal Server Error' });
    }

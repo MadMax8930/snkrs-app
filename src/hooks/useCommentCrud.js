@@ -2,14 +2,6 @@ import fetcherWithCookieAndMethod from './fetcherWithCookieAndMethod';
 
 const useCommentCrud = (sneakerId, commentId) => {
   const endpoint = `/api/profile/sneakers/${sneakerId}/comments`;
-  
-  const getAllUserCommentsForBlogs = async () => {
-    try {
-      await fetcherWithCookieAndMethod('/api/profile/sneakers-comments', { method: 'GET'});
-    } catch (error) {
-      throw error;
-    }
-  };
 
   const getUserComment = async () => {
     try {
@@ -44,7 +36,6 @@ const useCommentCrud = (sneakerId, commentId) => {
   };
 
   return {
-    getAllUserCommentsForBlogs,
     getUserComment,
     addUserComment,
     updateUserComment,
