@@ -4,7 +4,7 @@ import styles from './blog.module.css';
 
 const BlogCard = ({ blog, mutate, authenticatedUser }) => {
 
-   const { message, parentMessage, sneaker, createdAt } = blog;
+   const { message, parentMessage, user, sneaker, createdAt } = blog;
 
    // Limit the number of copper images to 7
    const limitedCoppers = sneaker.coppers.slice(0, 6);
@@ -14,20 +14,31 @@ const BlogCard = ({ blog, mutate, authenticatedUser }) => {
   return (
     <div className={styles.blogContainer}>
 
-         <div className={styles.blogHeader}>
+         <div className={styles.headerContainer}>
             <img src={authenticatedUser.profilePic || '/default.png'} alt="User Profile" className={styles.userProfilePic} />
             <p>{authenticatedUser.username}</p>
-            <p className={styles.blogDate}>{new Date(createdAt).toLocaleString()}</p>
+            <p className={styles.blogDate}>{new Date(parentMessage.createdAt).toLocaleString()}</p>
          </div>
-         <div className={styles.blogContent}><p>{message}</p></div>
 
-         {parentMessage && (
-            <div className={styles.replyContainer}>
-               <span className={styles.replyToUser}>Replied to: <strong>{parentMessage.user.username}</strong></span>
-               <p className={styles.replyToComm}>{parentMessage.message}</p>
+
+         <div className={styles.textContainer}>
+            <p className={styles.commentContent}>{parentMessage.message}</p>
+            <div className={styles.replyContent}>
+               <div className={styles.userInfo}>
+                  <img className={styles.profilePic} src={user.profilePic} alt="Profile Pic" />
+                  <div className={styles.userDetails}>
+                     <span className={styles.replier}>
+                        Reply by: <strong>{user.username}</strong>
+                     </span>
+                     <span className={styles.createdAt}>{new Date(createdAt).toLocaleString()}</span>
+                  </div>
+               </div>
+               <div className={styles.reply}>
+                  <p>{message}</p>
+               </div>
             </div>
-         )}
-
+         </div>
+   
          <div className={styles.sneakerContainer}>
             <Link href={`/sneakers/${sneaker._id}`}>
                <img src={sneaker.img} alt="Sneaker" className={styles.sneakerImage} />

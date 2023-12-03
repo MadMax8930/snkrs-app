@@ -6,7 +6,7 @@ const useUserBlogs = () => {
    const [cookies] = useCookies(['token']);
 
    const { data, error, isLoading, mutate } = useSWR(
-       cookies.token ? '/api/profile/sneakers-comments' : null, fetcherWithCookie);
+       cookies.token ? '/api/profile/replies-to-comments' : null, fetcherWithCookie);
 
    return { data, error, isLoading, mutate };
 };

@@ -14,7 +14,7 @@ const BlogPage = () => {
    }, [fetchedBlogs]);
 
   return (
-    <div className='pt-20 layer-full'>
+    <div className='pt-16 layer-full'>
       <BlogSection 
          blogs={fetchedBlogs}
          isLoading={loadBlogs} 

@@ -6,7 +6,9 @@ require('dotenv').config();
 
 const isItTimeToNotify = (timestamp) => {
    const currTime = new Date();
-   return currTime.getTime() === new Date(timestamp).getTime();
+   const targetTime = new Date(timestamp);
+   const range = 1 * 60 * 1000;
+   return Math.abs(currTime - targetTime) <= range;
 }
 
 const baseURL = process.env.NODE_ENV === 'production' ? process.env.NEXT_PUBLIC_CONNECTION_TO_BACKEND: 'http://localhost:3001';
