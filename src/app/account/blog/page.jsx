@@ -7,14 +7,13 @@ import { withAuth } from '@/guards/withAuth';
 
 const BlogPage = () => {
    const { user } = useContext(UserContext);
-   const { data: fetchedBlogs, isLoading: loadBlogs, mutate: mutateBlogs } = useUserBlogs();
+   const { data: fetchedBlogs, isLoading: loadBlogs } = useUserBlogs();
 
   return (
     <div className='pt-16 layer-full'>
       <BlogSection 
          blogs={fetchedBlogs}
          isLoading={loadBlogs} 
-         mutate={mutateBlogs}
          authenticatedUser={user}
       />
     </div>

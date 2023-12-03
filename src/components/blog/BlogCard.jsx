@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import styles from './blog.module.css';
 
-const BlogCard = ({ blog, mutate, authenticatedUser }) => {
+const BlogCard = ({ blog, authenticatedUser }) => {
 
    const { parentMessage, sneaker, replies } = blog;
 
@@ -23,16 +23,16 @@ const BlogCard = ({ blog, mutate, authenticatedUser }) => {
          <div className={styles.commentContainer}>{parentMessage.message}</div>
 
          {replies.map((reply) => (
-         <div className={styles.replyContainer} key={reply._id}>
-            <div className={styles.justifyBetween}>
-               <div className={styles.replierName}>
-                  <img className={styles.replierLogo} src={reply.user.profilePic} alt="Profile Pic" />
-                  <strong>{reply.user.username}</strong>
+            <div className={styles.replyContainer} key={reply._id}>
+               <div className={styles.justifyBetween}>
+                  <div className={styles.replierName}>
+                     <img className={styles.replierLogo} src={reply.user.profilePic} alt="Profile Pic" />
+                     <strong>{reply.user.username}</strong>
+                  </div>
+                  <div className={styles.createdAt}>{new Date(reply.createdAt).toLocaleString()}</div>
                </div>
-               <div className={styles.createdAt}>{new Date(reply.createdAt).toLocaleString()}</div>
+               <p className={styles.replyContent}>{reply.message}</p>
             </div>
-            <p className={styles.replyContent}>{reply.message}</p>
-         </div>
          ))}
       
          <div className={styles.sneakerContainer}>

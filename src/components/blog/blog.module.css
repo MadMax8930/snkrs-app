@@ -122,7 +122,7 @@
  
 .sneakerImage {
    width: 100%;
-   max-width: 180px;
+   max-width: 120px;
    height: auto;
    margin-bottom: 1em;
 }
@@ -135,19 +135,16 @@
 }
  
 .copperProfilePic {
-   width: 30px;
-   height: 30px;
+   width: 26px;
+   height: 26px;
    border-radius: 50%;
    border: 2px solid #53c28b;
    object-fit: cover;
 }
 
 .moreCopperPlaceholder {
-   /* display: flex;
-   align-items: center;
-   justify-content: center; */
-   width: 30px;
-   height: 30px;
+   width: 26px;
+   height: 26px;
    border-radius: 50%;
    border: 2px dashed rgba(118, 114, 114, 0.791);
    color: rgba(118, 114, 114, 0.791);
