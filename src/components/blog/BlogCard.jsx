@@ -20,25 +20,21 @@ const BlogCard = ({ blog, mutate, authenticatedUser }) => {
             <p className={styles.blogDate}>{new Date(parentMessage.createdAt).toLocaleString()}</p>
          </div>
 
-
-         <div className={styles.textContainer}>
-            <p className={styles.commentContent}>{parentMessage.message}</p>
-            <div className={styles.replyContent}>
-               <div className={styles.userInfo}>
-                  <img className={styles.profilePic} src={user.profilePic} alt="Profile Pic" />
-                  <div className={styles.userDetails}>
-                     <span className={styles.replier}>
-                        Reply by: <strong>{user.username}</strong>
-                     </span>
-                     <span className={styles.createdAt}>{new Date(createdAt).toLocaleString()}</span>
-                  </div>
-               </div>
-               <div className={styles.reply}>
-                  <p>{message}</p>
-               </div>
-            </div>
+         <div className={styles.commentContainer}>
+            <p>{parentMessage.message}</p>
          </div>
-   
+
+         <div className={styles.replyContainer}>
+            <div className={styles.justifyBetween}>
+               <div className={styles.replierName}>
+                  <img className={styles.replierLogo} src={user.profilePic} alt="Profile Pic" />
+                  <strong>{user.username}</strong>
+               </div>
+               <div className={styles.createdAt}>{new Date(createdAt).toLocaleString()}</div>
+            </div>
+            <p className={styles.replyContent}>{message}</p>
+         </div>
+      
          <div className={styles.sneakerContainer}>
             <Link href={`/sneakers/${sneaker._id}`}>
                <img src={sneaker.img} alt="Sneaker" className={styles.sneakerImage} />

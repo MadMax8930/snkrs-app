@@ -30,51 +30,57 @@
    margin-left: auto;
 }
 
-.textContainer {
+.commentContainer {
    border-top: 1px solid #867f7f;
    margin-top: 0.5em;
    padding-top: 1em;
+   font-size: small;
+   font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
-.commentContent {
+
+.replyContainer {
+   margin-top: 0.75em;
+   padding: 0.35em 0.75em 1.1em;
+   background-color: rgba(151, 146, 146, 0.101);
+   color: #716e6e;
+   border-radius: 8px
+}
+
+.justifyBetween {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
    margin-bottom: 0.5em;
 }
 
-.replyContent {
-   background-color: #f5f5f5; /* Set your desired background color */
-   padding: 1em;
-   border-radius: 8px; /* Add rounded corners for a card-like appearance */
-   margin-top: 0.5em;
-}
-
-.userInfo {
+.replierName {
    display: flex;
    align-items: center;
+   font-size: small;
+   font-weight: 600;
 }
 
-.profilePic {
-   width: 40px; /* Adjust as needed */
-   height: 40px; /* Adjust as needed */
+.replierName strong {
+   text-transform: capitalize; 
+}
+
+.replierLogo {
+   width: 0.75rem;
+   height: 0.75rem;
+   border: 1px solid #53c28b;
    border-radius: 50%;
-   margin-right: 1em;
+   margin-right: 0.35em;
 }
 
-.userDetails {
-   flex-grow: 1;
-}
-
-.replier {
-   font-size: 0.9em;
-   color: #555; /* Set your desired text color */
-   margin-bottom: 0.3em;
+.replyContent {
+   font-size: small;
+   font-style: italic;
+   padding-top: 0.175em;
 }
 
 .createdAt {
-   font-size: 0.8em;
-   color: #888;
-}
-
-.reply {
-   margin-top: 0.5em;
+   font-size: 0.65em;
+   color: #746f6f;
 }
 
 .sneakerContainer {
