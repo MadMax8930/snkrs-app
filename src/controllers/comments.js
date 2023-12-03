@@ -35,7 +35,53 @@ const getAllUserRepliesForBlogs = async (req, res) => {
      .populate({ path: 'user', select: 'username profilePic'})
      .populate({ path: 'parentMessage', select: 'message createdAt' })
      .populate({ path: 'sneaker', select: 'img name model brand dateRelease copping coppers', populate: { path: 'coppers', select: 'profilePic' } });
-     return res.status(200).json(replies);
+   
+     const repliesMap = new Map();
+
+     replies.forEach(reply => {
+        const parentId = reply.parentMessage._id.toString();
+
+        // Create / update the entry for the parentMessage._id
+        const entry = repliesMap.get(parentId) ||  {
+           parentMessage: {
+              _id: reply.parentMessage._id,
+              message: reply.parentMessage.message,
+              createdAt: reply.parentMessage.createdAt,
+           },
+           sneaker: {
+              _id: reply.sneaker._id,
+              img: reply.sneaker.img,
+              name: reply.sneaker.name,
+              brand: reply.sneaker.brand,
+              model: reply.sneaker.model,
+              copping: reply.sneaker.copping,
+              dateRelease: reply.sneaker.dateRelease,
+              coppers: reply.sneaker.coppers.map(copper => ({
+                 _id: copper._id,
+                 profilePic: copper.profilePic,
+              })),
+           },
+           replies: [],
+        };
+
+        entry.replies.push({
+           _id: reply._id,
+           message: reply.message,
+           user: {
+             _id: reply.user._id,
+             username: reply.user.username,
+             profilePic: reply.user.profilePic,
+           },
+           createdAt: reply.createdAt,
+        });
+
+        // Update / set the entry in the map
+        repliesMap.set(parentId, entry);
+     });
+
+     // Convert the map values to an array and send the response
+     const formattedReplies = Array.from(repliesMap.values());
+     return res.status(200).json(formattedReplies);
    } catch (error) {
      return res.status(500).json({ error: 'Internal Server Error' });
    }

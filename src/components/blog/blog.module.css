@@ -6,36 +6,63 @@
 }
 
 .blogContainer {
-   border: 2px solid #ccc;
-   margin-bottom: 1em;
-   padding: 0.5em 1em;
-   border-radius: 12px;
-   background-color: rgba(176, 165, 165, 0.141);
-   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+   padding: 1em 1.5em;
+   position: relative;
+   background-color: rgba(157, 163, 163, 0.16);
+}
+
+.blogContainer::before,
+.blogContainer::after {
+  content: '';
+  display: block;
+  height: 1.25px;
+  background-color: #635f5f57;
+  position: absolute;
+  left: 1.5em;
+  right: 1.5em;
+}
+
+.blogContainer:nth-child(1)::before,
+.blogContainer:nth-last-child(1)::after {
+   display: none;
+}
+
+.blogContainer::before {
+  top: 0;
+}
+
+.blogContainer::after {
+  bottom: 0;
 }
 
 .headerContainer {
    display: flex;
    align-items: center;
+   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
  
 .userProfilePic {
-   width: 30px;
-   height: 30px;
+   width: 20px;
+   height: 20px;
    border-radius: 50%;
-   margin-right: 8px;
+   margin-right: 0.25rem;
+}
+
+.userName {
+   font-weight: 600;
 }
  
 .blogDate {
    margin-left: auto;
+   font-size: small;
 }
 
 .commentContainer {
-   border-top: 1px solid #867f7f;
-   margin-top: 0.5em;
+   margin: 0.5em 0em 1.5em;
    padding-top: 1em;
-   font-size: small;
-   font-family:Verdana, Geneva, Tahoma, sans-serif;
+   text-align: justify;
+   font-size: 0.75em;
+   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .replyContainer {
