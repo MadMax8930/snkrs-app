@@ -7,7 +7,7 @@ require('dotenv').config();
 const isItTimeToNotify = (timestamp) => {
    const currTime = new Date();
    const targetTime = new Date(timestamp);
-   const range = 1 * 60 * 1000;
+   const range = 3 * 60 * 1000;
    return Math.abs(currTime - targetTime) <= range;
 }
 
@@ -15,7 +15,7 @@ const baseURL = process.env.NODE_ENV === 'production' ? process.env.NEXT_PUBLIC_
 const headers = { 'dev-api-key': process.env.AUTHORIZED_DEV };
  
 const startCronJob = async () => {
-  cron.schedule('0 */8 * * *', async () => {
+  cron.schedule('0 23 * * *', async () => {
       try {
         console.log('Notification scheduler cron job has started.');
 
@@ -35,8 +35,8 @@ const startCronJob = async () => {
          
           console.log('Notification scheduler cron job completed.');
         } else {
-          console.log('No notifications found. Putting cron job on standby for 2 hours.');
-          await new Promise(resolve => setTimeout(resolve, 2 * 60 * 60 * 1000));
+          console.log('No notifications found. Putting cron job on standby for 1 hour.');
+          await new Promise(resolve => setTimeout(resolve, 1 * 60 * 60 * 1000));
         }
       } catch (error) {
          console.error('Notification scheduler cron job has failed:', error);
