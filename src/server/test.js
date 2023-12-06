@@ -1,10 +1,3 @@
-// const isItTimeToNotify = (timestamp) => {
-//    const currTime = new Date();
-//    const targetTime = new Date(timestamp);
-//    const range = 1 * 60 * 1000;
-//    return Math.abs(currTime - targetTime) <= range;
-// }
-
 // const currentTime = new Date();
 // const timestamp = '2023-12-05T00:00:00.000Z'
 // const timestampDate = new Date(timestamp)
