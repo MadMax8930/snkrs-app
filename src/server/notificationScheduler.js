@@ -16,7 +16,7 @@ const isItTimeToNotify = (timestamp) => {
 }
 
 const startCronJob = async () => {
-  cron.schedule('0 0 * * *', async () => {
+  cron.schedule('* * * * *', async () => {
       try {
         console.log('Notification scheduler cron job has started.');
 
