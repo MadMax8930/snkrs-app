@@ -11,12 +11,12 @@ const isItTimeToNotify = (timestamp) => {
    const currTimeUTC = new Date();
    const currTimeParis = currTimeUTC.setHours(currTimeUTC.getHours() + 1);
    const targetTime = new Date(timestamp);
-   const range = 2 * 60 * 1000;
+   const range = 1 * 60 * 1000;
    return Math.abs(currTimeParis - targetTime) <= range;
 }
 
 const startCronJob = async () => {
-  cron.schedule('* * * * *', async () => {
+  cron.schedule('0 0 * * *', async () => {
       try {
         console.log('Notification scheduler cron job has started.');
 
@@ -25,11 +25,11 @@ const startCronJob = async () => {
 
         if (notifications && notifications.length > 0) {
             for (const notification of notifications) {
-               const { _id: notificationId, user: { email: userEmail }, content, schedule, sneaker, timestamp } = notification;
+               const { _id: notificationId, user, content, schedule, sneaker, timestamp } = notification;
 
                try {
-                  if (isItTimeToNotify(timestamp)) {
-                     await sendNotification(userEmail, sneaker, schedule, content);
+                  if (user && user.email && isItTimeToNotify(timestamp)) {
+                     await sendNotification(user.email, sneaker, schedule, content);
                      await notificationsController.clearNotificationByIdForCronJob({ params: { notificationId } });
                   }
                } catch (notificationError) {
