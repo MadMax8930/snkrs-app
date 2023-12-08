@@ -22,7 +22,7 @@
    ],
    "crons": [
      {
-        "path": "src/server/notificationScheduler.js",
+        "path": "/server/notificationScheduler.js",
         "schedule": "0 0 * * *"
      }
    ]
